@@ -10,14 +10,12 @@
         android:id="@+id/imageView3"
         android:layout_width="172dp"
         android:layout_height="112dp"
-        android:layout_marginBottom="32dp"
         android:src="@drawable/text_login_title"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <ImageView
@@ -25,38 +23,39 @@
         android:layout_width="91dp"
         android:layout_height="184dp"
         android:src="@drawable/emotion_happy_big"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         android:layout_marginHorizontal="16dp"
-        android:background="@drawable/button_round"
-        android:backgroundTint="@color/kakao_yellow"
-        android:textColor="@color/kakao_text"
-        android:textStyle="bold"
-        android:textSize="16sp"
+        android:layout_marginTop="48dp"
         android:text="@string/login_kakao"
-        android:drawableStart="@drawable/ic_kakaotalk"
-        android:padding="16dp"
+        style="@style/Widget.Mongle.Button.Kakao"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_anonymous"
-        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/disabled"
+        android:text="@string/login_anonymous"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
