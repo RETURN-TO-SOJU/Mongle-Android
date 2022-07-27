@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Theme.Mongle" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
@@ -19,7 +20,8 @@
     </style>
 
     <style name="Theme.Mongle.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@drawable/splash</item>
+        <item name="windowSplashScreenBackground">#FFA2BF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="postSplashScreenTheme">@style/Theme.Mongle</item>
     </style>
 </resources>
