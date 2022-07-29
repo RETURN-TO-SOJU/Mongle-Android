@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FFEB6E6D</color>
-    <color name="primary_dark">#C35453</color>
-    <color name="secondary">#FFEB6E6D</color>
-    <color name="secondary_dark">#C35453</color>
+    <color name="pink">#EB6E6D</color>
+    <color name="pink_dark">#C35453</color>
 
     <color name="disabled">#B2B7BD</color>
     <color name="kakao_yellow">#F9E001</color>
