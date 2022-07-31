@@ -10,4 +10,8 @@
 
     <!-- Service Agreement -->
     <string name="agree_title">몽글몽글이 처음이시군요 🙌\n잠시 동의받겠습니다!</string>
+    <string name="agree_item_1"><font color="#B2B7BD">[필수]</font> <u><font color="#EB6E6D">이용약관</font></u>에 동의합니다.</string>
+    <string name="agree_item_2"><font color="#B2B7BD">[필수]</font> <u><font color="#EB6E6D">개인정보 수집 및 이용</font></u>에 동의합니다.</string>
+    <string name="agree_item_3"><font color="#B2B7BD">[선택]</font> <u><font color="#EB6E6D">위치기반서비스</font></u>에 동의합니다.</string>
+    <string name="agree_all">전체동의</string>
 </resources>

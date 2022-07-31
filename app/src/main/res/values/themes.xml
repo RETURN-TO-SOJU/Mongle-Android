@@ -16,10 +16,13 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
         <!-- Widget Style -->
-        <item name="buttonStyle">@style/Widget.Mongle.Button</item>
-        <item name="checkboxStyle">@style/Widget.Mongle.Checkbox</item>
-        <item name="android:textViewStyle">@style/Widget.Mongle.Text</item>
+        <item name="android:buttonStyle">@style/Widget.Mongle.Button</item>
+        <item name="android:checkboxStyle">@style/Widget.Mongle.Checkbox</item>
+        <item name="android:textViewStyle">@style/Widget.Mongle.TextView</item>
+        <item name="android:radioButtonStyle">@style/Widget.Mongle.RadioButton</item>
+        <item name="android:editTextStyle">@style/Widget.Mongle.EditText</item>
 
+        <!-- Activity default background -->
         <item name="android:colorBackground">@color/white</item>
     </style>
 
