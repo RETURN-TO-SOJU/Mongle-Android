@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun attachEvents(binding: ActivityLoginBinding) {
         binding.loginWithKakaoButton.setOnClickListener {
-            val intent = Intent(this, AgreeActivity::class.java)
+            val intent = Intent(this, PasswordActivity::class.java)
             startActivity(intent)
         }
     }

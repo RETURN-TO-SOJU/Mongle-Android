@@ -17,13 +17,20 @@
         <item name="android:textColor">@color/kakao_text</item>
     </style>
 
+    <style name="Widget.Mongle.Button.TextButton">
+        <item name="android:textSize">24sp</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
     <style name="Widget.Mongle.Checkbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:fontFamily">@font/app_font</item>
-        <item name="buttonTint">@color/pink</item>
+        <item name="android:buttonTint">@color/pink</item>
     </style>
 
     <style name="Widget.Mongle.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:buttonTint">@color/pink</item>
     </style>
 
     <style name="Widget.Mongle.EditText" parent="Widget.AppCompat.EditText">

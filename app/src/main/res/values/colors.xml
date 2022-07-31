@@ -5,10 +5,12 @@
 
     <color name="text">#191919</color>
     <color name="disabled">#B2B7BD</color>
+    <color name="disabled_light">#DBDBDB</color>
 
     <color name="kakao_yellow">#F9E001</color>
     <color name="kakao_text">#3C1E1E</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

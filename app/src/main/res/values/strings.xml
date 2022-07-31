@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Mongle</string>
-    <string name="app_name_kr">몽글몽글</string>
+    <string name="app_name">몽글몽글</string>
 
     <string name="OK">확인</string>
 
@@ -8,10 +7,14 @@
     <string name="login_anonymous"><u>로그인하지 않고 둘러보기</u></string>
     <string name="login_kakao">카카오톡으로 시작하기</string>
 
-    <!-- Service Agreement -->
+    <!-- Service agreement -->
     <string name="agree_title">몽글몽글이 처음이시군요 🙌\n잠시 동의받겠습니다!</string>
     <string name="agree_item_1"><font color="#B2B7BD">[필수]</font> <u><font color="#EB6E6D">이용약관</font></u>에 동의합니다.</string>
     <string name="agree_item_2"><font color="#B2B7BD">[필수]</font> <u><font color="#EB6E6D">개인정보 수집 및 이용</font></u>에 동의합니다.</string>
     <string name="agree_item_3"><font color="#B2B7BD">[선택]</font> <u><font color="#EB6E6D">위치기반서비스</font></u>에 동의합니다.</string>
     <string name="agree_all">전체동의</string>
+
+    <!-- Password -->
+    <string name="pwd_title">비밀번호 설정</string>
+    <string name="pwd_subtitle">앱에서 사용할 암호를 입력하세요.</string>
 </resources>
