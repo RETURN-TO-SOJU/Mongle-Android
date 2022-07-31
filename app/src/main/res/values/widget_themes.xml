@@ -5,6 +5,8 @@
         <item name="android:fontFamily">@font/app_font</item>
         <item name="android:background">@drawable/button_round</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
     </style>
 
     <style name="Widget.Mongle.Button.Kakao">
@@ -21,6 +23,13 @@
         <item name="android:textSize">24sp</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
         <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="Widget.Mongle.Button.Outline"  parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/button_outline_round</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
     </style>
 
     <style name="Widget.Mongle.Checkbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
@@ -40,5 +49,13 @@
     <style name="Widget.Mongle.TextView" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/app_font</item>
         <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="Widget.Mongle.BottomSheet" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.Mongle.BottonSheet.Modal</item>
+    </style>
+
+    <style name="Widget.Mongle.BottonSheet.Modal" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/dialog_round</item>
     </style>
 </resources>

@@ -36,7 +36,7 @@
         android:id="@+id/login_with_kakao_button"
         style="@style/Widget.Mongle.Button.Kakao"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:text="@string/login_kakao"
         app:layout_constraintBottom_toTopOf="@+id/login_anonymous_button"

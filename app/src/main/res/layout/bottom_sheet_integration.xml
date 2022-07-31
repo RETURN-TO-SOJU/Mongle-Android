@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- BottomSheetDialogFragment에서 margin을 주기위해 parent
+     layout을 선언함.-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="48dp"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/integration_title"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:text="@string/integration_subtitle"
+            android:textColor="@color/disabled"
+            android:textSize="12sp" />
+
+        <Button
+            style="@style/Widget.Mongle.Button.Outline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_naver_cloud"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/integration_naver_cloud" />
+
+        <Button
+            style="@style/Widget.Mongle.Button.Outline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_google_cloud"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/integration_google_cloud" />
+
+        <Button
+            style="@style/Widget.Mongle.Button.Outline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:drawableStart="@drawable/ic_google_calendar"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/integration_google_calendar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/integration_skip"
+            android:textColor="@color/disabled"
+            android:textSize="12sp" />
+    </LinearLayout>
+</FrameLayout>

@@ -18,4 +18,12 @@
     <!-- Password -->
     <string name="pwd_title">비밀번호 설정</string>
     <string name="pwd_subtitle">앱에서 사용할 암호를 입력하세요.</string>
+
+    <!-- Integration dialog -->
+    <string name="integration_title">반가워요 👋\n우리 더 친해져요 :)</string>
+    <string name="integration_subtitle">클라우드 및 캘린더 연동하기</string>
+    <string name="integration_skip">다음에 할래요!</string>
+    <string name="integration_naver_cloud">네이버 MYBOX 연동하기</string>
+    <string name="integration_google_cloud">구글 클라우드 연동하기</string>
+    <string name="integration_google_calendar">구글 캘린더 연동하기</string>
 </resources>
