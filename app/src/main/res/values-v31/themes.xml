@@ -2,6 +2,7 @@
 <resources>
     <!-- TODO 스플래시 애니매이션 추가-->
     <style name="Theme.Mongle.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFA2BF</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.Mongle</item>

@@ -16,15 +16,11 @@
         <item name="android:textColor">@color/kakao_text</item>
     </style>
 
-    <style name="MyStyle">
-        <item name="android:textColor">#00f</item>
+    <style name="Widget.Mongle.Checkbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/pink</item>
     </style>
 
-    <style name="MyStyle.A">
-        <item name="android:textColor">#0f0</item>
-    </style>
-
-    <style name="MyStyle.A.B">
-        <item name="android:textColor">#f00</item>
+    <style name="Widget.Mongle.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/text</item>
     </style>
 </resources>

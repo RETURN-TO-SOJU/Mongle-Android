@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Mongle</string>
+    <string name="app_name_kr">몽글몽글</string>
+
+    <string name="OK">확인</string>
+
+    <!-- Login -->
     <string name="login_anonymous"><u>로그인하지 않고 둘러보기</u></string>
     <string name="login_kakao">카카오톡으로 시작하기</string>
+
+    <!-- Service Agreement -->
+    <string name="agree_title">몽글몽글이 처음이시군요 🙌\n잠시 동의받겠습니다!</string>
 </resources>
