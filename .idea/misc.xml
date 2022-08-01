@@ -38,8 +38,11 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_password.xml" value="0.33" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_splash.xml" value="0.26452991452991453" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_test.xml" value="0.365625" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_tutorial.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/bottom_sheet_integration.xml" value="0.33" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/fragment_bottom_sheet_integration.xml" value="0.29615384615384616" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/fragment_tutorial_page.xml" value="0.365625" />
       </map>
     </option>
   </component>

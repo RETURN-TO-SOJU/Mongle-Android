@@ -34,11 +34,5 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, PasswordActivity::class.java)
             startActivity(intent)
         }
-
-        // TODO for debug bottom sheet dialog. Remove it later
-        binding.imageView2.setOnClickListener{
-            val bottomSheet = BottomSheetIntegrationFragment()
-            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
-        }
     }
 }

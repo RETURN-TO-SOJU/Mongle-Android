@@ -26,4 +26,7 @@
     <string name="integration_naver_cloud">네이버 MYBOX 연동하기</string>
     <string name="integration_google_cloud">구글 클라우드 연동하기</string>
     <string name="integration_google_calendar">구글 캘린더 연동하기</string>
+
+    <!-- Tutorial -->
+    <string name="skip">건너뛰기</string>
 </resources>

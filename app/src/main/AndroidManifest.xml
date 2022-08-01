@@ -14,13 +14,10 @@
         android:theme="@style/Theme.Mongle"
         tools:targetApi="31">
         <activity
-            android:name=".PasswordActivity"
+            android:name=".tutorial.TutorialActivity"
             android:exported="false" />
         <activity
-            android:name=".AgreeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
+            android:name=".TestActivity"
             android:exported="true"
             android:theme="@style/Theme.Mongle.Starting">
             <intent-filter>
@@ -29,6 +26,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
