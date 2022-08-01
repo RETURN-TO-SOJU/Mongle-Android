@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.databinding.ActivityTestBinding
+import com.won983212.mongle.password.PasswordActivity
 import com.won983212.mongle.tutorial.TutorialActivity
-import java.util.logging.Logger
 
 class TestActivity : AppCompatActivity() {
     private val listItems = arrayOf(

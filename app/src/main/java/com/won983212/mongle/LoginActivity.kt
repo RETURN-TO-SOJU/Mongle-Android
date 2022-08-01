@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.won983212.mongle.databinding.ActivityLoginBinding
+import com.won983212.mongle.password.PasswordActivity
 
 class LoginActivity : AppCompatActivity() {
     private var keepSplash: Boolean = true

@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PasswordActivity"
+            android:name=".password.PasswordActivity"
             android:exported="false" />
         <activity
             android:name=".AgreeActivity"
