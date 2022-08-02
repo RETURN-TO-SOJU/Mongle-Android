@@ -25,60 +25,76 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <GridLayout
-            android:layout_width="300dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:columnCount="3">
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:gravity="center">
 
-            <RadioButton
+            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
                 android:id="@+id/new_favorite_radio_happy"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:foreground="@drawable/background_checkable"
                 android:background="@drawable/emotion_happy"
                 android:button="@null" />
 
-            <RadioButton
+            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
                 android:id="@+id/new_favorite_radio_neutral"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:foreground="@drawable/background_checkable"
                 android:background="@drawable/emotion_neutral"
                 android:button="@null" />
 
-            <RadioButton
+            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
                 android:id="@+id/new_favorite_radio_sad"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:foreground="@drawable/background_checkable"
                 android:background="@drawable/emotion_sad"
                 android:button="@null" />
 
-            <RadioButton
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="24dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
                 android:id="@+id/new_favorite_radio_anxious"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:foreground="@drawable/background_checkable"
                 android:background="@drawable/emotion_anxious"
                 android:button="@null" />
 
-            <RadioButton
+            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
                 android:id="@+id/new_favorite_radio_embarrass"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:foreground="@drawable/background_checkable"
                 android:background="@drawable/emotion_embarrass"
                 android:button="@null" />
 
-            <RadioButton
+            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
                 android:id="@+id/new_favorite_radio_angry"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:foreground="@drawable/background_checkable"
                 android:background="@drawable/emotion_angry"
                 android:button="@null" />
-        </GridLayout>
+        </RadioGroup>
 
         <EditText
             android:layout_width="match_parent"

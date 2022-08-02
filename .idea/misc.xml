@@ -38,11 +38,13 @@
         <entry key="app/src/main/res/drawable/emotion_happy.xml" value="0.187" />
         <entry key="app/src/main/res/drawable/style_radiobutton.xml" value="0.187" />
         <entry key="app/src/main/res/layout/activity_agree.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_password.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_tutorial.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_sheet_integration.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/bottom_sheet_new_favorite.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_tutorial_page.xml" value="0.28229166666666666" />
       </map>
     </option>
   </component>

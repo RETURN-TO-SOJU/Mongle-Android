@@ -1,6 +1,7 @@
 package com.won983212.mongle
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.won983212.mongle.databinding.ActivityLoginBinding
-import com.won983212.mongle.password.PasswordActivity
 
 class LoginActivity : AppCompatActivity() {
     private var keepSplash: Boolean = true
@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         applySplashLazyOut(splashScreen)
-        attachEvents(binding)
+        initWidgets(binding)
     }
 
     private fun applySplashLazyOut(splashScreen: SplashScreen) {
@@ -30,9 +30,13 @@ class LoginActivity : AppCompatActivity() {
             .postDelayed({ keepSplash = false }, 1000)
     }
 
-    private fun attachEvents(binding: ActivityLoginBinding) {
+    private fun initWidgets(binding: ActivityLoginBinding) {
         binding.loginWithKakaoButton.setOnClickListener {
-            val intent = Intent(this, PasswordActivity::class.java)
+            val uri = Uri.parse(
+                "https://kauth.kakao.com/oauth/authorize?client_id=ccbac5ca9c6a907992ba6c1c10fd98d4" +
+                        "&redirect_uri=http://localhost:8080/oauth2/kakao&response_type=code"
+            )
+            val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
         }
     }

@@ -49,6 +49,7 @@ dependencies {
     implementation "androidx.emoji2:emoji2-views-helper:1.2.0-rc01"
 
     implementation "com.tbuonomo:dotsindicator:4.3"
+    implementation 'me.zhanghai.android.foregroundcompat:library:1.0.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
