@@ -29,4 +29,8 @@
 
     <!-- Tutorial -->
     <string name="skip">건너뛰기</string>
+
+    <!-- New favorite -->
+    <string name="new_favorite_title">소마님 💌\n소중한 추억을 저장하세요 :)</string>
+    <string name="please_input_title">제목을 입력해주세요.</string>
 </resources>

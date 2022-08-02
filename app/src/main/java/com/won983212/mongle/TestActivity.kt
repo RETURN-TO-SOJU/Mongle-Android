@@ -19,6 +19,7 @@ class TestActivity : AppCompatActivity() {
         "비밀번호 입력" to PasswordActivity::class.java,
         "계정 연동" to IntegrationFragment::class.java,
         "튜토리얼" to TutorialActivity::class.java,
+        "찜 추가" to NewFavoriteFragment::class.java,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
