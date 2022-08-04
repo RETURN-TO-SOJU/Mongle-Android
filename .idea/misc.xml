@@ -38,6 +38,7 @@
         <entry key="app/src/main/res/drawable/emotion_happy.xml" value="0.187" />
         <entry key="app/src/main/res/drawable/style_radiobutton.xml" value="0.187" />
         <entry key="app/src/main/res/layout/activity_agree.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_kakao_receive.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_password.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.28229166666666666" />
