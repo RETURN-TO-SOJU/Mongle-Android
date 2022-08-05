@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin' version '2.0.1'
 }
 
 android {
@@ -44,12 +45,13 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     implementation 'androidx.core:core-splashscreen:1.0.0'
-    implementation "androidx.emoji2:emoji2:1.2.0-rc01"
+    implementation "androidx.emoji2:emoji2:1.2.0-rc01" // emoji compat
     implementation "androidx.emoji2:emoji2-views:1.2.0-rc01"
     implementation "androidx.emoji2:emoji2-views-helper:1.2.0-rc01"
 
-    implementation "com.tbuonomo:dotsindicator:4.3"
-    implementation 'me.zhanghai.android.foregroundcompat:library:1.0.2'
+    implementation "com.tbuonomo:dotsindicator:4.3" // view pager indicator
+    implementation 'me.zhanghai.android.foregroundcompat:library:1.0.2' // foreground compat
+    implementation "com.kakao.sdk:v2-user:2.11.0" // 카카오 로그인
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
