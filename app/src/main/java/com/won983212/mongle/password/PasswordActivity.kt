@@ -1,7 +1,6 @@
 package com.won983212.mongle.password
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -27,10 +26,10 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
         )
 
         passwordRepository.setOnFullListener(this)
-        prepareKeypadEvents(binding)
+        initEvents(binding)
     }
 
-    private fun prepareKeypadEvents(binding: ActivityPasswordBinding) {
+    private fun initEvents(binding: ActivityPasswordBinding) {
         arrayOf(
             binding.pwdIn0,
             binding.pwdIn1,
