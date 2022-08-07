@@ -2,17 +2,17 @@
 
     <style name="Theme.Mongle" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/pink</item>
-        <item name="colorPrimaryVariant">@color/pink</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/point</item>
+        <item name="colorPrimaryVariant">@color/point</item>
+        <item name="colorOnPrimary">@color/point_accent</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/pink</item>
-        <item name="colorSecondaryVariant">@color/pink</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondary">@color/point</item>
+        <item name="colorSecondaryVariant">@color/point</item>
+        <item name="colorOnSecondary">@color/point_accent</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/background</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
         <!-- Widget Style -->
@@ -24,7 +24,7 @@
         <item name="bottomSheetDialogTheme">@style/Widget.Mongle.BottomSheet</item>
 
         <!-- Activity default background -->
-        <item name="android:colorBackground">@color/white</item>
+        <item name="android:colorBackground">@color/background</item>
     </style>
 
     <style name="Theme.Mongle.Starting" parent="Theme.SplashScreen">

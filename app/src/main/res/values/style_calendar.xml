@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Calendar day style -->
+    <style name="CalendarDayText" parent="TextAppearance.MaterialCalendarWidget.Date">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/calendar_day_text</item>
+    </style>
+
+    <!-- Calendar day style -->
+    <style name="CalendarTodayText" parent="TextAppearance.MaterialCalendarWidget.Date">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/calendar_today_text</item>
+    </style>
+
+    <!-- Calendar week style -->
+    <style name="CalendarWeekDayText" parent="TextAppearance.MaterialCalendarWidget.WeekDay">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/disabled</item>
+    </style>
+
+    <!-- Calendar header style -->
+    <style name="CalendarHeaderText" parent="TextAppearance.MaterialCalendarWidget.Header">
+        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+</resources>

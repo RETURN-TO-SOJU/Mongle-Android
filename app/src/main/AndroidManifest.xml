@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress ALL -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.won983212.mongle">
@@ -17,12 +18,16 @@
         android:theme="@style/Theme.Mongle"
         tools:targetApi="31">
         <activity
+            android:name=".OverviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".KakaoReceiveActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
@@ -36,7 +41,6 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <!--suppress AndroidDomInspection -->
                 <data
                     android:host="oauth"
                     android:scheme="kakao${KAKAO_NATIVE_APP_KEY}" />

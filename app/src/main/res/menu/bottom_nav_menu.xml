@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_calendar"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/tab_calendar_title" />
+    <item
+        android:id="@+id/tab_album"
+        android:icon="@drawable/ic_album"
+        android:title="@string/tab_album_title" />
+    <item
+        android:id="@+id/tab_statistics"
+        android:icon="@drawable/ic_statistics"
+        android:title="@string/tab_statistics_title" />
+    <item
+        android:id="@+id/tab_favorite"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/tab_favorite_title" />
+    <item
+        android:id="@+id/tab_settings"
+        android:icon="@drawable/ic_user"
+        android:title="@string/tab_settings_title" />
+</menu>

@@ -33,4 +33,9 @@
     <!-- New favorite -->
     <string name="new_favorite_title">소마님 💌\n소중한 추억을 저장하세요 :)</string>
     <string name="please_input_title">제목을 입력해주세요.</string>
+    <string name="tab_calendar_title">캘린더</string>
+    <string name="tab_album_title">앨범</string>
+    <string name="tab_statistics_title">통계</string>
+    <string name="tab_favorite_title">찜</string>
+    <string name="tab_settings_title">MY</string>
 </resources>

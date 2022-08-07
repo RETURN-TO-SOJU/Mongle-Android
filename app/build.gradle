@@ -51,7 +51,9 @@ dependencies {
 
     implementation "com.tbuonomo:dotsindicator:4.3" // view pager indicator
     implementation 'me.zhanghai.android.foregroundcompat:library:1.0.2' // foreground compat
-    implementation "com.kakao.sdk:v2-user:2.11.0" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-user:2.11.0" // Kakao login
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1' // Calendar
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.1.1' // LocalDate
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

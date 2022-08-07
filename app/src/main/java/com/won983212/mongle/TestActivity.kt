@@ -20,6 +20,8 @@ class TestActivity : AppCompatActivity() {
         "계정 연동" to IntegrationFragment::class.java,
         "튜토리얼" to TutorialActivity::class.java,
         "찜 추가" to NewFavoriteFragment::class.java,
+        "카카오 카톡 데이터 전송" to KakaoReceiveActivity::class.java,
+        "분석된 캘린더 화면" to OverviewActivity::class.java
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
