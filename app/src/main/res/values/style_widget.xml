@@ -5,7 +5,7 @@
     <style name="Widget.Mongle.Button" parent="Widget.AppCompat.Button">
         <item name="android:fontFamily">@font/app_font</item>
         <item name="android:background">@drawable/button_round</item>
-        <item name="android:textColor">@color/point_accent</item>
+        <item name="android:textColor">@color/on_point</item>
         <item name="android:paddingTop">18dp</item>
         <item name="android:paddingBottom">18dp</item>
     </style>
@@ -69,6 +69,6 @@
     </style>
 
     <style name="Widget.Mongle.BottonSheet.Modal" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/dialog_round</item>
+        <item name="android:background">@drawable/round_top_15</item>
     </style>
 </resources>

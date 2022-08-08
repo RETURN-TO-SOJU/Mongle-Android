@@ -1,15 +1,18 @@
 package com.won983212.mongle
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.won983212.mongle.databinding.ActivityOverviewBinding
+import com.won983212.mongle.view.calendar.CalendarAdapter
 
 class OverviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_overview)
-
         val binding = ActivityOverviewBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 }

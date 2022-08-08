@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.Mongle">
 
+    <!-- TODO Refactoring -->
     <!-- BottomSheetDialogFragment에서 margin을 주기위해 parent
      layout을 선언함.-->
     <LinearLayout

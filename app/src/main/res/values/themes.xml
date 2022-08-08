@@ -4,12 +4,12 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/point</item>
         <item name="colorPrimaryVariant">@color/point</item>
-        <item name="colorOnPrimary">@color/point_accent</item>
+        <item name="colorOnPrimary">@color/on_point</item>
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/point</item>
         <item name="colorSecondaryVariant">@color/point</item>
-        <item name="colorOnSecondary">@color/point_accent</item>
+        <item name="colorOnSecondary">@color/on_point</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/background</item>

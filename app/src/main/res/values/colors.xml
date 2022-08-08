@@ -2,7 +2,7 @@
 <resources>
     <color name="point">#EB6E6D</color>
     <color name="point_dark">#C35453</color>
-    <color name="point_accent">@color/white</color>
+    <color name="on_point">@color/white</color>
 
     <color name="text">#191919</color>
     <color name="disabled">#B2B7BD</color>
@@ -12,6 +12,7 @@
     <color name="kakao_text">#3C1E1E</color>
 
     <color name="background">@color/white</color>
+    <color name="ic_launcher_background">#FCEAEA</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

@@ -38,4 +38,15 @@
     <string name="tab_statistics_title">통계</string>
     <string name="tab_favorite_title">찜</string>
     <string name="tab_settings_title">MY</string>
+
+    <!-- Overview -->
+    <!--<string name="overview_intro">소마님 👋\n<b>%1$s</b>\n%2$s</string>-->
+    <!-- TODO Test message -->
+    <string name="overview_intro">소마님 👋\n<b>8월 2일 화요일\n</b>오늘 하루도 수고했어요.</string>
+    <string name="overview_intro_message_default">이날 하루도 수고했어요.</string>
+    <string name="overview_intro_message_today">오늘 하루도 수고했어요.</string>
+    <string name="overview_intro_message_weekend">주말에 무엇을 했을까요?</string>
+    <string name="overview_intro_message_diary">이날 쓴 일기를 보면 재밌겠어요!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
