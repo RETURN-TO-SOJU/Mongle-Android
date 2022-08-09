@@ -3,19 +3,16 @@ package com.won983212.mongle.view.calendar
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.FrameLayout
-import android.widget.TextView
-import androidx.core.view.children
 import com.kizitonwose.calendarview.CalendarView
-import com.kizitonwose.calendarview.model.CalendarDay
-import com.kizitonwose.calendarview.model.CalendarMonth
-import com.kizitonwose.calendarview.ui.DayBinder
-import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
+import com.kizitonwose.calendarview.utils.next
+import com.kizitonwose.calendarview.utils.previous
 import com.won983212.mongle.R
 import com.won983212.mongle.databinding.CalendarMongleBinding
 import com.won983212.mongle.util.dpToPx
+import java.time.LocalDate
 import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
 import java.util.*
 
@@ -26,42 +23,59 @@ class MongleCalendar @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
+    private val yearMonthFormatter = DateTimeFormatter.ofPattern("yyyy. MM")
+    private val binding = CalendarMongleBinding.inflate(LayoutInflater.from(context))
+
+    var selectedDate: LocalDate? = null
+        private set
+
     init {
-        val binding = CalendarMongleBinding.inflate(LayoutInflater.from(context))
         val currentMonth = YearMonth.now()
-        val firstMonth = currentMonth.minusMonths(5)
-        val lastMonth = currentMonth.plusMonths(5)
         val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
         val daysOfWeek = resources.getStringArray(R.array.calendar_weekdays)
 
         binding.calendarView.apply {
             daySize = CalendarView.sizeAutoWidth(dpToPx(context, 44))
-
-            dayBinder = object : DayBinder<DayViewContainer> {
-                override fun create(view: View): DayViewContainer = DayViewContainer(view)
-                override fun bind(container: DayViewContainer, day: CalendarDay) {
-                    container.textView.text = day.date.dayOfMonth.toString()
-                }
+            dayBinder = MongleDayBinder(this@MongleCalendar, this@MongleCalendar::selectDate)
+            monthHeaderBinder = MongleMonthHeaderBinder(daysOfWeek)
+            monthScrollListener = {
+                binding.monthText.text = yearMonthFormatter.format(it.yearMonth)
             }
-
-            monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer> {
-                override fun create(view: View) = MonthViewContainer(view)
-                override fun bind(container: MonthViewContainer, month: CalendarMonth) {
-                    if (container.legendLayout.tag == null) {
-                        container.legendLayout.tag = month.yearMonth
-                        container.legendLayout.children.map { it as TextView }
-                            .forEachIndexed { index, tv ->
-                                tv.text = daysOfWeek[index]
-                            }
-                    }
-                }
-            }
-
-            setupAsync(firstMonth, lastMonth, firstDayOfWeek) {
+            setupAsync(
+                currentMonth.minusMonths(5),
+                currentMonth.plusMonths(5),
+                firstDayOfWeek
+            ) {
                 this.scrollToMonth(currentMonth)
             }
         }
 
+        binding.prevMonthBtn.setOnClickListener {
+            binding.calendarView.apply {
+                findFirstVisibleMonth()?.let {
+                    smoothScrollToMonth(it.yearMonth.previous)
+                }
+            }
+        }
+
+        binding.nextMonthBtn.setOnClickListener {
+            binding.calendarView.apply {
+                findFirstVisibleMonth()?.let {
+                    smoothScrollToMonth(it.yearMonth.next)
+                }
+            }
+        }
+
         addView(binding.root)
+    }
+
+    private fun selectDate(date: LocalDate) {
+        if (selectedDate != date) {
+            val oldDate = selectedDate
+            selectedDate = date
+
+            oldDate?.let { binding.calendarView.notifyDateChanged(it) }
+            binding.calendarView.notifyDateChanged(date)
+        }
     }
 }

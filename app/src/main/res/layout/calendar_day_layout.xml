@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:ignore="ContentDescription">
 
-    <TextView
-        android:id="@+id/calendarDayText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="22"
-        android:textSize="16sp" />
-</FrameLayout>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/daySelectedBackground"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/calendar_selected" />
+
+        <TextView
+            android:id="@+id/calendarDayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            tools:text="22"
+            android:textSize="14sp" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/dotIsToday"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:src="@drawable/round_point"
+        android:visibility="gone" />
+</LinearLayout>

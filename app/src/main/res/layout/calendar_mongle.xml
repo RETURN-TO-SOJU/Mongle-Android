@@ -9,24 +9,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
 
         <ImageButton
+            android:id="@+id/prevMonthBtn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_arrow_left" />
+            android:padding="4dp"
+            android:src="@drawable/ic_arrow_left"
+            android:background="@drawable/button_ripple_round" />
 
         <TextView
+            android:id="@+id/monthText"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="2022.06" />
+            android:fontFamily="@font/app_font"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            tools:text="2022.06" />
 
         <ImageButton
+            android:id="@+id/nextMonthBtn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_arrow_right" />
+            android:padding="4dp"
+            android:src="@drawable/ic_arrow_right"
+            android:background="@drawable/button_ripple_round" />
     </LinearLayout>
 
     <com.kizitonwose.calendarview.CalendarView
