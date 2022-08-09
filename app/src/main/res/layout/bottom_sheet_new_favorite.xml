@@ -26,6 +26,7 @@
             android:textStyle="bold" />
 
         <GridLayout
+            android:id="@+id/emotionContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="24dp"

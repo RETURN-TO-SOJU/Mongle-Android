@@ -6,16 +6,18 @@
     tools:context=".tutorial.TutorialPageFragment">
 
     <TextView
+        android:id="@+id/tutorialTitleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:textSize="24sp"
         android:gravity="center_horizontal"
-        android:text="화면을 옆으로 넘겨\n더 편리하게 사용하세요!" />
+        tools:text="화면을 옆으로 넘겨\n더 편리하게 사용하세요!" />
 
     <ImageView
+        android:id="@+id/tutorialImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_launcher_foreground" />
+        tools:src="@drawable/ic_launcher_foreground" />
 
 </FrameLayout>

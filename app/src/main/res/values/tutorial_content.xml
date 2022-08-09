@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="kakao_tutorial_title">
+        <item>@string/kakao_tutorial_title_1</item>
+        <item>@string/kakao_tutorial_title_2</item>
+        <item>@string/kakao_tutorial_title_3</item>
+        <item>@string/kakao_tutorial_title_4</item>
+        <item>@string/kakao_tutorial_title_5</item>
+    </array>
+    <array name="kakao_tutorial_image">
+        <item>@drawable/kakao_tutorial_1</item>
+        <item>@drawable/kakao_tutorial_2</item>
+        <item>@drawable/kakao_tutorial_3</item>
+        <item>@drawable/kakao_tutorial_4</item>
+        <item>@drawable/kakao_tutorial_5</item>
+    </array>
+</resources>

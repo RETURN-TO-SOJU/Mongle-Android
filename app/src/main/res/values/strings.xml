@@ -29,6 +29,7 @@
 
     <!-- Tutorial -->
     <string name="skip">건너뛰기</string>
+    <string name="tutorial_title_1">안녕하세요! 튜토리얼에 오신것을 환영합니다!</string>
 
     <!-- New favorite -->
     <string name="new_favorite_title">소마님 💌\n소중한 추억을 저장하세요 :)</string>
@@ -39,6 +40,13 @@
     <string name="tab_favorite_title">찜</string>
     <string name="tab_settings_title">MY</string>
 
+    <!-- Kakaotalk analyze tutorial-->
+    <string name="kakao_tutorial_title_1">분석하고 싶은 톡방 입장 후,\n우측 상단 <font color="#EB6E6D">메뉴(3개의 줄) 아이콘</font> 클릭</string>
+    <string name="kakao_tutorial_title_2">우측 사이드바가 나타나며,\n하단 <font color="#EB6E6D">설정(톱니바퀴) 아이콘</font> 클릭</string>
+    <string name="kakao_tutorial_title_3">아래쪽 <font color="#EB6E6D">"대화내용 내보내기"</font> 클릭</string>
+    <string name="kakao_tutorial_title_4"><font color="#EB6E6D">"텍스트만 보내기"</font> 클릭</string>
+    <string name="kakao_tutorial_title_5"><font color="#EB6E6D">"몽글몽글"</font> 앱 선택</string>
+
     <!-- Overview -->
     <!--<string name="overview_intro">소마님 👋\n<b>%1$s</b>\n%2$s</string>-->
     <!-- TODO Test message -->
@@ -47,6 +55,4 @@
     <string name="overview_intro_message_today">오늘 하루도 수고했어요.</string>
     <string name="overview_intro_message_weekend">주말에 무엇을 했을까요?</string>
     <string name="overview_intro_message_diary">이날 쓴 일기를 보면 재밌겠어요!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

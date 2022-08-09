@@ -4,14 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import com.won983212.mongle.R
+import com.won983212.mongle.databinding.FragmentTutorialPageBinding
 
-class TutorialPageFragment : Fragment() {
+class TutorialPageFragment(
+    @StringRes val titleRes: Int,
+    @DrawableRes val imageRes: Int
+) :
+    Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tutorial_page, container, false)
+    ): View {
+        val view = FragmentTutorialPageBinding.inflate(inflater, container, false)
+        view.apply {
+            tutorialTitleText.text = requireContext().getText(titleRes)
+            tutorialImage.setImageResource(imageRes)
+        }
+        return view.root
     }
 }
