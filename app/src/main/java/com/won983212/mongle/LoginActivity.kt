@@ -12,23 +12,15 @@ import com.kakao.sdk.user.UserApiClient
 import com.won983212.mongle.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    private var keepSplash: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
+        installSplashScreen()
         val binding = ActivityLoginBinding.inflate(layoutInflater)
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        applySplashLazyOut(splashScreen)
         initWidgets(binding)
-    }
-
-    private fun applySplashLazyOut(splashScreen: SplashScreen) {
-        splashScreen.setKeepOnScreenCondition { keepSplash }
-        Handler(Looper.getMainLooper())
-            .postDelayed({ keepSplash = false }, 1000)
     }
 
     private fun initWidgets(binding: ActivityLoginBinding) {
