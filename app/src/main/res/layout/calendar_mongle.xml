@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:padding="4dp"
             android:src="@drawable/ic_arrow_left"
-            android:background="@drawable/button_ripple_round" />
+            android:background="?selectableItemBackgroundBorderless" />
 
         <TextView
             android:id="@+id/monthText"
@@ -36,7 +36,7 @@
             android:layout_height="match_parent"
             android:padding="4dp"
             android:src="@drawable/ic_arrow_right"
-            android:background="@drawable/button_ripple_round" />
+            android:background="?selectableItemBackgroundBorderless" />
     </LinearLayout>
 
     <com.kizitonwose.calendarview.CalendarView

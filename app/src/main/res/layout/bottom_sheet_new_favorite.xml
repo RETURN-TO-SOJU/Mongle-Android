@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.Mongle">
 
-    <!-- TODO Refactoring -->
     <!-- BottomSheetDialogFragment에서 margin을 주기위해 parent
      layout을 선언함.-->
     <LinearLayout
@@ -26,76 +25,58 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <RadioGroup
-            android:layout_width="match_parent"
+        <GridLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="24dp"
-            android:gravity="center">
+            android:layout_marginVertical="24dp"
+            android:columnCount="3"
+            android:layout_gravity="center">
 
-            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
+            <ImageButton
                 android:id="@+id/new_favorite_radio_happy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:foreground="@drawable/background_checkable"
-                android:background="@drawable/emotion_happy"
-                android:button="@null" />
+                android:layout_marginRight="48dp"
+                android:layout_marginBottom="24dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_happy" />
 
-            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
+            <ImageButton
                 android:id="@+id/new_favorite_radio_neutral"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:foreground="@drawable/background_checkable"
-                android:background="@drawable/emotion_neutral"
-                android:button="@null" />
+                android:layout_marginRight="48dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_neutral" />
 
-            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
+            <ImageButton
                 android:id="@+id/new_favorite_radio_sad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:foreground="@drawable/background_checkable"
-                android:background="@drawable/emotion_sad"
-                android:button="@null" />
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_sad" />
 
-        </RadioGroup>
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="24dp"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
+            <ImageButton
                 android:id="@+id/new_favorite_radio_anxious"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:foreground="@drawable/background_checkable"
-                android:background="@drawable/emotion_anxious"
-                android:button="@null" />
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_anxious" />
 
-            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
+            <ImageButton
                 android:id="@+id/new_favorite_radio_embarrass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:foreground="@drawable/background_checkable"
-                android:background="@drawable/emotion_embarrass"
-                android:button="@null" />
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_embarrass" />
 
-            <me.zhanghai.android.foregroundcompat.ForegroundRadioButton
+            <ImageButton
                 android:id="@+id/new_favorite_radio_angry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:foreground="@drawable/background_checkable"
-                android:background="@drawable/emotion_angry"
-                android:button="@null" />
-        </RadioGroup>
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_angry" />
+        </GridLayout>
 
         <EditText
             android:layout_width="match_parent"
@@ -108,6 +89,7 @@
             android:hint="@string/please_input_title"
             android:inputType="text"
             android:paddingBottom="20dp"
+            android:autofillHints="name"
             android:textCursorDrawable="@drawable/cursor_gray" />
 
         <Button

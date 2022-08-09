@@ -51,7 +51,6 @@ dependencies {
     implementation "androidx.emoji2:emoji2-views-helper:1.2.0-rc01"
 
     implementation "com.tbuonomo:dotsindicator:4.3" // view pager indicator
-    implementation 'me.zhanghai.android.foregroundcompat:library:1.0.2' // foreground compat
     implementation "com.kakao.sdk:v2-user:2.11.0" // Kakao login
     implementation 'com.github.kizitonwose:CalendarView:1.0.4' // Calendar
 
@@ -60,5 +59,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // 최신버전을 사용하면 D8/R8 compiler version 오류 발생
+    // noinspection GradleDependency
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }

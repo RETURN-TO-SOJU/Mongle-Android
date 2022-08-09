@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="12dp"
-            android:background="@drawable/button_ripple_round"
+            android:background="?selectableItemBackgroundBorderless"
             android:padding="4dp"
             android:src="@drawable/ic_alarm" />
     </androidx.appcompat.widget.Toolbar>
@@ -89,7 +89,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="right"
                 android:padding="4dp"
-                android:background="@drawable/button_ripple_round"
+                android:background="?selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_arrow_right" />
         </LinearLayout>
 
@@ -99,24 +99,35 @@
             android:layout_height="wrap_content">
 
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
                 android:background="@drawable/button_point_outline_round"
                 android:layout_marginRight="4dp" />
 
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
                 android:background="@drawable/button_point_outline_round"
                 android:layout_marginRight="4dp" />
 
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
                 android:background="@drawable/button_point_outline_round"
                 android:layout_marginRight="4dp" />
 
             <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:background="@drawable/button_point_outline_round"
+                android:layout_height="28dp"
+                android:layout_marginRight="4dp" />
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:background="@drawable/button_point_outline_round"
                 android:layout_height="28dp" />
