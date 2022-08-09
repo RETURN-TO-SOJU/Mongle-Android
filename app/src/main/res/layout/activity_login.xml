@@ -8,13 +8,11 @@
     android:gravity="center"
     tools:context=".LoginActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="45sp"
-        android:textStyle="bold"
-        android:textColor="@color/point" />
+    <ImageView
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/app_title_x4" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,8 +27,7 @@
         android:layout_height="184dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"
-        android:src="@drawable/emotion_happy_big"
-        tools:ignore="ContentDescription" />
+        android:src="@drawable/emotion_happy_big" />
 
     <Button
         android:id="@+id/login_with_kakao_button"
