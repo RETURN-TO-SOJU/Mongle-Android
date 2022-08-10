@@ -1,6 +1,5 @@
 package com.won983212.mongle
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,22 +12,32 @@ import com.won983212.mongle.databinding.ActivityTestBinding
 import com.won983212.mongle.password.PasswordActivity
 import com.won983212.mongle.tutorial.TutorialActivity
 
-data class ScreenInfo(
+interface IScreenInfo {
+    val name: String
+}
+
+data class FragmentInfo(
+    override val name: String,
+    val factory: () -> BottomSheetDialogFragment
+) : IScreenInfo
+
+data class ActivityInfo(
+    override val name: String,
     val cls: Class<out Any>,
     val data: Bundle? = null
-)
+) : IScreenInfo
 
 class TestActivity : AppCompatActivity() {
-    private val listItems = arrayOf(
-        "로그인" to ScreenInfo(LoginActivity::class.java),
-        "이용 약관" to ScreenInfo(AgreeActivity::class.java),
-        "비밀번호 입력" to ScreenInfo(PasswordActivity::class.java),
-        "계정 연동" to ScreenInfo(IntegrationFragment::class.java),
-        "튜토리얼" to ScreenInfo(TutorialActivity::class.java, makeTutorialBundle()),
-        "카톡 튜토리얼" to ScreenInfo(TutorialActivity::class.java, makeKakaoTutorialBundle()),
-        "찜 추가" to ScreenInfo(NewFavoriteFragment::class.java),
-        "카카오 카톡 데이터 전송" to ScreenInfo(KakaoReceiveActivity::class.java),
-        "분석된 캘린더 화면" to ScreenInfo(OverviewActivity::class.java)
+    private val listItems: Array<IScreenInfo> = arrayOf(
+        ActivityInfo("로그인", LoginActivity::class.java),
+        ActivityInfo("이용 약관", AgreeActivity::class.java),
+        ActivityInfo("비밀번호 입력", PasswordActivity::class.java),
+        FragmentInfo("계정 연동", this::integrationFragmentFactory),
+        ActivityInfo("튜토리얼", TutorialActivity::class.java, makeTutorialBundle()),
+        ActivityInfo("카톡 튜토리얼", TutorialActivity::class.java, makeKakaoTutorialBundle()),
+        FragmentInfo("찜 추가", this::newFavoriteFragmentFactory),
+        ActivityInfo("카카오 카톡 데이터 전송", KakaoReceiveActivity::class.java),
+        ActivityInfo("분석된 캘린더 화면", OverviewActivity::class.java)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,19 +47,19 @@ class TestActivity : AppCompatActivity() {
         val binding = ActivityTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val items = listItems.map { it.first }.toTypedArray()
+        val items = listItems.map { it.name }.toTypedArray()
         binding.listview.let {
             it.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
             it.setOnItemClickListener { parent, view, position, id ->
-                val screen = listItems[position].second
-                if (Activity::class.java.isAssignableFrom(screen.cls)) {
+                val screen = listItems[position]
+                if (screen is ActivityInfo) {
                     val intent = Intent(this, screen.cls)
                     if (screen.data != null) {
                         intent.putExtras(screen.data)
                     }
                     startActivity(intent)
-                } else if (BottomSheetDialogFragment::class.java.isAssignableFrom(screen.cls)) {
-                    val bottomSheet = screen.cls.newInstance() as BottomSheetDialogFragment
+                } else if (screen is FragmentInfo) {
+                    val bottomSheet = screen.factory()
                     bottomSheet.show(supportFragmentManager, bottomSheet.tag)
                 } else {
                     Log.e("OnItemClickListener", "Unknown class type: $screen.cls")
@@ -71,5 +80,13 @@ class TestActivity : AppCompatActivity() {
             TutorialActivity.TITLE_LIST_RES to R.array.kakao_tutorial_title,
             TutorialActivity.IMAGE_LIST_RES to R.array.kakao_tutorial_image
         )
+    }
+
+    private fun integrationFragmentFactory(): BottomSheetDialogFragment {
+        return IntegrationFragment()
+    }
+
+    private fun newFavoriteFragmentFactory(): BottomSheetDialogFragment {
+        return NewFavoriteFragment(Emotion.ANXIOUS)
     }
 }
