@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
-                android:fontFamily="@font/suit_medium"
+                android:fontFamily="@font/app_medium"
                 android:text="우울한 하루였네요."
                 android:textSize="14sp" />
 

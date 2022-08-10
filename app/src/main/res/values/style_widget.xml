@@ -3,7 +3,7 @@
 
     <!-- Button -->
     <style name="Widget.Mongle.Button" parent="Widget.AppCompat.Button">
-        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:fontFamily">@font/app_font_default</item>
         <item name="android:background">@drawable/button_round</item>
         <item name="android:textColor">@color/on_point</item>
         <item name="android:paddingTop">18dp</item>
@@ -38,27 +38,27 @@
 
     <!-- Checkbox -->
     <style name="Widget.Mongle.Checkbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
-        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:fontFamily">@font/app_font_default</item>
         <item name="android:buttonTint">@color/point</item>
     </style>
 
 
     <!-- Radio Button -->
     <style name="Widget.Mongle.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:fontFamily">@font/app_font_default</item>
         <item name="android:buttonTint">@color/point</item>
     </style>
 
 
     <!-- EditText -->
     <style name="Widget.Mongle.EditText" parent="Widget.AppCompat.EditText">
-        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:fontFamily">@font/app_font_default</item>
     </style>
 
 
     <!-- Textview -->
     <style name="Widget.Mongle.TextView" parent="Widget.AppCompat.TextView">
-        <item name="android:fontFamily">@font/app_font</item>
+        <item name="android:fontFamily">@font/app_font_default</item>
         <item name="android:textColor">@color/text</item>
     </style>
 
