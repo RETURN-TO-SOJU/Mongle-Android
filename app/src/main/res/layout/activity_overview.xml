@@ -109,8 +109,8 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="8dp"
                         android:fontFamily="@font/app_medium"
-                        android:textSize="14sp"
-                        android:text="우울한 하루였네요." />
+                        android:text="우울한 하루였네요."
+                        android:textSize="14sp" />
 
                     <Space
                         android:layout_width="0dp"
