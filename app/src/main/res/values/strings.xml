@@ -1,5 +1,149 @@
 <resources>
-    <string name="app_name">Mongle</string>
+    <string name="app_name">몽글몽글</string>
+    <string name="app_subtitle">당신에게 추억을 선물합니다.</string>
+
+    <string name="OK">확인</string>
+
+    <!-- Login -->
     <string name="login_anonymous"><u>로그인하지 않고 둘러보기</u></string>
     <string name="login_kakao">카카오톡으로 시작하기</string>
+
+    <!-- Service agreement -->
+    <string name="agree_title">몽글몽글이 처음이시군요 🙌\n잠시 동의받겠습니다!</string>
+    <string name="agree_item_1"><font color="#B2B7BD">[필수]</font> <u><font color="#EB6E6D">이용약관</font></u>에 동의합니다.</string>
+    <string name="agree_item_2"><font color="#B2B7BD">[필수]</font> <u><font color="#EB6E6D">개인정보 수집 및 이용</font></u>에 동의합니다.</string>
+    <string name="agree_item_3"><font color="#B2B7BD">[선택]</font> <u><font color="#EB6E6D">위치기반서비스</font></u>에 동의합니다.</string>
+    <string name="agree_all">전체동의</string>
+
+    <!-- Password -->
+    <string name="pwd_title">비밀번호 설정</string>
+    <string name="pwd_subtitle">앱에서 사용할 암호를 입력하세요.</string>
+
+    <!-- Integration dialog -->
+    <string name="integration_title">반가워요 👋\n우리 더 친해져요 :)</string>
+    <string name="integration_subtitle">클라우드 및 캘린더 연동하기</string>
+    <string name="integration_skip">다음에 할래요!</string>
+    <string name="integration_naver_cloud">네이버 MYBOX 연동하기</string>
+    <string name="integration_google_cloud">구글 클라우드 연동하기</string>
+    <string name="integration_google_calendar">구글 캘린더 연동하기</string>
+
+    <!-- Tutorial -->
+    <string name="skip">건너뛰기</string>
+    <string name="tutorial_title_1">안녕하세요! 튜토리얼에 오신것을 환영합니다!</string>
+
+    <!-- New favorite -->
+    <string name="new_favorite_title">소마님 💌\n소중한 추억을 저장하세요 :)</string>
+    <string name="please_input_title">제목을 입력해주세요.</string>
+    <string name="tab_calendar_title">캘린더</string>
+    <string name="tab_album_title">앨범</string>
+    <string name="tab_statistics_title">통계</string>
+    <string name="tab_favorite_title">찜</string>
+    <string name="tab_settings_title">MY</string>
+
+    <!-- Kakaotalk analyze tutorial-->
+    <string name="kakao_tutorial_title_1">분석하고 싶은 톡방 입장 후,\n우측 상단 <font color="#EB6E6D">메뉴(3개의 줄) 아이콘</font> 클릭</string>
+    <string name="kakao_tutorial_title_2">우측 사이드바가 나타나며,\n하단 <font color="#EB6E6D">설정(톱니바퀴) 아이콘</font> 클릭</string>
+    <string name="kakao_tutorial_title_3">아래쪽 <font color="#EB6E6D">"대화내용 내보내기"</font> 클릭</string>
+    <string name="kakao_tutorial_title_4"><font color="#EB6E6D">"텍스트만 보내기"</font> 클릭</string>
+    <string name="kakao_tutorial_title_5"><font color="#EB6E6D">"몽글몽글"</font> 앱 선택</string>
+
+    <!-- Overview -->
+    <!--<string name="overview_intro">소마님 👋\n<b>%1$s</b>\n%2$s</string>-->
+    <!-- TODO Test message -->
+    <string name="overview_intro">소마님 👋\n<b>8월 2일 화요일\n</b>오늘 하루도 수고했어요.</string>
+    <string name="overview_intro_message_default">이날 하루도 수고했어요.</string>
+    <string name="overview_intro_message_today">오늘 하루도 수고했어요.</string>
+    <string name="overview_intro_message_weekend">주말에 무엇을 했을까요?</string>
+    <string name="overview_intro_message_diary">이날 쓴 일기를 보면 재밌겠어요!</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
 </resources>

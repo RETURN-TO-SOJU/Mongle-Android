@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Mongle">
+
+    <!-- BottomSheetDialogFragment에서 margin을 주기위해 parent
+     layout을 선언함.-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="48dp"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/new_favorite_title"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <GridLayout
+            android:id="@+id/emotionContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="24dp"
+            android:columnCount="3"
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/newFavoriteRadio1"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="fitCenter"
+                android:layout_marginRight="48dp"
+                android:layout_marginBottom="24dp"
+                android:tag="happy"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_happy" />
+
+            <ImageButton
+                android:id="@+id/newFavoriteRadio2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="fitCenter"
+                android:layout_marginRight="48dp"
+                android:tag="neutral"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_neutral" />
+
+            <ImageButton
+                android:id="@+id/newFavoriteRadio3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="fitCenter"
+                android:tag="sad"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_sad" />
+
+            <ImageButton
+                android:id="@+id/newFavoriteRadio4"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="fitCenter"
+                android:tag="anxious"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_anxious" />
+
+            <ImageButton
+                android:id="@+id/newFavoriteRadio5"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="fitCenter"
+                android:tag="embarrass"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_embarrass" />
+
+            <ImageButton
+                android:id="@+id/newFavoriteRadio6"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="fitCenter"
+                android:tag="angry"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/emotion_angry" />
+        </GridLayout>
+
+        <EditText
+            android:id="@+id/newFavoriteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/gray"
+            tools:drawableStart="@drawable/emotion_angry"
+            android:drawablePadding="16dp"
+            android:hint="@string/please_input_title"
+            android:inputType="text"
+            android:paddingBottom="20dp"
+            android:autofillHints="name"
+            android:textCursorDrawable="@drawable/cursor_gray" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/OK" />
+
+    </LinearLayout>
+</FrameLayout>

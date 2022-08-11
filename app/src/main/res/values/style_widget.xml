@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Button -->
+    <style name="Widget.Mongle.Button" parent="Widget.AppCompat.Button">
+        <item name="android:fontFamily">@font/app_font_default</item>
+        <item name="android:background">@drawable/button_round</item>
+        <item name="android:textColor">@color/on_point</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+    </style>
+
+    <style name="Widget.Mongle.Button.Kakao">
+        <item name="android:drawableStart">@drawable/ic_kakaotalk</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:backgroundTint">@color/kakao_yellow</item>
+        <item name="android:textColor">@color/kakao_text</item>
+    </style>
+
+    <style name="Widget.Mongle.Button.TextButton">
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="Widget.Mongle.Button.Outline" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/button_outline_round</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+    </style>
+
+
+    <!-- Checkbox -->
+    <style name="Widget.Mongle.Checkbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:fontFamily">@font/app_font_default</item>
+        <item name="android:buttonTint">@color/point</item>
+    </style>
+
+
+    <!-- Radio Button -->
+    <style name="Widget.Mongle.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:fontFamily">@font/app_font_default</item>
+        <item name="android:buttonTint">@color/point</item>
+    </style>
+
+
+    <!-- EditText -->
+    <style name="Widget.Mongle.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:fontFamily">@font/app_font_default</item>
+    </style>
+
+
+    <!-- Textview -->
+    <style name="Widget.Mongle.TextView" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/app_font_default</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+
+    <!-- Bottom Sheet -->
+    <style name="Widget.Mongle.BottomSheet" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.Mongle.BottonSheet.Modal</item>
+    </style>
+
+    <style name="Widget.Mongle.BottonSheet.Modal" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/round_top_15</item>
+    </style>
+</resources>
