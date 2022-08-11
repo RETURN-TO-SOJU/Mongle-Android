@@ -31,6 +31,7 @@
         android:id="@+id/dotIsToday"
         android:layout_width="4dp"
         android:layout_height="4dp"
+        android:layout_marginTop="4dp"
         android:src="@drawable/round_point"
         android:visibility="gone" />
 </LinearLayout>

@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
                         Log.e("KakaoLogin", error.toString())
                         Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
                     } else if (token != null) {
+                        Log.e("KakaoLogin", "Access: ${token.accessToken} / Refresh: ${token.refreshToken}")
                         Toast.makeText(this, "로그인 성공 ${token.accessToken}", Toast.LENGTH_SHORT)
                             .show()
                     }

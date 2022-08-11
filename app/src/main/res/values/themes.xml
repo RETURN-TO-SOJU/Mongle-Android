@@ -32,4 +32,13 @@
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
         <item name="postSplashScreenTheme">@style/Theme.Mongle</item>
     </style>
+
+    <style name="Theme.Mongle.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Mongle.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Mongle.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

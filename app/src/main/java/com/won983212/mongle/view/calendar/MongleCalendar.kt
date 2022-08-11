@@ -3,7 +3,9 @@ package com.won983212.mongle.view.calendar
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.widget.FrameLayout
+import androidx.core.widget.NestedScrollView
 import com.kizitonwose.calendarview.CalendarView
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
@@ -41,6 +43,7 @@ class MongleCalendar @JvmOverloads constructor(
             monthScrollListener = {
                 binding.monthText.text = yearMonthFormatter.format(it.yearMonth)
             }
+            isNestedScrollingEnabled = true
             setupAsync(
                 currentMonth.minusMonths(5),
                 currentMonth.plusMonths(5),
@@ -77,5 +80,24 @@ class MongleCalendar @JvmOverloads constructor(
             oldDate?.let { binding.calendarView.notifyDateChanged(it) }
             binding.calendarView.notifyDateChanged(date)
         }
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        performClick()
+
+        var parentView = parent
+        while (parentView != null) {
+            if (parentView is NestedScrollView) {
+                parentView.requestDisallowInterceptTouchEvent(true)
+                break
+            }
+            parentView = parentView.parent
+        }
+
+        return false
+    }
+
+    override fun performClick(): Boolean {
+        return super.performClick()
     }
 }
