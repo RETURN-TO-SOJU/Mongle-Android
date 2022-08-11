@@ -19,6 +19,7 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/button_round.xml" value="0.301" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/calendar_day.xml" value="0.25" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/calendar_day_selector.xml" value="0.25" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/calendar_day_shadow.xml" value="0.2775" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/calendar_day_text.xml" value="0.1" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/calendar_selected.xml" value="0.1075" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/content_splash.xml" value="0.1455" />
@@ -62,7 +63,7 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_tutorial.xml" value="0.22" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/bottom_sheet_integration.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/bottom_sheet_new_favorite.xml" value="0.3609375" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/calendar_day_layout.xml" value="0.75" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/calendar_day_layout.xml" value="0.67" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/calendar_mongle.xml" value="0.33" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/calendar_month_header.xml" value="0.3645833333333333" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/content_scrolling.xml" value="0.365625" />

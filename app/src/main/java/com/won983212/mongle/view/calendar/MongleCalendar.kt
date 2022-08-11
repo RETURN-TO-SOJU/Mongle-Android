@@ -82,6 +82,7 @@ class MongleCalendar @JvmOverloads constructor(
         }
     }
 
+    // scroll view가 작동하지 않는 버그 수정
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         performClick()
 
