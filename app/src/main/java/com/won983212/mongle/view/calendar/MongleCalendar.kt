@@ -39,7 +39,7 @@ class MongleCalendar @JvmOverloads constructor(
         binding.calendarView.apply {
             daySize = CalendarView.sizeAutoWidth(dpToPx(context, 44))
             dayBinder = MongleDayBinder(this@MongleCalendar, this@MongleCalendar::selectDate)
-            monthHeaderBinder = MongleMonthHeaderBinder(daysOfWeek)
+            monthHeaderBinder = MongleMonthWeekHeaderBinder(daysOfWeek)
             monthScrollListener = {
                 binding.monthText.text = yearMonthFormatter.format(it.yearMonth)
             }

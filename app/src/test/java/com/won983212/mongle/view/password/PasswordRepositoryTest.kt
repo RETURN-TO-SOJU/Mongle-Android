@@ -1,4 +1,4 @@
-package com.won983212.mongle.password
+package com.won983212.mongle.view.password
 
 import org.junit.Assert
 import org.junit.Test
@@ -8,7 +8,7 @@ internal class PasswordRepositoryTest {
     @Test
     fun push_digits() {
         for (len in 1..10) {
-            val repo = PasswordRepository(len)
+            val repo = PasswordMemory(len)
             val actualPwd = StringBuilder()
             for (i in 1 until len) {
                 actualPwd.append(i.toChar())
@@ -25,7 +25,7 @@ internal class PasswordRepositoryTest {
     @Test
     fun remove_digits() {
         for (len in 2..10) {
-            val repo = PasswordRepository(len)
+            val repo = PasswordMemory(len)
             val actualPwd = StringBuilder()
             for (i in 1 until len) {
                 if (i < len - 1) {

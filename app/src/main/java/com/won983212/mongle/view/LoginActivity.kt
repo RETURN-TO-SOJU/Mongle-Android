@@ -1,4 +1,4 @@
-package com.won983212.mongle
+package com.won983212.mongle.view
 
 import android.os.Bundle
 import android.os.Handler
@@ -42,7 +42,10 @@ class LoginActivity : AppCompatActivity() {
                         Log.e("KakaoLogin", error.toString())
                         Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
                     } else if (token != null) {
-                        Log.e("KakaoLogin", "Access: ${token.accessToken} / Refresh: ${token.refreshToken}")
+                        Log.e(
+                            "KakaoLogin",
+                            "Access: ${token.accessToken} / Refresh: ${token.refreshToken}"
+                        )
                         Toast.makeText(this, "로그인 성공 ${token.accessToken}", Toast.LENGTH_SHORT)
                             .show()
                     }

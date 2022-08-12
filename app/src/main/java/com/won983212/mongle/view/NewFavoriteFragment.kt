@@ -1,4 +1,4 @@
-package com.won983212.mongle
+package com.won983212.mongle.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.won983212.mongle.base.Emotion
 import com.won983212.mongle.databinding.BottomSheetNewFavoriteBinding
 
 class NewFavoriteFragment(

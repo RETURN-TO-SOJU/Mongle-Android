@@ -1,4 +1,4 @@
-package com.won983212.mongle.tutorial
+package com.won983212.mongle.view.tutorial
 
 import android.os.Bundle
 import android.view.LayoutInflater

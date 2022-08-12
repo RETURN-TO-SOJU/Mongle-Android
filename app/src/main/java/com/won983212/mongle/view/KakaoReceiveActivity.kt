@@ -1,10 +1,11 @@
-package com.won983212.mongle
+package com.won983212.mongle.view
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.won983212.mongle.R
 import java.io.InputStreamReader
 
 class KakaoReceiveActivity : AppCompatActivity() {

@@ -1,6 +1,6 @@
-package com.won983212.mongle.password
+package com.won983212.mongle.view.password
 
-class PasswordRepository(val maxDigits: Int) {
+class PasswordMemory(val maxDigits: Int) {
     private var length = 0
     private val digits = CharArray(maxDigits)
     private var fullListener: PasswordFullListener? = null
@@ -25,7 +25,7 @@ class PasswordRepository(val maxDigits: Int) {
      */
     fun popDigit(): Int {
         if (length == 0) {
-            return 0;
+            return 0
         }
         return --length
     }

@@ -1,4 +1,4 @@
-package com.won983212.mongle.tutorial
+package com.won983212.mongle.view.tutorial
 
 import android.content.res.TypedArray
 import android.os.Bundle

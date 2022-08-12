@@ -8,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.won983212.mongle.base.Emotion
 import com.won983212.mongle.databinding.ActivityTestBinding
-import com.won983212.mongle.password.PasswordActivity
-import com.won983212.mongle.tutorial.TutorialActivity
+import com.won983212.mongle.view.*
+import com.won983212.mongle.view.password.PasswordActivity
+import com.won983212.mongle.view.tutorial.TutorialActivity
 
 interface IScreenInfo {
     val name: String

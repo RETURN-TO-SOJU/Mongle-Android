@@ -1,4 +1,4 @@
-package com.won983212.mongle.password
+package com.won983212.mongle.view.password
 
 import android.os.Bundle
 import android.view.View
@@ -10,7 +10,7 @@ import com.won983212.mongle.databinding.ActivityPasswordBinding
 
 class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFullListener {
     private lateinit var pwdIndicatorButtons: Array<RadioButton>
-    private val passwordRepository = PasswordRepository(4)
+    private val pwdMemory = PasswordMemory(4)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,7 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
             binding.pwdBtn4
         )
 
-        passwordRepository.setOnFullListener(this)
+        pwdMemory.setOnFullListener(this)
         initEvents(binding)
     }
 
@@ -46,7 +46,7 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
     }
 
     private fun appendPassword(digit: Char) {
-        val length = passwordRepository.pushDigit(digit)
+        val length = pwdMemory.pushDigit(digit)
         if (length > 0) {
             pwdIndicatorButtons[length - 1].isChecked = true
         } else {
@@ -55,7 +55,7 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
     }
 
     private fun removePassword() {
-        val length = passwordRepository.popDigit()
+        val length = pwdMemory.popDigit()
         pwdIndicatorButtons[length].isChecked = false
     }
 

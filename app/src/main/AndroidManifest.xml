@@ -20,10 +20,10 @@
         android:theme="@style/Theme.Mongle"
         tools:targetApi="31">
         <activity
-            android:name=".OverviewActivity"
+            android:name=".view.OverviewActivity"
             android:exported="false" />
         <activity
-            android:name=".KakaoReceiveActivity"
+            android:name=".view.KakaoReceiveActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".tutorial.TutorialActivity"
+            android:name="com.won983212.mongle.view.tutorial.TutorialActivity"
             android:exported="false" />
         <activity
             android:name=".TestActivity"
@@ -62,13 +62,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".password.PasswordActivity"
+            android:name="com.won983212.mongle.view.password.PasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".AgreeActivity"
+            android:name=".view.AgreeActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".view.LoginActivity"
             android:exported="true" />
     </application>
 

@@ -10,7 +10,7 @@ class Mongle : Application() {
         super.onCreate()
 
         // Get key hash
-        Log.i("KeyHash", Utility.getKeyHash(this))
+        // Log.i("KeyHash", Utility.getKeyHash(this))
 
         // Initialize kakao sdk
         KakaoSdk.init(this, BuildConfig.KAKAO_NATIVE_APP_KEY)

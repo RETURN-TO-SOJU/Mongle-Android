@@ -1,7 +1,8 @@
-package com.won983212.mongle
+package com.won983212.mongle.base
 
 import android.content.res.Resources
 import androidx.annotation.DrawableRes
+import com.won983212.mongle.R
 
 enum class Emotion(val label: String, @DrawableRes val iconRes: Int) {
     HAPPY("happy", R.drawable.emotion_happy),

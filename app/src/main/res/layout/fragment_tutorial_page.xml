@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".tutorial.TutorialPageFragment">
+    tools:context=".view.tutorial.TutorialPageFragment">
 
     <TextView
         android:id="@+id/tutorialTitleText"
