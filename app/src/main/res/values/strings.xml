@@ -3,6 +3,7 @@
     <string name="app_subtitle">당신에게 추억을 선물합니다.</string>
 
     <string name="OK">확인</string>
+    <string name="keyword_template">#%1$s</string>
 
     <!-- Emotion -->
     <string name="emotion_angry">분노</string>

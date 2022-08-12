@@ -15,13 +15,14 @@ enum class PasswordActivityMode {
 
 class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFullListener {
     private lateinit var pwdIndicatorButtons: Array<RadioButton>
+    private lateinit var binding: ActivityPasswordBinding
     private val pwdMemory = PasswordMemory(4)
     private var mode = PasswordActivityMode.AUTH_PASSWORD
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityPasswordBinding.inflate(layoutInflater)
+        binding = ActivityPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
@@ -37,11 +38,11 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
             binding.btnPwd4
         )
 
-        initTitleTextByMode(binding)
-        initEvents(binding)
+        initTitleTextByMode()
+        initEvents()
     }
 
-    private fun initTitleTextByMode(binding: ActivityPasswordBinding) {
+    private fun initTitleTextByMode() {
         when (mode) {
             PasswordActivityMode.SET_PASSWORD -> {
                 binding.textPwdTitle.text = resources.getString(R.string.pwd_set_title)
@@ -54,7 +55,7 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
         }
     }
 
-    private fun initEvents(binding: ActivityPasswordBinding) {
+    private fun initEvents() {
         pwdMemory.setOnFullListener(this)
         arrayOf(
             binding.btnNumpad0,
