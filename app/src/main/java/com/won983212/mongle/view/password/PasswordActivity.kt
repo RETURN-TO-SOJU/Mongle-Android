@@ -6,17 +6,36 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityPasswordBinding
+
+enum class PasswordActivityMode {
+    SET_PASSWORD, AUTH_PASSWORD
+}
 
 class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFullListener {
     private lateinit var pwdIndicatorButtons: Array<RadioButton>
     private val pwdMemory = PasswordMemory(4)
+    private var mode = PasswordActivityMode.AUTH_PASSWORD
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val binding = ActivityPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        mode = (intent.getSerializableExtra(MODE)
+            ?: PasswordActivityMode.AUTH_PASSWORD) as PasswordActivityMode
+
+        when (mode) {
+            PasswordActivityMode.SET_PASSWORD -> {
+                binding.textPwdTitle.text = resources.getString(R.string.pwd_set_title)
+            }
+            PasswordActivityMode.AUTH_PASSWORD -> {
+                binding.textPwdTitle.text = resources.getString(R.string.pwd_auth_title)
+                binding.textPwdSubtitle.visibility = View.GONE
+            }
+        }
 
         pwdIndicatorButtons = arrayOf(
             binding.btnPwd1,
@@ -69,5 +88,9 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
 
     override fun onFull(password: String) {
         // TODO Implement match password
+    }
+
+    companion object {
+        const val MODE = "mode"
     }
 }

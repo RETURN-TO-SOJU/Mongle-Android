@@ -24,8 +24,9 @@
     <string name="agree_all">전체동의</string>
 
     <!-- Password -->
-    <string name="pwd_title">비밀번호 설정</string>
-    <string name="pwd_subtitle">앱에서 사용할 암호를 입력하세요.</string>
+    <string name="pwd_set_title">비밀번호 설정</string>
+    <string name="pwd_set_subtitle">앱에서 사용할 암호를 입력하세요.</string>
+    <string name="pwd_auth_title">잠금번호 입력</string>
 
     <!-- Integration dialog -->
     <string name="integration_title">반가워요 👋\n우리 더 친해져요 :)</string>

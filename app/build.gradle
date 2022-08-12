@@ -49,11 +49,11 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     implementation 'androidx.core:core-splashscreen:1.0.0'
-    implementation "androidx.emoji2:emoji2:1.2.0-rc01" // emoji compat
+    implementation "androidx.emoji2:emoji2:1.2.0-rc01" // Emoji compat
     implementation "androidx.emoji2:emoji2-views:1.2.0-rc01"
     implementation "androidx.emoji2:emoji2-views-helper:1.2.0-rc01"
 
-    implementation "com.tbuonomo:dotsindicator:4.3" // view pager indicator
+    implementation "com.tbuonomo:dotsindicator:4.3" // View pager indicator
     implementation "com.kakao.sdk:v2-user:2.11.0" // Kakao login
     implementation 'com.github.kizitonwose:CalendarView:1.0.4' // Calendar
 

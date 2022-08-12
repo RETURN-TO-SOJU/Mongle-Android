@@ -12,6 +12,7 @@ import com.won983212.mongle.base.Emotion
 import com.won983212.mongle.databinding.ActivityTestBinding
 import com.won983212.mongle.view.*
 import com.won983212.mongle.view.password.PasswordActivity
+import com.won983212.mongle.view.password.PasswordActivityMode
 import com.won983212.mongle.view.tutorial.TutorialActivity
 
 interface IScreenInfo {
@@ -34,6 +35,7 @@ class TestActivity : AppCompatActivity() {
         ActivityInfo("로그인", LoginActivity::class.java),
         ActivityInfo("이용 약관", AgreeActivity::class.java),
         ActivityInfo("비밀번호 입력", PasswordActivity::class.java),
+        ActivityInfo("비밀번호 설정", PasswordActivity::class.java, passwordSetBundle()),
         FragmentInfo("계정 연동", this::integrationFragmentFactory),
         ActivityInfo("튜토리얼", TutorialActivity::class.java, makeTutorialBundle()),
         ActivityInfo("카톡 튜토리얼", TutorialActivity::class.java, makeKakaoTutorialBundle()),
@@ -69,6 +71,12 @@ class TestActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun passwordSetBundle(): Bundle {
+        return bundleOf(
+            PasswordActivity.MODE to PasswordActivityMode.SET_PASSWORD
+        )
     }
 
     private fun makeTutorialBundle(): Bundle {
