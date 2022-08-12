@@ -24,18 +24,11 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
         val binding = ActivityPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         mode = (intent.getSerializableExtra(MODE)
             ?: PasswordActivityMode.AUTH_PASSWORD) as PasswordActivityMode
-
-        when (mode) {
-            PasswordActivityMode.SET_PASSWORD -> {
-                binding.textPwdTitle.text = resources.getString(R.string.pwd_set_title)
-            }
-            PasswordActivityMode.AUTH_PASSWORD -> {
-                binding.textPwdTitle.text = resources.getString(R.string.pwd_auth_title)
-                binding.textPwdSubtitle.visibility = View.GONE
-            }
-        }
 
         pwdIndicatorButtons = arrayOf(
             binding.btnPwd1,
@@ -44,11 +37,25 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
             binding.btnPwd4
         )
 
-        pwdMemory.setOnFullListener(this)
+        initTitleTextByMode(binding)
         initEvents(binding)
     }
 
+    private fun initTitleTextByMode(binding: ActivityPasswordBinding) {
+        when (mode) {
+            PasswordActivityMode.SET_PASSWORD -> {
+                binding.textPwdTitle.text = resources.getString(R.string.pwd_set_title)
+                binding.btnLostPwd.visibility = View.GONE
+            }
+            PasswordActivityMode.AUTH_PASSWORD -> {
+                binding.textPwdTitle.text = resources.getString(R.string.pwd_auth_title)
+                binding.textPwdSubtitle.visibility = View.GONE
+            }
+        }
+    }
+
     private fun initEvents(binding: ActivityPasswordBinding) {
+        pwdMemory.setOnFullListener(this)
         arrayOf(
             binding.btnNumpad0,
             binding.btnNumpad1,
