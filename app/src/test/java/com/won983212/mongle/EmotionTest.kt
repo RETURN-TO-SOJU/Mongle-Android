@@ -11,7 +11,7 @@ class EmotionTest {
     fun emotion_of() {
         val emotions = Emotion.values()
         emotions.forEach {
-            assertEquals(it, Emotion.of(it.label))
+            assertEquals(it, Emotion.of(it.id))
         }
     }
 

@@ -12,7 +12,7 @@
         android:layout_marginBottom="16dp">
 
         <ImageButton
-            android:id="@+id/prevMonthBtn"
+            android:id="@+id/btn_prev_month"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="4dp"
@@ -20,7 +20,7 @@
             android:background="?selectableItemBackgroundBorderless" />
 
         <TextView
-            android:id="@+id/monthText"
+            android:id="@+id/text_month"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,7 +31,7 @@
             tools:text="2022.06" />
 
         <ImageButton
-            android:id="@+id/nextMonthBtn"
+            android:id="@+id/btn_next_month"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:padding="4dp"
@@ -40,12 +40,12 @@
     </LinearLayout>
 
     <com.kizitonwose.calendarview.CalendarView
-        android:id="@+id/calendarView"
+        android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         app:cv_dayViewResource="@layout/calendar_day_layout"
-        app:cv_monthHeaderResource="@layout/calendar_month_header"
+        app:cv_monthHeaderResource="@layout/calendar_weekday_header"
         app:cv_orientation="horizontal"
         app:cv_outDateStyle="endOfGrid"
         app:cv_scrollMode="paged" />

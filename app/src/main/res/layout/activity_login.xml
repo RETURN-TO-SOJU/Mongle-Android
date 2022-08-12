@@ -22,7 +22,6 @@
         android:textColor="@color/disabled" />
 
     <ImageView
-        android:id="@+id/imageView2"
         android:layout_width="91dp"
         android:layout_height="184dp"
         android:layout_marginTop="16dp"
@@ -30,7 +29,7 @@
         android:src="@drawable/emotion_happy_big" />
 
     <Button
-        android:id="@+id/login_with_kakao_button"
+        android:id="@+id/btn_login_kakao"
         style="@style/Widget.Mongle.Button.Kakao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

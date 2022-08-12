@@ -36,12 +36,12 @@ class MongleCalendar @JvmOverloads constructor(
         val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
         val daysOfWeek = resources.getStringArray(R.array.calendar_weekdays)
 
-        binding.calendarView.apply {
+        binding.calendar.apply {
             daySize = CalendarView.sizeAutoWidth(dpToPx(context, 44))
             dayBinder = MongleDayBinder(this@MongleCalendar, this@MongleCalendar::selectDate)
             monthHeaderBinder = MongleMonthWeekHeaderBinder(daysOfWeek)
             monthScrollListener = {
-                binding.monthText.text = yearMonthFormatter.format(it.yearMonth)
+                binding.textMonth.text = yearMonthFormatter.format(it.yearMonth)
             }
             isNestedScrollingEnabled = true
             setupAsync(
@@ -53,16 +53,16 @@ class MongleCalendar @JvmOverloads constructor(
             }
         }
 
-        binding.prevMonthBtn.setOnClickListener {
-            binding.calendarView.apply {
+        binding.btnPrevMonth.setOnClickListener {
+            binding.calendar.apply {
                 findFirstVisibleMonth()?.let {
                     smoothScrollToMonth(it.yearMonth.previous)
                 }
             }
         }
 
-        binding.nextMonthBtn.setOnClickListener {
-            binding.calendarView.apply {
+        binding.btnNextMonth.setOnClickListener {
+            binding.calendar.apply {
                 findFirstVisibleMonth()?.let {
                     smoothScrollToMonth(it.yearMonth.next)
                 }
@@ -77,8 +77,8 @@ class MongleCalendar @JvmOverloads constructor(
             val oldDate = selectedDate
             selectedDate = date
 
-            oldDate?.let { binding.calendarView.notifyDateChanged(it) }
-            binding.calendarView.notifyDateChanged(date)
+            oldDate?.let { binding.calendar.notifyDateChanged(it) }
+            binding.calendar.notifyDateChanged(date)
         }
     }
 

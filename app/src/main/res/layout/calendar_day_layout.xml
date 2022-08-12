@@ -16,14 +16,14 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/emotionImage"
+                android:id="@+id/image_emotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/emotion_angry"
                 android:visibility="gone"/>
 
             <ImageView
-                android:id="@+id/selectionShadow"
+                android:id="@+id/image_emotion_selected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/daySelectionBackground"
+                android:id="@+id/image_day_selection"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
@@ -45,7 +45,7 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/calendarDayText"
+                android:id="@+id/text_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -56,7 +56,7 @@
     </FrameLayout>
 
     <ImageView
-        android:id="@+id/dotIsToday"
+        android:id="@+id/image_today_dot"
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginTop="4dp"

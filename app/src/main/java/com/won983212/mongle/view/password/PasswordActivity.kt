@@ -19,10 +19,10 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
         setContentView(binding.root)
 
         pwdIndicatorButtons = arrayOf(
-            binding.pwdBtn1,
-            binding.pwdBtn2,
-            binding.pwdBtn3,
-            binding.pwdBtn4
+            binding.btnPwd1,
+            binding.btnPwd2,
+            binding.btnPwd3,
+            binding.btnPwd4
         )
 
         pwdMemory.setOnFullListener(this)
@@ -31,17 +31,17 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
 
     private fun initEvents(binding: ActivityPasswordBinding) {
         arrayOf(
-            binding.pwdIn0,
-            binding.pwdIn1,
-            binding.pwdIn2,
-            binding.pwdIn3,
-            binding.pwdIn4,
-            binding.pwdIn5,
-            binding.pwdIn6,
-            binding.pwdIn7,
-            binding.pwdIn8,
-            binding.pwdIn9,
-            binding.pwdInDelete
+            binding.btnNumpad0,
+            binding.btnNumpad1,
+            binding.btnNumpad2,
+            binding.btnNumpad3,
+            binding.btnNumpad4,
+            binding.btnNumpad5,
+            binding.btnNumpad6,
+            binding.btnNumpad7,
+            binding.btnNumpad8,
+            binding.btnNumpad9,
+            binding.btnNumpadDelete
         ).forEach { it.setOnClickListener(this) }
     }
 

@@ -39,7 +39,8 @@ class TestActivity : AppCompatActivity() {
         ActivityInfo("카톡 튜토리얼", TutorialActivity::class.java, makeKakaoTutorialBundle()),
         FragmentInfo("찜 추가", this::newFavoriteFragmentFactory),
         ActivityInfo("카카오 카톡 데이터 전송", KakaoReceiveActivity::class.java),
-        ActivityInfo("분석된 캘린더 화면", OverviewActivity::class.java)
+        ActivityInfo("분석된 캘린더 화면", OverviewActivity::class.java),
+        ActivityInfo("분석된 캘린더 상세 화면", DayDetailActivity::class.java)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,9 +51,9 @@ class TestActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val items = listItems.map { it.name }.toTypedArray()
-        binding.listview.let {
+        binding.listTests.let {
             it.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
-            it.setOnItemClickListener { parent, view, position, id ->
+            it.setOnItemClickListener { _, _, position, _ ->
                 val screen = listItems[position]
                 if (screen is ActivityInfo) {
                     val intent = Intent(this, screen.cls)

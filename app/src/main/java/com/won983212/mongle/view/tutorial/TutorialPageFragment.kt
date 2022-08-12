@@ -21,8 +21,8 @@ class TutorialPageFragment(
     ): View {
         val view = FragmentTutorialPageBinding.inflate(inflater, container, false)
         view.apply {
-            tutorialTitleText.text = requireContext().getText(titleRes)
-            tutorialImage.setImageResource(imageRes)
+            textTutorialTitle.text = requireContext().getText(titleRes)
+            imageTutorial.setImageResource(imageRes)
         }
         return view.root
     }

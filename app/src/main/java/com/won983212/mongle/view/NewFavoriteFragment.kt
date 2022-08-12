@@ -20,17 +20,17 @@ class NewFavoriteFragment(
         super.onCreateView(inflater, container, savedInstanceState)
         val binding = BottomSheetNewFavoriteBinding.inflate(inflater, container, false)
 
-        binding.newFavoriteTitle.setCompoundDrawablesWithIntrinsicBounds(
+        binding.edittextTitle.setCompoundDrawablesWithIntrinsicBounds(
             initialEmotion.iconRes,
             0,
             0,
             0
         )
 
-        binding.emotionContainer.children.forEach {
+        binding.layoutEmotionContainer.children.forEach {
             val iconRes = Emotion.of(it.tag.toString()).iconRes
             it.setOnClickListener {
-                binding.newFavoriteTitle.setCompoundDrawablesWithIntrinsicBounds(
+                binding.edittextTitle.setCompoundDrawablesWithIntrinsicBounds(
                     iconRes,
                     0,
                     0,

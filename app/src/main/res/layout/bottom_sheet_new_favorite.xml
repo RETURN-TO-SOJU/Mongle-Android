@@ -25,7 +25,7 @@
             android:textStyle="bold" />
 
         <GridLayout
-            android:id="@+id/emotionContainer"
+            android:id="@+id/layout_emotion_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="24dp"
@@ -33,7 +33,7 @@
             android:layout_gravity="center">
 
             <ImageButton
-                android:id="@+id/newFavoriteRadio1"
+                android:id="@+id/btn_happy"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:scaleType="fitCenter"
@@ -44,7 +44,7 @@
                 android:src="@drawable/emotion_happy" />
 
             <ImageButton
-                android:id="@+id/newFavoriteRadio2"
+                android:id="@+id/btn_neutral"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:scaleType="fitCenter"
@@ -54,7 +54,7 @@
                 android:src="@drawable/emotion_neutral" />
 
             <ImageButton
-                android:id="@+id/newFavoriteRadio3"
+                android:id="@+id/btn_sad"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:scaleType="fitCenter"
@@ -63,7 +63,7 @@
                 android:src="@drawable/emotion_sad" />
 
             <ImageButton
-                android:id="@+id/newFavoriteRadio4"
+                android:id="@+id/btn_anxious"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:scaleType="fitCenter"
@@ -72,7 +72,7 @@
                 android:src="@drawable/emotion_anxious" />
 
             <ImageButton
-                android:id="@+id/newFavoriteRadio5"
+                android:id="@+id/btn_embarrass"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:scaleType="fitCenter"
@@ -81,7 +81,7 @@
                 android:src="@drawable/emotion_embarrass" />
 
             <ImageButton
-                android:id="@+id/newFavoriteRadio6"
+                android:id="@+id/btn_angry"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:scaleType="fitCenter"
@@ -91,7 +91,7 @@
         </GridLayout>
 
         <EditText
-            android:id="@+id/newFavoriteTitle"
+            android:id="@+id/edittext_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"

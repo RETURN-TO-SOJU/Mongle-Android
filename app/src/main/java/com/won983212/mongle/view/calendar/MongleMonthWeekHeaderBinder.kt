@@ -8,14 +8,14 @@ import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 
 class MongleMonthWeekHeaderBinder(
     private val daysOfWeek: Array<String>
-) : MonthHeaderFooterBinder<MonthWeekContainer> {
+) : MonthHeaderFooterBinder<MonthWeekdayContainer> {
 
-    override fun create(view: View) = MonthWeekContainer(view)
+    override fun create(view: View) = MonthWeekdayContainer(view)
 
-    override fun bind(container: MonthWeekContainer, month: CalendarMonth) {
-        if (container.weekViewContainer.tag == null) {
-            container.weekViewContainer.tag = month.yearMonth
-            container.weekViewContainer.children.map { it as TextView }
+    override fun bind(container: MonthWeekdayContainer, month: CalendarMonth) {
+        if (container.weekdayContainer.tag == null) {
+            container.weekdayContainer.tag = month.yearMonth
+            container.weekdayContainer.children.map { it as TextView }
                 .forEachIndexed { index, tv ->
                     tv.text = daysOfWeek[index]
                 }

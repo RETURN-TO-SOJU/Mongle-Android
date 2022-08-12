@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/legendLayout"
+    android:id="@+id/layout_weeks"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
@@ -10,7 +10,7 @@
     tools:ignore="HardcodedText">
 
     <TextView
-        android:id="@+id/legendText1"
+        android:id="@+id/text_weekday_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -20,7 +20,7 @@
         tools:text="SUN" />
 
     <TextView
-        android:id="@+id/legendText2"
+        android:id="@+id/text_weekday_2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -30,7 +30,7 @@
         tools:text="MON" />
 
     <TextView
-        android:id="@+id/legendText3"
+        android:id="@+id/text_weekday_3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -40,7 +40,7 @@
         tools:text="TUE" />
 
     <TextView
-        android:id="@+id/legendText4"
+        android:id="@+id/text_weekday_4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -50,7 +50,7 @@
         tools:text="WED" />
 
     <TextView
-        android:id="@+id/legendText5"
+        android:id="@+id/text_weekday_5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -60,7 +60,7 @@
         tools:text="THU" />
 
     <TextView
-        android:id="@+id/legendText6"
+        android:id="@+id/text_weekday_6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -70,7 +70,7 @@
         tools:text="FRI" />
 
     <TextView
-        android:id="@+id/legendText7"
+        android:id="@+id/text_weekday_7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
