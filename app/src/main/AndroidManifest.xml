@@ -20,7 +20,7 @@
             android:name=".view.DayDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.OverviewActivity"
+            android:name=".view.overview.OverviewActivity"
             android:exported="false" />
         <activity
             android:name=".view.KakaoReceiveActivity"

@@ -99,7 +99,7 @@
             android:backgroundTint="@color/gray"
             tools:drawableStart="@drawable/emotion_angry"
             android:drawablePadding="16dp"
-            android:hint="@string/please_input_title"
+            android:hint="@string/new_favorite_title_hint"
             android:inputType="text"
             android:paddingBottom="20dp"
             android:autofillHints="name"

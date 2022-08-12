@@ -1,4 +1,4 @@
-package com.won983212.mongle.view
+package com.won983212.mongle.view.overview
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

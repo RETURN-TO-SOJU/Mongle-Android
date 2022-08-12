@@ -93,7 +93,7 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
         }
     }
 
-    override fun onFull(password: String) {
+    override fun onPasswordInput(password: String) {
         // TODO Implement match password
     }
 

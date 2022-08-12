@@ -1,6 +1,6 @@
 package com.won983212.mongle.view.password
 
-class PasswordMemory(val maxDigits: Int) {
+internal class PasswordMemory(val maxDigits: Int) {
     private var length = 0
     private val digits = CharArray(maxDigits)
     private var fullListener: PasswordFullListener? = null
@@ -14,7 +14,7 @@ class PasswordMemory(val maxDigits: Int) {
         digits[length++] = digit
         if (length >= maxDigits) {
             length = 0
-            fullListener?.onFull(String(digits))
+            fullListener?.onPasswordInput(String(digits))
         }
         return length
     }
@@ -36,5 +36,5 @@ class PasswordMemory(val maxDigits: Int) {
 }
 
 fun interface PasswordFullListener {
-    fun onFull(password: String)
+    fun onPasswordInput(password: String)
 }

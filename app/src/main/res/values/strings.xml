@@ -43,7 +43,7 @@
 
     <!-- New favorite -->
     <string name="new_favorite_title">소마님 💌\n소중한 추억을 저장하세요 :)</string>
-    <string name="please_input_title">제목을 입력해주세요.</string>
+    <string name="new_favorite_title_hint">제목을 입력해주세요.</string>
     <string name="tab_calendar_title">캘린더</string>
     <string name="tab_album_title">앨범</string>
     <string name="tab_statistics_title">통계</string>
@@ -71,4 +71,5 @@
     <string name="overview_emotion_happy">행복한 하루였어요!</string>
     <string name="overview_emotion_neutral">평범한 하루였어요.</string>
     <string name="overview_emotion_sad">우울한 하루였어요.</string>
+    <string name="overview_keyword">[이날의 키워드]</string>
 </resources>

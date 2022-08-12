@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.OverviewActivity">
+    tools:context=".view.overview.OverviewActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -92,7 +92,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="28dp">
+                    android:layout_marginBottom="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -128,39 +128,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <Button
-                        style="?android:attr/buttonBarButtonStyle"
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="28dp"
-                        android:layout_marginRight="4dp"
-                        android:background="@drawable/btn_point_outline_round" />
-
-                    <Button
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="28dp"
-                        android:layout_marginRight="4dp"
-                        android:background="@drawable/btn_point_outline_round" />
-
-                    <Button
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="28dp"
-                        android:layout_marginRight="4dp"
-                        android:background="@drawable/btn_point_outline_round" />
-
-                    <Button
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="28dp"
-                        android:layout_marginRight="4dp"
-                        android:background="@drawable/btn_point_outline_round" />
-
-                    <Button
-                        style="?android:attr/buttonBarButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="28dp"
-                        android:background="@drawable/btn_point_outline_round" />
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/point"
+                        android:textSize="12sp"
+                        android:text="@string/overview_keyword" />
                 </LinearLayout>
             </LinearLayout>
 

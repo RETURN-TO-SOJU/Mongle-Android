@@ -15,7 +15,7 @@ enum class DayType {
     DIGIT, EMOTION
 }
 
-class DayViewContainer(view: View, dayClickListener: (LocalDate) -> Unit) :
+internal class DayViewContainer(view: View, dayClickListener: (LocalDate) -> Unit) :
     ViewContainer(view) {
 
     private lateinit var day: CalendarDay

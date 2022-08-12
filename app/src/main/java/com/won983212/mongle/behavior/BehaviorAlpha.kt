@@ -9,8 +9,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.won983212.mongle.R
 
-
-class BehaviorAlpha(context: Context, attrs: AttributeSet) :
+internal class BehaviorAlpha(context: Context, attrs: AttributeSet) :
     CoordinatorLayout.Behavior<ViewGroup>(context, attrs) {
 
     private val availableHeight: Float

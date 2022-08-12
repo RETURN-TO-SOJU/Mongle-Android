@@ -6,7 +6,7 @@ import androidx.core.view.children
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 
-class MongleMonthWeekHeaderBinder(
+internal class MongleMonthWeekHeaderBinder(
     private val daysOfWeek: Array<String>
 ) : MonthHeaderFooterBinder<MonthWeekdayContainer> {
 

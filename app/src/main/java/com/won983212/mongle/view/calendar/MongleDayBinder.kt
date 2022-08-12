@@ -7,7 +7,7 @@ import com.kizitonwose.calendarview.ui.DayBinder
 import com.won983212.mongle.base.Emotion
 import java.time.LocalDate
 
-class MongleDayBinder(
+internal class MongleDayBinder(
     private val calendar: MongleCalendar,
     private val dayClickListener: (LocalDate) -> Unit
 ) :
