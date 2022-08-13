@@ -1,9 +1,11 @@
 package com.won983212.mongle
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -31,6 +33,11 @@ data class ActivityInfo(
     val data: Bundle? = null
 ) : IScreenInfo
 
+data class ManualInfo(
+    override val name: String,
+    val task: () -> Unit
+) : IScreenInfo
+
 class TestActivity : AppCompatActivity() {
     private val listItems: Array<IScreenInfo> = arrayOf(
         ActivityInfo("로그인", LoginActivity::class.java),
@@ -44,7 +51,8 @@ class TestActivity : AppCompatActivity() {
         ActivityInfo("카카오 카톡 데이터 전송", KakaoReceiveActivity::class.java),
         ActivityInfo("분석된 캘린더", OverviewActivity::class.java),
         ActivityInfo("분석된 캘린더 상세", DayDetailActivity::class.java),
-        ActivityInfo("일기 작성", EditDiaryActivity::class.java, testDiaryMockBundle())
+        ActivityInfo("일기 작성", EditDiaryActivity::class.java, testDiaryMockBundle()),
+        ManualInfo("분석 완료 다이얼로그", this::openAnalyzeCompleteDialog)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,21 +66,36 @@ class TestActivity : AppCompatActivity() {
         binding.listTests.let {
             it.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
             it.setOnItemClickListener { _, _, position, _ ->
-                val screen = listItems[position]
-                if (screen is ActivityInfo) {
-                    val intent = Intent(this, screen.cls)
-                    if (screen.data != null) {
-                        intent.putExtras(screen.data)
+                when (val screen = listItems[position]) {
+                    is ActivityInfo -> {
+                        val intent = Intent(this, screen.cls)
+                        if (screen.data != null) {
+                            intent.putExtras(screen.data)
+                        }
+                        startActivity(intent)
                     }
-                    startActivity(intent)
-                } else if (screen is FragmentInfo) {
-                    val bottomSheet = screen.factory()
-                    bottomSheet.show(supportFragmentManager, bottomSheet.tag)
-                } else {
-                    Log.e("OnItemClickListener", "Unknown class type: $screen.cls")
+                    is FragmentInfo -> {
+                        val bottomSheet = screen.factory()
+                        bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+                    }
+                    is ManualInfo -> {
+                        screen.task()
+                    }
+                    else -> {
+                        Log.e("OnItemClickListener", "Unknown class type: $screen.cls")
+                    }
                 }
             }
         }
+    }
+
+    private fun openAnalyzeCompleteDialog() {
+        val layout = layoutInflater.inflate(R.layout.dialog_analyze_complete, null)
+        val dialog = AlertDialog.Builder(this)
+            .setView(layout)
+            .create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
+        dialog.show()
     }
 
     private fun testDiaryMockBundle(): Bundle {
