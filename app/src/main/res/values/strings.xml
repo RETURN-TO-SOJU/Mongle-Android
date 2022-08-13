@@ -2,7 +2,8 @@
     <string name="app_name">몽글몽글</string>
     <string name="app_subtitle">당신에게 추억을 선물합니다.</string>
 
-    <string name="OK">확인</string>
+    <string name="cancel">취소</string>
+    <string name="ok">확인</string>
     <string name="keyword_template">#%1$s</string>
 
     <!-- Emotion -->
@@ -77,4 +78,7 @@
     <string name="overview_emotion_neutral">평범한 하루였어요.</string>
     <string name="overview_emotion_sad">우울한 하루였어요.</string>
     <string name="overview_keyword">[이날의 키워드]</string>
+
+    <!-- Edit diary -->
+    <string name="diary_ok">작성완료</string>
 </resources>

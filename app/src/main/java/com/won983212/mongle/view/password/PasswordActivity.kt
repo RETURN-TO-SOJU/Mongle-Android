@@ -38,7 +38,7 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        mode = (intent.getSerializableExtra(MODE)
+        mode = (intent.getSerializableExtra(EXTRA_MODE)
             ?: PasswordActivityMode.AUTH) as PasswordActivityMode
 
         pwdIndicatorButtons = arrayOf(
@@ -141,7 +141,7 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
     }
 
     companion object {
-        const val MODE = "mode"
+        const val EXTRA_MODE = "mode"
         const val RESULT_PASSWORD = "password"
     }
 }

@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><!--suppress ALL -->
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.won983212.mongle">
+    
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -16,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mongle"
         tools:targetApi="31">
+        <activity
+            android:name=".view.EditDiaryActivity"
+            android:exported="false" />
         <activity
             android:name=".view.DayDetailActivity"
             android:exported="false" />
@@ -43,6 +47,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                <!--suppress AndroidDomInspection -->
                 <data
                     android:host="oauth"
                     android:scheme="kakao${KAKAO_NATIVE_APP_KEY}" />

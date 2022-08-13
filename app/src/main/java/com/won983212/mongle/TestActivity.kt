@@ -42,8 +42,9 @@ class TestActivity : AppCompatActivity() {
         ActivityInfo("카톡 튜토리얼", TutorialActivity::class.java, makeKakaoTutorialBundle()),
         FragmentInfo("찜 추가", this::newFavoriteFragmentFactory),
         ActivityInfo("카카오 카톡 데이터 전송", KakaoReceiveActivity::class.java),
-        ActivityInfo("분석된 캘린더 화면", OverviewActivity::class.java),
-        ActivityInfo("분석된 캘린더 상세 화면", DayDetailActivity::class.java)
+        ActivityInfo("분석된 캘린더", OverviewActivity::class.java),
+        ActivityInfo("분석된 캘린더 상세", DayDetailActivity::class.java),
+        ActivityInfo("일기 작성", EditDiaryActivity::class.java, testDiaryMockBundle())
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,9 +75,15 @@ class TestActivity : AppCompatActivity() {
         }
     }
 
+    private fun testDiaryMockBundle(): Bundle {
+        return bundleOf(
+            EditDiaryActivity.EXTRA_INITIAL_DIARY to "안녕하세요. 테스트 다이어리입니다."
+        )
+    }
+
     private fun passwordSetBundle(): Bundle {
         return bundleOf(
-            PasswordActivity.MODE to PasswordActivityMode.SET
+            PasswordActivity.EXTRA_MODE to PasswordActivityMode.SET
         )
     }
 
