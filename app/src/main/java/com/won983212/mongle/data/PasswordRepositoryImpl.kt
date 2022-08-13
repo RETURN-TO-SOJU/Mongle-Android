@@ -1,13 +1,16 @@
 package com.won983212.mongle.data
 
 import com.won983212.mongle.repository.PasswordRepository
+import javax.inject.Inject
 
-internal class PasswordRepositoryImpl : PasswordRepository {
+
+internal class PasswordRepositoryImpl
+@Inject constructor() : PasswordRepository {
     override fun getPassword(): String {
-        TODO("Not yet implemented")
+        return "1234"
     }
 
     override fun setPassword(password: String) {
-        TODO("Not yet implemented")
+        
     }
 }

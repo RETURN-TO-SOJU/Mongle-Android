@@ -3,7 +3,7 @@ package com.won983212.mongle.view.password
 internal class PasswordMemory(val maxDigits: Int) {
     private var length = 0
     private val digits = CharArray(maxDigits)
-    private var fullListener: PasswordFullListener? = null
+    private var fullListener: PasswordInputListener? = null
 
     /**
      * digit을 끝에 하나 추가합니다. 리턴되는 길이가 항상 1씩 더해지는 보장은 없습니다.
@@ -30,11 +30,11 @@ internal class PasswordMemory(val maxDigits: Int) {
         return --length
     }
 
-    fun setOnFullListener(listener: PasswordFullListener) {
+    fun setOnFullListener(listener: PasswordInputListener) {
         fullListener = listener
     }
 }
 
-fun interface PasswordFullListener {
+fun interface PasswordInputListener {
     fun onPasswordInput(password: String)
 }

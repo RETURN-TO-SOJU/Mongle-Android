@@ -5,15 +5,23 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityPasswordBinding
+import com.won983212.mongle.repository.PasswordRepository
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 enum class PasswordActivityMode {
     SET_PASSWORD, AUTH_PASSWORD
 }
 
-class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFullListener {
+@AndroidEntryPoint
+class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInputListener {
+    @Inject
+    lateinit var passwordRepository: PasswordRepository
+
     private lateinit var pwdIndicatorButtons: Array<RadioButton>
     private lateinit var binding: ActivityPasswordBinding
     private val pwdMemory = PasswordMemory(4)
@@ -40,6 +48,8 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordFull
 
         initTitleTextByMode()
         initEvents()
+
+        Toast.makeText(this, passwordRepository.getPassword(), Toast.LENGTH_SHORT).show()
     }
 
     private fun initTitleTextByMode() {
