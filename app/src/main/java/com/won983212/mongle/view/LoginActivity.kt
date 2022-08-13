@@ -1,12 +1,9 @@
 package com.won983212.mongle.view
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.kakao.sdk.user.UserApiClient
 import com.won983212.mongle.databinding.ActivityLoginBinding

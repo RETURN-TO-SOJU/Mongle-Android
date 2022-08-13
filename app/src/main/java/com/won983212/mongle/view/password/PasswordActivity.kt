@@ -1,5 +1,6 @@
 package com.won983212.mongle.view.password
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -14,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 enum class PasswordActivityMode {
-    SET_PASSWORD, AUTH_PASSWORD
+    SET, REENTER, AUTH
 }
 
 @AndroidEntryPoint
@@ -24,8 +25,9 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
 
     private lateinit var pwdIndicatorButtons: Array<RadioButton>
     private lateinit var binding: ActivityPasswordBinding
+    private var pwdPrevInput: String = ""
     private val pwdMemory = PasswordMemory(4)
-    private var mode = PasswordActivityMode.AUTH_PASSWORD
+    private var mode = PasswordActivityMode.AUTH
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,7 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         mode = (intent.getSerializableExtra(MODE)
-            ?: PasswordActivityMode.AUTH_PASSWORD) as PasswordActivityMode
+            ?: PasswordActivityMode.AUTH) as PasswordActivityMode
 
         pwdIndicatorButtons = arrayOf(
             binding.btnPwd1,
@@ -46,19 +48,22 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
             binding.btnPwd4
         )
 
-        initTitleTextByMode()
+        setupUIByMode()
         initEvents()
-
-        Toast.makeText(this, passwordRepository.getPassword(), Toast.LENGTH_SHORT).show()
     }
 
-    private fun initTitleTextByMode() {
+    private fun setupUIByMode() {
         when (mode) {
-            PasswordActivityMode.SET_PASSWORD -> {
+            PasswordActivityMode.SET -> {
                 binding.textPwdTitle.text = resources.getString(R.string.pwd_set_title)
+                binding.textPwdSubtitle.text = resources.getString(R.string.pwd_set_subtitle)
                 binding.btnLostPwd.visibility = View.GONE
             }
-            PasswordActivityMode.AUTH_PASSWORD -> {
+            PasswordActivityMode.REENTER -> {
+                binding.textPwdTitle.text = resources.getString(R.string.pwd_reenter_title)
+                binding.textPwdSubtitle.text = resources.getString(R.string.pwd_reenter_subtitle)
+            }
+            PasswordActivityMode.AUTH -> {
                 binding.textPwdTitle.text = resources.getString(R.string.pwd_auth_title)
                 binding.textPwdSubtitle.visibility = View.GONE
             }
@@ -105,10 +110,38 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
     }
 
     override fun onPasswordInput(password: String) {
-        // TODO Implement match password
+        when (mode) {
+            PasswordActivityMode.AUTH -> {
+                if (passwordRepository.getPassword() == password) {
+                    setResult(RESULT_OK)
+                    finish()
+                } else {
+                    Toast.makeText(this, R.string.pwd_wrong, Toast.LENGTH_SHORT).show()
+                }
+            }
+            PasswordActivityMode.REENTER -> {
+                if (pwdPrevInput == password) {
+                    val result = Intent(this, PasswordActivity::class.java).apply {
+                        putExtra(RESULT_PASSWORD, password)
+                    }
+                    setResult(RESULT_OK, result)
+                    finish()
+                } else {
+                    Toast.makeText(this, R.string.pwd_not_matched, Toast.LENGTH_SHORT).show()
+                    mode = PasswordActivityMode.SET
+                    setupUIByMode()
+                }
+            }
+            PasswordActivityMode.SET -> {
+                pwdPrevInput = password
+                mode = PasswordActivityMode.REENTER
+                setupUIByMode()
+            }
+        }
     }
 
     companion object {
         const val MODE = "mode"
+        const val RESULT_PASSWORD = "password"
     }
 }

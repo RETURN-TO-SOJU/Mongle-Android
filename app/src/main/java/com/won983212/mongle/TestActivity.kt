@@ -76,7 +76,7 @@ class TestActivity : AppCompatActivity() {
 
     private fun passwordSetBundle(): Bundle {
         return bundleOf(
-            PasswordActivity.MODE to PasswordActivityMode.SET_PASSWORD
+            PasswordActivity.MODE to PasswordActivityMode.SET
         )
     }
 
