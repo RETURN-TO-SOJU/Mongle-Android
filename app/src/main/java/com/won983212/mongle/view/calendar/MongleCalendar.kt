@@ -43,7 +43,7 @@ class MongleCalendar @JvmOverloads constructor(
             monthScrollListener = {
                 binding.textMonth.text = yearMonthFormatter.format(it.yearMonth)
             }
-            isNestedScrollingEnabled = true
+            isNestedScrollingEnabled = false
             setupAsync(
                 currentMonth.minusMonths(5),
                 currentMonth.plusMonths(5),
