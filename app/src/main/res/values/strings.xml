@@ -81,4 +81,7 @@
 
     <!-- Edit diary -->
     <string name="diary_ok">작성완료</string>
+
+    <!-- Emotion analyzing complete dialog -->
+    <string name="watch_now">지금 보러가기</string>
 </resources>

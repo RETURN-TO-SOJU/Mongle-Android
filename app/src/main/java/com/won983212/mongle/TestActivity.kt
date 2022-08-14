@@ -1,10 +1,12 @@
 package com.won983212.mongle
 
 import android.content.Intent
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
@@ -95,6 +97,12 @@ class TestActivity : AppCompatActivity() {
             .setView(layout)
             .create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
+        arrayOf(R.id.image_flag, R.id.image_ok).forEach {
+            val drawable = layout.findViewById<ImageView>(it).drawable
+            if (drawable is AnimatedVectorDrawable) {
+                drawable.start()
+            }
+        }
         dialog.show()
     }
 

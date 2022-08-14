@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Theme.Mongle" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -13,7 +13,7 @@
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/background</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowLightStatusBar">true</item>
 
         <!-- Widget Style -->
         <item name="android:buttonStyle">@style/Widget.Mongle.Button</item>

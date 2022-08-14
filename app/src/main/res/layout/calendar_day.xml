@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/emotion_angry"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/image_emotion_selected"
@@ -60,6 +60,6 @@
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginTop="4dp"
-        android:src="@drawable/round_point"
+        android:src="@drawable/oval_point"
         android:visibility="gone" />
 </LinearLayout>
