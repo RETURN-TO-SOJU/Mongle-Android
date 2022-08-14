@@ -124,6 +124,7 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
                     val result = Intent(this, PasswordActivity::class.java).apply {
                         putExtra(RESULT_PASSWORD, password)
                     }
+                    passwordRepository.setPassword(password)
                     setResult(RESULT_OK, result)
                     finish()
                 } else {

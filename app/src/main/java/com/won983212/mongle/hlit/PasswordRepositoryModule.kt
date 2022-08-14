@@ -1,18 +1,22 @@
 package com.won983212.mongle.hlit
 
+import android.content.Context
 import com.won983212.mongle.data.PasswordRepositoryImpl
 import com.won983212.mongle.repository.PasswordRepository
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ActivityComponent::class)
-internal abstract class PasswordRepositoryModule {
+@InstallIn(ApplicationComponent::class)
+internal class PasswordRepositoryModule {
 
-    @Binds
-    abstract fun bindPasswordRepository(
-        impl: PasswordRepositoryImpl
-    ): PasswordRepository
+    @Singleton
+    @Provides
+    fun providePasswordRepository(@ApplicationContext context: Context): PasswordRepository {
+        return PasswordRepositoryImpl(context)
+    }
 }
