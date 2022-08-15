@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.won983212.mongle">
-    
+
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -27,7 +27,7 @@
             android:name=".view.overview.OverviewActivity"
             android:exported="false" />
         <activity
-            android:name=".view.KakaoReceiveActivity"
+            android:name=".view.KakaoSendingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />

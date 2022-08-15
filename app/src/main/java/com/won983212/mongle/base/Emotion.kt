@@ -10,7 +10,7 @@ enum class Emotion(val id: String, @StringRes val label: Int, @DrawableRes val i
     NEUTRAL("neutral", R.string.emotion_neutral, R.drawable.emotion_neutral),
     ANGRY("angry", R.string.emotion_angry, R.drawable.emotion_angry),
     ANXIOUS("anxious", R.string.emotion_anxious, R.drawable.emotion_anxious),
-    EMBARRASS("embarrass", R.string.emotion_embarrass, R.drawable.emotion_embarrass),
+    TIRED("tired", R.string.emotion_tired, R.drawable.emotion_tired),
     SAD("sad", R.string.emotion_sad, R.drawable.emotion_sad);
 
     companion object {

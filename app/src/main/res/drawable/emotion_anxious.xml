@@ -3,7 +3,7 @@
     android:height="24dp"
     android:viewportWidth="48"
     android:viewportHeight="48">
-    <group>
+    <group android:name="emotion_anxious">
         <clip-path android:pathData="M0 0h48v48H0z" />
         <path
             android:fillColor="#947CDB"

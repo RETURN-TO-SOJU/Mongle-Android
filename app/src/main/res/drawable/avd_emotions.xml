@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/emotion_angry"
+        android:duration="700" />
+    <item
+        android:drawable="@drawable/emotion_happy"
+        android:duration="700" />
+    <item
+        android:drawable="@drawable/emotion_anxious"
+        android:duration="700" />
+    <item
+        android:drawable="@drawable/emotion_tired"
+        android:duration="700" />
+    <item
+        android:drawable="@drawable/emotion_neutral"
+        android:duration="700" />
+    <item
+        android:drawable="@drawable/emotion_sad"
+        android:duration="700" />
+</animation-list>

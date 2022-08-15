@@ -21,6 +21,7 @@
         <item name="android:textViewStyle">@style/Widget.Mongle.TextView</item>
         <item name="android:radioButtonStyle">@style/Widget.Mongle.RadioButton</item>
         <item name="android:editTextStyle">@style/Widget.Mongle.EditText</item>
+        <item name="android:progressBarStyle">@style/Widget.Mongle.ProgressBar</item>
         <item name="bottomSheetDialogTheme">@style/Widget.Mongle.BottomSheet</item>
 
         <!-- Activity default background -->

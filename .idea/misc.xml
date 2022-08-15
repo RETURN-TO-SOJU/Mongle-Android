@@ -7,7 +7,10 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable-v24/btn_round_down.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.303" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable-v24/news_avd_v02.xml" value="0.1455" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/avd_analyzing.xml" value="0.2765" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/avd_bounce_emotions.xml" value="0.2765" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/avd_complete.xml" value="0.143" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/avd_emotions.xml" value="0.143" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/avd_flag_cross.xml" value="0.143" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/background_splash.xml" value="0.303" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/btn_outline_round.xml" value="0.2805" />
@@ -16,25 +19,36 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/btn_round_down.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/button_round.xml" value="0.301" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/content_splash.xml" value="0.1455" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_angry.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_angry_big.xml" value="0.303" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_anxious.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_anxious_big.xml" value="0.303" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_embarrass.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_embarrass_big.xml" value="0.303" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_happy.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_happy_big.xml" value="0.303" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_neutral.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_neutral_big.xml" value="0.303" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_sad.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_sad_big.xml" value="0.303" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/ic_album.xml" value="0.2765" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/ic_kakaotalk.xml" value="0.282" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/ic_launcher_background.xml" value="0.303" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/kakao_login_button.xml" value="0.282" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/login_title.xml" value="0.301" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/progressbar.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_15.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_button.xml" value="0.282" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_point.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_top_15.xml" value="0.2805" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/shadow.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/splash_content.xml" value="0.301" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/text_login_kakaotalk.xml" value="0.301" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/text_login_title.xml" value="0.301" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/text_title.xml" value="0.301" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/title.xml" value="0.282" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_agree.xml" value="0.3609375" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_kakao_sending.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_overview.xml" value="0.365625" />

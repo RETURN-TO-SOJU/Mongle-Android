@@ -53,6 +53,11 @@ class MongleCalendar @JvmOverloads constructor(
             }
         }
 
+        initEvents()
+        addView(binding.root)
+    }
+
+    private fun initEvents() {
         binding.btnPrevMonth.setOnClickListener {
             binding.calendar.apply {
                 findFirstVisibleMonth()?.let {
@@ -68,8 +73,6 @@ class MongleCalendar @JvmOverloads constructor(
                 }
             }
         }
-
-        addView(binding.root)
     }
 
     private fun selectDate(date: LocalDate) {

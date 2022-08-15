@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">몽글몽글</string>
     <string name="app_subtitle">당신에게 추억을 선물합니다.</string>
 
@@ -9,7 +9,7 @@
     <!-- Emotion -->
     <string name="emotion_angry">분노</string>
     <string name="emotion_anxious">불안</string>
-    <string name="emotion_embarrass">당황</string>
+    <string name="emotion_tired">피곤</string>
     <string name="emotion_happy">행복</string>
     <string name="emotion_neutral">중립</string>
     <string name="emotion_sad">슬픔</string>
@@ -84,4 +84,9 @@
 
     <!-- Emotion analyzing complete dialog -->
     <string name="watch_now">지금 보러가기</string>
+
+    <!-- Sending and analyzing progress -->
+    <string name="sending_title" tools:ignore="TypographyEllipsis,TypographyFractions">데이터 전송 중... (1/2)</string>
+    <string name="analyzing_title" tools:ignore="TypographyEllipsis">분석 중... (2/2)</string>
+    <string name="analyzing_subtitle">분석 작업은 10분 이상 걸릴 수 있습니다.\n 분석이 완료되면 알려드릴게요.\n 그동안 휴대전화를 자유롭게 사용하세요:)</string>
 </resources>

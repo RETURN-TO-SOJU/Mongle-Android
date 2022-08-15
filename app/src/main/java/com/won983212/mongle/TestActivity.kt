@@ -1,7 +1,6 @@
 package com.won983212.mongle
 
 import android.content.Intent
-import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +13,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.base.Emotion
 import com.won983212.mongle.databinding.ActivityTestBinding
+import com.won983212.mongle.util.attachCompatAnim
 import com.won983212.mongle.view.*
 import com.won983212.mongle.view.overview.OverviewActivity
 import com.won983212.mongle.view.password.PasswordActivity
@@ -50,7 +50,7 @@ class TestActivity : AppCompatActivity() {
         ActivityInfo("튜토리얼", TutorialActivity::class.java, makeTutorialBundle()),
         ActivityInfo("카톡 튜토리얼", TutorialActivity::class.java, makeKakaoTutorialBundle()),
         FragmentInfo("찜 추가", this::newFavoriteFragmentFactory),
-        ActivityInfo("카카오 카톡 데이터 전송", KakaoReceiveActivity::class.java),
+        ActivityInfo("카카오 카톡 데이터 전송", KakaoSendingActivity::class.java),
         ActivityInfo("분석된 캘린더", OverviewActivity::class.java),
         ActivityInfo("분석된 캘린더 상세", DayDetailActivity::class.java),
         ActivityInfo("일기 작성", EditDiaryActivity::class.java, testDiaryMockBundle()),
@@ -97,12 +97,8 @@ class TestActivity : AppCompatActivity() {
             .setView(layout)
             .create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
-        arrayOf(R.id.image_flag, R.id.image_ok).forEach {
-            val drawable = layout.findViewById<ImageView>(it).drawable
-            if (drawable is AnimatedVectorDrawable) {
-                drawable.start()
-            }
-        }
+        layout.findViewById<ImageView>(R.id.image_flag).attachCompatAnim(R.drawable.avd_flag_cross)
+        layout.findViewById<ImageView>(R.id.image_ok).attachCompatAnim(R.drawable.avd_complete)
         dialog.show()
     }
 

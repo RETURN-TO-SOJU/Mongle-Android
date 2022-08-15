@@ -36,6 +36,12 @@
     </style>
 
 
+    <!-- Progressbar -->
+    <style name="Widget.Mongle.ProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progressbar</item>
+    </style>
+
+
     <!-- Checkbox -->
     <style name="Widget.Mongle.Checkbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:fontFamily">@font/app_font_default</item>
