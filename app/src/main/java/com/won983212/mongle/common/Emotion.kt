@@ -1,4 +1,4 @@
-package com.won983212.mongle.base
+package com.won983212.mongle.common
 
 import android.content.res.Resources
 import androidx.annotation.DrawableRes

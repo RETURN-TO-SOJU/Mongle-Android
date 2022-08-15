@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.won983212.mongle.base.Emotion
+import com.won983212.mongle.common.Emotion
 import com.won983212.mongle.databinding.ActivityTestBinding
 import com.won983212.mongle.util.attachCompatAnim
 import com.won983212.mongle.view.*

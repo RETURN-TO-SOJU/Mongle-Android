@@ -4,7 +4,7 @@ import android.view.View
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
-import com.won983212.mongle.base.Emotion
+import com.won983212.mongle.common.Emotion
 import java.time.LocalDate
 
 internal class MongleDayBinder(

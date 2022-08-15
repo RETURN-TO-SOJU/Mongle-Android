@@ -78,7 +78,7 @@
                 android:scaleType="fitCenter"
                 android:tag="embarrass"
                 android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/emotion_embarrass" />
+                android:src="@drawable/emotion_tired" />
 
             <ImageButton
                 android:id="@+id/btn_angry"
