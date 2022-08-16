@@ -28,67 +28,9 @@
             android:id="@+id/layout_emotion_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginVertical="24dp"
-            android:columnCount="3"
-            android:layout_gravity="center">
-
-            <ImageButton
-                android:id="@+id/btn_happy"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:scaleType="fitCenter"
-                android:layout_marginRight="48dp"
-                android:layout_marginBottom="24dp"
-                android:tag="happy"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/emotion_happy" />
-
-            <ImageButton
-                android:id="@+id/btn_neutral"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:scaleType="fitCenter"
-                android:layout_marginRight="48dp"
-                android:tag="neutral"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/emotion_neutral" />
-
-            <ImageButton
-                android:id="@+id/btn_sad"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:scaleType="fitCenter"
-                android:tag="sad"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/emotion_sad" />
-
-            <ImageButton
-                android:id="@+id/btn_anxious"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:scaleType="fitCenter"
-                android:tag="anxious"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/emotion_anxious" />
-
-            <ImageButton
-                android:id="@+id/btn_embarrass"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:scaleType="fitCenter"
-                android:tag="embarrass"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/emotion_tired" />
-
-            <ImageButton
-                android:id="@+id/btn_angry"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:scaleType="fitCenter"
-                android:tag="angry"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/emotion_angry" />
-        </GridLayout>
+            android:columnCount="3" />
 
         <EditText
             android:id="@+id/edittext_title"
@@ -96,14 +38,14 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
+            android:autofillHints="name"
             android:backgroundTint="@color/gray"
-            tools:drawableStart="@drawable/emotion_angry"
             android:drawablePadding="16dp"
             android:hint="@string/new_favorite_title_hint"
             android:inputType="text"
             android:paddingBottom="20dp"
-            android:autofillHints="name"
-            android:textCursorDrawable="@drawable/cursor_gray" />
+            android:textCursorDrawable="@drawable/cursor_gray"
+            tools:drawableStart="@drawable/emotion_angry" />
 
         <Button
             android:layout_width="match_parent"

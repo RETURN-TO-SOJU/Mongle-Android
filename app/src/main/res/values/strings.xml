@@ -89,4 +89,11 @@
     <string name="sending_title" tools:ignore="TypographyEllipsis,TypographyFractions">데이터 전송 중... (1/2)</string>
     <string name="analyzing_title" tools:ignore="TypographyEllipsis">분석 중... (2/2)</string>
     <string name="analyzing_subtitle">분석 작업은 10분 이상 걸릴 수 있습니다.\n 분석이 완료되면 알려드릴게요.\n 그동안 휴대전화를 자유롭게 사용하세요:)</string>
+
+    <!-- Day detail -->
+    <string name="detail_diary_title">이날의 기록 📖</string>
+    <string name="detail_analyzed_title1">나는 어떤 감정들을 느꼈을까?</string>
+    <string name="detail_analyzed_title2">아래 감정이들을 눌러보세요 :)</string>
+    <string name="detail_photos_title">이날 찍은 사진들</string>
+    <string name="detail_plans_title">이날의 일정</string>
 </resources>

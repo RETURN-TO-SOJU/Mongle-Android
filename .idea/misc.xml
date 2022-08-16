@@ -31,6 +31,7 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_neutral_big.xml" value="0.303" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_sad.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_sad_big.xml" value="0.303" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/emotion_tired.xml" value="0.143" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/ic_album.xml" value="0.2765" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/ic_favorite.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/ic_kakaotalk.xml" value="0.282" />
@@ -40,6 +41,7 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/progressbar.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_15.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_button.xml" value="0.282" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_elevation_15.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_point.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_top_15.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/shadow.xml" value="0.2805" />
@@ -49,15 +51,17 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/text_title.xml" value="0.301" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/title.xml" value="0.282" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_agree.xml" value="0.3609375" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_day_detail.xml" value="0.33" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_day_detail.xml" value="0.5" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_kakao_sending.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_overview.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_splash.xml" value="0.26452991452991453" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/bottom_sheet_new_favorite.xml" value="0.365625" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/bottom_sheet_new_favorite.xml" value="0.33" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/calendar_mongle.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/dialog_analyze_complete.xml" value="0.365625" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/keyword_item.xml" value="0.365625" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/menu/bottom_nav_menu.xml" value="0.365625" />
         <entry key="app/src/main/res/drawable/avd_complete.xml" value="0.271" />
         <entry key="app/src/main/res/drawable/avd_flag_cross.xml" value="0.271" />
         <entry key="app/src/main/res/drawable/background_checkable.xml" value="0.187" />

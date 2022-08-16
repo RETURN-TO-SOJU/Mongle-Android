@@ -1,24 +1,31 @@
 package com.won983212.mongle.view
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.children
+import android.widget.GridLayout
+import android.widget.ImageButton
+import android.widget.ImageView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.common.Emotion
 import com.won983212.mongle.databinding.BottomSheetNewFavoriteBinding
+import com.won983212.mongle.util.dpToPx
 
 class NewFavoriteFragment(
-    val initialEmotion: Emotion
+    private val initialEmotion: Emotion
 ) : BottomSheetDialogFragment() {
 
+    private lateinit var binding: BottomSheetNewFavoriteBinding
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        val binding = BottomSheetNewFavoriteBinding.inflate(inflater, container, false)
+        binding = BottomSheetNewFavoriteBinding.inflate(inflater, container, false)
 
         binding.edittextTitle.setCompoundDrawablesWithIntrinsicBounds(
             initialEmotion.iconRes,
@@ -27,18 +34,51 @@ class NewFavoriteFragment(
             0
         )
 
-        binding.layoutEmotionContainer.children.forEach {
-            val iconRes = Emotion.of(it.tag.toString()).iconRes
-            it.setOnClickListener {
-                binding.edittextTitle.setCompoundDrawablesWithIntrinsicBounds(
-                    iconRes,
-                    0,
-                    0,
-                    0
-                )
-            }
-        }
-
+        createEmotionButtons()
         return binding.root
+    }
+
+    private fun createEmotionButtons() {
+        Emotion.values().forEachIndexed { idx, emotion ->
+            val btn = ImageButton(context).apply {
+                scaleType = ImageView.ScaleType.CENTER_CROP
+                setImageResource(emotion.iconRes)
+
+                val typedValue = TypedValue()
+                context.theme.resolveAttribute(
+                    android.R.attr.selectableItemBackgroundBorderless,
+                    typedValue,
+                    true
+                )
+                setBackgroundResource(typedValue.resourceId)
+
+                setOnClickListener {
+                    binding.edittextTitle.setCompoundDrawablesWithIntrinsicBounds(
+                        emotion.iconRes,
+                        0,
+                        0,
+                        0
+                    )
+                }
+            }
+
+            val size = dpToPx(context, 48)
+            val layoutParams = GridLayout.LayoutParams(ViewGroup.LayoutParams(size, size))
+
+            when (idx) {
+                0 -> {
+                    layoutParams.rightMargin = size
+                    layoutParams.bottomMargin = size / 2
+                }
+                1 -> {
+                    layoutParams.rightMargin = size
+                }
+            }
+
+            binding.layoutEmotionContainer.addView(
+                btn,
+                layoutParams
+            )
+        }
     }
 }

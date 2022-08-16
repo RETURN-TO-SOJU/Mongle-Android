@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/app_semibold"
-                android:text="이날의 기록 ✍ "
+                android:text="@string/detail_diary_title"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -76,7 +76,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:background="@drawable/round_15"
+                android:elevation="4dp">
 
                 <ImageView
                     android:layout_width="36dp"
@@ -106,82 +108,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="나는 어떤 감정들을 느꼈을까?" />
+                android:text="@string/detail_analyzed_title1" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/app_semibold"
-                android:text="아래 감정이들을 눌러보세요 :)"
+                android:text="@string/detail_analyzed_title2"
                 android:textSize="16sp" />
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/emotion_happy_big" />
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/emotion_angry_big" />
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/emotion_neutral_big" />
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/emotion_anxious_big" />
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/emotion_tired_big" />
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="64dp"
-                    android:layout_weight="1"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:padding="4dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/emotion_sad_big" />
-            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/app_semibold"
-                android:text="이날 찍은 사진들"
+                android:text="@string/detail_photos_title"
                 android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -196,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/app_semibold"
-                android:text="이날의 일정"
+                android:text="@string/detail_plans_title"
                 android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
