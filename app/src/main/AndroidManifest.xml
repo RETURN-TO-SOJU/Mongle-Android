@@ -21,7 +21,7 @@
             android:name=".view.EditDiaryActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DayDetailActivity"
+            android:name=".view.daydetail.DayDetailActivity"
             android:exported="false" />
         <activity
             android:name=".view.overview.OverviewActivity"

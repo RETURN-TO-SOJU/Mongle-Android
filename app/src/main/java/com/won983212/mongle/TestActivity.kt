@@ -15,6 +15,7 @@ import com.won983212.mongle.common.Emotion
 import com.won983212.mongle.databinding.ActivityTestBinding
 import com.won983212.mongle.util.attachCompatAnim
 import com.won983212.mongle.view.*
+import com.won983212.mongle.view.daydetail.DayDetailActivity
 import com.won983212.mongle.view.overview.OverviewActivity
 import com.won983212.mongle.view.password.PasswordActivity
 import com.won983212.mongle.view.password.PasswordActivityMode

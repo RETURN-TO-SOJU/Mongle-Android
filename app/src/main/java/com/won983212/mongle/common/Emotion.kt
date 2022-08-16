@@ -5,13 +5,48 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.won983212.mongle.R
 
-enum class Emotion(val id: String, @StringRes val label: Int, @DrawableRes val iconRes: Int) {
-    HAPPY("happy", R.string.emotion_happy, R.drawable.emotion_happy),
-    NEUTRAL("neutral", R.string.emotion_neutral, R.drawable.emotion_neutral),
-    ANGRY("angry", R.string.emotion_angry, R.drawable.emotion_angry),
-    ANXIOUS("anxious", R.string.emotion_anxious, R.drawable.emotion_anxious),
-    TIRED("tired", R.string.emotion_tired, R.drawable.emotion_tired),
-    SAD("sad", R.string.emotion_sad, R.drawable.emotion_sad);
+enum class Emotion(
+    @StringRes val label: Int,
+    @DrawableRes val iconRes: Int,
+    @DrawableRes val bigIconRes: Int
+) {
+    HAPPY(
+        R.string.emotion_happy,
+        R.drawable.emotion_happy,
+        R.drawable.emotion_happy_big
+    ),
+
+    NEUTRAL(
+        R.string.emotion_neutral,
+        R.drawable.emotion_neutral,
+        R.drawable.emotion_neutral_big
+    ),
+
+    ANGRY(
+        R.string.emotion_angry,
+        R.drawable.emotion_angry,
+        R.drawable.emotion_angry_big
+    ),
+
+    ANXIOUS(
+        R.string.emotion_anxious,
+        R.drawable.emotion_anxious,
+        R.drawable.emotion_anxious_big
+    ),
+
+    TIRED(
+        R.string.emotion_tired,
+        R.drawable.emotion_tired,
+        R.drawable.emotion_tired_big
+    ),
+
+    SAD(
+        R.string.emotion_sad,
+        R.drawable.emotion_sad,
+        R.drawable.emotion_sad_big
+    );
+
+    val id get() = this.name.lowercase()
 
     companion object {
         fun of(id: String): Emotion {

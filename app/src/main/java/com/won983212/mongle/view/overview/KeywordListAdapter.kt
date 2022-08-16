@@ -21,7 +21,7 @@ internal class KeywordListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.keyword_item, parent, false)
+            .inflate(R.layout.recycler_item_keyword, parent, false)
         return ViewHolder(view)
     }
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.DayDetailActivity">
+    tools:context=".view.daydetail.DayDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -48,12 +48,16 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="16dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:orientation="vertical">
 
             <!-- Todo Week Calendar -->
@@ -75,10 +79,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:padding="16dp"
                 android:background="@drawable/round_15"
-                android:elevation="4dp">
+                android:elevation="2dp"
+                android:gravity="center"
+                android:padding="16dp">
 
                 <ImageView
                     android:layout_width="36dp"
@@ -101,7 +105,8 @@
                     android:layout_height="wrap_content"
                     android:background="?selectableItemBackgroundBorderless"
                     android:padding="4dp"
-                    android:src="@drawable/ic_arrow_right" />
+                    android:src="@drawable/ic_arrow_right"
+                    app:tint="@color/disabled" />
             </LinearLayout>
 
             <TextView
@@ -119,40 +124,43 @@
                 android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_analyzed_emotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:fontFamily="@font/app_semibold"
                 android:text="@string/detail_photos_title"
                 android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:fontFamily="@font/app_semibold"
                 android:text="@string/detail_plans_title"
                 android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_schedule"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
