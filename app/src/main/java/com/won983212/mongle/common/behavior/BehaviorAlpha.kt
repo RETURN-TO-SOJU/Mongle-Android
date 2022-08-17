@@ -1,4 +1,4 @@
-package com.won983212.mongle.behavior
+package com.won983212.mongle.common.behavior
 
 import android.content.Context
 import android.util.AttributeSet

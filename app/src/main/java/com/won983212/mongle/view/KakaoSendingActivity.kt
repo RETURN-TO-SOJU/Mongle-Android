@@ -15,11 +15,11 @@ class KakaoSendingActivity : AppCompatActivity() {
         binding = ActivityKakaoSendingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.imageSending.attachCompatAnimLoop(R.drawable.avd_bounce_happy)
+        binding.imageSending.attachCompatAnimLoop(R.drawable.avd_bounce_tired)
         binding.imageAnalyzing.attachCompatAnimLoop(R.drawable.avd_analyzing)
 
-        /*
-        intent.extras?.let {
+
+        /*intent.extras?.let {
             for (key in it.keySet()) {
                 Log.i("Test", key + ": " + it[key])
             }

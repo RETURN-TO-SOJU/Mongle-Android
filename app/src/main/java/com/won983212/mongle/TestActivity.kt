@@ -55,7 +55,8 @@ class TestActivity : AppCompatActivity() {
         ActivityInfo("분석된 캘린더", OverviewActivity::class.java),
         ActivityInfo("분석된 캘린더 상세", DayDetailActivity::class.java),
         ActivityInfo("일기 작성", EditDiaryActivity::class.java, testDiaryMockBundle()),
-        ManualInfo("분석 완료 다이얼로그", this::openAnalyzeCompleteDialog)
+        ManualInfo("분석 완료 다이얼로그", this::openAnalyzeCompleteDialog),
+        ManualInfo("선물 도착 다이얼로그", this::openGiftArrivedDialog)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,6 +101,16 @@ class TestActivity : AppCompatActivity() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
         layout.findViewById<ImageView>(R.id.image_flag).attachCompatAnim(R.drawable.avd_flag_cross)
         layout.findViewById<ImageView>(R.id.image_ok).attachCompatAnim(R.drawable.avd_complete)
+        dialog.show()
+    }
+
+    private fun openGiftArrivedDialog() {
+        val layout = layoutInflater.inflate(R.layout.dialog_arrived_gift, null)
+        val dialog = AlertDialog.Builder(this)
+            .setView(layout)
+            .create()
+        dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
+        layout.findViewById<ImageView>(R.id.image_gift).attachCompatAnim(R.drawable.avd_gift)
         dialog.show()
     }
 

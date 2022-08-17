@@ -2,10 +2,14 @@
     <string name="app_name">몽글몽글</string>
     <string name="app_subtitle">당신에게 추억을 선물합니다.</string>
 
+    <!-- Common -->
     <string name="cancel">취소</string>
     <string name="ok">확인</string>
     <string name="keyword_template">#%1$s</string>
     <string name="percent_template">%1$s%%</string>
+    <string name="watch_later">다음에 볼게요</string>
+    <string name="watch_now">지금 볼게요!</string>
+    <string name="write_complete">작성완료</string>
 
     <!-- Emotion -->
     <string name="emotion_angry">분노</string>
@@ -79,12 +83,6 @@
     <string name="overview_emotion_neutral">평범한 하루였어요.</string>
     <string name="overview_emotion_sad">우울한 하루였어요.</string>
     <string name="overview_keyword">[이날의 키워드]</string>
-
-    <!-- Edit diary -->
-    <string name="diary_ok">작성완료</string>
-
-    <!-- Emotion analyzing complete dialog -->
-    <string name="watch_now">지금 보러가기</string>
 
     <!-- Sending and analyzing progress -->
     <string name="sending_title" tools:ignore="TypographyEllipsis,TypographyFractions">데이터 전송 중... (1/2)</string>
