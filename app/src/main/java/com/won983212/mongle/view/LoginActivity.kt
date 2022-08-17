@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initWidgets(binding: ActivityLoginBinding) {
-        binding.btnLoginKakao.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             val client = UserApiClient.instance
             if (!client.isKakaoTalkLoginAvailable(this)) {
                 UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->

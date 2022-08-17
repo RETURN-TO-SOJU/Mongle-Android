@@ -3,20 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_weight="1">
+    android:layout_weight="1"
+    android:orientation="vertical">
 
     <ImageButton
-        android:id="@+id/image_emotion"
+        android:id="@+id/image_listitem_analyzed_emotion"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
         android:layout_gravity="center"
+        android:background="?selectableItemBackgroundBorderless"
         android:scaleType="fitCenter"
-        android:src="@drawable/emotion_angry_big"
-        android:background="?selectableItemBackgroundBorderless"/>
+        android:src="@drawable/emotion_angry_big" />
 
     <TextView
-        android:id="@+id/text_proportion"
+        android:id="@+id/text_listitem_analyzed_proportion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

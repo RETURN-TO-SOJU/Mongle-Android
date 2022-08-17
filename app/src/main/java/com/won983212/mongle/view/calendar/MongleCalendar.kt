@@ -41,7 +41,7 @@ class MongleCalendar @JvmOverloads constructor(
             dayBinder = MongleDayBinder(this@MongleCalendar, this@MongleCalendar::selectDate)
             monthHeaderBinder = MongleMonthWeekHeaderBinder(daysOfWeek)
             monthScrollListener = {
-                binding.textMonth.text = yearMonthFormatter.format(it.yearMonth)
+                binding.textCalendarMonth.text = yearMonthFormatter.format(it.yearMonth)
             }
             isNestedScrollingEnabled = false
             setupAsync(
@@ -58,7 +58,7 @@ class MongleCalendar @JvmOverloads constructor(
     }
 
     private fun initEvents() {
-        binding.btnPrevMonth.setOnClickListener {
+        binding.btnCalendarPrevMonth.setOnClickListener {
             binding.calendar.apply {
                 findFirstVisibleMonth()?.let {
                     smoothScrollToMonth(it.yearMonth.previous)
@@ -66,7 +66,7 @@ class MongleCalendar @JvmOverloads constructor(
             }
         }
 
-        binding.btnNextMonth.setOnClickListener {
+        binding.btnCalendarNextMonth.setOnClickListener {
             binding.calendar.apply {
                 findFirstVisibleMonth()?.let {
                     smoothScrollToMonth(it.yearMonth.next)

@@ -21,15 +21,15 @@ internal class DayViewContainer(view: View, dayClickListener: (LocalDate) -> Uni
     private lateinit var day: CalendarDay
     private var dayType: DayType = DayType.DIGIT
 
-    val todayIndicator = view.findViewById<ImageView>(R.id.image_today_dot)
+    val todayIndicator = view.findViewById<ImageView>(R.id.image_calendar_day_today_dot)
 
     // digit day view
-    val dayTextView = view.findViewById<TextView>(R.id.text_day)
-    val daySelection = view.findViewById<ImageView>(R.id.image_day_selection)
+    val dayTextView = view.findViewById<TextView>(R.id.text_calendar_day)
+    val daySelection = view.findViewById<ImageView>(R.id.image_calendar_day_selection)
 
     // emotion view
-    val emotionSelection = view.findViewById<ImageView>(R.id.image_emotion_selected)
-    val emotionImage = view.findViewById<ImageView>(R.id.image_emotion)
+    val emotionSelection = view.findViewById<ImageView>(R.id.image_calendar_day_emotion_selected)
+    val emotionImage = view.findViewById<ImageView>(R.id.image_calendar_day_emotion)
 
     init {
         view.setOnClickListener {

@@ -3,20 +3,20 @@ package com.won983212.mongle.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.won983212.mongle.R
-import com.won983212.mongle.databinding.ActivityKakaoSendingBinding
+import com.won983212.mongle.databinding.ActivityKakaotalkExportBinding
 import com.won983212.mongle.util.attachCompatAnimLoop
 
 class KakaoSendingActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityKakaoSendingBinding
+    private lateinit var binding: ActivityKakaotalkExportBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityKakaoSendingBinding.inflate(layoutInflater)
+        binding = ActivityKakaotalkExportBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.imageSending.attachCompatAnimLoop(R.drawable.avd_bounce_tired)
-        binding.imageAnalyzing.attachCompatAnimLoop(R.drawable.avd_analyzing)
+        binding.imageKakaotalkExportSending.attachCompatAnimLoop(R.drawable.avd_bounce_tired)
+        binding.imageKakaotalkExportAnalyzing.attachCompatAnimLoop(R.drawable.avd_analyzing)
 
 
         /*intent.extras?.let {

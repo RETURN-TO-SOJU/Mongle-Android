@@ -19,7 +19,7 @@ class TutorialActivity : AppCompatActivity() {
         binding.pagerTutorial.let {
             // titleResList, imageResList는 위에서 null체크를 하므로 cast error가 발생할 수 없음.
             it.adapter = TutorialSlideAdapter(this, titleResList, imageResList)
-            binding.indicatorPagerPage.attachTo(it)
+            binding.indicatorTutorialPagerPage.attachTo(it)
         }
     }
 

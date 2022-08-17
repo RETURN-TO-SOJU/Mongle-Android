@@ -12,31 +12,31 @@
         android:layout_marginBottom="16dp">
 
         <ImageButton
-            android:id="@+id/btn_prev_month"
+            android:id="@+id/btn_calendar_prev_month"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="?selectableItemBackgroundBorderless"
             android:padding="4dp"
-            android:src="@drawable/ic_arrow_left"
-            android:background="?selectableItemBackgroundBorderless" />
+            android:src="@drawable/ic_arrow_left" />
 
         <TextView
-            android:id="@+id/text_month"
+            android:id="@+id/text_calendar_month"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:fontFamily="@font/app_font_default"
-            android:textStyle="bold"
+            android:gravity="center"
             android:textSize="16sp"
+            android:textStyle="bold"
             tools:text="2022.06" />
 
         <ImageButton
-            android:id="@+id/btn_next_month"
+            android:id="@+id/btn_calendar_next_month"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="?selectableItemBackgroundBorderless"
             android:padding="4dp"
-            android:src="@drawable/ic_arrow_right"
-            android:background="?selectableItemBackgroundBorderless" />
+            android:src="@drawable/ic_arrow_right" />
     </LinearLayout>
 
     <com.kizitonwose.calendarview.CalendarView

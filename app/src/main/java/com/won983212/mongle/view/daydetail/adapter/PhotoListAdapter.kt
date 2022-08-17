@@ -18,14 +18,14 @@ class PhotoListAdapter(
         val textTitle: TextView
 
         init {
-            imageThumbnail = view.findViewById(R.id.image_thumbnail)
-            textTitle = view.findViewById(R.id.text_title)
+            imageThumbnail = view.findViewById(R.id.image_listitem_photo_thumbnail)
+            textTitle = view.findViewById(R.id.text_listitem_photo_title)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_item_photo, parent, false)
+            .inflate(R.layout.listitem_photo, parent, false)
         return ViewHolder(view)
     }
 

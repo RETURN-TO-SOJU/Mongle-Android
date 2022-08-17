@@ -43,7 +43,7 @@ class DayDetailActivity : AppCompatActivity() {
         binding = ActivityDayDetailBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbarDayDetail)
 
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
@@ -53,7 +53,7 @@ class DayDetailActivity : AppCompatActivity() {
     }
 
     private fun initAnalyzedEmotionList() {
-        binding.listAnalyzedEmotion.apply {
+        binding.listDayDetailAnalyzedEmotion.apply {
             layoutManager = LinearLayoutManager(context).apply {
                 orientation = LinearLayoutManager.HORIZONTAL
             }
@@ -62,7 +62,7 @@ class DayDetailActivity : AppCompatActivity() {
     }
 
     private fun initPhotoList() {
-        binding.listPhoto.apply {
+        binding.listDayDetailPhoto.apply {
             layoutManager = LinearLayoutManager(context).apply {
                 orientation = LinearLayoutManager.HORIZONTAL
             }
@@ -71,7 +71,7 @@ class DayDetailActivity : AppCompatActivity() {
     }
 
     private fun initScheduleList() {
-        binding.listSchedule.apply {
+        binding.listDayDetailSchedule.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = ScheduleListAdapter(mockSchedules)
         }

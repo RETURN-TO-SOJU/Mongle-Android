@@ -18,15 +18,15 @@ class ScheduleListAdapter(
         val textTimeRange: TextView
 
         init {
-            textTitle = view.findViewById(R.id.text_title)
-            textSource = view.findViewById(R.id.text_subtitle)
-            textTimeRange = view.findViewById(R.id.text_time_schedule)
+            textTitle = view.findViewById(R.id.text_listitem_schedule_title)
+            textSource = view.findViewById(R.id.text_listitem_schedule_subtitle)
+            textTimeRange = view.findViewById(R.id.text_listitem_schedule_time)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_item_schedule, parent, false)
+            .inflate(R.layout.listitem_schedule, parent, false)
         return ViewHolder(view)
     }
 

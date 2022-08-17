@@ -67,7 +67,7 @@ class TestActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val items = listItems.map { it.name }.toTypedArray()
-        binding.listTests.let {
+        binding.listTest.let {
             it.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
             it.setOnItemClickListener { _, _, position, _ ->
                 when (val screen = listItems[position]) {
@@ -99,8 +99,10 @@ class TestActivity : AppCompatActivity() {
             .setView(layout)
             .create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
-        layout.findViewById<ImageView>(R.id.image_flag).attachCompatAnim(R.drawable.avd_flag_cross)
-        layout.findViewById<ImageView>(R.id.image_ok).attachCompatAnim(R.drawable.avd_complete)
+        layout.findViewById<ImageView>(R.id.image_analyze_complete_flag)
+            .attachCompatAnim(R.drawable.avd_flag_cross)
+        layout.findViewById<ImageView>(R.id.image_analyze_complete_checking)
+            .attachCompatAnim(R.drawable.avd_complete)
         dialog.show()
     }
 
@@ -110,7 +112,8 @@ class TestActivity : AppCompatActivity() {
             .setView(layout)
             .create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
-        layout.findViewById<ImageView>(R.id.image_gift).attachCompatAnim(R.drawable.avd_gift)
+        layout.findViewById<ImageView>(R.id.image_arrived_gift)
+            .attachCompatAnim(R.drawable.avd_gift)
         dialog.show()
     }
 

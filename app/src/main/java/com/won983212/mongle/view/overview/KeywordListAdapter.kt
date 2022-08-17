@@ -15,13 +15,13 @@ internal class KeywordListAdapter(
         val textKeyword: TextView
 
         init {
-            textKeyword = view.findViewById(R.id.textKeyword)
+            textKeyword = view.findViewById(R.id.text_listitem_keyword)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_item_keyword, parent, false)
+            .inflate(R.layout.listitem_keyword, parent, false)
         return ViewHolder(view)
     }
 

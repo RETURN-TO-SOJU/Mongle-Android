@@ -7,7 +7,7 @@
     tools:context=".view.tutorial.TutorialActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_tutorial"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/btn_skip"
+            android:id="@+id/btn_tutorial_skip"
             style="@style/Widget.Mongle.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,16 +24,16 @@
     </androidx.appcompat.widget.Toolbar>
 
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-        android:id="@+id/indicator_pager_page"
+        android:id="@+id/indicator_tutorial_pager_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:dotsColor="@color/gray"
         app:dotsSize="8dp"
         app:dotsSpacing="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/pager_tutorial"
+        app:layout_constraintBottom_toTopOf="@id/pager_tutorial"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_tutorial"
         app:selectedDotColor="@color/point" />
 
     <androidx.viewpager2.widget.ViewPager2
@@ -44,5 +44,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar_tutorial" />
 </androidx.constraintlayout.widget.ConstraintLayout>

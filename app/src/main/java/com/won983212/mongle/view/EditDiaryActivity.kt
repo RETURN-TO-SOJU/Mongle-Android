@@ -9,8 +9,8 @@ class EditDiaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding = ActivityEditDiaryBinding.inflate(layoutInflater)
-        binding.btnCancel.setOnClickListener { finish() }
-        binding.edittextDiary.setText(intent.getStringExtra(EXTRA_INITIAL_DIARY) ?: "")
+        binding.btnEditDiaryCancel.setOnClickListener { finish() }
+        binding.edittextEditDiary.setText(intent.getStringExtra(EXTRA_INITIAL_DIARY) ?: "")
 
         setContentView(binding.root)
     }

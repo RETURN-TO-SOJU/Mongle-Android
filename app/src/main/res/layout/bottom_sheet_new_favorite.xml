@@ -25,7 +25,7 @@
             android:textStyle="bold" />
 
         <GridLayout
-            android:id="@+id/layout_emotion_container"
+            android:id="@+id/layout_new_favorite_emotion_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -33,7 +33,7 @@
             android:columnCount="3" />
 
         <EditText
-            android:id="@+id/edittext_title"
+            android:id="@+id/edittext_new_favorite_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"

@@ -35,17 +35,17 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
         binding = ActivityPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbarPassword)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         mode = (intent.getSerializableExtra(EXTRA_MODE)
             ?: PasswordActivityMode.AUTH) as PasswordActivityMode
 
         pwdIndicatorButtons = arrayOf(
-            binding.btnPwd1,
-            binding.btnPwd2,
-            binding.btnPwd3,
-            binding.btnPwd4
+            binding.btnPassword1,
+            binding.btnPassword2,
+            binding.btnPassword3,
+            binding.btnPassword4
         )
 
         setupUIByMode()
@@ -55,17 +55,19 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
     private fun setupUIByMode() {
         when (mode) {
             PasswordActivityMode.SET -> {
-                binding.textPwdTitle.text = resources.getString(R.string.pwd_set_title)
-                binding.textPwdSubtitle.text = resources.getString(R.string.pwd_set_subtitle)
-                binding.btnLostPwd.visibility = View.GONE
+                binding.textPasswordPwdTitle.text = resources.getString(R.string.pwd_set_title)
+                binding.textPasswordPwdSubtitle.text =
+                    resources.getString(R.string.pwd_set_subtitle)
+                binding.btnPasswordLostPwd.visibility = View.GONE
             }
             PasswordActivityMode.REENTER -> {
-                binding.textPwdTitle.text = resources.getString(R.string.pwd_reenter_title)
-                binding.textPwdSubtitle.text = resources.getString(R.string.pwd_reenter_subtitle)
+                binding.textPasswordPwdTitle.text = resources.getString(R.string.pwd_reenter_title)
+                binding.textPasswordPwdSubtitle.text =
+                    resources.getString(R.string.pwd_reenter_subtitle)
             }
             PasswordActivityMode.AUTH -> {
-                binding.textPwdTitle.text = resources.getString(R.string.pwd_auth_title)
-                binding.textPwdSubtitle.visibility = View.GONE
+                binding.textPasswordPwdTitle.text = resources.getString(R.string.pwd_auth_title)
+                binding.textPasswordPwdSubtitle.visibility = View.GONE
             }
         }
     }
@@ -73,17 +75,17 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
     private fun initEvents() {
         pwdMemory.setOnFullListener(this)
         arrayOf(
-            binding.btnNumpad0,
-            binding.btnNumpad1,
-            binding.btnNumpad2,
-            binding.btnNumpad3,
-            binding.btnNumpad4,
-            binding.btnNumpad5,
-            binding.btnNumpad6,
-            binding.btnNumpad7,
-            binding.btnNumpad8,
-            binding.btnNumpad9,
-            binding.btnNumpadDelete
+            binding.btnPasswordNumpad0,
+            binding.btnPasswordNumpad1,
+            binding.btnPasswordNumpad2,
+            binding.btnPasswordNumpad3,
+            binding.btnPasswordNumpad4,
+            binding.btnPasswordNumpad5,
+            binding.btnPasswordNumpad6,
+            binding.btnPasswordNumpad7,
+            binding.btnPasswordNumpad8,
+            binding.btnPasswordNumpad9,
+            binding.btnPasswordNumpadDelete
         ).forEach { it.setOnClickListener(this) }
     }
 

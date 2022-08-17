@@ -14,7 +14,7 @@ class OverviewActivity : AppCompatActivity() {
         binding = ActivityOverviewBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbarOverview)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         initKeywordList()

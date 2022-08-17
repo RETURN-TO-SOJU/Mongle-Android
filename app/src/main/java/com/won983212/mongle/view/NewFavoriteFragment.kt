@@ -27,7 +27,7 @@ class NewFavoriteFragment(
         super.onCreateView(inflater, container, savedInstanceState)
         binding = BottomSheetNewFavoriteBinding.inflate(inflater, container, false)
 
-        binding.edittextTitle.setCompoundDrawablesWithIntrinsicBounds(
+        binding.edittextNewFavoriteTitle.setCompoundDrawablesWithIntrinsicBounds(
             initialEmotion.iconRes,
             0,
             0,
@@ -53,7 +53,7 @@ class NewFavoriteFragment(
                 setBackgroundResource(typedValue.resourceId)
 
                 setOnClickListener {
-                    binding.edittextTitle.setCompoundDrawablesWithIntrinsicBounds(
+                    binding.edittextNewFavoriteTitle.setCompoundDrawablesWithIntrinsicBounds(
                         emotion.iconRes,
                         0,
                         0,
@@ -75,7 +75,7 @@ class NewFavoriteFragment(
                 }
             }
 
-            binding.layoutEmotionContainer.addView(
+            binding.layoutNewFavoriteEmotionContainer.addView(
                 btn,
                 layoutParams
             )

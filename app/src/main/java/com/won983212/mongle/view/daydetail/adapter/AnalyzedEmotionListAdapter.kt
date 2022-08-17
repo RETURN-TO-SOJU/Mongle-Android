@@ -18,14 +18,14 @@ class AnalyzedEmotionListAdapter(
         val imageEmotion: ImageView
 
         init {
-            textProportion = view.findViewById(R.id.text_proportion)
-            imageEmotion = view.findViewById(R.id.image_emotion)
+            textProportion = view.findViewById(R.id.text_listitem_analyzed_proportion)
+            imageEmotion = view.findViewById(R.id.image_listitem_analyzed_emotion)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_item_analyzed_emotion, parent, false)
+            .inflate(R.layout.listitem_analyzed_emotion, parent, false)
         view.layoutParams.width = parent.measuredWidth / itemCount
         return ViewHolder(view)
     }

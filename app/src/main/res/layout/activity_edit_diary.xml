@@ -8,13 +8,13 @@
     tools:context=".view.EditDiaryActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_edit_diary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btn_cancel"
+            android:id="@+id/btn_edit_diary_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackgroundBorderless"
@@ -22,7 +22,7 @@
             android:src="@drawable/ic_back" />
 
         <Button
-            android:id="@+id/btn_ok"
+            android:id="@+id/btn_edit_diary_ok"
             style="@style/Widget.Mongle.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/image_edit_diary_emotion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/emotion_happy"
@@ -45,19 +45,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:textColor="@color/disabled"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@id/image_edit_diary_emotion"
+            app:layout_constraintStart_toEndOf="@id/image_edit_diary_emotion"
+            app:layout_constraintTop_toTopOf="@id/image_edit_diary_emotion"
             tools:text="오늘 2022.07.14" />
 
         <EditText
-            android:id="@+id/edittext_diary"
+            android:id="@+id/edittext_edit_diary"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
@@ -68,7 +67,7 @@
             android:scrollbars="vertical"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@id/image_edit_diary_emotion"
             tools:ignore="LabelFor"
             tools:text="오늘의 일기~~~" />
     </androidx.constraintlayout.widget.ConstraintLayout>
