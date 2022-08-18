@@ -1,22 +1,19 @@
 package com.won983212.mongle.view.overview
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.won983212.mongle.R
+import com.won983212.mongle.common.base.BaseDataActivity
 import com.won983212.mongle.databinding.ActivityOverviewBinding
+import com.won983212.mongle.viewmodel.OverviewViewModel
 
-class OverviewActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityOverviewBinding
-    private val keywords: List<String> = mutableListOf("학교", "디자인", "자바") // TODO (DEBUG) mocking data
+class OverviewActivity : BaseDataActivity<ActivityOverviewBinding>() {
+    private val viewModel by viewModels<OverviewViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityOverviewBinding.inflate(layoutInflater)
-
-        setContentView(binding.root)
+    override fun onInitialize() {
+        binding.viewModel = viewModel
         setSupportActionBar(binding.toolbarOverview)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
         initKeywordList()
     }
 
@@ -25,7 +22,11 @@ class OverviewActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context).apply {
                 orientation = LinearLayoutManager.HORIZONTAL
             }
-            adapter = KeywordListAdapter(keywords)
+            adapter = KeywordAdapter()
         }
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_overview
     }
 }

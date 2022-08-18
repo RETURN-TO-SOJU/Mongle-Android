@@ -1,4 +1,4 @@
-package com.won983212.mongle.di
+package com.won983212.mongle.common.di
 
 import android.content.Context
 import com.won983212.mongle.data.PasswordRepositoryImpl
