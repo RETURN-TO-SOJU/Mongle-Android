@@ -2,7 +2,11 @@ package com.won983212.mongle.view.tutorial
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
+import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityTutorialBinding
+import com.won983212.mongle.view.tutorial.TutorialActivity.Companion.EXTRA_IMAGE_LIST_RES
+import com.won983212.mongle.view.tutorial.TutorialActivity.Companion.EXTRA_TITLE_LIST_RES
 
 /**
  * ## Extras
@@ -28,8 +32,23 @@ class TutorialActivity : AppCompatActivity() {
 
         binding.pagerTutorial.let {
             // titleResList, imageResList는 위에서 null체크를 하므로 cast error가 발생할 수 없음.
-            it.adapter = TutorialSlideAdapter(this, titleResList, imageResList)
+            val adapter = TutorialSlideAdapter(this, titleResList, imageResList)
+            it.adapter = adapter
+            it.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    binding.btnTutorialSkip.setText(
+                        if (position == adapter.itemCount - 1) {
+                            R.string.ok
+                        } else {
+                            R.string.skip
+                        }
+                    )
+                }
+            })
             binding.indicatorTutorialPagerPage.attachTo(it)
+        }
+        binding.btnTutorialSkip.setOnClickListener {
+            finish()
         }
     }
 

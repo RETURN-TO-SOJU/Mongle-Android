@@ -12,12 +12,13 @@ import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityAgreeBinding
 import com.won983212.mongle.databinding.DialogTermsOfServiceDetailBinding
 import com.won983212.mongle.databinding.ListitemAgreeBinding
+import com.won983212.mongle.view.overview.OverviewActivity
 import com.won983212.mongle.view.tutorial.TutorialActivity
 import com.won983212.mongle.viewmodel.AgreeViewModel
 
 class AgreeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAgreeBinding
-    private val viewModel: AgreeViewModel by viewModels()
+    private val viewModel by viewModels<AgreeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +31,15 @@ class AgreeActivity : AppCompatActivity() {
             viewModel.setAllAgreeChecked(binding.cbxAgreeAll.isChecked)
         }
         binding.btnAgreeOk.setOnClickListener {
+            Intent(this, OverviewActivity::class.java).apply {
+                startActivity(this)
+            }
             Intent(this, TutorialActivity::class.java).apply {
                 putExtra(TutorialActivity.EXTRA_TITLE_LIST_RES, R.array.kakao_tutorial_title)
                 putExtra(TutorialActivity.EXTRA_IMAGE_LIST_RES, R.array.kakao_tutorial_image)
                 startActivity(this)
             }
+            finish()
         }
         initAgreeItems()
     }

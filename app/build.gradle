@@ -64,6 +64,7 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
     kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
     implementation "androidx.security:security-crypto-ktx:1.1.0-alpha03" // security
+    implementation "com.google.code.gson:gson:2.8.9" // gson
 
     def lifecycle_version = "2.5.1"
     implementation 'androidx.activity:activity-ktx:1.5.1' // viewModels() func
@@ -73,6 +74,8 @@ dependencies {
     implementation "com.tbuonomo:dotsindicator:4.3" // View pager indicator
     implementation "com.kakao.sdk:v2-user:2.11.0" // Kakao login
     implementation 'com.github.kizitonwose:CalendarView:1.0.4' // Calendar
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0' // Retrofit2
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
