@@ -8,7 +8,7 @@ import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.ViewContainer
 import com.won983212.mongle.R
 import com.won983212.mongle.common.Emotion
-import com.won983212.mongle.util.setTextColorRes
+import com.won983212.mongle.common.util.setTextColorRes
 import java.time.LocalDate
 
 enum class DayType {

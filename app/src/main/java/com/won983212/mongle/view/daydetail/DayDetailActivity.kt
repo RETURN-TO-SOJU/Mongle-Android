@@ -15,7 +15,7 @@ class DayDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDayDetailBinding
 
-    // TODO mocking data
+    // TODO (DEBUG) mocking data
     private val mockAnalyzedEmotions: Map<Emotion, Int> = mutableMapOf(
         Emotion.ANGRY to 15,
         Emotion.ANXIOUS to 20,

@@ -4,6 +4,16 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.won983212.mongle.databinding.ActivityTutorialBinding
 
+/**
+ * ## Extras
+ * * **(필수)** [EXTRA_TITLE_LIST_RES]: [IntArray] -
+ * 튜토리얼 메시지(String)들의 id 배열
+ *
+ * * **(필수)** [EXTRA_IMAGE_LIST_RES]: [IntArray] -
+ * 튜토리얼 사진(Drawable)들의 id 배열
+ *
+ * 반드시 튜토리얼 메시지, 사진 id 배열은 길이가 같아야 한다.
+ */
 class TutorialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -11,8 +21,8 @@ class TutorialActivity : AppCompatActivity() {
         val binding = ActivityTutorialBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val titleResList = intent.getIntExtra(TITLE_LIST_RES, 0)
-        val imageResList = intent.getIntExtra(IMAGE_LIST_RES, 0)
+        val titleResList = intent.getIntExtra(EXTRA_TITLE_LIST_RES, 0)
+        val imageResList = intent.getIntExtra(EXTRA_IMAGE_LIST_RES, 0)
 
         checkIntentExtras(titleResList, imageResList)
 
@@ -22,7 +32,6 @@ class TutorialActivity : AppCompatActivity() {
             binding.indicatorTutorialPagerPage.attachTo(it)
         }
     }
-
 
     private fun checkIntentExtras(
         titleResList: Int,
@@ -45,7 +54,7 @@ class TutorialActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val TITLE_LIST_RES = "titleListRes"
-        const val IMAGE_LIST_RES = "imageListRes"
+        const val EXTRA_TITLE_LIST_RES = "titleListRes"
+        const val EXTRA_IMAGE_LIST_RES = "imageListRes"
     }
 }

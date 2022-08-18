@@ -23,7 +23,7 @@ internal class MongleDayBinder(
             if (day.date == today) { // Point color dot
                 container.setToday()
             }
-            // TODO Emotion test mocking data
+            // TODO (DEBUG) Emotion test mocking data
             if (day.date.dayOfMonth % 12 == 0) {
                 container.setEmotion(Emotion.ANGRY)
             }

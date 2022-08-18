@@ -12,8 +12,8 @@ import androidx.core.os.bundleOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.common.Emotion
+import com.won983212.mongle.common.util.attachCompatAnim
 import com.won983212.mongle.databinding.ActivityTestBinding
-import com.won983212.mongle.util.attachCompatAnim
 import com.won983212.mongle.view.*
 import com.won983212.mongle.view.daydetail.DayDetailActivity
 import com.won983212.mongle.view.overview.OverviewActivity
@@ -131,15 +131,15 @@ class TestActivity : AppCompatActivity() {
 
     private fun makeTutorialBundle(): Bundle {
         return bundleOf(
-            TutorialActivity.TITLE_LIST_RES to R.array.kakao_tutorial_title,
-            TutorialActivity.IMAGE_LIST_RES to R.array.kakao_tutorial_image
+            TutorialActivity.EXTRA_TITLE_LIST_RES to R.array.kakao_tutorial_title,
+            TutorialActivity.EXTRA_IMAGE_LIST_RES to R.array.kakao_tutorial_image
         )
     }
 
     private fun makeKakaoTutorialBundle(): Bundle {
         return bundleOf(
-            TutorialActivity.TITLE_LIST_RES to R.array.kakao_tutorial_title,
-            TutorialActivity.IMAGE_LIST_RES to R.array.kakao_tutorial_image
+            TutorialActivity.EXTRA_TITLE_LIST_RES to R.array.kakao_tutorial_title,
+            TutorialActivity.EXTRA_IMAGE_LIST_RES to R.array.kakao_tutorial_image
         )
     }
 

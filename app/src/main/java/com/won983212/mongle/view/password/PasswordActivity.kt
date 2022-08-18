@@ -18,6 +18,11 @@ enum class PasswordActivityMode {
     SET, REENTER, AUTH
 }
 
+/**
+ * ## Extras
+ * * **(선택)** [EXTRA_MODE]: [PasswordActivityMode] -
+ * 페스워드 설정/입력 모드. 기본값은 [AUTH][PasswordActivityMode.AUTH]
+ */
 @AndroidEntryPoint
 class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInputListener {
     @Inject

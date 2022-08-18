@@ -3,8 +3,8 @@ package com.won983212.mongle.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.won983212.mongle.R
+import com.won983212.mongle.common.util.attachCompatAnimLoop
 import com.won983212.mongle.databinding.ActivityKakaotalkExportBinding
-import com.won983212.mongle.util.attachCompatAnimLoop
 
 class KakaoSendingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityKakaotalkExportBinding

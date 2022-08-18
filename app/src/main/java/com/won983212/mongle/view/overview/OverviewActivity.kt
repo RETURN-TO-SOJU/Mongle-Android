@@ -7,7 +7,7 @@ import com.won983212.mongle.databinding.ActivityOverviewBinding
 
 class OverviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOverviewBinding
-    private val keywords: List<String> = mutableListOf("학교", "디자인", "자바") // TODO mocking data
+    private val keywords: List<String> = mutableListOf("학교", "디자인", "자바") // TODO (DEBUG) mocking data
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

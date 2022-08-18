@@ -20,6 +20,7 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/avd_flag_cross.xml" value="0.143" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/avd_gift.xml" value="0.318" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/background_splash.xml" value="0.303" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/btn_outline_point_round.xml" value="0.2945" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/btn_outline_round.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/btn_point_outline_round.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/btn_round.xml" value="0.2805" />
@@ -86,8 +87,10 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/dialog_analyze_complete.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/dialog_arrive_gift.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/dialog_arrived_gift.xml" value="0.365625" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/dialog_terms_of_service_detail.xml" value="0.3645833333333333" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/fragment_tutorial_page.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/keyword_item.xml" value="0.365625" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/listitem_agree.xml" value="0.3645833333333333" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/recycler_item_analyzed_emotion.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/recycler_item_emotion.xml" value="0.3645833333333333" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/recycler_item_keyword.xml" value="0.365625" />

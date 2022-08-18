@@ -1,12 +1,15 @@
-package com.won983212.mongle.util
+package com.won983212.mongle.common.util
 
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 
@@ -36,3 +39,8 @@ internal fun ImageView.attachCompatAnimLoop(@DrawableRes avdRes: Int) {
         it.start()
     }
 }
+
+internal fun <T> MutableLiveData<T>.asLiveData(): LiveData<T> = this
+
+internal fun Context.toastShort(text: CharSequence) =
+    Toast.makeText(this, text, Toast.LENGTH_SHORT).show()

@@ -31,7 +31,7 @@ class PhotoListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val photo = photos[position]
-        // TODO for test.
+        // TODO (DEBUG) 실제 이미지로 변경할 것
         // holder.imageThumbnail.setImageDrawable(photo.image)
         holder.imageThumbnail.setImageResource(R.drawable.mock_image)
         holder.textTitle.text = photo.timeText

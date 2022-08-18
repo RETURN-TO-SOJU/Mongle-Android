@@ -10,8 +10,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.common.Emotion
+import com.won983212.mongle.common.util.dpToPx
 import com.won983212.mongle.databinding.BottomSheetNewFavoriteBinding
-import com.won983212.mongle.util.dpToPx
 
 class NewFavoriteFragment(
     private val initialEmotion: Emotion
