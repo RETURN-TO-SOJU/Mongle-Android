@@ -2,15 +2,13 @@ package com.won983212.mongle.view.agree
 
 import android.content.Intent
 import android.net.Uri
-import android.text.method.ScrollingMovementMethod
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.won983212.mongle.R
 import com.won983212.mongle.common.base.BaseDataActivity
 import com.won983212.mongle.databinding.ActivityAgreeBinding
-import com.won983212.mongle.databinding.DialogTermsOfServiceDetailBinding
 import com.won983212.mongle.databinding.ListitemAgreeBinding
+import com.won983212.mongle.view.openTermsOfServiceDialog
 import com.won983212.mongle.view.overview.OverviewActivity
 import com.won983212.mongle.view.tutorial.TutorialActivity
 
@@ -75,14 +73,7 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
                 startActivity(this)
             }
         } else {
-            val dialogBinding =
-                DialogTermsOfServiceDetailBinding.inflate(layoutInflater, null, false)
-            val dialog = AlertDialog.Builder(this)
-                .setView(dialogBinding.root)
-                .create()
-            dialogBinding.textTermsOfServiceDetail.movementMethod = ScrollingMovementMethod()
-            dialogBinding.textTermsOfServiceDetail.setText(contentId)
-            dialog.show()
+            openTermsOfServiceDialog(this, contentId)
         }
     }
 }
