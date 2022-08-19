@@ -6,16 +6,14 @@ import com.won983212.mongle.common.base.BaseViewModel
 import com.won983212.mongle.common.model.OAuthLoginToken
 import com.won983212.mongle.common.util.SingleLiveEvent
 import com.won983212.mongle.common.util.asLiveData
-import com.won983212.mongle.data.remote.datasource.LoginDataSource
-import com.won983212.mongle.repository.TokenRepository
+import com.won983212.mongle.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val dataSource: LoginDataSource,
-    private val tokenRepository: TokenRepository
+    private val authRepository: AuthRepository
 ) : BaseViewModel() {
 
     private val _eventLoggedIn = SingleLiveEvent<Unit>()
@@ -23,9 +21,9 @@ class LoginViewModel @Inject constructor(
 
     fun doLoginWithKakaoToken(token: OAuthToken) {
         viewModelScope.launch {
-            val response = dataSource.login(this@LoginViewModel, OAuthLoginToken.of(token))
+            val response = authRepository.login(this@LoginViewModel, OAuthLoginToken.of(token))
             if (response != null) {
-                tokenRepository.setToken(response)
+                authRepository.setCurrentToken(response)
                 _eventLoggedIn.call()
             }
         }

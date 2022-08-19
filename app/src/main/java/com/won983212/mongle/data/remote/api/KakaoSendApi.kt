@@ -10,8 +10,8 @@ import retrofit2.http.Part
 interface KakaoSendApi {
     @Multipart
     @POST("s3/kakao")
-    suspend fun sendTalkFile(
-        @Header("X-AUTH-TOKEN") token: String,
+    suspend fun uploadKakaotalk(
+        @Header(AUTH_TOKEN_HEADER) token: String,
         @Part files: MultipartBody.Part
     ): ResponseMessage
 }

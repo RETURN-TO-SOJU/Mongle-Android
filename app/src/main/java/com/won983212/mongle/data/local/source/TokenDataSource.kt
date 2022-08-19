@@ -1,20 +1,21 @@
-package com.won983212.mongle.data.repository
+package com.won983212.mongle.data.local.source
 
 import android.content.Context
 import com.won983212.mongle.common.model.OAuthLoginToken
-import com.won983212.mongle.repository.TokenRepository
+import com.won983212.mongle.data.local.SecurePropertiesFile
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-internal class FileTokenRepository
+internal class TokenDataSource
 @Inject constructor(
-    context: Context
-) : SecureFileRepository(context), TokenRepository {
+    @ApplicationContext context: Context
+) : SecurePropertiesFile(context) {
 
     override val preferenceName = "tkn_pref"
 
     private var cachedToken: OAuthLoginToken? = null
 
-    override fun getToken(): OAuthLoginToken {
+    fun getToken(): OAuthLoginToken {
         if (cachedToken == null) {
             cachedToken = OAuthLoginToken(
                 secureProperties.getString(KEY_ACCESS_TOKEN, null) ?: "",
@@ -24,7 +25,7 @@ internal class FileTokenRepository
         return cachedToken as OAuthLoginToken
     }
 
-    override fun setToken(token: OAuthLoginToken) {
+    fun setToken(token: OAuthLoginToken) {
         cachedToken = token
         secureProperties.edit()
             .putString(KEY_ACCESS_TOKEN, token.accessToken)

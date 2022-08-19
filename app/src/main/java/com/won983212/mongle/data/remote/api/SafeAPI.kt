@@ -1,6 +1,7 @@
 package com.won983212.mongle.common.util
 
 import android.util.Log
+import com.won983212.mongle.data.remote.api.MESSAGE_KEY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
@@ -14,12 +15,6 @@ enum class ErrorType {
 
 interface NetworkErrorHandler {
     fun onNetworkError(errorType: ErrorType, msg: String)
-}
-
-class SafeAPI {
-    companion object {
-        const val MESSAGE_KEY = "message"
-    }
 }
 
 suspend inline fun <T> safeApiCall(
@@ -49,10 +44,15 @@ fun getErrorMessage(responseBody: ResponseBody?): String {
     return try {
         val jsonObject = JSONObject(responseBody!!.string())
         when {
-            jsonObject.has(SafeAPI.MESSAGE_KEY) -> jsonObject.getString(SafeAPI.MESSAGE_KEY)
-            else -> "Something wrong happened"
+            jsonObject.has(MESSAGE_KEY) -> jsonObject.getString(MESSAGE_KEY)
+            else -> "처리되지 않은 오류입니다. (no message)"
         }
     } catch (e: Exception) {
-        "Something wrong happened"
+        Log.e(
+            "safeApiCall",
+            "Parse '${MESSAGE_KEY}' from error message: ${e.localizedMessage}",
+            e.cause
+        )
+        "처리되지 않은 오류입니다."
     }
 }

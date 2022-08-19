@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.common.base.BaseViewModel
 import com.won983212.mongle.common.util.asLiveData
-import com.won983212.mongle.data.remote.datasource.KakaoSendDataSource
+import com.won983212.mongle.repository.KakaotalkRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.InputStream
@@ -12,16 +12,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class KakaoExportViewModel @Inject constructor(
-    private val dataSource: KakaoSendDataSource
+    private val kakaotalkRepository: KakaotalkRepository
 ) : BaseViewModel() {
 
     private val _isAnalyzing = MutableLiveData(false)
     val isAnalyzing = _isAnalyzing.asLiveData()
 
-    fun sendKakaoTalkData(stream: InputStream) {
+    fun uploadKakaotalk(stream: InputStream) {
         viewModelScope.launch {
             val content = stream.readBytes()
-            val response = dataSource.sendKakaoTalkData(this@KakaoExportViewModel, content)
+            val response = kakaotalkRepository.upload(this@KakaoExportViewModel, content)
             if (response != null) {
                 _isAnalyzing.postValue(true)
             }

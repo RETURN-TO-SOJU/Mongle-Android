@@ -1,4 +1,4 @@
-package com.won983212.mongle.data.remote.datasource
+package com.won983212.mongle.data.remote.source
 
 import com.won983212.mongle.common.model.OAuthLoginToken
 import com.won983212.mongle.common.util.NetworkErrorHandler

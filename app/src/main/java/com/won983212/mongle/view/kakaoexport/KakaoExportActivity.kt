@@ -31,7 +31,7 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
             val uri = extras.get(Intent.EXTRA_STREAM) as Uri
             val stream = contentResolver.openInputStream(uri)
             if (stream != null) {
-                viewModel.sendKakaoTalkData(stream)
+                viewModel.uploadKakaotalk(stream)
             } else {
                 onCantFindFile()
             }

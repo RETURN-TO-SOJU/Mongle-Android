@@ -1,21 +1,22 @@
-package com.won983212.mongle.data.repository
+package com.won983212.mongle.data.local.source
 
 import android.content.Context
-import com.won983212.mongle.repository.PasswordRepository
+import com.won983212.mongle.data.local.SecurePropertiesFile
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-internal class FilePasswordRepository
+internal class PasswordDataSource
 @Inject constructor(
-    context: Context
-) : SecureFileRepository(context), PasswordRepository {
+    @ApplicationContext context: Context
+) : SecurePropertiesFile(context) {
 
     override val preferenceName = "pwd_pref"
 
-    override fun getPassword(): String {
+    fun getPassword(): String {
         return secureProperties.getString(KEY_PWD, "") ?: ""
     }
 
-    override fun setPassword(password: String) {
+    fun setPassword(password: String) {
         secureProperties.edit()
             .putString(KEY_PWD, password)
             .apply()
