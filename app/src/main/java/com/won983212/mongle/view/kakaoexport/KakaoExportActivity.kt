@@ -17,9 +17,6 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
     override val layoutId: Int = R.layout.activity_kakaotalk_export
 
     override fun onInitialize() {
-        binding = ActivityKakaotalkExportBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
         binding.viewModel = viewModel
         binding.imageKakaotalkExportSending.attachCompatAnimLoop(R.drawable.avd_bounce_tired)
         binding.imageKakaotalkExportAnalyzing.attachCompatAnimLoop(R.drawable.avd_analyzing)
