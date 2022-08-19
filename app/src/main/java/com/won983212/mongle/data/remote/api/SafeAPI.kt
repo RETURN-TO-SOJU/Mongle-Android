@@ -9,20 +9,27 @@ import org.json.JSONObject
 import retrofit2.HttpException
 import java.io.IOException
 
-enum class ErrorType {
+enum class RequestErrorType {
     UNKNOWN, NETWORK, HTTP
 }
 
-interface NetworkErrorHandler {
-    fun onNetworkError(errorType: ErrorType, msg: String)
+interface RequestLifecycleCallback {
+    fun onStart()
+    fun onComplete()
+    fun onError(requestErrorType: RequestErrorType, msg: String)
 }
 
 suspend inline fun <T> safeApiCall(
-    emitter: NetworkErrorHandler,
+    callback: RequestLifecycleCallback,
     crossinline callFunction: suspend () -> T
 ): T? {
     return try {
-        withContext(Dispatchers.IO) { callFunction.invoke() }
+        withContext(Dispatchers.IO) {
+            callback.onStart()
+            val result = callFunction.invoke()
+            callback.onComplete()
+            result
+        }
     } catch (e: Exception) {
         withContext(Dispatchers.Main) {
             e.printStackTrace()
@@ -30,10 +37,13 @@ suspend inline fun <T> safeApiCall(
             when (e) {
                 is HttpException -> {
                     val body = e.response()?.errorBody()
-                    emitter.onNetworkError(ErrorType.HTTP, getErrorMessage(body))
+                    callback.onError(RequestErrorType.HTTP, getErrorMessage(body))
                 }
-                is IOException -> emitter.onNetworkError(ErrorType.NETWORK, "서버와 연결되지 않습니다.")
-                else -> emitter.onNetworkError(ErrorType.UNKNOWN, "처리되지 않은 오류입니다.")
+                is IOException -> callback.onError(
+                    RequestErrorType.NETWORK,
+                    "서버와 연결되지 않습니다."
+                )
+                else -> callback.onError(RequestErrorType.UNKNOWN, "처리되지 않은 오류입니다.")
             }
         }
         null

@@ -19,13 +19,11 @@ class LoginViewModel @Inject constructor(
     private val _eventLoggedIn = SingleLiveEvent<Unit>()
     val eventLoggedIn = _eventLoggedIn.asLiveData()
 
-    fun doLoginWithKakaoToken(token: OAuthToken) {
-        viewModelScope.launch {
-            val response = authRepository.login(this@LoginViewModel, OAuthLoginToken.of(token))
-            if (response != null) {
-                authRepository.setCurrentToken(response)
-                _eventLoggedIn.call()
-            }
+    fun doLoginWithKakaoToken(token: OAuthToken) = viewModelScope.launch {
+        val response = authRepository.login(this@LoginViewModel, OAuthLoginToken.of(token))
+        if (response != null) {
+            authRepository.setCurrentToken(response)
+            _eventLoggedIn.call()
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.repository
 
-import com.won983212.mongle.common.util.NetworkErrorHandler
+import com.won983212.mongle.common.util.RequestLifecycleCallback
 import com.won983212.mongle.data.remote.model.ResponseMessage
 import com.won983212.mongle.data.remote.source.KakaotalkDataSource
 import com.won983212.mongle.repository.KakaotalkRepository
@@ -12,7 +12,7 @@ internal class KakaotalkRepositoryImpl
 ) : KakaotalkRepository {
 
     override suspend fun upload(
-        networkErrorHandler: NetworkErrorHandler,
+        requestLifecycleCallback: RequestLifecycleCallback,
         content: ByteArray
-    ): ResponseMessage? = kakaotalkDataSource.upload(networkErrorHandler, content)
+    ): ResponseMessage? = kakaotalkDataSource.upload(requestLifecycleCallback, content)
 }

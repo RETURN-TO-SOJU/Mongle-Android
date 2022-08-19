@@ -1,7 +1,7 @@
 package com.won983212.mongle.data.repository
 
 import com.won983212.mongle.common.model.OAuthLoginToken
-import com.won983212.mongle.common.util.NetworkErrorHandler
+import com.won983212.mongle.common.util.RequestLifecycleCallback
 import com.won983212.mongle.data.local.source.TokenDataSource
 import com.won983212.mongle.data.remote.source.LoginDataSource
 import com.won983212.mongle.repository.AuthRepository
@@ -18,7 +18,7 @@ internal class AuthRepositoryImpl
     override fun setCurrentToken(token: OAuthLoginToken) = tokenDataSource.setToken(token)
 
     override suspend fun login(
-        networkErrorHandler: NetworkErrorHandler,
+        requestLifecycleCallback: RequestLifecycleCallback,
         kakaoToken: OAuthLoginToken
-    ): OAuthLoginToken? = loginDataSource.login(networkErrorHandler, kakaoToken)
+    ): OAuthLoginToken? = loginDataSource.login(requestLifecycleCallback, kakaoToken)
 }

@@ -1,6 +1,7 @@
 package com.won983212.mongle.common.util
 
 import android.content.Context
+import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import android.widget.TextView
@@ -20,23 +21,25 @@ internal fun Context.getColorCompat(@ColorRes color: Int) = ContextCompat.getCol
 internal fun TextView.setTextColorRes(@ColorRes color: Int) =
     setTextColor(context.getColorCompat(color))
 
-internal fun ImageView.attachCompatAnim(@DrawableRes avdRes: Int) {
+internal fun ImageView.attachCompatAnim(@DrawableRes avdRes: Int, loop: Boolean = false) {
     val avd = AnimatedVectorDrawableCompat.create(context, avdRes)
     avd?.let {
+        if (loop) {
+            it.registerAnimationCallback(object : Animatable2Compat.AnimationCallback() {
+                override fun onAnimationEnd(drawable: Drawable?) {
+                    this@attachCompatAnim.post { avd.start() }
+                }
+            })
+        }
         this.setImageDrawable(avd)
         it.start()
     }
 }
 
-internal fun ImageView.attachCompatAnimLoop(@DrawableRes avdRes: Int) {
-    val avd = AnimatedVectorDrawableCompat.create(context, avdRes)
-    avd?.let {
-        it.registerAnimationCallback(object : Animatable2Compat.AnimationCallback() {
-            override fun onAnimationEnd(drawable: Drawable?) {
-                this@attachCompatAnimLoop.post { avd.start() }
-            }
-        })
-        this.setImageDrawable(avd)
+internal fun ImageView.startAnim(loop: Boolean = false) {
+    val animationDrawable = drawable as? AnimationDrawable
+    animationDrawable?.let {
+        it.isOneShot = !loop
         it.start()
     }
 }

@@ -29,7 +29,8 @@ class LoginActivity : AppCompatActivity() {
             loginWithKakao()
         }
 
-        viewModel.attachToastErrorHandler(this)
+        viewModel.attachDefaultLoadingHandler(this)
+        viewModel.attachDefaultErrorHandler(this)
         viewModel.eventLoggedIn.observe(this) {
             Intent(this, AgreeActivity::class.java).apply {
                 startActivity(this)

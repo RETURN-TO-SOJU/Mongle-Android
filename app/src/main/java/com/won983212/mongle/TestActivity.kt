@@ -1,18 +1,14 @@
 package com.won983212.mongle
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.ImageView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.common.Emotion
-import com.won983212.mongle.common.util.attachCompatAnim
 import com.won983212.mongle.databinding.ActivityTestBinding
 import com.won983212.mongle.view.*
 import com.won983212.mongle.view.agree.AgreeActivity
@@ -58,8 +54,9 @@ class TestActivity : AppCompatActivity() {
         ActivityInfo("분석된 캘린더", OverviewActivity::class.java),
         ActivityInfo("분석된 캘린더 상세", DayDetailActivity::class.java),
         ActivityInfo("일기 작성", EditDiaryActivity::class.java, testDiaryMockBundle()),
-        ManualInfo("분석 완료 다이얼로그", this::openAnalyzeCompleteDialog),
-        ManualInfo("선물 도착 다이얼로그", this::openGiftArrivedDialog)
+        ManualInfo("분석 완료 다이얼로그") { openAnalyzeCompleteDialog(this) },
+        ManualInfo("선물 도착 다이얼로그") { openGiftArrivedDialog(this) },
+        ManualInfo("로딩 다이얼로그") { openLoadingDialog(this) }
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,30 +91,6 @@ class TestActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun openAnalyzeCompleteDialog() {
-        val layout = layoutInflater.inflate(R.layout.dialog_analyze_complete, null)
-        val dialog = AlertDialog.Builder(this)
-            .setView(layout)
-            .create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
-        layout.findViewById<ImageView>(R.id.image_analyze_complete_flag)
-            .attachCompatAnim(R.drawable.avd_flag_cross)
-        layout.findViewById<ImageView>(R.id.image_analyze_complete_checking)
-            .attachCompatAnim(R.drawable.avd_complete)
-        dialog.show()
-    }
-
-    private fun openGiftArrivedDialog() {
-        val layout = layoutInflater.inflate(R.layout.dialog_arrived_gift, null)
-        val dialog = AlertDialog.Builder(this)
-            .setView(layout)
-            .create()
-        dialog.window?.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
-        layout.findViewById<ImageView>(R.id.image_arrived_gift)
-            .attachCompatAnim(R.drawable.avd_gift)
-        dialog.show()
     }
 
     private fun testDiaryMockBundle(): Bundle {

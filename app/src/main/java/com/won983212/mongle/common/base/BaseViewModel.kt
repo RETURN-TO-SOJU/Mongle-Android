@@ -1,16 +1,20 @@
 package com.won983212.mongle.common.base
 
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.won983212.mongle.common.util.*
+import com.won983212.mongle.view.openLoadingDialog
 
-open class BaseViewModel : ViewModel(), NetworkErrorHandler {
+open class BaseViewModel : ViewModel(), RequestLifecycleCallback {
     private val _eventErrorMessage = SingleLiveEvent<String>()
     val eventErrorMessage = _eventErrorMessage.asLiveData()
 
     private val _isLoading = MutableLiveData(false)
     val isLoading = _isLoading.asLiveData()
+
+    private var loadingDialog: AlertDialog? = null
 
 
     protected fun setLoading(loading: Boolean) {
@@ -21,13 +25,33 @@ open class BaseViewModel : ViewModel(), NetworkErrorHandler {
         _eventErrorMessage.postValue(msg)
     }
 
-    fun attachToastErrorHandler(context: ComponentActivity) {
+    fun attachDefaultErrorHandler(context: ComponentActivity) {
         eventErrorMessage.observe(context) {
             context.toastShort(it)
         }
     }
 
-    override fun onNetworkError(errorType: ErrorType, msg: String) {
+    fun attachDefaultLoadingHandler(context: ComponentActivity) {
+        isLoading.observe(context) {
+            if (it) {
+                loadingDialog?.dismiss()
+                loadingDialog = openLoadingDialog(context)
+            } else {
+                loadingDialog?.dismiss()
+            }
+        }
+    }
+
+    override fun onStart() {
+        setLoading(true)
+    }
+
+    override fun onComplete() {
+        setLoading(false)
+    }
+
+    override fun onError(requestErrorType: RequestErrorType, msg: String) {
         setError(msg)
+        setLoading(false)
     }
 }

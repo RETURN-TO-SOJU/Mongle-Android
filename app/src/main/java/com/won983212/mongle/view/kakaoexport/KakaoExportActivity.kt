@@ -5,7 +5,7 @@ import android.net.Uri
 import androidx.activity.viewModels
 import com.won983212.mongle.R
 import com.won983212.mongle.common.base.BaseDataActivity
-import com.won983212.mongle.common.util.attachCompatAnimLoop
+import com.won983212.mongle.common.util.attachCompatAnim
 import com.won983212.mongle.common.util.toastLong
 import com.won983212.mongle.databinding.ActivityKakaotalkExportBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,8 +18,8 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
 
     override fun onInitialize() {
         binding.viewModel = viewModel
-        binding.imageKakaotalkExportSending.attachCompatAnimLoop(R.drawable.avd_bounce_tired)
-        binding.imageKakaotalkExportAnalyzing.attachCompatAnimLoop(R.drawable.avd_analyzing)
+        binding.imageKakaotalkExportSending.attachCompatAnim(R.drawable.avd_bounce_tired, true)
+        binding.imageKakaotalkExportAnalyzing.attachCompatAnim(R.drawable.avd_analyzing, true)
 
         viewModel.eventErrorMessage.observe(this) {
             toastLong(it)

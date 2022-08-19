@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.remote.source
 
-import com.won983212.mongle.common.util.NetworkErrorHandler
+import com.won983212.mongle.common.util.RequestLifecycleCallback
 import com.won983212.mongle.common.util.safeApiCall
 import com.won983212.mongle.data.remote.api.KakaoSendApi
 import com.won983212.mongle.data.remote.model.ResponseMessage
@@ -15,7 +15,7 @@ class KakaotalkDataSource @Inject constructor(
     private val authRepository: AuthRepository
 ) {
     suspend fun upload(
-        errorHandler: NetworkErrorHandler,
+        errorHandler: RequestLifecycleCallback,
         content: ByteArray
     ): ResponseMessage? {
         val fileBody = RequestBody.create(MediaType.parse("text/plain"), content)
