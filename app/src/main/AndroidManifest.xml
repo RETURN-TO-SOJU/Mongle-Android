@@ -28,7 +28,7 @@
             android:name=".view.overview.OverviewActivity"
             android:exported="false" />
         <activity
-            android:name=".view.KakaoSendingActivity"
+            android:name=".view.kakaoexport.KakaoExportActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -71,10 +71,10 @@
             android:name=".view.password.PasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".view.AgreeActivity"
+            android:name=".view.agree.AgreeActivity"
             android:exported="false" />
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".view.login.LoginActivity"
             android:exported="true" />
     </application>
 

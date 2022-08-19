@@ -1,4 +1,4 @@
-package com.won983212.mongle.view
+package com.won983212.mongle.view.agree
 
 import android.content.Intent
 import android.net.Uri
@@ -13,10 +13,11 @@ import com.won983212.mongle.databinding.DialogTermsOfServiceDetailBinding
 import com.won983212.mongle.databinding.ListitemAgreeBinding
 import com.won983212.mongle.view.overview.OverviewActivity
 import com.won983212.mongle.view.tutorial.TutorialActivity
-import com.won983212.mongle.viewmodel.AgreeViewModel
 
 class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
     private val viewModel by viewModels<AgreeViewModel>()
+
+    override val layoutId: Int = R.layout.activity_agree
 
     override fun onInitialize() {
         binding.viewModel = viewModel
@@ -37,6 +38,7 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
             finish()
         }
 
+        viewModel.attachToastErrorHandler(this)
         initAgreeItems()
     }
 
@@ -82,9 +84,5 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
             dialogBinding.textTermsOfServiceDetail.setText(contentId)
             dialog.show()
         }
-    }
-
-    override fun getLayoutId(): Int {
-        return R.layout.activity_agree
     }
 }

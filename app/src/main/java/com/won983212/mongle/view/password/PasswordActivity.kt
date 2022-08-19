@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityPasswordBinding
 import com.won983212.mongle.repository.PasswordRepository
+import com.won983212.mongle.view.password.PasswordActivity.Companion.EXTRA_MODE
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

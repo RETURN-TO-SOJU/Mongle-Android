@@ -15,7 +15,10 @@ import com.won983212.mongle.common.Emotion
 import com.won983212.mongle.common.util.attachCompatAnim
 import com.won983212.mongle.databinding.ActivityTestBinding
 import com.won983212.mongle.view.*
+import com.won983212.mongle.view.agree.AgreeActivity
 import com.won983212.mongle.view.daydetail.DayDetailActivity
+import com.won983212.mongle.view.kakaoexport.KakaoExportActivity
+import com.won983212.mongle.view.login.LoginActivity
 import com.won983212.mongle.view.overview.OverviewActivity
 import com.won983212.mongle.view.password.PasswordActivity
 import com.won983212.mongle.view.password.PasswordActivityMode
@@ -51,7 +54,7 @@ class TestActivity : AppCompatActivity() {
         ActivityInfo("튜토리얼", TutorialActivity::class.java, makeTutorialBundle()),
         ActivityInfo("카톡 튜토리얼", TutorialActivity::class.java, makeKakaoTutorialBundle()),
         FragmentInfo("찜 추가", this::newFavoriteFragmentFactory),
-        ActivityInfo("카카오 카톡 데이터 전송", KakaoSendingActivity::class.java),
+        ActivityInfo("카카오 카톡 데이터 전송", KakaoExportActivity::class.java),
         ActivityInfo("분석된 캘린더", OverviewActivity::class.java),
         ActivityInfo("분석된 캘린더 상세", DayDetailActivity::class.java),
         ActivityInfo("일기 작성", EditDiaryActivity::class.java, testDiaryMockBundle()),

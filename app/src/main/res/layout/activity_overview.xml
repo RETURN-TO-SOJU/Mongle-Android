@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.viewmodel.OverviewViewModel" />
+            type="com.won983212.mongle.view.overview.OverviewViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

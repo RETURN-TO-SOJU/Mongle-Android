@@ -1,10 +1,12 @@
 package com.won983212.mongle.common.di
 
 import com.won983212.mongle.BuildConfig
+import com.won983212.mongle.data.remote.api.KakaoSendApi
+import com.won983212.mongle.data.remote.api.LoginApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,7 +14,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 internal class NetworkModule {
 
     @Provides
@@ -42,5 +44,17 @@ internal class NetworkModule {
     @Provides
     fun provideGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
+    }
+
+    @Singleton
+    @Provides
+    fun provideLoginApi(retrofit: Retrofit): LoginApi {
+        return retrofit.create(LoginApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideKakaoSendApi(retrofit: Retrofit): KakaoSendApi {
+        return retrofit.create(KakaoSendApi::class.java)
     }
 }

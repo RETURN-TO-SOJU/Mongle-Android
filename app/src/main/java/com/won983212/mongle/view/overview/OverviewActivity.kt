@@ -5,10 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.won983212.mongle.R
 import com.won983212.mongle.common.base.BaseDataActivity
 import com.won983212.mongle.databinding.ActivityOverviewBinding
-import com.won983212.mongle.viewmodel.OverviewViewModel
 
 class OverviewActivity : BaseDataActivity<ActivityOverviewBinding>() {
     private val viewModel by viewModels<OverviewViewModel>()
+
+    override val layoutId: Int = R.layout.activity_overview
 
     override fun onInitialize() {
         binding.viewModel = viewModel
@@ -24,9 +25,5 @@ class OverviewActivity : BaseDataActivity<ActivityOverviewBinding>() {
             }
             adapter = KeywordAdapter()
         }
-    }
-
-    override fun getLayoutId(): Int {
-        return R.layout.activity_overview
     }
 }

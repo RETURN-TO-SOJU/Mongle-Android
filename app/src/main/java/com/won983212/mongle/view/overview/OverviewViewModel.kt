@@ -1,4 +1,4 @@
-package com.won983212.mongle.viewmodel
+package com.won983212.mongle.view.overview
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

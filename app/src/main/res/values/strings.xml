@@ -81,10 +81,11 @@
     <string name="overview_emotion_sad">우울한 하루였어요.</string>
     <string name="overview_keyword">[이날의 키워드]</string>
 
-    <!-- Sending and analyzing progress -->
+    <!-- Kakaotalk exporting -->
     <string name="sending_title" tools:ignore="TypographyEllipsis,TypographyFractions">데이터 전송 중... (1/2)</string>
     <string name="analyzing_title" tools:ignore="TypographyEllipsis">분석 중... (2/2)</string>
     <string name="analyzing_subtitle">분석 작업은 10분 이상 걸릴 수 있습니다.\n 분석이 완료되면 알려드릴게요.\n 그동안 휴대전화를 자유롭게 사용하세요:)</string>
+    <string name="error_cant_find_shared_file">공유된 카카오톡 텍스트파일을 불러올 수 없습니다.</string>
 
     <!-- Day detail -->
     <string name="detail_diary_title">이날의 기록 📖</string>
