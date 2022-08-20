@@ -26,6 +26,7 @@
                 app:layout_collapseMode="pin">
 
                 <ImageButton
+                    android:id="@+id/btn_day_detail_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?selectableItemBackgroundBorderless"

@@ -44,8 +44,11 @@ class DayDetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         setSupportActionBar(binding.toolbarDayDetail)
-
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        binding.btnDayDetailBack.setOnClickListener {
+            finish()
+        }
 
         initAnalyzedEmotionList()
         initPhotoList()

@@ -1,10 +1,12 @@
 package com.won983212.mongle.view.overview
 
+import android.content.Intent
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.won983212.mongle.R
 import com.won983212.mongle.common.base.BaseDataActivity
 import com.won983212.mongle.databinding.ActivityOverviewBinding
+import com.won983212.mongle.view.daydetail.DayDetailActivity
 import com.won983212.mongle.view.tutorial.TutorialActivity
 
 class OverviewActivity : BaseDataActivity<ActivityOverviewBinding>() {
@@ -23,6 +25,13 @@ class OverviewActivity : BaseDataActivity<ActivityOverviewBinding>() {
 
         binding.btnOverviewTutorialKakaoExport.setOnClickListener {
             TutorialActivity.startKakaoTutorial(this)
+        }
+
+        binding.btnOverviewShowDetail.setOnClickListener {
+            // TODO add extra today data
+            Intent(this, DayDetailActivity::class.java).apply {
+                startActivity(this)
+            }
         }
 
         initKeywordList()

@@ -20,4 +20,7 @@ class OverviewViewModel : ViewModel() {
 
     private val _calendarEmotions = MutableLiveData(mapOf<LocalDate, Emotion>())
     val calendarEmotions = _calendarEmotions.asLiveData()
+
+    private val _overviewText = MutableLiveData("안녕?\n너가 소마니?")
+    val overviewText = _overviewText.asLiveData()
 }
