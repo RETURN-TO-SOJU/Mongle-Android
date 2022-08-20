@@ -28,11 +28,7 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
             Intent(this, OverviewActivity::class.java).apply {
                 startActivity(this)
             }
-            Intent(this, TutorialActivity::class.java).apply {
-                putExtra(TutorialActivity.EXTRA_TITLE_LIST_RES, R.array.kakao_tutorial_title)
-                putExtra(TutorialActivity.EXTRA_IMAGE_LIST_RES, R.array.kakao_tutorial_image)
-                startActivity(this)
-            }
+            TutorialActivity.startKakaoTutorial(this)
             finish()
         }
 

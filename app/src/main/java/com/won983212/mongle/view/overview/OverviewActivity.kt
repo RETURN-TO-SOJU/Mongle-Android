@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.won983212.mongle.R
 import com.won983212.mongle.common.base.BaseDataActivity
 import com.won983212.mongle.databinding.ActivityOverviewBinding
+import com.won983212.mongle.view.tutorial.TutorialActivity
 
 class OverviewActivity : BaseDataActivity<ActivityOverviewBinding>() {
     private val viewModel by viewModels<OverviewViewModel>()
@@ -18,6 +19,10 @@ class OverviewActivity : BaseDataActivity<ActivityOverviewBinding>() {
 
         viewModel.calendarEmotions.observe(this) {
             binding.calendarOverview.setDayEmotions(it)
+        }
+
+        binding.btnOverviewTutorialKakaoExport.setOnClickListener {
+            TutorialActivity.startKakaoTutorial(this)
         }
 
         initKeywordList()

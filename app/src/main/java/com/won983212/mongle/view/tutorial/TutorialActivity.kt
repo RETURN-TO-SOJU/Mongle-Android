@@ -1,6 +1,9 @@
 package com.won983212.mongle.view.tutorial
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import androidx.annotation.ArrayRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.won983212.mongle.R
@@ -10,10 +13,10 @@ import com.won983212.mongle.view.tutorial.TutorialActivity.Companion.EXTRA_TITLE
 
 /**
  * ## Extras
- * * **(필수)** [EXTRA_TITLE_LIST_RES]: [IntArray] -
+ * * **(필수)** [EXTRA_TITLE_LIST_RES]: [ArrayRes] -
  * 튜토리얼 메시지(String)들의 id 배열
  *
- * * **(필수)** [EXTRA_IMAGE_LIST_RES]: [IntArray] -
+ * * **(필수)** [EXTRA_IMAGE_LIST_RES]: [ArrayRes] -
  * 튜토리얼 사진(Drawable)들의 id 배열
  *
  * 반드시 튜토리얼 메시지, 사진 id 배열은 길이가 같아야 한다.
@@ -75,5 +78,13 @@ class TutorialActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_TITLE_LIST_RES = "titleListRes"
         const val EXTRA_IMAGE_LIST_RES = "imageListRes"
+
+        fun startKakaoTutorial(context: Context): Intent {
+            return Intent(context, TutorialActivity::class.java).apply {
+                putExtra(EXTRA_TITLE_LIST_RES, R.array.kakao_tutorial_title)
+                putExtra(EXTRA_IMAGE_LIST_RES, R.array.kakao_tutorial_image)
+                context.startActivity(this)
+            }
+        }
     }
 }
