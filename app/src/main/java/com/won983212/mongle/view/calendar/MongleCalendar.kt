@@ -84,24 +84,4 @@ class MongleCalendar @JvmOverloads constructor(
             binding.calendar.notifyDateChanged(date)
         }
     }
-
-    // scroll view가 작동하지 않는 버그 수정
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        performClick()
-
-        var parentView = parent
-        while (parentView != null) {
-            if (parentView is NestedScrollView) {
-                parentView.requestDisallowInterceptTouchEvent(true)
-                break
-            }
-            parentView = parentView.parent
-        }
-
-        return false
-    }
-
-    override fun performClick(): Boolean {
-        return super.performClick()
-    }
 }
