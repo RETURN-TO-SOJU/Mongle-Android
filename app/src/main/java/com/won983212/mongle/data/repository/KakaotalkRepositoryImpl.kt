@@ -1,7 +1,7 @@
 package com.won983212.mongle.data.repository
 
-import com.won983212.mongle.common.util.RequestLifecycleCallback
-import com.won983212.mongle.data.remote.model.ResponseMessage
+import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
+import com.won983212.mongle.data.remote.model.PlainMessage
 import com.won983212.mongle.data.remote.source.KakaotalkDataSource
 import com.won983212.mongle.repository.KakaotalkRepository
 import javax.inject.Inject
@@ -14,5 +14,5 @@ internal class KakaotalkRepositoryImpl
     override suspend fun upload(
         requestLifecycleCallback: RequestLifecycleCallback,
         content: ByteArray
-    ): ResponseMessage? = kakaotalkDataSource.upload(requestLifecycleCallback, content)
+    ): PlainMessage? = kakaotalkDataSource.upload(requestLifecycleCallback, content)
 }

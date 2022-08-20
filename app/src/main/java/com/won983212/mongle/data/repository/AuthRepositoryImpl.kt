@@ -1,8 +1,8 @@
 package com.won983212.mongle.data.repository
 
 import com.won983212.mongle.common.model.OAuthLoginToken
-import com.won983212.mongle.common.util.RequestLifecycleCallback
 import com.won983212.mongle.data.local.source.TokenDataSource
+import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
 import com.won983212.mongle.data.remote.source.LoginDataSource
 import com.won983212.mongle.repository.AuthRepository
 import javax.inject.Inject

@@ -1,13 +1,16 @@
-package com.won983212.mongle.common.util
+package com.won983212.mongle.data.remote.api
 
 import android.util.Log
-import com.won983212.mongle.data.remote.api.MESSAGE_KEY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.HttpException
 import java.io.IOException
+
+
+const val AUTH_TOKEN_HEADER = "X-AUTH-TOKEN"
+const val MESSAGE_KEY = "message"
 
 enum class RequestErrorType {
     UNKNOWN, NETWORK, HTTP

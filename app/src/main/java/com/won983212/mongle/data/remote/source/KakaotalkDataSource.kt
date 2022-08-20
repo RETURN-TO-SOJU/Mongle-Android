@@ -1,9 +1,9 @@
 package com.won983212.mongle.data.remote.source
 
-import com.won983212.mongle.common.util.RequestLifecycleCallback
-import com.won983212.mongle.common.util.safeApiCall
 import com.won983212.mongle.data.remote.api.KakaoSendApi
-import com.won983212.mongle.data.remote.model.ResponseMessage
+import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
+import com.won983212.mongle.data.remote.api.safeApiCall
+import com.won983212.mongle.data.remote.model.PlainMessage
 import com.won983212.mongle.repository.AuthRepository
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -17,7 +17,7 @@ class KakaotalkDataSource @Inject constructor(
     suspend fun upload(
         errorHandler: RequestLifecycleCallback,
         content: ByteArray
-    ): ResponseMessage? {
+    ): PlainMessage? {
         val fileBody = RequestBody.create(MediaType.parse("text/plain"), content)
         val filePart = MultipartBody.Part.createFormData("files", "KakaoData.txt", fileBody)
         return safeApiCall(errorHandler) {

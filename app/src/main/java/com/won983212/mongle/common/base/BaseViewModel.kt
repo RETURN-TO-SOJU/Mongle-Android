@@ -4,7 +4,11 @@ import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.won983212.mongle.common.util.*
+import com.won983212.mongle.common.util.SingleLiveEvent
+import com.won983212.mongle.common.util.asLiveData
+import com.won983212.mongle.common.util.toastShort
+import com.won983212.mongle.data.remote.api.RequestErrorType
+import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
 import com.won983212.mongle.view.openLoadingDialog
 
 open class BaseViewModel : ViewModel(), RequestLifecycleCallback {
