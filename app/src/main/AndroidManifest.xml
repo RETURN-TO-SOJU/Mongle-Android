@@ -58,15 +58,20 @@
             android:name=".view.tutorial.TutorialActivity"
             android:exported="false" />
         <activity
-            android:name=".TestActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Mongle.Starting">
+            android:name=".view.test.MainTestActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.test.ViewTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.test.ApiTestActivity"
+            android:exported="false" />
         <activity
             android:name=".view.password.PasswordActivity"
             android:exported="false" />

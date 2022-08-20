@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
-abstract class SecurePropertiesFile(
+abstract class SecurePropertiesSource(
     context: Context
 ) {
     abstract val preferenceName: String

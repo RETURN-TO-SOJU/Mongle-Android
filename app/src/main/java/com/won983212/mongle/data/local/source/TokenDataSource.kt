@@ -2,14 +2,14 @@ package com.won983212.mongle.data.local.source
 
 import android.content.Context
 import com.won983212.mongle.common.model.OAuthLoginToken
-import com.won983212.mongle.data.local.SecurePropertiesFile
+import com.won983212.mongle.data.local.SecurePropertiesSource
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 internal class TokenDataSource
 @Inject constructor(
     @ApplicationContext context: Context
-) : SecurePropertiesFile(context) {
+) : SecurePropertiesSource(context) {
 
     override val preferenceName = "tkn_pref"
 

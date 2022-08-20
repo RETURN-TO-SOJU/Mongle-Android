@@ -7,14 +7,14 @@ import com.won983212.mongle.data.remote.api.safeApiCall
 import javax.inject.Inject
 
 class LoginDataSource @Inject constructor(
-    private val loginApi: LoginApi
+    private val api: LoginApi
 ) {
     suspend fun login(
-        requestLifecycleCallback: RequestLifecycleCallback,
+        callback: RequestLifecycleCallback,
         kakaoToken: OAuthLoginToken
     ): OAuthLoginToken? {
-        return safeApiCall(requestLifecycleCallback) {
-            loginApi.login(kakaoToken)
+        return safeApiCall(callback) {
+            api.login(kakaoToken)
         }
     }
 }

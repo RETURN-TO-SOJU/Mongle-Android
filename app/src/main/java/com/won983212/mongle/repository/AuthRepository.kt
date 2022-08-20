@@ -8,8 +8,11 @@ interface AuthRepository {
 
     fun setCurrentToken(token: OAuthLoginToken)
 
+    /**
+     * 카카오 access & refresh 토큰을 사용한 회원가입 및 로그인
+     */
     suspend fun login(
-        requestLifecycleCallback: RequestLifecycleCallback,
+        callback: RequestLifecycleCallback,
         kakaoToken: OAuthLoginToken
     ): OAuthLoginToken?
 }

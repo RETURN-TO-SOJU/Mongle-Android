@@ -18,7 +18,7 @@ internal class AuthRepositoryImpl
     override fun setCurrentToken(token: OAuthLoginToken) = tokenDataSource.setToken(token)
 
     override suspend fun login(
-        requestLifecycleCallback: RequestLifecycleCallback,
+        callback: RequestLifecycleCallback,
         kakaoToken: OAuthLoginToken
-    ): OAuthLoginToken? = loginDataSource.login(requestLifecycleCallback, kakaoToken)
+    ): OAuthLoginToken? = loginDataSource.login(callback, kakaoToken)
 }

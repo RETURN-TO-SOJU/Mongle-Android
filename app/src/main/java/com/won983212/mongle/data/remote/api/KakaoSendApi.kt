@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.remote.api
 
-import com.won983212.mongle.data.remote.model.PlainMessage
+import com.won983212.mongle.data.remote.model.MessageResult
 import okhttp3.MultipartBody
 import retrofit2.http.Header
 import retrofit2.http.Multipart
@@ -13,5 +13,5 @@ interface KakaoSendApi {
     suspend fun uploadKakaotalk(
         @Header(AUTH_TOKEN_HEADER) token: String,
         @Part files: MultipartBody.Part
-    ): PlainMessage
+    ): MessageResult
 }
