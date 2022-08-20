@@ -30,7 +30,8 @@ class MongleCalendar @JvmOverloads constructor(
     var selectedDate: LocalDate? = null
         private set
 
-    private var dayEmotions: Map<LocalDate, Emotion>? = null
+    var dayEmotions: Map<LocalDate, Emotion>? = null
+        private set
 
     init {
         val currentMonth = YearMonth.now()
@@ -51,6 +52,7 @@ class MongleCalendar @JvmOverloads constructor(
                 firstDayOfWeek
             ) {
                 this.scrollToMonth(currentMonth)
+                dayEmotions?.let { setDayEmotions(it) }
             }
         }
 
@@ -86,20 +88,47 @@ class MongleCalendar @JvmOverloads constructor(
         }
     }
 
-    /*private fun findDiff(a: Map<LocalDate, Emotion>, b: Map<LocalDate, Emotion>): List<LocalDate> {
-        val set = HashSet<LocalDate>()
-        set.addAll(a.keys)
+    private fun findDiff(a: Map<LocalDate, Emotion>, b: Map<LocalDate, Emotion>): Set<LocalDate> {
+        val result = mutableSetOf<LocalDate>()
+        result.addAll(a.keys)
         for (ent in b) {
-            set
-            if (set.contains(ent.key) &&)
+            val aValue = a[ent.key]
+            if (aValue != null) {
+                if (aValue == ent.value) {
+                    result.remove(ent.key)
+                }
+            } else {
+                result.add(ent.key)
+            }
         }
+        return result
     }
 
     fun setDayEmotions(emotionMapping: Map<LocalDate, Emotion>) {
         val oldEmotions = dayEmotions
         dayEmotions = emotionMapping
-        if (oldEmotions != null) {
 
+        if (binding.calendar.adapter != null) {
+            val updates: Set<LocalDate> = if (oldEmotions != null) {
+                findDiff(oldEmotions, emotionMapping)
+            } else {
+                emotionMapping.keys
+            }
+
+            for (day in updates) {
+                binding.calendar.notifyDateChanged(day)
+            }
         }
-    }*/
+    }
+
+    fun setDayEmotion(date: LocalDate, emotion: Emotion) {
+        if (dayEmotions != null) {
+            dayEmotions?.toMutableMap()?.set(date, emotion)
+            if (binding.calendar.adapter != null) {
+                binding.calendar.notifyDateChanged(date)
+            }
+        } else {
+            setDayEmotions(mapOf(date to emotion))
+        }
+    }
 }

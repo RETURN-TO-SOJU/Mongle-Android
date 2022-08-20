@@ -4,7 +4,6 @@ import android.view.View
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
-import com.won983212.mongle.common.Emotion
 import java.time.LocalDate
 
 internal class MongleDayBinder(
@@ -23,9 +22,9 @@ internal class MongleDayBinder(
             if (day.date == today) { // Point color dot
                 container.setToday()
             }
-            // TODO (DEBUG) Emotion test mocking data
-            if (day.date.dayOfMonth % 12 == 0) {
-                container.setEmotion(Emotion.ANGRY)
+            val emotion = calendar.dayEmotions?.get(day.date)
+            if (emotion != null) {
+                container.setEmotion(emotion)
             }
             if (day.date == calendar.selectedDate) { // Point color rectangle
                 container.setSelected()

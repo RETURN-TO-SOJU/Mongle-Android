@@ -3,7 +3,9 @@ package com.won983212.mongle.view.overview
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.won983212.mongle.common.Emotion
 import com.won983212.mongle.common.util.asLiveData
+import java.time.LocalDate
 
 class OverviewViewModel : ViewModel() {
     private val _keywords = MutableLiveData<List<Keyword>>(listOf())
@@ -15,4 +17,7 @@ class OverviewViewModel : ViewModel() {
 
     private val _hasData = MutableLiveData(false)
     val hasData = _hasData.asLiveData()
+
+    private val _calendarEmotions = MutableLiveData(mapOf<LocalDate, Emotion>())
+    val calendarEmotions = _calendarEmotions.asLiveData()
 }

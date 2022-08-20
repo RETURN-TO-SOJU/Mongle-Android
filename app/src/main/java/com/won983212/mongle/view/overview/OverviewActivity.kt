@@ -15,6 +15,11 @@ class OverviewActivity : BaseDataActivity<ActivityOverviewBinding>() {
         binding.viewModel = viewModel
         setSupportActionBar(binding.toolbarOverview)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        viewModel.calendarEmotions.observe(this) {
+            binding.calendarOverview.setDayEmotions(it)
+        }
+
         initKeywordList()
     }
 
