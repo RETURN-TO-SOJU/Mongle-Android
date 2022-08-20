@@ -80,6 +80,7 @@
     <string name="overview_emotion_neutral">평범한 하루였어요.</string>
     <string name="overview_emotion_sad">우울한 하루였어요.</string>
     <string name="overview_keyword">[이날의 키워드]</string>
+    <string name="overview_go_tutorial_kakao_export">카카오톡 데이터 불러오는 방법</string>
 
     <!-- Kakaotalk exporting -->
     <string name="sending_title" tools:ignore="TypographyEllipsis,TypographyFractions">데이터 전송 중... (1/2)</string>

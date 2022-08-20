@@ -46,7 +46,7 @@ suspend inline fun <T> safeApiCall(
                     RequestErrorType.NETWORK,
                     "서버와 연결되지 않습니다."
                 )
-                else -> callback.onError(RequestErrorType.UNKNOWN, "처리되지 않은 오류입니다.")
+                else -> callback.onError(RequestErrorType.UNKNOWN, "오류가 발생했습니다.")
             }
         }
         null
@@ -58,7 +58,7 @@ fun getErrorMessage(responseBody: ResponseBody?): String {
         val jsonObject = JSONObject(responseBody!!.string())
         when {
             jsonObject.has(MESSAGE_KEY) -> jsonObject.getString(MESSAGE_KEY)
-            else -> "처리되지 않은 오류입니다. (no message)"
+            else -> "오류가 발생했습니다. (no message)"
         }
     } catch (e: Exception) {
         Log.e(
@@ -66,6 +66,6 @@ fun getErrorMessage(responseBody: ResponseBody?): String {
             "Parse '${MESSAGE_KEY}' from error message: ${e.localizedMessage}",
             e.cause
         )
-        "처리되지 않은 오류입니다."
+        "오류가 발생했습니다."
     }
 }

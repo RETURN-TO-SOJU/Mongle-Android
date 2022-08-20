@@ -3,13 +3,12 @@ package com.won983212.mongle.view.calendar
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.widget.FrameLayout
-import androidx.core.widget.NestedScrollView
 import com.kizitonwose.calendarview.CalendarView
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
 import com.won983212.mongle.R
+import com.won983212.mongle.common.Emotion
 import com.won983212.mongle.common.util.dpToPx
 import com.won983212.mongle.databinding.CalendarMongleBinding
 import java.time.LocalDate
@@ -30,6 +29,8 @@ class MongleCalendar @JvmOverloads constructor(
 
     var selectedDate: LocalDate? = null
         private set
+
+    private var dayEmotions: Map<LocalDate, Emotion>? = null
 
     init {
         val currentMonth = YearMonth.now()
@@ -84,4 +85,21 @@ class MongleCalendar @JvmOverloads constructor(
             binding.calendar.notifyDateChanged(date)
         }
     }
+
+    /*private fun findDiff(a: Map<LocalDate, Emotion>, b: Map<LocalDate, Emotion>): List<LocalDate> {
+        val set = HashSet<LocalDate>()
+        set.addAll(a.keys)
+        for (ent in b) {
+            set
+            if (set.contains(ent.key) &&)
+        }
+    }
+
+    fun setDayEmotions(emotionMapping: Map<LocalDate, Emotion>) {
+        val oldEmotions = dayEmotions
+        dayEmotions = emotionMapping
+        if (oldEmotions != null) {
+
+        }
+    }*/
 }

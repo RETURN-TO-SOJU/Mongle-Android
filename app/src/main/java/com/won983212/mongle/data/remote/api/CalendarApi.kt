@@ -8,7 +8,7 @@ import com.won983212.mongle.data.remote.model.response.EmotionalSentence
 import retrofit2.http.*
 
 interface CalendarApi {
-    @POST("calendar/{year}/{month}/{day}/diary")
+    @POST("calender/{year}/{month}/{day}/diary")
     suspend fun updateDiary(
         @Header(AUTH_TOKEN_HEADER) token: String,
         @Path("year") year: Int,
@@ -17,7 +17,7 @@ interface CalendarApi {
         @Body text: DiaryRequest,
     ): MessageResult
 
-    @GET("calendar/{year}")
+    @GET("calender/{year}")
     suspend fun getCalendarDayMetadata(
         @Header(AUTH_TOKEN_HEADER) token: String,
         @Path("year") year: Int,
@@ -25,7 +25,7 @@ interface CalendarApi {
         @Query("end") end: Int
     ): List<CalendarDay>
 
-    @GET("calendar/{year}/{month}/{day}")
+    @GET("calender/{year}/{month}/{day}")
     suspend fun getCalendarDayDetail(
         @Header(AUTH_TOKEN_HEADER) token: String,
         @Path("year") year: Int,
@@ -33,7 +33,7 @@ interface CalendarApi {
         @Path("day") day: Int
     ): CalendarDayDetail
 
-    @GET("calendar/{year}/{month}/{day}")
+    @GET("calender/{year}/{month}/{day}/sentences")
     suspend fun getDayEmotionalSentences(
         @Header(AUTH_TOKEN_HEADER) token: String,
         @Path("year") year: Int,

@@ -61,11 +61,6 @@
             android:orientation="vertical">
 
             <!-- Todo Week Calendar -->
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/btn_outline_round" />
 
             <TextView
                 android:layout_width="match_parent"

@@ -43,7 +43,7 @@ class ApiTestActivity : BaseTestActivity() {
     private fun updateDiary() = lifecycleScope.launch {
         val result = calendarRepository.updateDiary(
             viewModel,
-            LocalDate.now(),
+            LocalDate.of(2021, 12, 11),
             "안녕하세요. 이 일기를 작성한 시각은 " + LocalDateTime.now()
                 .format(DateTimeFormatter.ISO_DATE) + "입니다."
         )

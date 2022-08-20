@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.won983212.mongle.view.overview.OverviewViewModel" />
@@ -134,7 +136,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.hasData ? View.VISIBLE : View.GONE}">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -154,6 +157,16 @@
                             app:items="@{viewModel.keywords}"
                             tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_overview_tutorial_kakao_export"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/point"
+                        android:padding="0dp"
+                        android:text="@string/overview_go_tutorial_kakao_export"
+                        android:visibility="@{viewModel.hasData ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <com.won983212.mongle.view.calendar.MongleCalendar

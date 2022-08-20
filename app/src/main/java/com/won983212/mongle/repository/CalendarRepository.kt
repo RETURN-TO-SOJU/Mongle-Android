@@ -21,7 +21,6 @@ interface CalendarRepository {
         text: String
     ): MessageResult?
 
-    // TODO (SUGGEST) 연, 월을 함께 매개변수로 받아야할 것 같다.
     /**
      * query parameter로 필요한 년도 및 월을 받아 해당 월의 감정 및 주제들을 반환한다.
      * ex) /api/calender/{year}?start=3&end=5 : 3월부터 5월까지 데이터
@@ -49,5 +48,5 @@ interface CalendarRepository {
         callback: RequestLifecycleCallback,
         date: LocalDate,
         emotion: Emotion
-    ): List<EmotionalSentence>? // TODO (SUGGEST) 여러개 나오는게 맞죠?
+    ): List<EmotionalSentence>?
 }
