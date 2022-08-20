@@ -21,6 +21,7 @@ class OverviewViewModel : ViewModel() {
     private val _calendarEmotions = MutableLiveData(mapOf<LocalDate, Emotion>())
     val calendarEmotions = _calendarEmotions.asLiveData()
 
+    // TODO 텍스트는 어떻게 넣어야 할까...
     private val _overviewText = MutableLiveData("안녕?\n너가 소마니?")
     val overviewText = _overviewText.asLiveData()
 }

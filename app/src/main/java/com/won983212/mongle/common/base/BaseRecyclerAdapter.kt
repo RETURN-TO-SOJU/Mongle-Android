@@ -20,6 +20,8 @@ abstract class BaseRecyclerAdapter<B : ViewDataBinding, T : BaseRecyclerItem>(
 
     abstract fun bind(binding: B, item: T)
 
+    protected lateinit var parent: ViewGroup
+
     // TODO change it to difftool logic
     @SuppressLint("NotifyDataSetChanged")
     fun set(list: List<T>) {
@@ -34,6 +36,7 @@ abstract class BaseRecyclerAdapter<B : ViewDataBinding, T : BaseRecyclerItem>(
             parent,
             false
         )
+        this.parent = parent
         return BaseRecyclerViewHolder(binding)
     }
 

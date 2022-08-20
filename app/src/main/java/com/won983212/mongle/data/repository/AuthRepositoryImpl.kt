@@ -13,6 +13,7 @@ internal class AuthRepositoryImpl
     private val loginDataSource: LoginDataSource
 ) : AuthRepository {
 
+    // TODO validate token logic 추가
     override fun getCurrentToken(): OAuthLoginToken = tokenDataSource.getToken()
 
     override fun setCurrentToken(token: OAuthLoginToken) = tokenDataSource.setToken(token)

@@ -1,57 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/round_15"
-    android:elevation="2dp"
-    app:cardCornerRadius="15dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="16dp">
-
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:src="@drawable/oval_point" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_15"
+        android:elevation="2dp"
+        app:cardCornerRadius="15dp">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="16dp">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/oval_point" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_listitem_schedule_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/app_medium"
+                    android:textSize="14sp"
+                    tools:text="기획 발표" />
+
+                <TextView
+                    android:id="@+id/text_listitem_schedule_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/disabled"
+                    tools:text="네이버 캘린더" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/text_listitem_schedule_title"
-                android:layout_width="match_parent"
+                android:id="@+id/text_listitem_schedule_time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="@font/app_medium"
-                android:textSize="14sp"
-                tools:text="기획 발표" />
-
-            <TextView
-                android:id="@+id/text_listitem_schedule_subtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:gravity="right"
                 android:textColor="@color/disabled"
-                tools:text="네이버 캘린더" />
+                android:textSize="11sp"
+                tools:text="오후 3:00\n~오후 5:00" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/text_listitem_schedule_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:textColor="@color/disabled"
-            android:textSize="11sp"
-            tools:text="오후 3:00\n~오후 5:00" />
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</layout>
