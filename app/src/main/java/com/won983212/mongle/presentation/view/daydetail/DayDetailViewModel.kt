@@ -1,9 +1,12 @@
 package com.won983212.mongle.presentation.view.daydetail
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.presentation.base.BaseViewModel
+import com.won983212.mongle.presentation.util.TextResource
 import com.won983212.mongle.presentation.view.daydetail.model.AnalyzedEmotion
 import com.won983212.mongle.presentation.view.daydetail.model.Photo
 import com.won983212.mongle.presentation.view.daydetail.model.Schedule
@@ -42,4 +45,16 @@ class DayDetailViewModel : BaseViewModel() {
         )
     )
     val schedules = _schedules.asLiveData()
+
+    private val _emotion = MutableLiveData(R.drawable.ic_add_emotion)
+    val emotion = _emotion.asLiveData()
+
+    private val _diary = MutableLiveData(TextResource(""))
+    val diary = Transformations.map(_diary) {
+        if (it.text.isBlank()) {
+            TextResource(R.string.overview_title_empty)
+        } else {
+            it
+        }
+    }
 }

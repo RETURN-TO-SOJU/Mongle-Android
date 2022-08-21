@@ -81,19 +81,24 @@
                     android:textSize="16sp" />
 
                 <LinearLayout
+                    android:id="@+id/text_day_detail_diary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/round_15"
+                    android:background="@drawable/ripple_round_15"
+                    android:clickable="true"
                     android:elevation="2dp"
+                    android:focusable="true"
                     android:gravity="center"
                     android:padding="16dp">
 
-                    <ImageView
+                    <ImageButton
                         android:layout_width="36dp"
                         android:layout_height="36dp"
+                        android:scaleType="fitCenter"
                         android:layout_marginRight="16dp"
-                        android:src="@drawable/emotion_sad" />
+                        android:background="?selectableItemBackgroundBorderless"
+                        app:imgRes="@{viewModel.emotion}" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -103,12 +108,11 @@
                         android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:maxLines="2"
-                        tools:text="ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" />
+                        app:textResource="@{viewModel.diary}" />
 
-                    <ImageButton
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="?selectableItemBackgroundBorderless"
                         android:padding="4dp"
                         android:src="@drawable/ic_arrow_right"
                         app:tint="@color/disabled" />

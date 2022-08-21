@@ -8,7 +8,7 @@ import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
-import com.won983212.mongle.presentation.util.StringResourceWithArg
+import com.won983212.mongle.presentation.util.TextResource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -30,13 +30,13 @@ class OverviewViewModel @Inject constructor(
     private val _calendarEmotions = MutableLiveData(mapOf<LocalDate, Emotion>())
     val calendarEmotions = _calendarEmotions.asLiveData()
 
-    private val _overviewText = MutableLiveData(StringResourceWithArg())
+    private val _overviewText = MutableLiveData(TextResource())
     val overviewText = _overviewText.asLiveData()
 
     private val _selectedDayEmotion = MutableLiveData(R.drawable.emotion_anxious)
     val selectedDayEmotion = _selectedDayEmotion.asLiveData()
 
-    private val _selectedDayTitle = MutableLiveData(R.string.overview_title_empty)
+    private val _selectedDayTitle = MutableLiveData(R.string.detail_diary_empty)
     val selectedDayTitle = _selectedDayTitle.asLiveData()
 
     val hasData = Transformations.map(_selectedDayTitle) {
@@ -44,22 +44,22 @@ class OverviewViewModel @Inject constructor(
     }
 
 
-    private fun getOverviewText(date: LocalDate): StringResourceWithArg {
+    private fun getOverviewText(date: LocalDate): TextResource {
         if (date == LocalDate.now()) {
-            return StringResourceWithArg(R.string.overview_intro_message_today)
+            return TextResource(R.string.overview_intro_message_today)
         }
 
         val emotion = calendarEmotions.value?.get(date)
         val resId = emotion?.descriptionRes
             ?: R.string.overview_intro_message_other_day
-        return StringResourceWithArg(resId)
+        return TextResource(resId)
     }
 
     private suspend fun updateUserInfo(date: LocalDate) {
         val userInfo = userRepository.getUserInfo(this@OverviewViewModel)
         if (userInfo != null) {
             val dateText = date.format(DateTimeFormatter.ofPattern("M월 d일 EEEE"))
-            _overviewText.value = StringResourceWithArg(
+            _overviewText.value = TextResource(
                 R.string.overview_intro,
                 userInfo.name,
                 dateText,

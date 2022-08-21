@@ -60,6 +60,9 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/login_title.xml" value="0.301" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/oval_point.xml" value="0.318" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/progressbar.xml" value="0.2805" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/ripple_background.xml" value="0.3145" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/ripple_round_15.xml" value="0.3145" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/ripple_square.xml" value="0.3145" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_15.xml" value="0.2805" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_button.xml" value="0.282" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/round_elevation_15.xml" value="0.2805" />
@@ -76,7 +79,7 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/title.xml" value="0.282" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_agree.xml" value="0.3609375" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_day_detail.xml" value="0.33" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_edit_diary.xml" value="0.18697916666666667" />
+        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_edit_diary.xml" value="0.5" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_kakao_sending.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_kakaotalk_export.xml" value="0.365625" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_login.xml" value="0.33" />

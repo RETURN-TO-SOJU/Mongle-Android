@@ -70,7 +70,7 @@
                 android:layout_marginTop="32dp"
                 android:textColor="@color/on_point"
                 android:textSize="24sp"
-                app:text="@{viewModel.overviewText}"
+                app:textResource="@{viewModel.overviewText}"
                 tools:text="Overview Text" />
         </FrameLayout>
 
