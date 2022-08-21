@@ -9,13 +9,13 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.view.overview.OverviewViewModel" />
+            type="com.won983212.mongle.view.main.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.overview.OverviewActivity">
+        tools:context=".view.main.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

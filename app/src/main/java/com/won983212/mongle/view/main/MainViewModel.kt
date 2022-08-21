@@ -1,4 +1,4 @@
-package com.won983212.mongle.view.overview
+package com.won983212.mongle.view.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -7,7 +7,7 @@ import com.won983212.mongle.common.Emotion
 import com.won983212.mongle.common.util.asLiveData
 import java.time.LocalDate
 
-class OverviewViewModel : ViewModel() {
+class MainViewModel : ViewModel() {
     private val _keywords = MutableLiveData<List<Keyword>>(listOf())
     val keywords = Transformations.map(_keywords) { value ->
         value.ifEmpty {

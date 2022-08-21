@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.won983212.mongle">
-
     <!-- 인터넷 사용 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -19,13 +18,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".SettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.EditDiaryActivity"
             android:exported="false" />
         <activity
             android:name=".view.daydetail.DayDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.overview.OverviewActivity"
+            android:name=".view.main.MainActivity"
             android:exported="false" />
         <activity
             android:name=".view.kakaoexport.KakaoExportActivity"
@@ -48,7 +50,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <!--suppress AndroidDomInspection -->
+                <!-- suppress AndroidDomInspection -->
                 <data
                     android:host="oauth"
                     android:scheme="kakao${KAKAO_NATIVE_APP_KEY}" />

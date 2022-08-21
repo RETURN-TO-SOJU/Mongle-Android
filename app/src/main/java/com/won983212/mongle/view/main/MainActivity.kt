@@ -1,4 +1,4 @@
-package com.won983212.mongle.view.overview
+package com.won983212.mongle.view.main
 
 import android.content.Intent
 import androidx.activity.viewModels
@@ -9,10 +9,10 @@ import com.won983212.mongle.databinding.ActivityOverviewBinding
 import com.won983212.mongle.view.daydetail.DayDetailActivity
 import com.won983212.mongle.view.tutorial.TutorialActivity
 
-class OverviewActivity : BaseDataActivity<ActivityOverviewBinding>() {
-    private val viewModel by viewModels<OverviewViewModel>()
+class MainActivity : BaseDataActivity<ActivityOverviewBinding>() {
+    private val viewModel by viewModels<MainViewModel>()
 
-    override val layoutId: Int = R.layout.activity_overview
+    override val layoutId: Int = R.layout.activity_main
 
     override fun onInitialize() {
         binding.viewModel = viewModel

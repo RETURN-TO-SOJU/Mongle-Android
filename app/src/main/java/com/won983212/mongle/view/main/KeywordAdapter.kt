@@ -1,4 +1,4 @@
-package com.won983212.mongle.view.overview
+package com.won983212.mongle.view.main
 
 import com.won983212.mongle.R
 import com.won983212.mongle.common.base.BaseRecyclerAdapter
