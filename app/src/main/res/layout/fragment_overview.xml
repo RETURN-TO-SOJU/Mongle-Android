@@ -110,7 +110,7 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/emotion_sad" />
+                            app:imgRes="@{viewModel.selectedDayEmotion}" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -118,7 +118,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="8dp"
                             android:fontFamily="@font/app_medium"
-                            android:text="@string/overview_intro_message_today"
+                            android:text="@{viewModel.selectedDayTitle}"
                             android:textSize="14sp" />
 
                         <Space

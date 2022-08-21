@@ -6,10 +6,10 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-interface LoginApi {
+interface UserApi {
     @POST("login/kakao")
     suspend fun login(@Body token: OAuthLoginToken): OAuthLoginToken
 
-    @GET("user")
+    @GET("users/info")
     suspend fun getUserInfo(@Body token: OAuthLoginToken): User
 }

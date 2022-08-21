@@ -40,7 +40,7 @@ class OverviewFragment : Fragment() {
 
         binding.calendarOverview.apply {
             setOnSelectionChangedListener { date ->
-                viewModel.updateOverviewText(date)
+                viewModel.onSelectionChanged(date)
             }
             setOnInitializedListener {
                 selectDate(today)

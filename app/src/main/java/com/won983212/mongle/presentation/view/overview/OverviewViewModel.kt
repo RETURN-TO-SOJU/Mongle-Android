@@ -27,14 +27,21 @@ class OverviewViewModel @Inject constructor(
         }
     }
 
-    private val _hasData = MutableLiveData(false)
-    val hasData = _hasData.asLiveData()
-
     private val _calendarEmotions = MutableLiveData(mapOf<LocalDate, Emotion>())
     val calendarEmotions = _calendarEmotions.asLiveData()
 
     private val _overviewText = MutableLiveData(StringResourceWithArg())
     val overviewText = _overviewText.asLiveData()
+
+    private val _selectedDayEmotion = MutableLiveData(R.drawable.emotion_anxious)
+    val selectedDayEmotion = _selectedDayEmotion.asLiveData()
+
+    private val _selectedDayTitle = MutableLiveData(R.string.overview_title_empty)
+    val selectedDayTitle = _selectedDayTitle.asLiveData()
+
+    val hasData = Transformations.map(_selectedDayTitle) {
+        it != R.string.overview_title_empty
+    }
 
 
     private fun getOverviewText(date: LocalDate): StringResourceWithArg {
@@ -43,22 +50,12 @@ class OverviewViewModel @Inject constructor(
         }
 
         val emotion = calendarEmotions.value?.get(date)
-        return if (emotion != null) {
-            val resId = when (emotion) {
-                Emotion.ANGRY -> R.string.overview_intro_message_angry
-                Emotion.ANXIOUS -> R.string.overview_intro_message_anxious
-                Emotion.HAPPY -> R.string.overview_intro_message_happy
-                Emotion.NEUTRAL -> R.string.overview_intro_message_neutral
-                Emotion.TIRED -> R.string.overview_intro_message_tired
-                Emotion.SAD -> R.string.overview_intro_message_sad
-            }
-            StringResourceWithArg(resId)
-        } else {
-            StringResourceWithArg(R.string.overview_intro_message_other_day)
-        }
+        val resId = emotion?.descriptionRes
+            ?: R.string.overview_intro_message_other_day
+        return StringResourceWithArg(resId)
     }
 
-    fun updateOverviewText(date: LocalDate) = viewModelScope.launch {
+    private suspend fun updateUserInfo(date: LocalDate) {
         val userInfo = userRepository.getUserInfo(this@OverviewViewModel)
         if (userInfo != null) {
             val dateText = date.format(DateTimeFormatter.ofPattern("M월 d일 EEEE"))
@@ -69,5 +66,12 @@ class OverviewViewModel @Inject constructor(
                 getOverviewText(date)
             )
         }
+    }
+
+    fun onSelectionChanged(date: LocalDate) = viewModelScope.launch {
+        updateUserInfo(date)
+        val emotion = calendarEmotions.value?.get(date)
+        _selectedDayEmotion.postValue((emotion ?: Emotion.ANXIOUS).iconRes)
+        _selectedDayTitle.postValue(emotion?.descriptionRes ?: R.string.overview_title_empty)
     }
 }

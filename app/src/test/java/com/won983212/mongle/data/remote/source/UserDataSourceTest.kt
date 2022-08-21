@@ -2,16 +2,16 @@ package com.won983212.mongle.data.remote.source
 
 import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.model.User
-import com.won983212.mongle.data.remote.api.LoginApi
 import com.won983212.mongle.data.remote.api.RequestErrorType
 import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
+import com.won983212.mongle.data.remote.api.UserApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
 
 internal class UserDataSourceTest {
 
-    private val api: LoginApi = FakeLoginApi()
+    private val api: UserApi = FakeUserApi()
     private val callback: RequestLifecycleCallback = FakeRequestLifecycleCallback()
 
     @Test
@@ -34,16 +34,14 @@ internal class UserDataSourceTest {
         }
     }
 
-    class FakeLoginApi : LoginApi {
-        override suspend fun login(token: OAuthLoginToken): OAuthLoginToken {
-            return OAuthLoginToken(
+    class FakeUserApi : UserApi {
+        override suspend fun login(token: OAuthLoginToken): OAuthLoginToken =
+            OAuthLoginToken(
                 "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMzc0MzE2MjE5IiwiaWF0IjoxNjYxMDA2NDA3LCJleHAiOjE2NjEwMDgyMDd9.UEGjHWVzIxMcR4MmDBmgfT7LzS3IgXqNnkjCODWumt0",
                 "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMzc0MzE2MjE5IiwiaWF0IjoxNjYxMDA2NDA3LCJleHAiOjE2NjEwMDgyMDd9.UEGjHWVzIxMcR4MmDBmgfT7LzS3IgXqNnkjCODWumt0"
             )
-        }
 
-        override suspend fun getUserInfo(token: OAuthLoginToken): User {
-            TODO("Not yet implemented")
-        }
+        override suspend fun getUserInfo(token: OAuthLoginToken): User =
+            User("USERNAME")
     }
 }

@@ -16,8 +16,6 @@ import com.won983212.mongle.databinding.DialogArrivedGiftBinding
 import com.won983212.mongle.databinding.DialogLoadingBinding
 import com.won983212.mongle.databinding.DialogTermsOfServiceDetailBinding
 
-// TODO Refactoring
-
 private fun openDialog(
     context: Context,
     view: View,

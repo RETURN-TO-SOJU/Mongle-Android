@@ -4,7 +4,7 @@ import com.google.gson.GsonBuilder
 import com.won983212.mongle.BuildConfig
 import com.won983212.mongle.data.remote.api.CalendarApi
 import com.won983212.mongle.data.remote.api.KakaoSendApi
-import com.won983212.mongle.data.remote.api.LoginApi
+import com.won983212.mongle.data.remote.api.UserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -65,8 +65,8 @@ internal class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideLoginApi(retrofit: Retrofit): LoginApi {
-        return retrofit.create(LoginApi::class.java)
+    fun provideLoginApi(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
     }
 
     @Singleton
