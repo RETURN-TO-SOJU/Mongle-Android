@@ -2,6 +2,7 @@ package com.won983212.mongle.presentation.view.daydetail
 
 import androidx.activity.viewModels
 import com.won983212.mongle.R
+import com.won983212.mongle.common.util.toastShort
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.databinding.ActivityDayDetailBinding
 import com.won983212.mongle.presentation.view.daydetail.adapter.AnalyzedEmotionListAdapter

@@ -30,6 +30,7 @@
             android:exported="false" />
         <activity
             android:name="com.won983212.mongle.presentation.view.daydetail.DayDetailActivity"
+            android:parentActivityName=".presentation.view.main.MainActivity"
             android:exported="false" />
         <activity
             android:name="com.won983212.mongle.presentation.view.main.MainActivity"
