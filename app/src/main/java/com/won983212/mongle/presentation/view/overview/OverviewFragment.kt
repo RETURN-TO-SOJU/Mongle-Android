@@ -1,0 +1,52 @@
+package com.won983212.mongle.presentation.view.overview
+
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.won983212.mongle.databinding.FragmentOverviewBinding
+import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
+import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
+
+class OverviewFragment : Fragment() {
+
+    private val viewModel by viewModels<OverviewViewModel>()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentOverviewBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        viewModel.calendarEmotions.observe(viewLifecycleOwner) {
+            binding.calendarOverview.setDayEmotions(it)
+        }
+
+        binding.btnOverviewTutorialKakaoExport.setOnClickListener {
+            context?.let { it1 -> TutorialActivity.startKakaoTutorial(it1) }
+        }
+
+        binding.btnOverviewShowDetail.setOnClickListener {
+            // TODO add extra today data
+            Intent(context, DayDetailActivity::class.java).apply {
+                startActivity(this)
+            }
+        }
+
+        binding.listKeyword.apply {
+            layoutManager = LinearLayoutManager(context).apply {
+                orientation = LinearLayoutManager.HORIZONTAL
+            }
+            adapter = KeywordAdapter()
+        }
+
+        return binding.root
+    }
+}

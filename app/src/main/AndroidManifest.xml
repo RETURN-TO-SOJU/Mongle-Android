@@ -18,19 +18,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".SettingActivity"
+            android:name="com.won983212.mongle.presentation.view.EditDiaryActivity"
             android:exported="false" />
         <activity
-            android:name=".view.EditDiaryActivity"
+            android:name="com.won983212.mongle.presentation.view.daydetail.DayDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.daydetail.DayDetailActivity"
+            android:name="com.won983212.mongle.presentation.view.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.kakaoexport.KakaoExportActivity"
+            android:name="com.won983212.mongle.presentation.view.kakaoexport.KakaoExportActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -50,17 +47,17 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <!-- suppress AndroidDomInspection -->
+                <!--suppress AndroidDomInspection -->
                 <data
                     android:host="oauth"
                     android:scheme="kakao${KAKAO_NATIVE_APP_KEY}" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.tutorial.TutorialActivity"
+            android:name="com.won983212.mongle.presentation.view.tutorial.TutorialActivity"
             android:exported="false" />
         <activity
-            android:name=".view.test.MainTestActivity"
+            android:name="com.won983212.mongle.presentation.view.test.MainTestActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,19 +66,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.test.ViewTestActivity"
+            android:name="com.won983212.mongle.presentation.view.test.ViewTestActivity"
             android:exported="false" />
         <activity
-            android:name=".view.test.ApiTestActivity"
+            android:name="com.won983212.mongle.presentation.view.test.ApiTestActivity"
             android:exported="false" />
         <activity
-            android:name=".view.password.PasswordActivity"
+            android:name="com.won983212.mongle.presentation.view.password.PasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".view.agree.AgreeActivity"
+            android:name="com.won983212.mongle.presentation.view.agree.AgreeActivity"
             android:exported="false" />
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name="com.won983212.mongle.presentation.view.login.LoginActivity"
             android:exported="true" />
     </application>
 

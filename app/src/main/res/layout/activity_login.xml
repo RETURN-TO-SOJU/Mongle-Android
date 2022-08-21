@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".view.login.LoginActivity">
+    tools:context="com.won983212.mongle.presentation.view.login.LoginActivity">
 
     <ImageView
         android:layout_width="168dp"

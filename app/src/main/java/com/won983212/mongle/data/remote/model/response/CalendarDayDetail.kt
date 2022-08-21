@@ -1,7 +1,7 @@
 package com.won983212.mongle.data.remote.model.response
 
 import com.google.gson.annotations.SerializedName
-import com.won983212.mongle.common.Emotion
+import com.won983212.mongle.data.model.Emotion
 import java.time.LocalDateTime
 
 data class CalendarDayDetail(

@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.remote.source
 
-import com.won983212.mongle.common.Emotion
+import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.remote.api.CalendarApi
 import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
 import com.won983212.mongle.data.remote.api.safeApiCall
@@ -9,7 +9,7 @@ import com.won983212.mongle.data.remote.model.request.DiaryRequest
 import com.won983212.mongle.data.remote.model.response.CalendarDay
 import com.won983212.mongle.data.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.remote.model.response.EmotionalSentence
-import com.won983212.mongle.repository.AuthRepository
+import com.won983212.mongle.domain.repository.AuthRepository
 import java.time.LocalDate
 import javax.inject.Inject
 

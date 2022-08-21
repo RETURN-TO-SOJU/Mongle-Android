@@ -1,13 +1,13 @@
 package com.won983212.mongle.data.repository
 
-import com.won983212.mongle.common.Emotion
+import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
 import com.won983212.mongle.data.remote.model.MessageResult
 import com.won983212.mongle.data.remote.model.response.CalendarDay
 import com.won983212.mongle.data.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.remote.model.response.EmotionalSentence
 import com.won983212.mongle.data.remote.source.CalendarDataSource
-import com.won983212.mongle.repository.CalendarRepository
+import com.won983212.mongle.domain.repository.CalendarRepository
 import java.time.LocalDate
 
 internal class CalendarRepositoryImpl(

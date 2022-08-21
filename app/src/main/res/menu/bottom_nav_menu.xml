@@ -4,14 +4,15 @@
         android:id="@+id/tab_calendar"
         android:icon="@drawable/ic_calendar"
         android:title="@string/tab_calendar_title" />
-    <item
+    <!-- TODO Implement it later -->
+    <!--<item
         android:id="@+id/tab_album"
         android:icon="@drawable/ic_album"
         android:title="@string/tab_album_title" />
     <item
         android:id="@+id/tab_statistics"
         android:icon="@drawable/ic_statistics"
-        android:title="@string/tab_statistics_title" />
+        android:title="@string/tab_statistics_title" />-->
     <item
         android:id="@+id/tab_favorite"
         android:icon="@drawable/ic_favorite"

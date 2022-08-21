@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.EditDiaryActivity">
+    tools:context="com.won983212.mongle.presentation.view.EditDiaryActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_edit_diary"

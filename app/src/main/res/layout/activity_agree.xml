@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.view.agree.AgreeViewModel" />
+            type="com.won983212.mongle.presentation.view.agree.AgreeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.agree.AgreeActivity">
+        tools:context="com.won983212.mongle.presentation.view.agree.AgreeActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_agree"

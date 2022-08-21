@@ -1,7 +1,7 @@
 package com.won983212.mongle.data.repository
 
 import com.won983212.mongle.data.local.source.PasswordDataSource
-import com.won983212.mongle.repository.PasswordRepository
+import com.won983212.mongle.domain.repository.PasswordRepository
 import javax.inject.Inject
 
 internal class PasswordRepositoryImpl
