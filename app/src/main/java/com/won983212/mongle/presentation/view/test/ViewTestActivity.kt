@@ -29,8 +29,14 @@ class ViewTestActivity : BaseTestActivity() {
         FragmentInfo("찜 추가", this::newFavoriteFragmentFactory),
         ActivityInfo("카카오 카톡 데이터 전송", KakaoExportActivity::class.java),
         ActivityInfo("일기 작성", EditDiaryActivity::class.java, testDiaryMockBundle()),
-        ManualInfo("분석 완료 다이얼로그") { openAnalyzeCompleteDialog(this) },
-        ManualInfo("선물 도착 다이얼로그") { openGiftArrivedDialog(this) },
+        ManualInfo("분석 완료 다이얼로그") {
+            openAnalyzeCompleteDialog(
+                this,
+                "소마",
+                "2022.08.01 ~ 2022.09.11"
+            )
+        },
+        ManualInfo("선물 도착 다이얼로그") { openGiftArrivedDialog(this, "2022.08.01") },
         ManualInfo("로딩 다이얼로그") { openLoadingDialog(this) }
     )
 

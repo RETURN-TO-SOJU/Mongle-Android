@@ -4,6 +4,7 @@ import com.won983212.mongle.data.local.source.TokenDataSource
 import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.model.User
 import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
+import com.won983212.mongle.data.remote.model.MessageResult
 import com.won983212.mongle.data.remote.source.RemoteUserDataSource
 import com.won983212.mongle.domain.repository.UserRepository
 import javax.inject.Inject
@@ -27,4 +28,10 @@ internal class UserRepositoryImpl
         callback: RequestLifecycleCallback,
         kakaoToken: OAuthLoginToken
     ): OAuthLoginToken? = userDataSource.login(callback, kakaoToken)
+
+    override suspend fun setFCMToken(
+        callback: RequestLifecycleCallback,
+        fcmToken: String
+    ): MessageResult? =
+        userDataSource.setFCMToken(callback, getCurrentToken().accessToken, fcmToken)
 }

@@ -13,6 +13,7 @@
             type="com.won983212.mongle.presentation.view.overview.OverviewViewModel" />
     </data>
 
+    <!-- Todo 이 상단 appbar를 mainactivity에 두고싶은데 -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

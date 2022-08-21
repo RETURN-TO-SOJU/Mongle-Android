@@ -33,24 +33,26 @@
                 android:src="@drawable/avd_flag_cross" />
 
             <TextView
+                android:id="@+id/text_analyze_complete_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
-                android:text="홍길동님,\n감정 분석을 완료했어요 :)"
+                android:text="@string/analyze_complete"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/text_analyze_complete_date_range"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/app_semibold"
-                android:text="2018.04.16 ~ 2022.08.06"
                 android:textColor="@color/point"
                 android:textSize="16sp" />
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_analyze_complete_go_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_round_down"

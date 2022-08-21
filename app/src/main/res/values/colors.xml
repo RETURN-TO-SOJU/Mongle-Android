@@ -7,6 +7,7 @@
     <color name="text">#191919</color>
     <color name="disabled">#B2B7BD</color>
     <color name="gray">#DBDBDB</color>
+    <color name="lightGray">#F6F6F6</color>
 
     <color name="kakao_yellow">#F9E001</color>
     <color name="kakao_text">#3C1E1E</color>

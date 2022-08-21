@@ -92,4 +92,15 @@
     <string name="detail_analyzed_title2">아래 감정이들을 눌러보세요 :)</string>
     <string name="detail_photos_title">이날 찍은 사진들</string>
     <string name="detail_plans_title">이날의 일정</string>
+
+    <!-- Dialog -->
+    <string name="analyze_complete">%1$s님,\n감정 분석을 완료했어요 :)</string>
+    <string name="arrived_gift">띵동🔔\n행복한 기억이 도착했어요:)</string>
+
+    <!-- Setting fragment -->
+    <string name="setting_title_1">%1$s님,</string>
+    <string name="setting_title_2">오늘 기분은 어때요?</string>
+    <string name="setting_password">비밀번호 설정</string>
+    <string name="setting_alert">앱 알림</string>
+    <string name="setting_leave">몽글몽글 서비스 탈퇴</string>
 </resources>

@@ -14,18 +14,17 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 class RemoteCalendarDataSource @Inject constructor(
-    private val api: CalendarApi,
-    private val userRepository: UserRepository
+    private val api: CalendarApi
 ) {
     suspend fun updateDiary(
         callback: RequestLifecycleCallback,
+        accessToken: String,
         date: LocalDate,
         text: String
     ): MessageResult? {
         return safeApiCall(callback) {
-            val token = userRepository.getCurrentToken().accessToken
             api.updateDiary(
-                token,
+                accessToken,
                 date.year, date.monthValue, date.dayOfMonth,
                 DiaryRequest(text)
             )
@@ -34,13 +33,13 @@ class RemoteCalendarDataSource @Inject constructor(
 
     suspend fun getCalendarDayMetadata(
         callback: RequestLifecycleCallback,
+        accessToken: String,
         startMonth: LocalDate,
         endMonth: LocalDate
     ): List<CalendarDay>? {
         return safeApiCall(callback) {
-            val token = userRepository.getCurrentToken().accessToken
             api.getCalendarDayMetadata(
-                token,
+                accessToken,
                 startMonth.year, startMonth.monthValue, endMonth.monthValue
             )
         }
@@ -48,12 +47,12 @@ class RemoteCalendarDataSource @Inject constructor(
 
     suspend fun getCalendarDayDetail(
         callback: RequestLifecycleCallback,
+        accessToken: String,
         date: LocalDate
     ): CalendarDayDetail? {
         return safeApiCall(callback) {
-            val token = userRepository.getCurrentToken().accessToken
             api.getCalendarDayDetail(
-                token,
+                accessToken,
                 date.year, date.monthValue, date.dayOfMonth
             )
         }
@@ -61,13 +60,13 @@ class RemoteCalendarDataSource @Inject constructor(
 
     suspend fun getDayEmotionalSentences(
         callback: RequestLifecycleCallback,
+        accessToken: String,
         date: LocalDate,
         emotion: Emotion
     ): List<EmotionalSentence>? {
         return safeApiCall(callback) {
-            val token = userRepository.getCurrentToken().accessToken
             api.getDayEmotionalSentences(
-                token,
+                accessToken,
                 date.year, date.monthValue, date.dayOfMonth,
                 emotion.name
             )

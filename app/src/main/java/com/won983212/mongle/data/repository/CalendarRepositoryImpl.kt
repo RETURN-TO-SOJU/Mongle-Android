@@ -8,35 +8,56 @@ import com.won983212.mongle.data.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.remote.model.response.EmotionalSentence
 import com.won983212.mongle.data.remote.source.RemoteCalendarDataSource
 import com.won983212.mongle.domain.repository.CalendarRepository
+import com.won983212.mongle.domain.repository.UserRepository
 import java.time.LocalDate
 
 internal class CalendarRepositoryImpl(
-    private val calendarDataSource: RemoteCalendarDataSource
+    private val calendarDataSource: RemoteCalendarDataSource,
+    private val userRepository: UserRepository
 ) : CalendarRepository {
     override suspend fun updateDiary(
         callback: RequestLifecycleCallback,
         date: LocalDate,
         text: String
     ): MessageResult? =
-        calendarDataSource.updateDiary(callback, date, text)
+        calendarDataSource.updateDiary(
+            callback,
+            userRepository.getCurrentToken().accessToken,
+            date,
+            text
+        )
 
     override suspend fun getCalendarDayMetadata(
         callback: RequestLifecycleCallback,
         startMonth: LocalDate,
         endMonth: LocalDate
     ): List<CalendarDay>? =
-        calendarDataSource.getCalendarDayMetadata(callback, startMonth, endMonth)
+        calendarDataSource.getCalendarDayMetadata(
+            callback,
+            userRepository.getCurrentToken().accessToken,
+            startMonth,
+            endMonth
+        )
 
     override suspend fun getCalendarDayDetail(
         callback: RequestLifecycleCallback,
         date: LocalDate
     ): CalendarDayDetail? =
-        calendarDataSource.getCalendarDayDetail(callback, date)
+        calendarDataSource.getCalendarDayDetail(
+            callback,
+            userRepository.getCurrentToken().accessToken,
+            date
+        )
 
     override suspend fun getDayEmotionalSentences(
         callback: RequestLifecycleCallback,
         date: LocalDate,
         emotion: Emotion
     ): List<EmotionalSentence>? =
-        calendarDataSource.getDayEmotionalSentences(callback, date, emotion)
+        calendarDataSource.getDayEmotionalSentences(
+            callback,
+            userRepository.getCurrentToken().accessToken,
+            date,
+            emotion
+        )
 }

@@ -52,21 +52,39 @@ fun openLoadingDialog(context: Context): AlertDialog {
     return openDialog(context, layout.root, true)
 }
 
-fun openAnalyzeCompleteDialog(context: Context): AlertDialog {
+fun openAnalyzeCompleteDialog(
+    context: Context,
+    name: String,
+    dateRange: String,
+    onGoResult: View.OnClickListener? = null
+): AlertDialog {
     val layout = DialogAnalyzeCompleteBinding.inflate(
         LayoutInflater.from(context),
         null, false
     )
     layout.imageAnalyzeCompleteFlag.attachCompatVectorAnim(R.drawable.avd_flag_cross)
     layout.imageAnalyzeCompleteChecking.attachCompatVectorAnim(R.drawable.avd_complete)
+    layout.textAnalyzeCompleteTitle.text =
+        context.resources.getString(R.string.analyze_complete, name)
+    layout.textAnalyzeCompleteDateRange.text = dateRange
+    layout.btnAnalyzeCompleteGoResult.setOnClickListener(onGoResult)
     return openDialog(context, layout.root, true)
 }
 
-fun openGiftArrivedDialog(context: Context): AlertDialog {
+fun openGiftArrivedDialog(
+    context: Context,
+    dateRange: String,
+    onGoResult: View.OnClickListener? = null
+): AlertDialog {
     val layout = DialogArrivedGiftBinding.inflate(
         LayoutInflater.from(context),
         null, false
     )
+
+    val dialog = openDialog(context, layout.root, true)
     layout.imageArrivedGift.attachCompatVectorAnim(R.drawable.avd_gift)
-    return openDialog(context, layout.root, true)
+    layout.textArrivedGiftDateRange.text = dateRange
+    layout.btnArrivedGiftWatchLater.setOnClickListener { dialog.dismiss() }
+    layout.btnArrivedGiftWatchNow.setOnClickListener(onGoResult)
+    return dialog
 }

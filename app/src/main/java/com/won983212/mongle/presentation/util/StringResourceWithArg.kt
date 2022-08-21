@@ -32,5 +32,6 @@ class StringResourceWithArg(
             .toHtml()
             .format(*parsedArgs)
             .parseAsHtml()
+            .trim()
     }
 }

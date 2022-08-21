@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin' version '2.0.1'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -69,6 +68,7 @@ dependencies {
     kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
     implementation "androidx.security:security-crypto-ktx:1.1.0-alpha03" // security
     implementation "com.google.code.gson:gson:2.8.9" // gson
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.7' // fcm
 
     def lifecycle_version = "2.5.1"
     implementation 'androidx.activity:activity-ktx:1.5.1' // activity viewModels() func
@@ -93,3 +93,6 @@ dependencies {
     // noinspection GradleDependency
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }
+
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'com.google.gms.google-services'

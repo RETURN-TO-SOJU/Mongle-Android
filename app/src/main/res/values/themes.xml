@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/point</item>
         <item name="colorPrimaryVariant">@color/point</item>
         <item name="colorOnPrimary">@color/on_point</item>
+        <item name="colorAccent">@color/point</item>
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/point</item>
