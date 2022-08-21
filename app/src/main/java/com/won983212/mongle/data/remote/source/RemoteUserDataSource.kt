@@ -47,4 +47,13 @@ class RemoteUserDataSource @Inject constructor(
             api.setFCMToken(accessToken, FCMTokenRequest(fcmToken))
         }
     }
+
+    suspend fun refreshToken(
+        callback: RequestLifecycleCallback,
+        currentToken: OAuthLoginToken
+    ): OAuthLoginToken? {
+        return safeApiCall(callback) {
+            api.refreshToken(currentToken)
+        }
+    }
 }

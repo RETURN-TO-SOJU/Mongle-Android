@@ -16,6 +16,9 @@ interface UserApi {
     @GET("users/info")
     suspend fun getUserInfo(@Header(AUTH_TOKEN_HEADER) token: String): User
 
+    @GET("reissue/token")
+    suspend fun refreshToken(@Body token: OAuthLoginToken): OAuthLoginToken
+
     @GET("users/fcmtoken")
     suspend fun setFCMToken(
         @Header(AUTH_TOKEN_HEADER) token: String,

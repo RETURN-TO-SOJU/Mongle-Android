@@ -22,6 +22,17 @@ interface RequestLifecycleCallback {
     fun onError(requestErrorType: RequestErrorType, msg: String)
 }
 
+object EmptyRequestLifecycleCallback : RequestLifecycleCallback {
+    override fun onStart() {
+    }
+
+    override fun onComplete() {
+    }
+
+    override fun onError(requestErrorType: RequestErrorType, msg: String) {
+    }
+}
+
 suspend inline fun <T> safeApiCall(
     callback: RequestLifecycleCallback,
     crossinline callFunction: suspend () -> T

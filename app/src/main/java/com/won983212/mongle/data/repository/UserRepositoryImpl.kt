@@ -15,7 +15,6 @@ internal class UserRepositoryImpl
     private val userDataSource: RemoteUserDataSource
 ) : UserRepository {
 
-    // TODO validate token logic 추가
     override fun getCurrentToken(): OAuthLoginToken = tokenDataSource.getToken()
 
     override fun setCurrentToken(token: OAuthLoginToken) = tokenDataSource.setToken(token)
@@ -23,6 +22,16 @@ internal class UserRepositoryImpl
     override suspend fun getUserInfo(
         callback: RequestLifecycleCallback
     ): User? = userDataSource.getUserInfo(callback, getCurrentToken())
+
+    override suspend fun refreshToken(
+        callback: RequestLifecycleCallback
+    ): OAuthLoginToken? {
+        val token = userDataSource.refreshToken(callback, getCurrentToken())
+        if (token != null) {
+            setCurrentToken(token)
+        }
+        return token
+    }
 
     override suspend fun login(
         callback: RequestLifecycleCallback,

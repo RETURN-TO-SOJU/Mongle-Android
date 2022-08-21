@@ -4,7 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.kakao.sdk.auth.model.OAuthToken
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.OAuthLoginToken
+import com.won983212.mongle.data.remote.api.EmptyRequestLifecycleCallback
 import com.won983212.mongle.domain.repository.UserRepository
+import com.won983212.mongle.domain.usecase.ValidateTokenUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,8 +15,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val validateTokenUseCase: ValidateTokenUseCase
 ) : BaseViewModel() {
+
+    private val _eventReadyForRegister = SingleLiveEvent<Unit>()
+    val eventReadyForRegister = _eventReadyForRegister.asLiveData()
 
     private val _eventLoggedIn = SingleLiveEvent<Unit>()
     val eventLoggedIn = _eventLoggedIn.asLiveData()
@@ -23,7 +29,17 @@ class LoginViewModel @Inject constructor(
         val response = userRepository.login(this@LoginViewModel, OAuthLoginToken.of(token))
         if (response != null) {
             userRepository.setCurrentToken(response)
+            _eventReadyForRegister.call()
+        }
+    }
+
+    suspend fun validateToken(): Boolean {
+        setLoading(true)
+        val canAutoLogin = validateTokenUseCase.execute(EmptyRequestLifecycleCallback)
+        setLoading(false)
+        if (canAutoLogin) {
             _eventLoggedIn.call()
         }
+        return canAutoLogin
     }
 }
