@@ -67,9 +67,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="32dp"
-                android:text="@{viewModel.overviewText}"
                 android:textColor="@color/on_point"
                 android:textSize="24sp"
+                app:text="@{viewModel.overviewText}"
                 tools:text="Overview Text" />
         </FrameLayout>
 
@@ -118,7 +118,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="8dp"
                             android:fontFamily="@font/app_medium"
-                            android:text="@string/overview_emotion_sad"
+                            android:text="@string/overview_intro_message_today"
                             android:textSize="14sp" />
 
                         <Space

@@ -6,12 +6,12 @@ import com.won983212.mongle.data.remote.model.MessageResult
 import com.won983212.mongle.data.remote.model.response.CalendarDay
 import com.won983212.mongle.data.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.remote.model.response.EmotionalSentence
-import com.won983212.mongle.data.remote.source.CalendarDataSource
+import com.won983212.mongle.data.remote.source.RemoteCalendarDataSource
 import com.won983212.mongle.domain.repository.CalendarRepository
 import java.time.LocalDate
 
 internal class CalendarRepositoryImpl(
-    private val calendarDataSource: CalendarDataSource
+    private val calendarDataSource: RemoteCalendarDataSource
 ) : CalendarRepository {
     override suspend fun updateDiary(
         callback: RequestLifecycleCallback,

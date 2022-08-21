@@ -66,18 +66,15 @@
     <string name="kakao_tutorial_title_5"><font color="#EB6E6D">"몽글몽글"</font> 앱 선택</string>
 
     <!-- Overview -->
-    <!--<string name="overview_intro">소마님 👋\n<b>%1$s</b>\n%2$s</string>-->
-    <!-- TODO (DEBUG) Test message -->
-    <string name="overview_intro">소마님 👋\n<b>8월 2일 화요일\n</b>오늘 하루도 수고했어요.</string>
-    <string name="overview_intro_message_default">이날 하루도 수고했어요.</string>
+    <string name="overview_intro">%1$s님 👋\n<b>%2$s\n</b>%3$s</string>
     <string name="overview_intro_message_today">오늘 하루도 수고했어요.</string>
-    <string name="overview_intro_message_diary">이날 쓴 일기를 보면 재밌겠어요!</string>
-    <string name="overview_emotion_angry">화나는 하루였어요.</string>
-    <string name="overview_emotion_anxious">불안한 하루였어요.</string>
-    <string name="overview_emotion_tired">힘든 하루였어요.</string>
-    <string name="overview_emotion_happy">기분 좋은 하루였어요.</string>
-    <string name="overview_emotion_neutral">평범한 하루였어요.</string>
-    <string name="overview_emotion_sad">우울한 하루였어요.</string>
+    <string name="overview_intro_message_other_day">이날의 기억을 떠올려봅시다.</string>
+    <string name="overview_intro_message_angry">화나는 하루였어요.</string>
+    <string name="overview_intro_message_anxious">불안한 하루였어요.</string>
+    <string name="overview_intro_message_tired">힘든 하루였어요.</string>
+    <string name="overview_intro_message_happy">기분 좋은 하루였어요.</string>
+    <string name="overview_intro_message_neutral">평범한 하루였어요.</string>
+    <string name="overview_intro_message_sad">우울한 하루였어요.</string>
     <string name="overview_keyword">[이날의 키워드]</string>
     <string name="overview_go_tutorial_kakao_export">카카오톡 데이터 불러오는 방법</string>
 
@@ -93,6 +90,4 @@
     <string name="detail_analyzed_title2">아래 감정이들을 눌러보세요 :)</string>
     <string name="detail_photos_title">이날 찍은 사진들</string>
     <string name="detail_plans_title">이날의 일정</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

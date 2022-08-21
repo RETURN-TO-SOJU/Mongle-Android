@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.won983212.mongle.databinding.FragmentOverviewBinding
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
 import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
+import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 
+@AndroidEntryPoint
 class OverviewFragment : Fragment() {
 
     private val viewModel by viewModels<OverviewViewModel>()
@@ -25,8 +28,23 @@ class OverviewFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.calendarEmotions.observe(viewLifecycleOwner) {
-            binding.calendarOverview.setDayEmotions(it)
+        val today = LocalDate.now()
+
+        viewModel.apply {
+            attachDefaultErrorHandler(requireActivity())
+            attachDefaultLoadingHandler(requireActivity())
+            calendarEmotions.observe(viewLifecycleOwner) {
+                binding.calendarOverview.setDayEmotions(it)
+            }
+        }
+
+        binding.calendarOverview.apply {
+            setOnSelectionChangedListener { date ->
+                viewModel.updateOverviewText(date)
+            }
+            setOnInitializedListener {
+                selectDate(today)
+            }
         }
 
         binding.btnOverviewTutorialKakaoExport.setOnClickListener {

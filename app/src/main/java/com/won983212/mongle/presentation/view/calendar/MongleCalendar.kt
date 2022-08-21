@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import com.google.android.material.datepicker.OnSelectionChangedListener
 import com.kizitonwose.calendarview.CalendarView
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
@@ -34,6 +35,9 @@ class MongleCalendar @JvmOverloads constructor(
     var dayEmotions: Map<LocalDate, Emotion>? = null
         private set
 
+    private var selectionChangedListener: OnSelectionChangedListener? = null
+    private var initializedListener: OnInitializedListener? = null
+
     init {
         val currentMonth = YearMonth.now()
         val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
@@ -54,6 +58,7 @@ class MongleCalendar @JvmOverloads constructor(
             ) {
                 this.scrollToMonth(currentMonth)
                 dayEmotions?.let { setDayEmotions(it) }
+                initializedListener?.onInitialize()
             }
         }
 
@@ -79,13 +84,16 @@ class MongleCalendar @JvmOverloads constructor(
         }
     }
 
-    private fun selectDate(date: LocalDate) {
+    fun selectDate(date: LocalDate?) {
         if (selectedDate != date) {
             val oldDate = selectedDate
             selectedDate = date
 
             oldDate?.let { binding.calendar.notifyDateChanged(it) }
-            binding.calendar.notifyDateChanged(date)
+            date?.let {
+                binding.calendar.notifyDateChanged(date)
+                selectionChangedListener?.onSelectionChanged(date)
+            }
         }
     }
 
@@ -131,5 +139,21 @@ class MongleCalendar @JvmOverloads constructor(
         } else {
             setDayEmotions(mapOf(date to emotion))
         }
+    }
+
+    fun setOnSelectionChangedListener(listener: OnSelectionChangedListener) {
+        selectionChangedListener = listener
+    }
+
+    fun setOnInitializedListener(listener: OnInitializedListener) {
+        initializedListener = listener
+    }
+
+    fun interface OnSelectionChangedListener {
+        fun onSelectionChanged(selection: LocalDate)
+    }
+
+    fun interface OnInitializedListener {
+        fun onInitialize()
     }
 }

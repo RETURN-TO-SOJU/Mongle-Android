@@ -14,7 +14,9 @@ import com.won983212.mongle.databinding.ActivityMainBinding
 import com.won983212.mongle.presentation.view.favorite.FavoriteFragment
 import com.won983212.mongle.presentation.view.overview.OverviewFragment
 import com.won983212.mongle.presentation.view.setting.SettingFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseDataActivity<ActivityMainBinding>() {
     private val viewModel by viewModels<MainViewModel>()
 

@@ -9,13 +9,13 @@ import com.won983212.mongle.data.remote.model.request.DiaryRequest
 import com.won983212.mongle.data.remote.model.response.CalendarDay
 import com.won983212.mongle.data.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.remote.model.response.EmotionalSentence
-import com.won983212.mongle.domain.repository.AuthRepository
+import com.won983212.mongle.domain.repository.UserRepository
 import java.time.LocalDate
 import javax.inject.Inject
 
-class CalendarDataSource @Inject constructor(
+class RemoteCalendarDataSource @Inject constructor(
     private val api: CalendarApi,
-    private val authRepository: AuthRepository
+    private val userRepository: UserRepository
 ) {
     suspend fun updateDiary(
         callback: RequestLifecycleCallback,
@@ -23,7 +23,7 @@ class CalendarDataSource @Inject constructor(
         text: String
     ): MessageResult? {
         return safeApiCall(callback) {
-            val token = authRepository.getCurrentToken().accessToken
+            val token = userRepository.getCurrentToken().accessToken
             api.updateDiary(
                 token,
                 date.year, date.monthValue, date.dayOfMonth,
@@ -38,7 +38,7 @@ class CalendarDataSource @Inject constructor(
         endMonth: LocalDate
     ): List<CalendarDay>? {
         return safeApiCall(callback) {
-            val token = authRepository.getCurrentToken().accessToken
+            val token = userRepository.getCurrentToken().accessToken
             api.getCalendarDayMetadata(
                 token,
                 startMonth.year, startMonth.monthValue, endMonth.monthValue
@@ -51,7 +51,7 @@ class CalendarDataSource @Inject constructor(
         date: LocalDate
     ): CalendarDayDetail? {
         return safeApiCall(callback) {
-            val token = authRepository.getCurrentToken().accessToken
+            val token = userRepository.getCurrentToken().accessToken
             api.getCalendarDayDetail(
                 token,
                 date.year, date.monthValue, date.dayOfMonth
@@ -65,7 +65,7 @@ class CalendarDataSource @Inject constructor(
         emotion: Emotion
     ): List<EmotionalSentence>? {
         return safeApiCall(callback) {
-            val token = authRepository.getCurrentToken().accessToken
+            val token = userRepository.getCurrentToken().accessToken
             api.getDayEmotionalSentences(
                 token,
                 date.year, date.monthValue, date.dayOfMonth,

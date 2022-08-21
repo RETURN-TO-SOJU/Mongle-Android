@@ -1,5 +1,6 @@
 package com.won983212.mongle.presentation.view.calendar
 
+import android.util.Log
 import android.view.View
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
@@ -27,6 +28,7 @@ internal class MongleDayBinder(
                 container.setEmotion(emotion)
             }
             if (day.date == calendar.selectedDate) { // Point color rectangle
+                Log.d("TEST", "SELECTED: ${day.date}")
                 container.setSelected()
             }
         } else { // disabled text
