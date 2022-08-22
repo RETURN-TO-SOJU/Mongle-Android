@@ -38,7 +38,7 @@
         </service>
 
         <activity
-            android:name=".presentation.view.EditDiaryActivity"
+            android:name=".presentation.view.diary.EditDiaryActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.view.daydetail.DayDetailActivity"

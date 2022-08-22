@@ -8,6 +8,7 @@ import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.presentation.view.*
 import com.won983212.mongle.presentation.view.agree.AgreeActivity
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
+import com.won983212.mongle.presentation.view.diary.EditDiaryActivity
 import com.won983212.mongle.presentation.view.kakaoexport.KakaoExportActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.main.MainActivity
