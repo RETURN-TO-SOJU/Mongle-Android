@@ -20,9 +20,9 @@ internal class BehaviorAlpha(context: Context, attrs: AttributeSet) :
             val actionBarHeight =
                 TypedValue.complexToDimensionPixelSize(
                     tv.data,
-                    context.resources.getDisplayMetrics()
+                    context.resources.displayMetrics
                 )
-            availableHeight = context.getResources()
+            availableHeight = context.resources
                 .getDimension(R.dimen.appbar_height) - actionBarHeight
         } else {
             availableHeight = 0f

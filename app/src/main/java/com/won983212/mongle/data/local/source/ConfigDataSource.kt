@@ -13,7 +13,7 @@ internal class ConfigDataSource @Inject constructor(
     init {
         preferences = context.getSharedPreferences(CONFIG_PREFERENCE_NAME, Context.MODE_PRIVATE)
     }
-    
+
     fun getPreference(): SharedPreferences {
         return preferences
     }

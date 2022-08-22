@@ -9,8 +9,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationBarView
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.databinding.ActivityMainBinding
+import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.favorite.FavoriteFragment
 import com.won983212.mongle.presentation.view.overview.OverviewFragment
 import com.won983212.mongle.presentation.view.setting.SettingFragment

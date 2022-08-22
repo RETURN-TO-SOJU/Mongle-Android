@@ -9,7 +9,6 @@ import com.won983212.mongle.data.remote.model.request.DiaryRequest
 import com.won983212.mongle.data.remote.model.response.CalendarDay
 import com.won983212.mongle.data.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.remote.model.response.EmotionalSentence
-import com.won983212.mongle.domain.repository.UserRepository
 import java.time.LocalDate
 import javax.inject.Inject
 

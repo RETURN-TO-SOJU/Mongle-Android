@@ -1,8 +1,8 @@
 package com.won983212.mongle.presentation.view.daydetail.adapter
 
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.base.BaseRecyclerAdapter
 import com.won983212.mongle.databinding.ListitemPhotoBinding
+import com.won983212.mongle.presentation.base.BaseRecyclerAdapter
 import com.won983212.mongle.presentation.view.daydetail.model.Photo
 
 class PhotoListAdapter :

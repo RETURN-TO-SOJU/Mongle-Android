@@ -5,9 +5,9 @@ import android.net.Uri
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.databinding.ActivityAgreeBinding
 import com.won983212.mongle.databinding.ListitemAgreeBinding
+import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.main.MainActivity
 import com.won983212.mongle.presentation.view.openTermsOfServiceDialog
 import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
