@@ -6,6 +6,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Test
 
+// TODO 갖가지 Test코드(Mockito이용)를 작성하여 유지보수 편의 개선필요
 class EmotionTest {
     @Test
     fun emotion_of() {

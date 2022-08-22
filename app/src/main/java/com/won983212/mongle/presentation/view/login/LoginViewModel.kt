@@ -1,6 +1,7 @@
 package com.won983212.mongle.presentation.view.login
 
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.OAuthLoginToken
@@ -29,6 +30,14 @@ class LoginViewModel @Inject constructor(
         val response = userRepository.login(this@LoginViewModel, OAuthLoginToken.of(token))
         if (response != null) {
             userRepository.setCurrentToken(response)
+            FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                // TODO 좀 더 세련된 방법 없나..?
+                viewModelScope.launch {
+                    if (task.isSuccessful) {
+                        userRepository.setFCMToken(this@LoginViewModel, task.result)
+                    }
+                }
+            }
             _eventReadyForRegister.call()
         }
     }

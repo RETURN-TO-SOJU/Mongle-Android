@@ -66,7 +66,7 @@ class OverviewViewModel @Inject constructor(
             val dateText = date.format(DateTimeFormatter.ofPattern("M월 d일 EEEE"))
             _overviewText.value = TextResource(
                 R.string.overview_intro,
-                userInfo.name,
+                userInfo.username,
                 dateText,
                 getOverviewText(date)
             )

@@ -36,7 +36,7 @@ internal class MockingApiModule {
 
     private fun checkToken(token: String) {
         val tokenDate = LocalDateTime.parse(token, DateTimeFormatter.ISO_DATE_TIME)
-        if (tokenDate.plusMinutes(1) < LocalDateTime.now()) {
+        if (tokenDate.plusMinutes(10) < LocalDateTime.now()) {
             throw MockingHttpException("토큰이 만료되었습니다.")
         }
     }
@@ -56,7 +56,7 @@ internal class MockingApiModule {
                 withContext(Dispatchers.IO) {
                     delay(300)
                     checkToken(token)
-                    User("소마")
+                    User("소마", "soma")
                 }
 
             override suspend fun refreshToken(token: OAuthLoginToken): OAuthLoginToken =

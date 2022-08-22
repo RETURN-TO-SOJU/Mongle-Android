@@ -40,7 +40,7 @@ class SettingViewModel @Inject constructor(
         val user = userRepository.getUserInfo(this@SettingViewModel)
         var username = "??"
         if (user != null) {
-            username = user.name
+            username = user.username
         }
         _usernameTitle.postValue(TextResource(R.string.setting_title_1, username))
     }
