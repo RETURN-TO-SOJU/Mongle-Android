@@ -193,20 +193,44 @@ internal class MockingApiModule {
                     checkToken(token)
                     delay(1000)
                     CalendarDayDetail(
-                        listOf("1.jpg", "2.jpg"), "오늘은 힘든날이 아니다.", listOf(
+                        listOf(
+                            CalendarDayDetail.Photo(
+                                "1.jpg",
+                                LocalDateTime.of(2022, 8, 1, 10, 0, 0)
+                            ),
+                            CalendarDayDetail.Photo(
+                                "2.jpg",
+                                LocalDateTime.of(2022, 8, 1, 11, 0, 0)
+                            ),
+                            CalendarDayDetail.Photo(
+                                "3.jpg",
+                                LocalDateTime.of(2022, 8, 1, 17, 0, 0)
+                            ),
+                        ),
+                        "오늘은 힘든날이 아니다.",
+                        listOf(
                             CalendarDayDetail.Schedule(
                                 "기획발표",
+                                "네이버캘린더",
                                 LocalDateTime.of(2022, 8, 1, 10, 0, 0),
                                 LocalDateTime.of(2022, 8, 1, 12, 0, 0)
-                            )
-                        ), listOf(
+                            ),
+                            CalendarDayDetail.Schedule(
+                                "중간발표",
+                                "네이버캘린더",
+                                LocalDateTime.of(2022, 8, 5, 12, 0, 0),
+                                LocalDateTime.of(2022, 8, 5, 21, 0, 0)
+                            ),
+                        ),
+                        listOf(
                             CalendarDayDetail.EmotionProportion(Emotion.HAPPY, 15),
                             CalendarDayDetail.EmotionProportion(Emotion.SAD, 20),
                             CalendarDayDetail.EmotionProportion(Emotion.ANXIOUS, 25),
                             CalendarDayDetail.EmotionProportion(Emotion.TIRED, 30),
                             CalendarDayDetail.EmotionProportion(Emotion.ANGRY, 35),
                             CalendarDayDetail.EmotionProportion(Emotion.NEUTRAL, 40)
-                        )
+                        ),
+                        Emotion.ANGRY
                     )
                 }
 

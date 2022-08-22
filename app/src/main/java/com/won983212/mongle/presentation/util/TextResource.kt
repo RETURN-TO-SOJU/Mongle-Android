@@ -11,8 +11,8 @@ class TextResource {
     val resId: Int?
     val args: Array<out Any?>?
 
-    constructor(text: String) {
-        this.text = text
+    constructor(text: String?) {
+        this.text = text ?: ""
         this.resId = null
         this.args = null
     }

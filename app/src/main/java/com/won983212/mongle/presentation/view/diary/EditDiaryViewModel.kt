@@ -32,9 +32,9 @@ class EditDiaryViewModel @Inject constructor(
     private val _eventUpdateComplete = SingleLiveEvent<Unit>()
     val eventUpdateComplete = _eventUpdateComplete.asLiveData()
 
-    fun initialzeFromIntent(intent: Intent) {
+    fun initializeFromIntent(intent: Intent) {
         _emotionRes.value = intent.getIntExtra(
-            EditDiaryActivity.EXTRA_EMOTION,
+            EditDiaryActivity.EXTRA_EMOTION_RES,
             R.drawable.ic_edit
         )
         _diaryDate.value = (intent.getSerializableExtra(EditDiaryActivity.EXTRA_DATE)

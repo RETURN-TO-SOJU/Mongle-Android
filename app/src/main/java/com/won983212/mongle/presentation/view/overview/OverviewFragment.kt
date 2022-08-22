@@ -53,9 +53,12 @@ class OverviewFragment : Fragment() {
         }
 
         binding.btnOverviewShowDetail.setOnClickListener {
-            // TODO add extra today data
-            Intent(context, DayDetailActivity::class.java).apply {
-                startActivity(this)
+            val date = binding.calendarOverview.selectedDate
+            if (date != null) {
+                Intent(context, DayDetailActivity::class.java).apply {
+                    putExtra(DayDetailActivity.EXTRA_DATE, date)
+                    startActivity(this)
+                }
             }
         }
 

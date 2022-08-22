@@ -6,17 +6,18 @@ import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityEditDiaryBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.diary.EditDiaryActivity.Companion.EXTRA_DATE
-import com.won983212.mongle.presentation.view.diary.EditDiaryActivity.Companion.EXTRA_EMOTION
+import com.won983212.mongle.presentation.view.diary.EditDiaryActivity.Companion.EXTRA_EMOTION_RES
 import com.won983212.mongle.presentation.view.diary.EditDiaryActivity.Companion.EXTRA_INITIAL_DIARY
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 
 /**
  * ## Extras
- * * **(선택)** [EXTRA_DATE]: [String] -
- * 일기장 상단에 표시될 제목. 기본값은 empty string
+ * * **(선택)** [EXTRA_DATE]: [LocalDate] -
+ * 일기장 상단에 표시될 제목. 기본값은 오늘 날짜
  * * **(선택)** [EXTRA_INITIAL_DIARY]: [String] -
  * 초기 일기장 텍스트. 기본값은 empty string
- * * **(선택)** [EXTRA_EMOTION]: [DrawableRes] -
+ * * **(선택)** [EXTRA_EMOTION_RES]: [DrawableRes] -
  * 일기장에 표시될 감정 Icon Resource. 기본값은 @drawable/ic_edit
  */
 @AndroidEntryPoint
@@ -34,7 +35,7 @@ class EditDiaryActivity : BaseDataActivity<ActivityEditDiaryBinding>() {
         viewModel.let {
             it.attachDefaultErrorHandler(this)
             it.attachDefaultLoadingHandler(this)
-            it.initialzeFromIntent(intent)
+            it.initializeFromIntent(intent)
             it.eventUpdateComplete.observe(this) {
                 finish()
             }
@@ -44,6 +45,6 @@ class EditDiaryActivity : BaseDataActivity<ActivityEditDiaryBinding>() {
     companion object {
         const val EXTRA_INITIAL_DIARY = "initialDiary"
         const val EXTRA_DATE = "date"
-        const val EXTRA_EMOTION = "emotion"
+        const val EXTRA_EMOTION_RES = "emotion"
     }
 }
