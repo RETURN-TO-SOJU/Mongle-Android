@@ -12,5 +12,7 @@ data class OAuthLoginToken(
     companion object {
         fun of(kakaoToken: OAuthToken) =
             OAuthLoginToken(kakaoToken.accessToken, kakaoToken.refreshToken)
+
+        val EMPTY_TOKEN = OAuthLoginToken("", "")
     }
 }

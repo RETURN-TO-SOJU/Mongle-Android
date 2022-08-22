@@ -43,4 +43,12 @@ internal class UserRepositoryImpl
         fcmToken: String
     ): MessageResult? =
         userDataSource.setFCMToken(callback, getCurrentToken().accessToken, fcmToken)
+
+    override suspend fun leaveAccount(callback: RequestLifecycleCallback): MessageResult? {
+        val result = userDataSource.leaveAccount(callback, getCurrentToken().accessToken)
+        if (result != null) {
+            setCurrentToken(OAuthLoginToken.EMPTY_TOKEN)
+        }
+        return result
+    }
 }

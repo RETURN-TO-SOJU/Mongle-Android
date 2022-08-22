@@ -59,7 +59,7 @@
     <string name="tab_favorite_title">찜</string>
     <string name="tab_settings_title">MY</string>
 
-    <!-- Kakaotalk analyze tutorial-->
+    <!-- Kakaotalk analyze tutorial -->
     <string name="kakao_tutorial_title_1">분석하고 싶은 톡방 입장 후,\n우측 상단 <font color="#EB6E6D">메뉴(3개의 줄) 아이콘</font> 클릭</string>
     <string name="kakao_tutorial_title_2">우측 사이드바가 나타나며,\n하단 <font color="#EB6E6D">설정(톱니바퀴) 아이콘</font> 클릭</string>
     <string name="kakao_tutorial_title_3">아래쪽 <font color="#EB6E6D">"대화내용 내보내기"</font> 클릭</string>
@@ -98,10 +98,18 @@
     <string name="analyze_complete">%1$s님,\n감정 분석을 완료했어요 :)</string>
     <string name="arrived_gift">띵동🔔\n행복한 기억이 도착했어요:)</string>
 
-    <!-- Setting fragment -->
+    <!-- Setting -->
     <string name="setting_title_1">%1$s님,</string>
     <string name="setting_title_2">오늘 기분은 어때요?</string>
     <string name="setting_password">비밀번호 설정</string>
     <string name="setting_alert">앱 알림</string>
     <string name="setting_leave">몽글몽글 서비스 탈퇴</string>
+
+    <!-- Leaving -->
+    <string name="leaving_title">너무 아쉽네요 😭\n정말 몽글몽글 탈퇴하실껀가요?</string>
+    <string name="leaving_message_1">계정이 삭제됩니다.</string>
+    <string name="leaving_message_2">회원님의 작성 이력, 분석 정보, 설정이 모두 삭제됩니다.</string>
+    <string name="leaving_message_3">연결된 소셜 계정 정보가 삭제됩니다.</string>
+    <string name="leaving_message_agree">안내사항을 확인하고 회원탈퇴에 동의</string>
+    <string name="leaving_ok">탈퇴하기</string>
 </resources>

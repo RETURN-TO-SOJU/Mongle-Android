@@ -20,7 +20,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
-import retrofit2.Retrofit
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -44,9 +43,9 @@ internal class MockingApiModule {
 
     @Singleton
     @Provides
-    fun provideLoginApi(retrofit: Retrofit): UserApi =
+    fun provideLoginApi(): UserApi =
         object : UserApi {
-            override suspend fun login(token: OAuthLoginToken): OAuthLoginToken =
+            override suspend fun login(kakaoToken: OAuthLoginToken): OAuthLoginToken =
                 withContext(Dispatchers.IO) {
                     delay(300)
                     val genToken = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)
@@ -76,11 +75,18 @@ internal class MockingApiModule {
                     checkToken(token)
                     MessageResult("complete")
                 }
+
+            override suspend fun leaveAccount(token: String): MessageResult =
+                withContext(Dispatchers.IO) {
+                    delay(2000)
+                    checkToken(token)
+                    MessageResult("complete")
+                }
         }
 
     @Singleton
     @Provides
-    fun provideKakaoSendApi(retrofit: Retrofit): KakaoSendApi =
+    fun provideKakaoSendApi(): KakaoSendApi =
         object : KakaoSendApi {
             override suspend fun uploadKakaotalk(
                 token: String,
@@ -95,7 +101,7 @@ internal class MockingApiModule {
 
     @Singleton
     @Provides
-    fun provideCalendarApi(retrofit: Retrofit): CalendarApi =
+    fun provideCalendarApi(): CalendarApi =
         object : CalendarApi {
             override suspend fun updateDiary(
                 token: String,

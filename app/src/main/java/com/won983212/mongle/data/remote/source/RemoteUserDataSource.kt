@@ -49,4 +49,13 @@ class RemoteUserDataSource @Inject constructor(
             api.refreshToken(currentToken)
         }
     }
+
+    suspend fun leaveAccount(
+        callback: RequestLifecycleCallback,
+        accessToken: String
+    ): MessageResult? {
+        return safeApiCall(callback) {
+            api.leaveAccount(accessToken)
+        }
+    }
 }

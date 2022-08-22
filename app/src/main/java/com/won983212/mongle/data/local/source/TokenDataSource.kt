@@ -6,8 +6,7 @@ import com.won983212.mongle.data.model.OAuthLoginToken
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-internal class TokenDataSource
-@Inject constructor(
+internal class TokenDataSource @Inject constructor(
     @ApplicationContext context: Context
 ) : SecurePropertiesSource(context) {
 

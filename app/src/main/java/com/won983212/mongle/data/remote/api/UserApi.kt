@@ -11,7 +11,7 @@ import retrofit2.http.POST
 
 interface UserApi {
     @POST("login/kakao")
-    suspend fun login(@Body token: OAuthLoginToken): OAuthLoginToken
+    suspend fun login(@Body kakaoToken: OAuthLoginToken): OAuthLoginToken
 
     @GET("users/info")
     suspend fun getUserInfo(@Header(AUTH_TOKEN_HEADER) token: String): User
@@ -24,4 +24,7 @@ interface UserApi {
         @Header(AUTH_TOKEN_HEADER) token: String,
         @Body fcmToken: FCMTokenRequest
     ): MessageResult
+
+    @GET("leave")
+    suspend fun leaveAccount(@Header(AUTH_TOKEN_HEADER) token: String): MessageResult
 }

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.won983212.mongle.databinding.FragmentSettingBinding
+import com.won983212.mongle.presentation.view.LeavingFragment
+import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.password.PasswordActivity
 import com.won983212.mongle.presentation.view.password.PasswordActivityMode
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,17 +23,31 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val activity = requireActivity()
         val binding = FragmentSettingBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         binding.layoutSettingLeave.setOnClickListener {
-
+            LeavingFragment {
+                viewModel.doLeave()
+            }.apply {
+                show(activity.supportFragmentManager, tag)
+            }
         }
 
         binding.layoutSettingPasswordSetup.setOnClickListener {
-            Intent(requireContext(), PasswordActivity::class.java).apply {
+            Intent(activity, PasswordActivity::class.java).apply {
                 putExtra(PasswordActivity.EXTRA_MODE, PasswordActivityMode.SET)
+                startActivity(this)
+            }
+        }
+
+        viewModel.attachDefaultLoadingHandler(activity)
+        viewModel.attachDefaultErrorHandler(activity)
+        viewModel.eventLeaveAccount.observe(activity) {
+            Intent(activity, LoginActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(this)
             }
         }
@@ -40,7 +56,7 @@ class SettingFragment : Fragment() {
         return binding.root
     }
 
-    fun updateUsernameTitle() {
+    private fun updateUsernameTitle() {
         viewModel.updateUsernameTitle()
     }
 }
