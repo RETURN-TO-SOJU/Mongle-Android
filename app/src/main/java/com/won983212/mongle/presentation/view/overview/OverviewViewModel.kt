@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.TextResource
@@ -17,13 +18,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OverviewViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val calendarRepository: CalendarRepository
 ) : BaseViewModel() {
 
-    private val _keywords = MutableLiveData<List<Keyword>>(listOf())
+    // TODO Emotions랑 통합하자
+    private var keywordMap = mapOf<LocalDate, List<String>>()
+
+    private val _keywords = MutableLiveData<List<String>>(listOf())
     val keywords = Transformations.map(_keywords) { value ->
         value.ifEmpty {
-            listOf(Keyword("비어있음"))
+            listOf("비어있음")
         }
     }
 
@@ -55,7 +60,7 @@ class OverviewViewModel @Inject constructor(
         return TextResource(resId)
     }
 
-    private suspend fun updateUserInfo(date: LocalDate) {
+    private suspend fun updateOverviewText(date: LocalDate) {
         val userInfo = userRepository.getUserInfo(this@OverviewViewModel)
         if (userInfo != null) {
             val dateText = date.format(DateTimeFormatter.ofPattern("M월 d일 EEEE"))
@@ -68,10 +73,24 @@ class OverviewViewModel @Inject constructor(
         }
     }
 
+    fun synchronize() = viewModelScope.launch {
+        val today = LocalDate.now()
+        val days = calendarRepository.getCalendarDayMetadata(
+            this@OverviewViewModel,
+            today.minusMonths(3),
+            today.plusMonths(3)
+        )
+        if (days != null) {
+            _calendarEmotions.postValue(days.associate { it.date to it.emotion })
+            keywordMap = days.associate { it.date to it.subjectList }
+        }
+    }
+
     fun onSelectionChanged(date: LocalDate) = viewModelScope.launch {
-        updateUserInfo(date)
+        updateOverviewText(date)
         val emotion = calendarEmotions.value?.get(date)
         _selectedDayEmotion.postValue((emotion ?: Emotion.ANXIOUS).iconRes)
         _selectedDayTitle.postValue(emotion?.descriptionRes ?: R.string.overview_title_empty)
+        _keywords.postValue(keywordMap.get(date) ?: listOf())
     }
 }

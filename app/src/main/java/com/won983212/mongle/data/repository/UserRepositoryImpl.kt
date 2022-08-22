@@ -21,7 +21,7 @@ internal class UserRepositoryImpl
 
     override suspend fun getUserInfo(
         callback: RequestLifecycleCallback
-    ): User? = userDataSource.getUserInfo(callback, getCurrentToken())
+    ): User? = userDataSource.getUserInfo(callback, getCurrentToken().accessToken)
 
     override suspend fun refreshToken(
         callback: RequestLifecycleCallback

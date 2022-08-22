@@ -33,6 +33,7 @@ class OverviewFragment : Fragment() {
         viewModel.apply {
             attachDefaultErrorHandler(requireActivity())
             attachDefaultLoadingHandler(requireActivity())
+            synchronize()
             calendarEmotions.observe(viewLifecycleOwner) {
                 binding.calendarOverview.setDayEmotions(it)
             }

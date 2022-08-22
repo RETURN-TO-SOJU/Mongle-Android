@@ -29,6 +29,7 @@ class MainActivity : BaseDataActivity<ActivityMainBinding>() {
         binding.navOverviewBottom.setOnItemSelectedListener(BottomNavItemSelectedListener())
     }
 
+    // TODO Refactor
     private inner class BottomNavItemSelectedListener : NavigationBarView.OnItemSelectedListener {
         override fun onNavigationItemSelected(item: MenuItem): Boolean =
             when (item.itemId) {

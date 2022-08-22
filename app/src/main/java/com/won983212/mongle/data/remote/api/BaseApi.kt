@@ -1,6 +1,7 @@
 package com.won983212.mongle.data.remote.api
 
 import android.util.Log
+import com.won983212.mongle.data.di.MockingHttpException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
@@ -52,6 +53,9 @@ suspend inline fun <T> safeApiCall(
                 is HttpException -> {
                     val body = e.response()?.errorBody()
                     callback.onError(RequestErrorType.HTTP, getErrorMessage(body))
+                }
+                is MockingHttpException -> {
+                    callback.onError(RequestErrorType.HTTP, e.message ?: "No message")
                 }
                 is IOException -> callback.onError(
                     RequestErrorType.NETWORK,

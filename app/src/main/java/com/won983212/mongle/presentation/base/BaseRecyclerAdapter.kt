@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * RecyclerView에 사용될 Base Adapter이다.
  */
-abstract class BaseRecyclerAdapter<B : ViewDataBinding, T : BaseRecyclerItem>(
+abstract class BaseRecyclerAdapter<B : ViewDataBinding, T>(
     var data: List<T> = listOf()
 ) : RecyclerView.Adapter<BaseRecyclerViewHolder<B>>() {
 

@@ -13,21 +13,14 @@ class RemoteUserDataSource @Inject constructor(
     private val api: UserApi
 ) {
 
-    // TODO mock data
-    @Suppress("UNUSED_PARAMETER")
-    fun getUserInfo(
+    suspend fun getUserInfo(
         callback: RequestLifecycleCallback,
-        kakaoToken: OAuthLoginToken
-    ): User = User("소마")
-
-    /*suspend fun getUserInfo(
-        callback: RequestLifecycleCallback,
-        kakaoToken: OAuthLoginToken
+        accessToken: String
     ): User? {
         return safeApiCall(callback) {
-            api.getUserInfo(kakaoToken)
+            api.getUserInfo(accessToken)
         }
-    }*/
+    }
 
     suspend fun login(
         callback: RequestLifecycleCallback,

@@ -2,9 +2,6 @@ package com.won983212.mongle.data.di
 
 import com.google.gson.GsonBuilder
 import com.won983212.mongle.BuildConfig
-import com.won983212.mongle.data.remote.api.CalendarApi
-import com.won983212.mongle.data.remote.api.KakaoSendApi
-import com.won983212.mongle.data.remote.api.UserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +42,7 @@ internal class NetworkModule {
 
     @Singleton
     @Provides
-    fun providePasswordRepository(
+    fun provideRetrofit(
         okHttpClient: OkHttpClient,
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
@@ -61,23 +58,5 @@ internal class NetworkModule {
     fun provideGsonConverterFactory(): GsonConverterFactory {
         val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create()
         return GsonConverterFactory.create(gson)
-    }
-
-    @Singleton
-    @Provides
-    fun provideLoginApi(retrofit: Retrofit): UserApi {
-        return retrofit.create(UserApi::class.java)
-    }
-
-    @Singleton
-    @Provides
-    fun provideKakaoSendApi(retrofit: Retrofit): KakaoSendApi {
-        return retrofit.create(KakaoSendApi::class.java)
-    }
-
-    @Singleton
-    @Provides
-    fun provideCalendarApi(retrofit: Retrofit): CalendarApi {
-        return retrofit.create(CalendarApi::class.java)
     }
 }
