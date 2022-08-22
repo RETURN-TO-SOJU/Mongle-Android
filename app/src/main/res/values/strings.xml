@@ -37,6 +37,7 @@
     <string name="pwd_wrong">틀린 비밀번호입니다. 다시 입력해주세요.</string>
     <string name="pwd_not_matched">방금 입력했던 비밀번호와 다릅니다. 다시 설정해주세요.</string>
     <string name="pwd_lost">암호분실</string>
+    <string name="pwd_delete">암호삭제</string>
 
     <!-- Integration dialog -->
     <string name="integration_title">반가워요 👋\n우리 더 친해져요 :)</string>

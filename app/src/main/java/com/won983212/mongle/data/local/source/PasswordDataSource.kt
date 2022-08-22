@@ -13,7 +13,7 @@ internal class PasswordDataSource
     override val preferenceName = "pwd_pref"
 
     fun getPassword(): String? {
-        return secureProperties.getString(KEY_PWD, "")
+        return secureProperties.getString(KEY_PWD, null)
     }
 
     fun setPassword(password: String?) {

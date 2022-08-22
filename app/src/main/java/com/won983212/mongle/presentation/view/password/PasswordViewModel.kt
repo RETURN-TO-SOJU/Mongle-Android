@@ -12,5 +12,5 @@ class PasswordViewModel @Inject constructor(
 
     fun checkPassword(password: String): Boolean = passwordRepository.getPassword() == password
 
-    fun setPassword(password: String) = passwordRepository.setPassword(password)
+    fun setPassword(password: String?) = passwordRepository.setPassword(password)
 }

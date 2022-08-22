@@ -33,6 +33,7 @@ class StartingActivity : BaseActivity() {
             }
         } else {
             startActivity(loginIntent)
+            finish()
         }
     }
 }

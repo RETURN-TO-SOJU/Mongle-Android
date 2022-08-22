@@ -72,7 +72,12 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
                 binding.textPasswordPwdTitle.text = resources.getString(R.string.pwd_set_title)
                 binding.textPasswordPwdSubtitle.text =
                     resources.getString(R.string.pwd_set_subtitle)
-                binding.btnPasswordLostPwd.visibility = View.GONE
+                binding.btnPasswordLostPwd.text = resources.getText(R.string.pwd_delete)
+                binding.btnPasswordLostPwd.setOnClickListener {
+                    viewModel.setPassword(null)
+                    setResult(RESULT_OK, null)
+                    finish()
+                }
             }
             Mode.REENTER -> {
                 binding.textPasswordPwdTitle.text = resources.getString(R.string.pwd_reenter_title)
@@ -82,6 +87,10 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
             Mode.AUTH -> {
                 binding.textPasswordPwdTitle.text = resources.getString(R.string.pwd_auth_title)
                 binding.textPasswordPwdSubtitle.visibility = View.GONE
+
+                // TODO 암호분실 기능은 향후에 구현
+                binding.btnPasswordLostPwd.visibility = View.GONE
+                binding.btnPasswordLostPwd.text = resources.getText(R.string.pwd_lost)
             }
         }
     }
