@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnLogin.isEnabled = false
+        binding.btnLogin.isEnabled = true
         binding.btnLogin.setOnClickListener {
             loginWithKakao()
         }
@@ -50,11 +50,13 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        lifecycleScope.launch {
-            viewModel.validateToken()
-            withContext(Dispatchers.Main) {
-                binding.btnLogin.isEnabled = true
-            }
+        validateToken()
+    }
+
+    private fun validateToken() = lifecycleScope.launch {
+        viewModel.validateToken()
+        withContext(Dispatchers.Main) {
+            binding.btnLogin.isEnabled = true
         }
     }
 

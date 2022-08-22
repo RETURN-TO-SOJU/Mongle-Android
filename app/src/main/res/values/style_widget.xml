@@ -16,7 +16,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
-        <item name="android:backgroundTint">@color/kakao_yellow</item>
+        <item name="android:background">@drawable/btn_kakao</item>
         <item name="android:textColor">@color/kakao_text</item>
     </style>
 

@@ -12,7 +12,6 @@ import com.won983212.mongle.presentation.view.kakaoexport.KakaoExportActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.main.MainActivity
 import com.won983212.mongle.presentation.view.password.PasswordActivity
-import com.won983212.mongle.presentation.view.password.PasswordActivityMode
 import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
 
 class ViewTestActivity : BaseTestActivity() {
@@ -48,7 +47,7 @@ class ViewTestActivity : BaseTestActivity() {
 
     private fun passwordSetBundle(): Bundle {
         return bundleOf(
-            PasswordActivity.EXTRA_MODE to PasswordActivityMode.SET
+            PasswordActivity.EXTRA_MODE to PasswordActivity.Mode.SET
         )
     }
 

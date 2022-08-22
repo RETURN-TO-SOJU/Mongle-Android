@@ -19,7 +19,7 @@ interface UserApi {
     @GET("reissue/token")
     suspend fun refreshToken(@Body token: OAuthLoginToken): OAuthLoginToken
 
-    @GET("users/fcmtoken")
+    @GET("users/fcm")
     suspend fun setFCMToken(
         @Header(AUTH_TOKEN_HEADER) token: String,
         @Body fcmToken: FCMTokenRequest

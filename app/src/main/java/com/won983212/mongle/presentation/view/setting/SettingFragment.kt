@@ -11,7 +11,6 @@ import com.won983212.mongle.databinding.FragmentSettingBinding
 import com.won983212.mongle.presentation.view.LeavingFragment
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.password.PasswordActivity
-import com.won983212.mongle.presentation.view.password.PasswordActivityMode
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,7 +37,7 @@ class SettingFragment : Fragment() {
 
         binding.layoutSettingPasswordSetup.setOnClickListener {
             Intent(activity, PasswordActivity::class.java).apply {
-                putExtra(PasswordActivity.EXTRA_MODE, PasswordActivityMode.SET)
+                putExtra(PasswordActivity.EXTRA_MODE, PasswordActivity.Mode.SET)
                 startActivity(this)
             }
         }

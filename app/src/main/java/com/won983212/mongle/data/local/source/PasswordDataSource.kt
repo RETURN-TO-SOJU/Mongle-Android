@@ -12,14 +12,18 @@ internal class PasswordDataSource
 
     override val preferenceName = "pwd_pref"
 
-    fun getPassword(): String {
-        return secureProperties.getString(KEY_PWD, "") ?: ""
+    fun getPassword(): String? {
+        return secureProperties.getString(KEY_PWD, "")
     }
 
-    fun setPassword(password: String) {
-        secureProperties.edit()
-            .putString(KEY_PWD, password)
-            .apply()
+    fun setPassword(password: String?) {
+        val editor = secureProperties.edit()
+        if (password != null) {
+            editor.putString(KEY_PWD, password)
+        } else {
+            editor.remove(KEY_PWD)
+        }
+        editor.apply()
     }
 
     companion object {

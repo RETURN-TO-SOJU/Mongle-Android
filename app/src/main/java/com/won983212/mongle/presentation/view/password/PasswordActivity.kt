@@ -7,33 +7,35 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityPasswordBinding
-import com.won983212.mongle.domain.repository.PasswordRepository
 import com.won983212.mongle.presentation.view.password.PasswordActivity.Companion.EXTRA_MODE
+import com.won983212.mongle.presentation.view.password.PasswordActivity.Companion.EXTRA_REDIRECT_INTENT
+import com.won983212.mongle.presentation.view.password.PasswordActivity.Mode
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-enum class PasswordActivityMode {
-    SET, REENTER, AUTH
-}
 
 /**
+ * TODO refactor with Viewmodel
  * ## Extras
- * * **(선택)** [EXTRA_MODE]: [PasswordActivityMode] -
- * 페스워드 설정/입력 모드. 기본값은 [AUTH][PasswordActivityMode.AUTH]
+ * * **(선택)** [EXTRA_MODE]: [Mode] -
+ * 패스워드 설정/입력 모드. 기본값은 [AUTH][Mode.AUTH]
+ * * **(선택)** [EXTRA_REDIRECT_INTENT]: [Intent] -
+ * 패스워드 인증 성공시 리다이렉션할 intent.
+ * [EXTRA_MODE]가 [AUTH][Mode.AUTH]인 경우에만 사용할 수 있다.
  */
 @AndroidEntryPoint
 class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInputListener {
-    @Inject
-    lateinit var passwordRepository: PasswordRepository
 
+    private val viewModel by viewModels<PasswordViewModel>()
     private lateinit var pwdIndicatorButtons: Array<RadioButton>
     private lateinit var binding: ActivityPasswordBinding
     private var pwdPrevInput: String = ""
     private val pwdMemory = PasswordMemory(4)
-    private var mode = PasswordActivityMode.AUTH
+    private var mode = Mode.AUTH
+    private var redirectTo: Intent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +47,9 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         mode = (intent.getSerializableExtra(EXTRA_MODE)
-            ?: PasswordActivityMode.AUTH) as PasswordActivityMode
+            ?: Mode.AUTH) as Mode
+
+        redirectTo = intent.getParcelableExtra(EXTRA_REDIRECT_INTENT)
 
         pwdIndicatorButtons = arrayOf(
             binding.btnPassword1,
@@ -58,20 +62,24 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
         initEvents()
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
     private fun setupUIByMode() {
         when (mode) {
-            PasswordActivityMode.SET -> {
+            Mode.SET -> {
                 binding.textPasswordPwdTitle.text = resources.getString(R.string.pwd_set_title)
                 binding.textPasswordPwdSubtitle.text =
                     resources.getString(R.string.pwd_set_subtitle)
                 binding.btnPasswordLostPwd.visibility = View.GONE
             }
-            PasswordActivityMode.REENTER -> {
+            Mode.REENTER -> {
                 binding.textPasswordPwdTitle.text = resources.getString(R.string.pwd_reenter_title)
                 binding.textPasswordPwdSubtitle.text =
                     resources.getString(R.string.pwd_reenter_subtitle)
             }
-            PasswordActivityMode.AUTH -> {
+            Mode.AUTH -> {
                 binding.textPasswordPwdTitle.text = resources.getString(R.string.pwd_auth_title)
                 binding.textPasswordPwdSubtitle.visibility = View.GONE
             }
@@ -119,38 +127,46 @@ class PasswordActivity : AppCompatActivity(), View.OnClickListener, PasswordInpu
 
     override fun onPasswordInput(password: String) {
         when (mode) {
-            PasswordActivityMode.AUTH -> {
-                if (passwordRepository.getPassword() == password) {
+            Mode.AUTH -> {
+                if (viewModel.checkPassword(password)) {
                     setResult(RESULT_OK)
+                    redirectTo?.let {
+                        startActivity(it)
+                    }
                     finish()
                 } else {
                     Toast.makeText(this, R.string.pwd_wrong, Toast.LENGTH_SHORT).show()
                 }
             }
-            PasswordActivityMode.REENTER -> {
+            Mode.REENTER -> {
                 if (pwdPrevInput == password) {
                     val result = Intent(this, PasswordActivity::class.java).apply {
                         putExtra(RESULT_PASSWORD, password)
                     }
-                    passwordRepository.setPassword(password)
+                    viewModel.setPassword(password)
                     setResult(RESULT_OK, result)
                     finish()
                 } else {
                     Toast.makeText(this, R.string.pwd_not_matched, Toast.LENGTH_SHORT).show()
-                    mode = PasswordActivityMode.SET
+                    mode = Mode.SET
                     setupUIByMode()
                 }
             }
-            PasswordActivityMode.SET -> {
+            Mode.SET -> {
                 pwdPrevInput = password
-                mode = PasswordActivityMode.REENTER
+                mode = Mode.REENTER
                 setupUIByMode()
             }
         }
     }
 
+    enum class Mode {
+        SET, REENTER, AUTH
+    }
+
     companion object {
         const val EXTRA_MODE = "mode"
+        const val EXTRA_REDIRECT_INTENT = "redirect"
         const val RESULT_PASSWORD = "password"
     }
 }

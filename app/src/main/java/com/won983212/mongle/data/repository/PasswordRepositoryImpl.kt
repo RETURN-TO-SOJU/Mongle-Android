@@ -9,7 +9,7 @@ internal class PasswordRepositoryImpl
     private val passwordDataSource: PasswordDataSource
 ) : PasswordRepository {
 
-    override fun getPassword(): String = passwordDataSource.getPassword()
+    override fun getPassword(): String? = passwordDataSource.getPassword()
 
-    override fun setPassword(password: String) = passwordDataSource.setPassword(password)
+    override fun setPassword(password: String?) = passwordDataSource.setPassword(password)
 }
