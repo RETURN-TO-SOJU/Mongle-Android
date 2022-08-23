@@ -1,6 +1,7 @@
 package com.won983212.mongle
 
 import org.junit.Test
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 /**
@@ -11,6 +12,6 @@ import java.time.LocalDateTime
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        println(LocalDateTime.parse("2022-08-22T14:23:32.825"))
+        println(LocalDate.now().toString())
     }
 }

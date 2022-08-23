@@ -37,7 +37,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/text_arrived_gift_date_range"
+                android:id="@+id/text_arrived_gift_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/app_semibold"
@@ -52,20 +52,11 @@
             tools:ignore="ButtonStyle">
 
             <Button
-                android:id="@+id/btn_arrived_gift_watch_later"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/btn_round_left_down"
-                android:backgroundTint="@color/disabled"
-                android:text="@string/watch_later" />
-
-            <Button
                 android:id="@+id/btn_arrived_gift_watch_now"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/btn_round_right_down"
+                android:background="@drawable/btn_round_down"
                 android:text="@string/watch_now" />
         </LinearLayout>
     </LinearLayout>

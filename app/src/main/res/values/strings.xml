@@ -114,4 +114,5 @@
     <string name="leaving_message_agree">안내사항을 확인하고 회원탈퇴에 동의</string>
     <string name="leaving_ok">탈퇴하기</string>
     <string name="default_notification_channel_id">mongle_firebase_messaging</string>
+    <string name="emotion_message_proportion">나의 %1$s비율 <font color="#EB6E6D">%2$d%%</font></string>
 </resources>

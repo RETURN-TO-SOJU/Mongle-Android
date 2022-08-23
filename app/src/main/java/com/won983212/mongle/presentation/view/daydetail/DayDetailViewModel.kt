@@ -9,6 +9,7 @@ import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
+import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
 import com.won983212.mongle.presentation.view.daydetail.model.AnalyzedEmotion
 import com.won983212.mongle.presentation.view.daydetail.model.Photo
@@ -24,11 +25,15 @@ import javax.inject.Inject
 class DayDetailViewModel @Inject constructor(
     private val calendarRepository: CalendarRepository
 ) : BaseViewModel() {
+
     lateinit var date: LocalDate
         private set
 
     var emotion: Emotion? = null
         private set
+
+    private val _eventOpenGiftDialog = SingleLiveEvent<LocalDate>()
+    val eventOpenGiftDialog = _eventOpenGiftDialog.asLiveData()
 
     private val _analyzedEmotions = MutableLiveData(listOf<AnalyzedEmotion>())
     val analyzedEmotions = _analyzedEmotions.asLiveData()
@@ -54,8 +59,15 @@ class DayDetailViewModel @Inject constructor(
 
     // TODO model mapper를 따로 제작하면 좋겠다
     fun initializeFromIntent(intent: Intent) {
-        val dateExtra = intent.getSerializableExtra(DayDetailActivity.EXTRA_DATE)
-        date = (dateExtra ?: LocalDate.now()) as LocalDate
+        date = (intent.getSerializableExtra(DayDetailActivity.EXTRA_DATE)
+            ?: LocalDate.now()) as LocalDate
+
+        val giftDate =
+            intent.getBooleanExtra(DayDetailActivity.EXTRA_SHOW_ARRIVED_GIFT_DIALOG, false)
+        if (giftDate) {
+            _eventOpenGiftDialog.value = date
+        }
+
         viewModelScope.launch {
             val detail = calendarRepository.getCalendarDayDetail(this@DayDetailViewModel, date)
             if (detail != null) {

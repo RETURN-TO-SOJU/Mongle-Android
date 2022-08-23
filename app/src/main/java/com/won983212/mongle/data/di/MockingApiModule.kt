@@ -244,13 +244,52 @@ internal class MockingApiModule {
                 withContext(Dispatchers.IO) {
                     checkToken(token)
                     delay(1000)
-                    listOf(
-                        EmotionalSentence(0, "아 슬퍼", Emotion.SAD),
-                        EmotionalSentence(1, "아 너무 슬퍼", Emotion.SAD),
-                        EmotionalSentence(2, "아 정말 슬퍼", Emotion.SAD),
-                        EmotionalSentence(3, "기뻐", Emotion.HAPPY),
-                        EmotionalSentence(4, "아 정말 기뻐", Emotion.HAPPY)
-                    )
+                    when (emotion) {
+                        Emotion.HAPPY.name -> (0..4).map {
+                            EmotionalSentence(
+                                it.toLong(),
+                                "행복${it}",
+                                Emotion.HAPPY
+                            )
+                        }
+                        Emotion.ANXIOUS.name -> (0..4).map {
+                            EmotionalSentence(
+                                it.toLong(),
+                                "불안${it}",
+                                Emotion.ANXIOUS
+                            )
+                        }
+                        Emotion.ANGRY.name -> (0..4).map {
+                            EmotionalSentence(
+                                it.toLong(),
+                                "화난다${it}",
+                                Emotion.ANGRY
+                            )
+                        }
+                        Emotion.SAD.name -> (0..4).map {
+                            EmotionalSentence(
+                                it.toLong(),
+                                "슬프다${it}",
+                                Emotion.SAD
+                            )
+                        }
+                        Emotion.NEUTRAL.name -> (0..4).map {
+                            EmotionalSentence(
+                                it.toLong(),
+                                "평범하다${it}",
+                                Emotion.NEUTRAL
+                            )
+                        }
+                        Emotion.TIRED.name -> (0..4).map {
+                            EmotionalSentence(
+                                it.toLong(),
+                                "힘들다${it}",
+                                Emotion.TIRED
+                            )
+                        }
+                        else -> listOf()
+                    }
+
                 }
         }
 }

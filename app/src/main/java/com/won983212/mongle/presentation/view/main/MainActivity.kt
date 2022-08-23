@@ -12,10 +12,18 @@ import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityMainBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.favorite.FavoriteFragment
+import com.won983212.mongle.presentation.view.main.MainActivity.Companion.EXTRA_ANALYZED_DATE_RANGE
+import com.won983212.mongle.presentation.view.openAnalyzeCompleteDialog
 import com.won983212.mongle.presentation.view.overview.OverviewFragment
 import com.won983212.mongle.presentation.view.setting.SettingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * ## Extras
+ * * **(선택)** [EXTRA_ANALYZED_DATE_RANGE]: [String] -
+ * Analyzed Complete Dialog를 띄우면서, 이 parameter를 date range로써 보여준다.
+ * null일경우 dialog를 띄우지 않는다. null이 기본값이다
+ */
 @AndroidEntryPoint
 class MainActivity : BaseDataActivity<ActivityMainBinding>() {
     private val viewModel by viewModels<MainViewModel>()
@@ -27,6 +35,15 @@ class MainActivity : BaseDataActivity<ActivityMainBinding>() {
         binding.layoutMainContent.adapter = NavAdapter(supportFragmentManager, lifecycle)
         binding.layoutMainContent.registerOnPageChangeCallback(PageChangeListener())
         binding.navOverviewBottom.setOnItemSelectedListener(BottomNavItemSelectedListener())
+
+        val dateText = intent.getStringExtra(EXTRA_ANALYZED_DATE_RANGE)
+        if (dateText != null) {
+            openAnalyzeCompleteDialog(
+                this,
+                "",
+                dateText
+            )
+        }
     }
 
     // TODO Refactor
@@ -72,5 +89,9 @@ class MainActivity : BaseDataActivity<ActivityMainBinding>() {
                 2 -> SettingFragment()
                 else -> error("No Fragment")
             }
+    }
+
+    companion object {
+        const val EXTRA_ANALYZED_DATE_RANGE = "analyzedDateRange"
     }
 }

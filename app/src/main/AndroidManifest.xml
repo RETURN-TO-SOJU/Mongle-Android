@@ -41,6 +41,9 @@
             android:name=".presentation.view.diary.EditDiaryActivity"
             android:exported="false" />
         <activity
+            android:name=".presentation.view.messages.EmotionMessagesActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.view.daydetail.DayDetailActivity"
             android:exported="false"
             android:parentActivityName=".presentation.view.main.MainActivity" />

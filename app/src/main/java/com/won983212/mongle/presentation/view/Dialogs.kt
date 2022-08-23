@@ -62,18 +62,20 @@ fun openAnalyzeCompleteDialog(
         LayoutInflater.from(context),
         null, false
     )
+    val dialog = openDialog(context, layout.root, true)
     layout.imageAnalyzeCompleteFlag.attachCompatVectorAnim(R.drawable.avd_flag_cross)
     layout.imageAnalyzeCompleteChecking.attachCompatVectorAnim(R.drawable.avd_complete)
     layout.textAnalyzeCompleteTitle.text =
         context.resources.getString(R.string.analyze_complete, name)
     layout.textAnalyzeCompleteDateRange.text = dateRange
-    layout.btnAnalyzeCompleteGoResult.setOnClickListener(onGoResult)
-    return openDialog(context, layout.root, true)
+    layout.btnAnalyzeCompleteGoResult.setOnClickListener(
+        onGoResult ?: View.OnClickListener { dialog.dismiss() })
+    return dialog
 }
 
 fun openGiftArrivedDialog(
     context: Context,
-    dateRange: String,
+    date: String,
     onGoResult: View.OnClickListener? = null
 ): AlertDialog {
     val layout = DialogArrivedGiftBinding.inflate(
@@ -83,8 +85,8 @@ fun openGiftArrivedDialog(
 
     val dialog = openDialog(context, layout.root, true)
     layout.imageArrivedGift.attachCompatVectorAnim(R.drawable.avd_gift)
-    layout.textArrivedGiftDateRange.text = dateRange
-    layout.btnArrivedGiftWatchLater.setOnClickListener { dialog.dismiss() }
-    layout.btnArrivedGiftWatchNow.setOnClickListener(onGoResult)
+    layout.textArrivedGiftDate.text = date
+    layout.btnArrivedGiftWatchNow.setOnClickListener(
+        onGoResult ?: View.OnClickListener { dialog.dismiss() })
     return dialog
 }
