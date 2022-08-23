@@ -1,6 +1,6 @@
-package com.won983212.mongle.data.remote.api
+package com.won983212.mongle.data.source.api
 
-import com.won983212.mongle.data.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.model.MessageResult
 import okhttp3.MultipartBody
 import retrofit2.http.Header
 import retrofit2.http.Multipart

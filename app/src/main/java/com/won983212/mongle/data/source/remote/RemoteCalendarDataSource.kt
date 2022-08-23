@@ -1,18 +1,18 @@
-package com.won983212.mongle.data.remote.source
+package com.won983212.mongle.data.source.remote
 
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.remote.api.CalendarApi
-import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
-import com.won983212.mongle.data.remote.api.safeApiCall
-import com.won983212.mongle.data.remote.model.MessageResult
-import com.won983212.mongle.data.remote.model.request.DiaryRequest
-import com.won983212.mongle.data.remote.model.response.CalendarDay
-import com.won983212.mongle.data.remote.model.response.CalendarDayDetail
-import com.won983212.mongle.data.remote.model.response.EmotionalSentence
+import com.won983212.mongle.data.source.api.CalendarApi
+import com.won983212.mongle.data.source.api.RequestLifecycleCallback
+import com.won983212.mongle.data.source.api.safeApiCall
+import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
+import com.won983212.mongle.data.source.remote.model.response.CalendarDay
+import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import java.time.LocalDate
 import javax.inject.Inject
 
-class RemoteCalendarDataSource @Inject constructor(
+internal class RemoteCalendarDataSource @Inject constructor(
     private val api: CalendarApi
 ) {
     suspend fun updateDiary(

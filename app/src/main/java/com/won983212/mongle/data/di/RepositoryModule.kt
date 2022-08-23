@@ -1,11 +1,11 @@
 package com.won983212.mongle.data.di
 
-import com.won983212.mongle.data.local.source.ConfigDataSource
-import com.won983212.mongle.data.local.source.PasswordDataSource
-import com.won983212.mongle.data.local.source.TokenDataSource
-import com.won983212.mongle.data.remote.source.RemoteCalendarDataSource
-import com.won983212.mongle.data.remote.source.RemoteKakaotalkDataSource
-import com.won983212.mongle.data.remote.source.RemoteUserDataSource
+import com.won983212.mongle.data.source.local.ConfigDataSource
+import com.won983212.mongle.data.source.local.PasswordDataSource
+import com.won983212.mongle.data.source.local.TokenDataSource
+import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
+import com.won983212.mongle.data.source.remote.RemoteKakaotalkDataSource
+import com.won983212.mongle.data.source.remote.RemoteUserDataSource
 import com.won983212.mongle.data.repository.*
 import com.won983212.mongle.domain.repository.*
 import dagger.Module

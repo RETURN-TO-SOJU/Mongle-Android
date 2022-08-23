@@ -1,15 +1,15 @@
-package com.won983212.mongle.data.remote.source
+package com.won983212.mongle.data.source.remote
 
 import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.model.User
-import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
-import com.won983212.mongle.data.remote.api.UserApi
-import com.won983212.mongle.data.remote.api.safeApiCall
-import com.won983212.mongle.data.remote.model.MessageResult
-import com.won983212.mongle.data.remote.model.request.FCMTokenRequest
+import com.won983212.mongle.data.source.api.RequestLifecycleCallback
+import com.won983212.mongle.data.source.api.UserApi
+import com.won983212.mongle.data.source.api.safeApiCall
+import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.model.request.FCMTokenRequest
 import javax.inject.Inject
 
-class RemoteUserDataSource @Inject constructor(
+internal class RemoteUserDataSource @Inject constructor(
     private val api: UserApi
 ) {
 

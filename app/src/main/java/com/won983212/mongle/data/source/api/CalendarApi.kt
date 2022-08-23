@@ -1,10 +1,10 @@
-package com.won983212.mongle.data.remote.api
+package com.won983212.mongle.data.source.api
 
-import com.won983212.mongle.data.remote.model.MessageResult
-import com.won983212.mongle.data.remote.model.request.DiaryRequest
-import com.won983212.mongle.data.remote.model.response.CalendarDay
-import com.won983212.mongle.data.remote.model.response.CalendarDayDetail
-import com.won983212.mongle.data.remote.model.response.EmotionalSentence
+import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
+import com.won983212.mongle.data.source.remote.model.response.CalendarDay
+import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import retrofit2.http.*
 
 interface CalendarApi {

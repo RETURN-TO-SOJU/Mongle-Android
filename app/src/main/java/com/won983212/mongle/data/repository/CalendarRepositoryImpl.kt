@@ -1,26 +1,29 @@
 package com.won983212.mongle.data.repository
 
+import com.won983212.mongle.data.source.local.LocalCalendarDataSource
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
-import com.won983212.mongle.data.remote.model.MessageResult
-import com.won983212.mongle.data.remote.model.response.CalendarDay
-import com.won983212.mongle.data.remote.model.response.CalendarDayDetail
-import com.won983212.mongle.data.remote.model.response.EmotionalSentence
-import com.won983212.mongle.data.remote.source.RemoteCalendarDataSource
+import com.won983212.mongle.data.source.api.RequestLifecycleCallback
+import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.model.response.CalendarDay
+import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
+import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import java.time.LocalDate
 
 internal class CalendarRepositoryImpl(
-    private val calendarDataSource: RemoteCalendarDataSource,
+    private val remoteCalendarDataSource: RemoteCalendarDataSource,
+    private val localCalendarDataSource: LocalCalendarDataSource,
     private val userRepository: UserRepository
 ) : CalendarRepository {
+
     override suspend fun updateDiary(
         callback: RequestLifecycleCallback,
         date: LocalDate,
         text: String
     ): MessageResult? =
-        calendarDataSource.updateDiary(
+        remoteCalendarDataSource.updateDiary(
             callback,
             userRepository.getCurrentToken().accessToken,
             date,
@@ -32,7 +35,7 @@ internal class CalendarRepositoryImpl(
         startMonth: LocalDate,
         endMonth: LocalDate
     ): List<CalendarDay>? =
-        calendarDataSource.getCalendarDayMetadata(
+        remoteCalendarDataSource.getCalendarDayMetadata(
             callback,
             userRepository.getCurrentToken().accessToken,
             startMonth,
@@ -43,7 +46,7 @@ internal class CalendarRepositoryImpl(
         callback: RequestLifecycleCallback,
         date: LocalDate
     ): CalendarDayDetail? =
-        calendarDataSource.getCalendarDayDetail(
+        remoteCalendarDataSource.getCalendarDayDetail(
             callback,
             userRepository.getCurrentToken().accessToken,
             date
@@ -54,7 +57,7 @@ internal class CalendarRepositoryImpl(
         date: LocalDate,
         emotion: Emotion
     ): List<EmotionalSentence>? =
-        calendarDataSource.getDayEmotionalSentences(
+        remoteCalendarDataSource.getDayEmotionalSentences(
             callback,
             userRepository.getCurrentToken().accessToken,
             date,

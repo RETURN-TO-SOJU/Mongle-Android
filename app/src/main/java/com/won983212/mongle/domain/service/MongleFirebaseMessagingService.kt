@@ -11,8 +11,8 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.won983212.mongle.R
-import com.won983212.mongle.data.remote.api.RequestErrorType
-import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
+import com.won983212.mongle.data.source.api.RequestErrorType
+import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.domain.repository.ConfigRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity

@@ -1,9 +1,9 @@
-package com.won983212.mongle.data.remote.api
+package com.won983212.mongle.data.source.api
 
 import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.model.User
-import com.won983212.mongle.data.remote.model.MessageResult
-import com.won983212.mongle.data.remote.model.request.FCMTokenRequest
+import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.model.request.FCMTokenRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header

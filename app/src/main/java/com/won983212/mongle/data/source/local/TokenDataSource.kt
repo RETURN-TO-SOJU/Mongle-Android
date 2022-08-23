@@ -1,7 +1,7 @@
-package com.won983212.mongle.data.local.source
+package com.won983212.mongle.data.source.local
 
 import android.content.Context
-import com.won983212.mongle.data.local.SecurePropertiesSource
+import com.won983212.mongle.data.source.SecurePropertiesSource
 import com.won983212.mongle.data.model.OAuthLoginToken
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject

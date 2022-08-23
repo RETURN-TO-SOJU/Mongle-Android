@@ -5,7 +5,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.OAuthLoginToken
-import com.won983212.mongle.data.remote.api.EmptyRequestLifecycleCallback
+import com.won983212.mongle.data.source.api.EmptyRequestLifecycleCallback
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.domain.usecase.ValidateTokenUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel

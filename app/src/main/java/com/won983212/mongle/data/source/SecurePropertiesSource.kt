@@ -1,11 +1,11 @@
-package com.won983212.mongle.data.local
+package com.won983212.mongle.data.source
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
-abstract class SecurePropertiesSource(
+internal abstract class SecurePropertiesSource(
     context: Context
 ) {
     abstract val preferenceName: String

@@ -1,7 +1,7 @@
 package com.won983212.mongle.data.repository
 
 import android.content.SharedPreferences
-import com.won983212.mongle.data.local.source.ConfigDataSource
+import com.won983212.mongle.data.source.local.ConfigDataSource
 import com.won983212.mongle.domain.repository.ConfigRepository
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.won983212.mongle.data.remote.model.response
+package com.won983212.mongle.data.source.remote.model.response
 
 import com.google.gson.annotations.SerializedName
 import com.won983212.mongle.data.model.Emotion

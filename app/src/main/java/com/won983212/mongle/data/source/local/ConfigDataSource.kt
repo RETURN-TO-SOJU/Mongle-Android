@@ -1,4 +1,4 @@
-package com.won983212.mongle.data.local.source
+package com.won983212.mongle.data.source.local
 
 import android.content.Context
 import android.content.SharedPreferences

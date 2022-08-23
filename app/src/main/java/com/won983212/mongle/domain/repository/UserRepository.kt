@@ -2,8 +2,8 @@ package com.won983212.mongle.domain.repository
 
 import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.model.User
-import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
-import com.won983212.mongle.data.remote.model.MessageResult
+import com.won983212.mongle.data.source.api.RequestLifecycleCallback
+import com.won983212.mongle.data.source.remote.model.MessageResult
 
 interface UserRepository {
     fun getCurrentToken(): OAuthLoginToken

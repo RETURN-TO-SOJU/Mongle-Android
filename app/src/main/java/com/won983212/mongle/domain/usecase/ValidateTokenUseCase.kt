@@ -1,6 +1,6 @@
 package com.won983212.mongle.domain.usecase
 
-import com.won983212.mongle.data.remote.api.RequestLifecycleCallback
+import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.domain.repository.UserRepository
 import javax.inject.Inject
 

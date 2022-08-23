@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.gson.Gson
 import com.won983212.mongle.common.util.toastShort
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
