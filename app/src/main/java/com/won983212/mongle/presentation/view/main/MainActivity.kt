@@ -1,7 +1,13 @@
 package com.won983212.mongle.presentation.view.main
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.provider.MediaStore
+import android.util.Log
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -9,6 +15,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationBarView
 import com.won983212.mongle.R
+import com.won983212.mongle.common.util.toastLong
 import com.won983212.mongle.databinding.ActivityMainBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.favorite.FavoriteFragment
@@ -17,6 +24,8 @@ import com.won983212.mongle.presentation.view.openAnalyzeCompleteDialog
 import com.won983212.mongle.presentation.view.overview.OverviewFragment
 import com.won983212.mongle.presentation.view.setting.SettingFragment
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.ZoneId
 
 /**
  * ## Extras

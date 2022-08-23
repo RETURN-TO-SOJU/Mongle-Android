@@ -34,6 +34,8 @@ object EmptyRequestLifecycleCallback : RequestLifecycleCallback {
     }
 }
 
+// TODO Error Handling방식을 개선할 필요가 있다.
+// 나중에 Coroutine flow를 사용하든, exception을 사용하든 해야함
 suspend inline fun <T> safeApiCall(
     callback: RequestLifecycleCallback,
     crossinline callFunction: suspend () -> T

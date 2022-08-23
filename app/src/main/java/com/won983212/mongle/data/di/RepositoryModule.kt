@@ -1,12 +1,13 @@
 package com.won983212.mongle.data.di
 
+import com.won983212.mongle.data.repository.*
 import com.won983212.mongle.data.source.local.ConfigDataSource
+import com.won983212.mongle.data.source.local.MemoryCalendarDataSource
 import com.won983212.mongle.data.source.local.PasswordDataSource
 import com.won983212.mongle.data.source.local.TokenDataSource
 import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
 import com.won983212.mongle.data.source.remote.RemoteKakaotalkDataSource
 import com.won983212.mongle.data.source.remote.RemoteUserDataSource
-import com.won983212.mongle.data.repository.*
 import com.won983212.mongle.domain.repository.*
 import dagger.Module
 import dagger.Provides
@@ -45,10 +46,15 @@ internal class RepositoryModule {
     @Singleton
     @Provides
     fun provideCalendarRepository(
-        calendarDataSource: RemoteCalendarDataSource,
+        remoteCalendarDataSource: RemoteCalendarDataSource,
+        memoryCalendarDataSource: MemoryCalendarDataSource,
         userRepository: UserRepository
     ): CalendarRepository {
-        return CalendarRepositoryImpl(calendarDataSource, userRepository)
+        return CalendarRepositoryImpl(
+            remoteCalendarDataSource,
+            memoryCalendarDataSource,
+            userRepository
+        )
     }
 
     @Singleton

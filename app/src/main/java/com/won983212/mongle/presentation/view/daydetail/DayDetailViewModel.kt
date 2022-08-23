@@ -1,6 +1,10 @@
 package com.won983212.mongle.presentation.view.daydetail
 
+import android.content.ContentUris
 import android.content.Intent
+import android.database.Cursor
+import android.net.Uri
+import android.provider.MediaStore
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
@@ -17,6 +21,8 @@ import com.won983212.mongle.presentation.view.daydetail.model.Schedule
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
@@ -38,8 +44,17 @@ class DayDetailViewModel @Inject constructor(
     private val _analyzedEmotions = MutableLiveData(listOf<AnalyzedEmotion>())
     val analyzedEmotions = _analyzedEmotions.asLiveData()
 
+    private val _localPhotos = MutableLiveData(listOf<Photo>())
     private val _photos = MutableLiveData(listOf<Photo>())
-    val photos = _photos.asLiveData()
+    val photos = Transformations.switchMap(_localPhotos) { local ->
+        Transformations.map(_photos) {
+            if (local == null) {
+                it
+            } else {
+                local + it
+            }
+        }
+    }
 
     private val _schedules = MutableLiveData(listOf<Schedule>())
     val schedules = _schedules.asLiveData()
@@ -91,5 +106,24 @@ class DayDetailViewModel @Inject constructor(
                 })
             }
         }
+    }
+
+    fun readPhotosFromCursor(cursor: Cursor) {
+        val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
+        val addedColumn =
+            cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED)
+        val photoList = mutableListOf<Photo>()
+
+        while (cursor.moveToNext()) {
+            val id = cursor.getLong(idColumn)
+            val added = cursor.getLong(addedColumn)
+            val contentUri: Uri = ContentUris.withAppendedId(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id
+            )
+            val addedText = LocalDateTime.ofEpochSecond(added, 0, ZoneOffset.UTC)
+                .format(DateTimeFormatter.ofPattern("a hh:mm"))
+            photoList.add(Photo(contentUri.toString(), addedText))
+        }
+        _localPhotos.postValue(photoList)
     }
 }

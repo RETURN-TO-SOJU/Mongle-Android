@@ -1,6 +1,7 @@
 package com.won983212.mongle.data.source.remote
 
 import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.data.source.CalendarDataSource
 import com.won983212.mongle.data.source.api.CalendarApi
 import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.data.source.api.safeApiCall
@@ -14,8 +15,9 @@ import javax.inject.Inject
 
 internal class RemoteCalendarDataSource @Inject constructor(
     private val api: CalendarApi
-) {
-    suspend fun updateDiary(
+) : CalendarDataSource {
+
+    override suspend fun updateDiary(
         callback: RequestLifecycleCallback,
         accessToken: String,
         date: LocalDate,
@@ -30,7 +32,7 @@ internal class RemoteCalendarDataSource @Inject constructor(
         }
     }
 
-    suspend fun getCalendarDayMetadata(
+    override suspend fun getCalendarDayMetadata(
         callback: RequestLifecycleCallback,
         accessToken: String,
         startMonth: LocalDate,
@@ -44,7 +46,7 @@ internal class RemoteCalendarDataSource @Inject constructor(
         }
     }
 
-    suspend fun getCalendarDayDetail(
+    override suspend fun getCalendarDayDetail(
         callback: RequestLifecycleCallback,
         accessToken: String,
         date: LocalDate
@@ -57,7 +59,7 @@ internal class RemoteCalendarDataSource @Inject constructor(
         }
     }
 
-    suspend fun getDayEmotionalSentences(
+    override suspend fun getDayEmotionalSentences(
         callback: RequestLifecycleCallback,
         accessToken: String,
         date: LocalDate,

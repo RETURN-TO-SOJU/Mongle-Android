@@ -1,39 +1,50 @@
-package com.won983212.mongle.data.source
+package com.won983212.mongle.data.source.local
 
 import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.data.source.CalendarDataSource
 import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import java.time.LocalDate
+import javax.inject.Inject
 
-// TODO "Data Source에서 token을 가져가는 방식" 개선 필요
-interface CalendarDataSource {
-    suspend fun updateDiary(
+internal class MemoryCalendarDataSource @Inject constructor(
+) : CalendarDataSource {
+
+    override suspend fun updateDiary(
         callback: RequestLifecycleCallback,
         accessToken: String,
         date: LocalDate,
         text: String
-    ): MessageResult?
+    ): MessageResult? {
+        TODO("Not yet implemented")
+    }
 
-    suspend fun getCalendarDayMetadata(
+    override suspend fun getCalendarDayMetadata(
         callback: RequestLifecycleCallback,
         accessToken: String,
         startMonth: LocalDate,
         endMonth: LocalDate
-    ): List<CalendarDay>?
+    ): List<CalendarDay>? {
+        TODO("Not yet implemented")
+    }
 
-    suspend fun getCalendarDayDetail(
+    override suspend fun getCalendarDayDetail(
         callback: RequestLifecycleCallback,
         accessToken: String,
         date: LocalDate
-    ): CalendarDayDetail?
+    ): CalendarDayDetail? {
+        TODO("Not yet implemented")
+    }
 
-    suspend fun getDayEmotionalSentences(
+    override suspend fun getDayEmotionalSentences(
         callback: RequestLifecycleCallback,
         accessToken: String,
         date: LocalDate,
         emotion: Emotion
-    ): List<EmotionalSentence>?
+    ): List<EmotionalSentence>? {
+        TODO("Not yet implemented")
+    }
 }
