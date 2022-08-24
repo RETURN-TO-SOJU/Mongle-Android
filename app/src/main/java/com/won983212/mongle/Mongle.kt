@@ -2,9 +2,8 @@ package com.won983212.mongle
 
 import android.app.Application
 import android.util.Log
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.common.KakaoSdk
+import com.kakao.sdk.common.util.Utility
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -13,7 +12,7 @@ class Mongle : Application() {
         super.onCreate()
 
         // Get key hash
-        // Log.i("KeyHash", Utility.getKeyHash(this))
+        Log.i("KeyHash", Utility.getKeyHash(this))
 
         // Initialize kakao sdk
         KakaoSdk.init(this, BuildConfig.KAKAO_NATIVE_APP_KEY)

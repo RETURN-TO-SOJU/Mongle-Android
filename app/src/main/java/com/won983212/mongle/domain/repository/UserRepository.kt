@@ -31,6 +31,11 @@ interface UserRepository {
         fcmToken: String
     ): MessageResult?
 
+    suspend fun setUsername(
+        callback: RequestLifecycleCallback,
+        username: String
+    ): MessageResult?
+
     suspend fun leaveAccount(
         callback: RequestLifecycleCallback
     ): MessageResult?

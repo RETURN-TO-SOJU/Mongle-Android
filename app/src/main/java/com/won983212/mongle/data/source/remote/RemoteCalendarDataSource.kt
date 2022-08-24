@@ -11,6 +11,7 @@ import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 internal class RemoteCalendarDataSource @Inject constructor(
@@ -41,7 +42,10 @@ internal class RemoteCalendarDataSource @Inject constructor(
         return safeApiCall(callback) {
             api.getCalendarDayMetadata(
                 accessToken,
-                startMonth.year, startMonth.monthValue, endMonth.monthValue
+                startMonth.format(DateTimeFormatter.ofPattern("yyyy-MM")),
+                endMonth.format(
+                    DateTimeFormatter.ofPattern("yyyy-MM")
+                )
             )
         }
     }

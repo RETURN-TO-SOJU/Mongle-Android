@@ -1,11 +1,11 @@
 package com.won983212.mongle.data.repository
 
-import com.won983212.mongle.data.source.local.TokenDataSource
 import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.model.User
 import com.won983212.mongle.data.source.api.RequestLifecycleCallback
-import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.local.TokenDataSource
 import com.won983212.mongle.data.source.remote.RemoteUserDataSource
+import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.domain.repository.UserRepository
 import javax.inject.Inject
 
@@ -43,6 +43,12 @@ internal class UserRepositoryImpl
         fcmToken: String
     ): MessageResult? =
         userDataSource.setFCMToken(callback, getCurrentToken().accessToken, fcmToken)
+
+    override suspend fun setUsername(
+        callback: RequestLifecycleCallback,
+        username: String
+    ): MessageResult? =
+        userDataSource.setUsername(callback, getCurrentToken().accessToken, username)
 
     override suspend fun leaveAccount(callback: RequestLifecycleCallback): MessageResult? {
         val result = userDataSource.leaveAccount(callback, getCurrentToken().accessToken)

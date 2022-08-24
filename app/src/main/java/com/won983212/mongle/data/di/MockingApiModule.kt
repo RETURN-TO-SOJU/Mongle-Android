@@ -1,5 +1,10 @@
 package com.won983212.mongle.data.di
 
+class MockingHttpException(
+    message: String
+) : RuntimeException(message)
+
+/*
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.model.User
@@ -9,6 +14,7 @@ import com.won983212.mongle.data.source.api.UserApi
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
 import com.won983212.mongle.data.source.remote.model.request.FCMTokenRequest
+import com.won983212.mongle.data.source.remote.model.request.UsernameRequest
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
@@ -25,9 +31,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Singleton
 
-class MockingHttpException(
-    message: String
-) : RuntimeException(message)
 
 // TODO Mocking API
 @Module
@@ -69,6 +72,16 @@ internal class MockingApiModule {
             override suspend fun setFCMToken(
                 token: String,
                 fcmToken: FCMTokenRequest
+            ): MessageResult =
+                withContext(Dispatchers.IO) {
+                    delay(500)
+                    checkToken(token)
+                    MessageResult("complete")
+                }
+
+            override suspend fun setUsername(
+                token: String,
+                username: UsernameRequest
             ): MessageResult =
                 withContext(Dispatchers.IO) {
                     delay(500)
@@ -292,4 +305,4 @@ internal class MockingApiModule {
 
                 }
         }
-}
+}*/

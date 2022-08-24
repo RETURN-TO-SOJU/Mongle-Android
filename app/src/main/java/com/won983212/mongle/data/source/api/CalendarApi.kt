@@ -17,12 +17,11 @@ interface CalendarApi {
         @Body text: DiaryRequest,
     ): MessageResult
 
-    @GET("calender/{year}")
+    @GET("calender")
     suspend fun getCalendarDayMetadata(
         @Header(AUTH_TOKEN_HEADER) token: String,
-        @Path("year") year: Int,
-        @Query("start") start: Int,
-        @Query("end") end: Int
+        @Query("start") start: String,
+        @Query("end") end: String
     ): List<CalendarDay>
 
     @GET("calender/{year}/{month}/{day}")

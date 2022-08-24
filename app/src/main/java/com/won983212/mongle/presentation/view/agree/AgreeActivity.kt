@@ -8,9 +8,8 @@ import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityAgreeBinding
 import com.won983212.mongle.databinding.ListitemAgreeBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
-import com.won983212.mongle.presentation.view.main.MainActivity
+import com.won983212.mongle.presentation.view.namesetting.NameSettingActivity
 import com.won983212.mongle.presentation.view.openTermsOfServiceDialog
-import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
 
 class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
     private val viewModel by viewModels<AgreeViewModel>()
@@ -25,10 +24,9 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
         }
 
         binding.btnAgreeOk.setOnClickListener {
-            Intent(this, MainActivity::class.java).apply {
+            Intent(this, NameSettingActivity::class.java).apply {
                 startActivity(this)
             }
-            TutorialActivity.startKakaoTutorial(this)
             finish()
         }
 

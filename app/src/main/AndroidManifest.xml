@@ -39,6 +39,9 @@
         </service>
 
         <activity
+            android:name=".presentation.view.namesetting.NameSettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.view.diary.EditDiaryActivity"
             android:exported="false" />
         <activity
