@@ -27,7 +27,9 @@ internal class RemoteCalendarDataSource @Inject constructor(
         return safeApiCall(callback) {
             api.updateDiary(
                 accessToken,
-                date.year, date.monthValue, date.dayOfMonth,
+                date.year,
+                convertDoubleDigitFormat(date.monthValue),
+                convertDoubleDigitFormat(date.dayOfMonth),
                 DiaryRequest(text)
             )
         }
@@ -58,7 +60,9 @@ internal class RemoteCalendarDataSource @Inject constructor(
         return safeApiCall(callback) {
             api.getCalendarDayDetail(
                 accessToken,
-                date.year, date.monthValue, date.dayOfMonth
+                date.year,
+                convertDoubleDigitFormat(date.monthValue),
+                convertDoubleDigitFormat(date.dayOfMonth)
             )
         }
     }
@@ -72,9 +76,19 @@ internal class RemoteCalendarDataSource @Inject constructor(
         return safeApiCall(callback) {
             api.getDayEmotionalSentences(
                 accessToken,
-                date.year, date.monthValue, date.dayOfMonth,
+                date.year,
+                convertDoubleDigitFormat(date.monthValue),
+                convertDoubleDigitFormat(date.dayOfMonth),
                 emotion.name
             )
+        }
+    }
+
+    private fun convertDoubleDigitFormat(number: Int): String {
+        if (number < 10) {
+            return "0$number"
+        } else {
+            return number.toString()
         }
     }
 }

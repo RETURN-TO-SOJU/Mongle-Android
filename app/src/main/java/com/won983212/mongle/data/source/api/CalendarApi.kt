@@ -12,8 +12,8 @@ interface CalendarApi {
     suspend fun updateDiary(
         @Header(AUTH_TOKEN_HEADER) token: String,
         @Path("year") year: Int,
-        @Path("month") month: Int,
-        @Path("day") day: Int,
+        @Path("month") month: String,
+        @Path("day") day: String,
         @Body text: DiaryRequest,
     ): MessageResult
 
@@ -28,16 +28,16 @@ interface CalendarApi {
     suspend fun getCalendarDayDetail(
         @Header(AUTH_TOKEN_HEADER) token: String,
         @Path("year") year: Int,
-        @Path("month") month: Int,
-        @Path("day") day: Int
+        @Path("month") month: String,
+        @Path("day") day: String
     ): CalendarDayDetail
 
     @GET("calender/{year}/{month}/{day}/sentences")
     suspend fun getDayEmotionalSentences(
         @Header(AUTH_TOKEN_HEADER) token: String,
         @Path("year") year: Int,
-        @Path("month") month: Int,
-        @Path("day") day: Int,
+        @Path("month") month: String,
+        @Path("day") day: String,
         @Query("emotion") emotion: String
     ): List<EmotionalSentence>
 }

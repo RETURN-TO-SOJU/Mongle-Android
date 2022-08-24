@@ -65,10 +65,11 @@ class DayDetailViewModel @Inject constructor(
     private val _diary = MutableLiveData("")
     val diary = _diary.asLiveData()
     val diaryText = Transformations.map(_diary) {
-        if (it.isBlank()) {
+        var text = it ?: ""
+        if (text.isBlank()) {
             TextResource(R.string.overview_title_empty)
         } else {
-            TextResource(it)
+            TextResource(text)
         }
     }
 
