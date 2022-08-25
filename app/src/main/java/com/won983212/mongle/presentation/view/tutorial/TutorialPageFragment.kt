@@ -9,7 +9,7 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.won983212.mongle.databinding.FragmentTutorialPageBinding
 
-internal class TutorialPageFragment(
+class TutorialPageFragment(
     @StringRes val titleRes: Int,
     @DrawableRes val imageRes: Int
 ) :

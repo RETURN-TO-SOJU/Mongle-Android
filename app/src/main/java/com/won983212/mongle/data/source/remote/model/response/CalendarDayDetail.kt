@@ -8,7 +8,7 @@ data class CalendarDayDetail(
     @SerializedName("imageList")
     val imageList: List<Photo>,
     @SerializedName("diary")
-    val diary: String,
+    val diary: String?, // TODO (SUGGEST) 빈 텍스트면 null이 아니라 ""으로 해라
     @SerializedName("scheduleList")
     val scheduleList: List<Schedule>,
     @SerializedName("emotionList")

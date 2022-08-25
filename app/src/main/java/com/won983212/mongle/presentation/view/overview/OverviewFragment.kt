@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,12 +53,21 @@ class OverviewFragment : Fragment() {
             context?.let { it1 -> TutorialActivity.startKakaoTutorial(it1) }
         }
 
+        // TODO For test. 중간발표 이후 refactoring
+        val openDetail =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                val selectedDate = binding.calendarOverview.selectedDate
+                if (selectedDate != null) {
+                    viewModel.onSelectionChanged(selectedDate)
+                }
+            }
+
         binding.btnOverviewShowDetail.setOnClickListener {
             val date = binding.calendarOverview.selectedDate
             if (date != null) {
                 Intent(context, DayDetailActivity::class.java).apply {
                     putExtra(DayDetailActivity.EXTRA_DATE, date)
-                    startActivity(this)
+                    openDetail.launch(this)
                 }
             }
         }

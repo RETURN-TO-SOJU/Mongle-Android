@@ -49,6 +49,11 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>() {
             finish()
         }
 
+        val openDiary =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                viewModel.initializeFromIntent(intent) // TODO Make update(refresh) method
+            }
+
         binding.textDayDetailDiary.setOnClickListener {
             Intent(this, EditDiaryActivity::class.java).apply {
                 val emotion = viewModel.emotion
@@ -57,7 +62,7 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>() {
                 }
                 putExtra(EditDiaryActivity.EXTRA_DATE, viewModel.date)
                 putExtra(EditDiaryActivity.EXTRA_INITIAL_DIARY, viewModel.diary.value)
-                startActivity(this)
+                openDiary.launch(this)
             }
         }
 

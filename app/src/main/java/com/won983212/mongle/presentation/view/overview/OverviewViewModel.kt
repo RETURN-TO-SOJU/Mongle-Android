@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.data.source.api.TestApi
+import com.won983212.mongle.data.source.api.safeApiCall
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
@@ -19,7 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class OverviewViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val calendarRepository: CalendarRepository
+    private val calendarRepository: CalendarRepository,
+    private val testApi: TestApi // TODO Remove it 중간발표
 ) : BaseViewModel() {
 
     // TODO Emotions랑 통합하자
@@ -41,12 +44,10 @@ class OverviewViewModel @Inject constructor(
     private val _selectedDayEmotion = MutableLiveData(R.drawable.emotion_anxious)
     val selectedDayEmotion = _selectedDayEmotion.asLiveData()
 
-    private val _selectedDayTitle = MutableLiveData(R.string.detail_diary_empty)
-    val selectedDayTitle = _selectedDayTitle.asLiveData()
+    private val _diaryFeedback = MutableLiveData(TextResource(R.string.detail_diary_empty))
+    val diaryFeedback = _diaryFeedback.asLiveData()
 
-    val hasData = Transformations.map(_selectedDayTitle) {
-        it != R.string.overview_title_empty
-    }
+    val hasData = MutableLiveData(false)
 
 
     private fun getOverviewText(date: LocalDate): TextResource {
@@ -64,11 +65,13 @@ class OverviewViewModel @Inject constructor(
         val userInfo = userRepository.getUserInfo(this@OverviewViewModel)
         if (userInfo != null) {
             val dateText = date.format(DateTimeFormatter.ofPattern("M월 d일 EEEE"))
-            _overviewText.value = TextResource(
-                R.string.overview_intro,
-                userInfo.username,
-                dateText,
-                getOverviewText(date)
+            _overviewText.postValue(
+                TextResource(
+                    R.string.overview_intro,
+                    userInfo.username,
+                    dateText,
+                    getOverviewText(date)
+                )
             )
         }
     }
@@ -90,7 +93,23 @@ class OverviewViewModel @Inject constructor(
         updateOverviewText(date)
         val emotion = calendarEmotions.value?.get(date)
         _selectedDayEmotion.postValue((emotion ?: Emotion.ANXIOUS).iconRes)
-        _selectedDayTitle.postValue(emotion?.descriptionRes ?: R.string.overview_title_empty)
+
+        // TODO 중간발표 이후 삭제
+        val defaultFeedback = emotion?.descriptionRes ?: R.string.overview_title_empty
+        val detail = calendarRepository.getCalendarDayDetail(this@OverviewViewModel, date)
+        if ((detail != null) && detail.diary?.isNotBlank() == true) {
+            val feedback = safeApiCall(this@OverviewViewModel) {
+                testApi.getOverviewText(detail.diary)
+            }
+            if (feedback != null) {
+                _diaryFeedback.postValue(TextResource(feedback.answer))
+            } else {
+                _diaryFeedback.postValue(TextResource(defaultFeedback))
+            }
+        } else {
+            _diaryFeedback.postValue(TextResource(defaultFeedback))
+        }
+
         _keywords.postValue(keywordMap.get(date) ?: listOf())
     }
 }

@@ -19,7 +19,6 @@ class PhotoListAdapter :
             .error(R.drawable.glide_error)
             .fallback(R.drawable.glide_error)
             .into(binding.imageListitemPhotoThumbnail)
-        Log.i("GLIDE", item.image)
         binding.textListitemPhotoTitle.text = item.timeText
     }
 }

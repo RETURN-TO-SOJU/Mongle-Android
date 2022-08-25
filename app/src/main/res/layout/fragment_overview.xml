@@ -119,7 +119,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="8dp"
                             android:fontFamily="@font/app_medium"
-                            android:text="@{viewModel.selectedDayTitle}"
+                            app:textResource="@{viewModel.diaryFeedback}"
                             android:textSize="14sp" />
 
                         <Space
