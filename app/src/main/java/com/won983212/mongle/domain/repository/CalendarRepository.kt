@@ -5,6 +5,7 @@ import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.DiaryFeedback
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import java.time.LocalDate
 
@@ -49,4 +50,12 @@ interface CalendarRepository {
         date: LocalDate,
         emotion: Emotion
     ): List<EmotionalSentence>?
+
+    /**
+     * 작성한 일기에 대한 챗봇의 한 줄 피드백을 불러온다.
+     */
+    suspend fun getDiaryFeedback(
+        callback: RequestLifecycleCallback,
+        diary: String
+    ): DiaryFeedback?
 }

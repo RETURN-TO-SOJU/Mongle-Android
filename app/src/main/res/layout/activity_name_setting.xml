@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.presentation.view.namesetting.NameSettingViewModel" />
+            type="com.won983212.mongle.presentation.view.namesetup.NameSettingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.won983212.mongle.presentation.view.namesetting.NameSettingActivity">
+        tools:context="com.won983212.mongle.presentation.view.namesetup.NameSettingActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_name_setting"
@@ -66,6 +66,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:text="@={viewModel.name}"
+            android:autofillHints="name"
+            android:inputType="text"
+            android:hint="@string/name_setting_hint"
             app:layout_constraintBottom_toTopOf="@+id/btn_name_setting_ok"
             app:layout_constraintTop_toBottomOf="@+id/text_name_setting_title"
             tools:layout_editor_absoluteX="16dp" />

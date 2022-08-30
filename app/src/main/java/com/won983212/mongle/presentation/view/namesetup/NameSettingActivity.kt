@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.view.namesetting
+package com.won983212.mongle.presentation.view.namesetup
 
 import android.content.Intent
 import androidx.activity.viewModels

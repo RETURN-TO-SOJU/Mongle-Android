@@ -7,6 +7,7 @@ import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.DiaryFeedback
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.UserRepository
@@ -63,4 +64,10 @@ internal class CalendarRepositoryImpl(
             date,
             emotion
         )
+
+    override suspend fun getDiaryFeedback(
+        callback: RequestLifecycleCallback,
+        diary: String
+    ): DiaryFeedback? =
+        remoteCalendarDataSource.getDiaryFeedback(callback, diary)
 }

@@ -39,7 +39,7 @@
         </service>
 
         <activity
-            android:name=".presentation.view.namesetting.NameSettingActivity"
+            android:name=".presentation.view.namesetup.NameSettingActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.view.diary.EditDiaryActivity"
@@ -85,13 +85,13 @@
             android:name=".presentation.view.tutorial.TutorialActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.test.MainTestActivity"
+            android:name="com.won983212.mongle.debug.test.MainTestActivity"
             android:exported="true" />
         <activity
-            android:name=".presentation.view.test.ViewTestActivity"
+            android:name="com.won983212.mongle.debug.test.ViewTestActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.test.ApiTestActivity"
+            android:name="com.won983212.mongle.debug.test.ApiTestActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.view.password.PasswordActivity"

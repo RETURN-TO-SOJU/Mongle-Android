@@ -10,7 +10,7 @@ data class OAuthLoginToken(
     val refreshToken: String
 ) {
     companion object {
-        fun of(kakaoToken: OAuthToken) =
+        fun fromKakaoToken(kakaoToken: OAuthToken) =
             OAuthLoginToken(kakaoToken.accessToken, kakaoToken.refreshToken)
 
         val EMPTY_TOKEN = OAuthLoginToken("", "")

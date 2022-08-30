@@ -43,7 +43,6 @@ class MongleFirebaseMessagingService : FirebaseMessagingService(), RequestLifecy
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
 
-        // TODO Needs test
         val useAlert = configRepository.get().getBoolean("useAlert", true)
         if (!useAlert) {
             Log.w(TAG, "Alert is disabled. This message ignored.")

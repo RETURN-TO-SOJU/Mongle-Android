@@ -5,6 +5,7 @@ import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.DiaryFeedback
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import java.time.LocalDate
 
@@ -36,4 +37,9 @@ interface CalendarDataSource {
         date: LocalDate,
         emotion: Emotion
     ): List<EmotionalSentence>?
+
+    suspend fun getDiaryFeedback(
+        callback: RequestLifecycleCallback,
+        diaryText: String
+    ): DiaryFeedback?
 }

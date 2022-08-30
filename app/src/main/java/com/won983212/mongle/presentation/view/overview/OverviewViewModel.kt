@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.source.api.TestApi
 import com.won983212.mongle.data.source.api.safeApiCall
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.UserRepository
@@ -21,8 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class OverviewViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val calendarRepository: CalendarRepository,
-    private val testApi: TestApi // TODO Remove it 중간발표
+    private val calendarRepository: CalendarRepository
 ) : BaseViewModel() {
 
     // TODO Emotions랑 통합하자
@@ -99,7 +97,7 @@ class OverviewViewModel @Inject constructor(
         val detail = calendarRepository.getCalendarDayDetail(this@OverviewViewModel, date)
         if ((detail != null) && detail.diary?.isNotBlank() == true) {
             val feedback = safeApiCall(this@OverviewViewModel) {
-                testApi.getOverviewText(detail.diary)
+                calendarRepository.getDiaryFeedback(this@OverviewViewModel, detail.diary)
             }
             if (feedback != null) {
                 _diaryFeedback.postValue(TextResource(feedback.answer))

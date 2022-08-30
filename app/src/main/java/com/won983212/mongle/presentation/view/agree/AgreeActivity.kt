@@ -8,7 +8,7 @@ import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityAgreeBinding
 import com.won983212.mongle.databinding.ListitemAgreeBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
-import com.won983212.mongle.presentation.view.namesetting.NameSettingActivity
+import com.won983212.mongle.presentation.view.namesetup.NameSettingActivity
 import com.won983212.mongle.presentation.view.openTermsOfServiceDialog
 
 class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {

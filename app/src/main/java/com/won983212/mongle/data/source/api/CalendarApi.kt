@@ -4,6 +4,7 @@ import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.DiaryFeedback
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import retrofit2.http.*
 
@@ -40,4 +41,7 @@ interface CalendarApi {
         @Path("day") day: String,
         @Query("emotion") emotion: String
     ): List<EmotionalSentence>
+
+    @GET("chatbot/b")
+    suspend fun getDiaryFeedback(@Query("s") diaryText: String): DiaryFeedback
 }

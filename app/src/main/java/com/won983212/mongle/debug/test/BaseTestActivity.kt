@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.view.test
+package com.won983212.mongle.debug.test
 
 import android.content.Intent
 import android.os.Bundle

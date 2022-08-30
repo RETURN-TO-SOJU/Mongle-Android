@@ -27,7 +27,7 @@ class LoginViewModel @Inject constructor(
     val eventLoggedIn = _eventLoggedIn.asLiveData()
 
     fun doLoginWithKakaoToken(token: OAuthToken) = viewModelScope.launch {
-        val response = userRepository.login(this@LoginViewModel, OAuthLoginToken.of(token))
+        val response = userRepository.login(this@LoginViewModel, OAuthLoginToken.fromKakaoToken(token))
         if (response != null) {
             userRepository.setCurrentToken(response)
             FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->

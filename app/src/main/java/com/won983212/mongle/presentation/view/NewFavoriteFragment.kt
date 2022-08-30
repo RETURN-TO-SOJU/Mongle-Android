@@ -38,6 +38,7 @@ class NewFavoriteFragment(
         return binding.root
     }
 
+    // TODO Viewmodel도 접목해서 만들어보자
     private fun createEmotionButtons() {
         Emotion.values().forEachIndexed { idx, emotion ->
             val btn = ImageButton(context).apply {

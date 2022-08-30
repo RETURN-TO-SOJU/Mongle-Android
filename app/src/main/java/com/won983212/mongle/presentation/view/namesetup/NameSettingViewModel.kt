@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.view.namesetting
+package com.won983212.mongle.presentation.view.namesetup
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
