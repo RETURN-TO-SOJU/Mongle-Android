@@ -1,7 +1,7 @@
 package com.won983212.mongle.data.source.api
 
 import android.util.Log
-import com.won983212.mongle.data.di.MockingHttpException
+import com.won983212.mongle.debug.mock.MockingHttpException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody

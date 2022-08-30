@@ -118,4 +118,5 @@
 
     <!-- Name setting -->
     <string name="name_setting_title">몽글몽글에 오신걸 환영해요 👋\n당신의 이름을 알려주세요!</string>
+    <string name="name_setting_hint">사용하실 닉네임을 적어주세요!</string>
 </resources>

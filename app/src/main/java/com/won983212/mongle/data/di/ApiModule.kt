@@ -1,8 +1,12 @@
 package com.won983212.mongle.data.di
 
+import com.won983212.mongle.BuildConfig
 import com.won983212.mongle.data.source.api.CalendarApi
 import com.won983212.mongle.data.source.api.KakaoSendApi
 import com.won983212.mongle.data.source.api.UserApi
+import com.won983212.mongle.debug.mock.MockCalendarApi
+import com.won983212.mongle.debug.mock.MockKakaoSendApi
+import com.won983212.mongle.debug.mock.MockUserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,18 +21,27 @@ internal class ApiModule {
     @Singleton
     @Provides
     fun provideLoginApi(retrofit: Retrofit): UserApi {
+        if (BuildConfig.USE_MOCKING) {
+            return MockUserApi()
+        }
         return retrofit.create(UserApi::class.java)
     }
 
     @Singleton
     @Provides
     fun provideKakaoSendApi(retrofit: Retrofit): KakaoSendApi {
+        if (BuildConfig.USE_MOCKING) {
+            return MockKakaoSendApi()
+        }
         return retrofit.create(KakaoSendApi::class.java)
     }
 
     @Singleton
     @Provides
     fun provideCalendarApi(retrofit: Retrofit): CalendarApi {
+        if (BuildConfig.USE_MOCKING) {
+            return MockCalendarApi()
+        }
         return retrofit.create(CalendarApi::class.java)
     }
 }

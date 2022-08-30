@@ -2,7 +2,6 @@ package com.won983212.mongle.data.di
 
 import com.won983212.mongle.data.repository.*
 import com.won983212.mongle.data.source.local.ConfigDataSource
-import com.won983212.mongle.data.source.local.MemoryCalendarDataSource
 import com.won983212.mongle.data.source.local.PasswordDataSource
 import com.won983212.mongle.data.source.local.TokenDataSource
 import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
@@ -47,12 +46,10 @@ internal class RepositoryModule {
     @Provides
     fun provideCalendarRepository(
         remoteCalendarDataSource: RemoteCalendarDataSource,
-        memoryCalendarDataSource: MemoryCalendarDataSource,
         userRepository: UserRepository
     ): CalendarRepository {
         return CalendarRepositoryImpl(
             remoteCalendarDataSource,
-            memoryCalendarDataSource,
             userRepository
         )
     }

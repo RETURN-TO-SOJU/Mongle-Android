@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.source.api.safeApiCall
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
@@ -92,18 +91,10 @@ class OverviewViewModel @Inject constructor(
         val emotion = calendarEmotions.value?.get(date)
         _selectedDayEmotion.postValue((emotion ?: Emotion.ANXIOUS).iconRes)
 
-        // TODO 중간발표 이후 삭제
         val defaultFeedback = emotion?.descriptionRes ?: R.string.overview_title_empty
         val detail = calendarRepository.getCalendarDayDetail(this@OverviewViewModel, date)
-        if ((detail != null) && detail.diary?.isNotBlank() == true) {
-            val feedback = safeApiCall(this@OverviewViewModel) {
-                calendarRepository.getDiaryFeedback(this@OverviewViewModel, detail.diary)
-            }
-            if (feedback != null) {
-                _diaryFeedback.postValue(TextResource(feedback.answer))
-            } else {
-                _diaryFeedback.postValue(TextResource(defaultFeedback))
-            }
+        if (detail != null && detail.diaryFeedback.isNotBlank()) {
+            _diaryFeedback.postValue(TextResource(detail.diaryFeedback))
         } else {
             _diaryFeedback.postValue(TextResource(defaultFeedback))
         }

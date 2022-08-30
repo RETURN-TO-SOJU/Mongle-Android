@@ -1,9 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin' version '2.0.1'
     id 'kotlin-kapt'
 }
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     compileSdk 32
@@ -14,6 +16,11 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        manifestPlaceholders = [KAKAO_NATIVE_APP_KEY: properties["KAKAO_NATIVE_APP_KEY"]]
+        buildConfigField "String", 'KAKAO_NATIVE_APP_KEY', "\"${properties["KAKAO_NATIVE_APP_KEY"]}\""
+        buildConfigField "String", 'BASE_URL', "\"${properties["BASE_URL"]}\""
+        buildConfigField "boolean", 'USE_MOCKING', properties["USE_MOCKING"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,11 +60,13 @@ android {
 }
 
 dependencies {
+    // android core
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    // google
     implementation 'androidx.core:core-splashscreen:1.0.0'
     implementation "androidx.emoji2:emoji2:1.2.0" // Emoji compat
     implementation "androidx.emoji2:emoji2-views:1.2.0"
@@ -70,12 +79,14 @@ dependencies {
     implementation "com.google.code.gson:gson:2.8.9" // gson
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.7' // fcm
 
+    // lifecycle
     def lifecycle_version = "2.5.1"
     implementation 'androidx.activity:activity-ktx:1.5.1' // activity viewModels() func
     implementation 'androidx.fragment:fragment-ktx:1.5.2' // fragment viewModels() func
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version" // ViewModel
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version" // LiveData
 
+    // 3rd party
     implementation "com.tbuonomo:dotsindicator:4.3" // View pager indicator
     implementation "com.kakao.sdk:v2-user:2.11.0" // Kakao login
     implementation 'com.github.kizitonwose:CalendarView:1.0.4' // Calendar
@@ -85,6 +96,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2' // glide
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
+    // test
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-inline:2.21.0' // mockito
     androidTestImplementation("org.mockito:mockito-android:2.24.5")
