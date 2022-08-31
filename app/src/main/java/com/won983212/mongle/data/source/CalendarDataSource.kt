@@ -8,7 +8,6 @@ import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import java.time.LocalDate
 
-// TODO "Data Source에서 token을 가져가는 방식" 개선 필요
 interface CalendarDataSource {
     suspend fun updateDiary(
         callback: RequestLifecycleCallback,

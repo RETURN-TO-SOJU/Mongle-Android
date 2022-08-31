@@ -2,8 +2,9 @@ package com.won983212.mongle.data.di
 
 import com.won983212.mongle.data.repository.*
 import com.won983212.mongle.data.source.local.ConfigDataSource
+import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.local.PasswordDataSource
-import com.won983212.mongle.data.source.local.TokenDataSource
+import com.won983212.mongle.data.source.remote.RemoteAuthSource
 import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
 import com.won983212.mongle.data.source.remote.RemoteKakaotalkDataSource
 import com.won983212.mongle.data.source.remote.RemoteUserDataSource
@@ -26,31 +27,40 @@ internal class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideTokenRepository(
-        tokenDataSource: TokenDataSource,
+    fun provideUserRepository(
+        authRepository: AuthRepository,
         userDataSource: RemoteUserDataSource
     ): UserRepository {
-        return UserRepositoryImpl(tokenDataSource, userDataSource)
+        return UserRepositoryImpl(authRepository, userDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthRepository(
+        localTokenSource: LocalTokenSource,
+        remoteAuthSource: RemoteAuthSource
+    ): AuthRepository {
+        return AuthRepositoryImpl(localTokenSource, remoteAuthSource)
     }
 
     @Singleton
     @Provides
     fun provideKakaotalkRepository(
         kakaotalkDataSource: RemoteKakaotalkDataSource,
-        userRepository: UserRepository
+        authRepository: AuthRepository
     ): KakaotalkRepository {
-        return KakaotalkRepositoryImpl(kakaotalkDataSource, userRepository)
+        return KakaotalkRepositoryImpl(kakaotalkDataSource, authRepository)
     }
 
     @Singleton
     @Provides
     fun provideCalendarRepository(
         remoteCalendarDataSource: RemoteCalendarDataSource,
-        userRepository: UserRepository
+        authRepository: AuthRepository
     ): CalendarRepository {
         return CalendarRepositoryImpl(
             remoteCalendarDataSource,
-            userRepository
+            authRepository
         )
     }
 

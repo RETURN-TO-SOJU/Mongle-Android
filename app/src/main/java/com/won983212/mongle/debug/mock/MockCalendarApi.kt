@@ -7,6 +7,7 @@ import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
+import com.won983212.mongle.debug.mock.MockAuthApi.Companion.checkToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -22,7 +23,7 @@ class MockCalendarApi : CalendarApi {
         text: DiaryRequest
     ): MessageResult =
         withContext(Dispatchers.IO) {
-            MockUserApi.checkToken(token)
+            checkToken(token)
             delay(500)
             MessageResult("complete")
         }
@@ -33,7 +34,7 @@ class MockCalendarApi : CalendarApi {
         end: String
     ): List<CalendarDay> =
         withContext(Dispatchers.IO) {
-            MockUserApi.checkToken(token)
+            checkToken(token)
             delay(1000)
             listOf(
                 CalendarDay(LocalDate.of(2022, 8, 1), Emotion.HAPPY, listOf("학교", "소마")),
@@ -100,7 +101,7 @@ class MockCalendarApi : CalendarApi {
         day: String
     ): CalendarDayDetail =
         withContext(Dispatchers.IO) {
-            MockUserApi.checkToken(token)
+            checkToken(token)
             delay(1000)
             CalendarDayDetail(
                 listOf(
@@ -153,7 +154,7 @@ class MockCalendarApi : CalendarApi {
         emotion: String
     ): List<EmotionalSentence> =
         withContext(Dispatchers.IO) {
-            MockUserApi.checkToken(token)
+            checkToken(token)
             delay(1000)
             when (emotion) {
                 Emotion.HAPPY.name -> (0..4).map {

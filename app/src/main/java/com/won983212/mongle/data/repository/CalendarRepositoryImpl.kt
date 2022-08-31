@@ -7,13 +7,14 @@ import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
+import com.won983212.mongle.domain.repository.AuthRepository
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import java.time.LocalDate
 
 internal class CalendarRepositoryImpl(
     private val remoteCalendarDataSource: RemoteCalendarDataSource,
-    private val userRepository: UserRepository
+    private val authRepository: AuthRepository
 ) : CalendarRepository {
 
     override suspend fun updateDiary(
@@ -23,7 +24,7 @@ internal class CalendarRepositoryImpl(
     ): MessageResult? =
         remoteCalendarDataSource.updateDiary(
             callback,
-            userRepository.getCurrentToken().accessToken,
+            authRepository.getAccessToken(),
             date,
             text
         )
@@ -35,7 +36,7 @@ internal class CalendarRepositoryImpl(
     ): List<CalendarDay>? =
         remoteCalendarDataSource.getCalendarDayMetadata(
             callback,
-            userRepository.getCurrentToken().accessToken,
+            authRepository.getAccessToken(),
             startMonth,
             endMonth
         )
@@ -46,7 +47,7 @@ internal class CalendarRepositoryImpl(
     ): CalendarDayDetail? =
         remoteCalendarDataSource.getCalendarDayDetail(
             callback,
-            userRepository.getCurrentToken().accessToken,
+            authRepository.getAccessToken(),
             date
         )
 
@@ -57,7 +58,7 @@ internal class CalendarRepositoryImpl(
     ): List<EmotionalSentence>? =
         remoteCalendarDataSource.getDayEmotionalSentences(
             callback,
-            userRepository.getCurrentToken().accessToken,
+            authRepository.getAccessToken(),
             date,
             emotion
         )

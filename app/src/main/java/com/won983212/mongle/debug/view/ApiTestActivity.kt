@@ -1,4 +1,4 @@
-package com.won983212.mongle.debug.test
+package com.won983212.mongle.debug.view
 
 import android.os.Bundle
 import android.util.Log

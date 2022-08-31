@@ -83,13 +83,13 @@
             android:name=".presentation.view.tutorial.TutorialActivity"
             android:exported="false" />
         <activity
-            android:name="com.won983212.mongle.debug.test.MainTestActivity"
+            android:name="com.won983212.mongle.debug.view.MainTestActivity"
             android:exported="true" />
         <activity
-            android:name="com.won983212.mongle.debug.test.ViewTestActivity"
+            android:name="com.won983212.mongle.debug.view.ViewTestActivity"
             android:exported="false" />
         <activity
-            android:name="com.won983212.mongle.debug.test.ApiTestActivity"
+            android:name="com.won983212.mongle.debug.view.ApiTestActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.view.password.PasswordActivity"

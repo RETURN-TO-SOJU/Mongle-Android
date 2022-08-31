@@ -1,8 +1,10 @@
 package com.won983212.mongle
 
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import java.time.LocalDate
-import java.time.LocalDateTime
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -12,6 +14,16 @@ import java.time.LocalDateTime
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        println(LocalDate.now().toString())
+        runBlocking {
+            val f = flow {
+                println("Flow run")
+                emitAll((1..20).asFlow())
+            }
+
+            println("Let's run")
+            f.collect {
+                println(it)
+            }
+        }
     }
 }

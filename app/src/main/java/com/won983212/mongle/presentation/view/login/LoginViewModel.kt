@@ -6,6 +6,7 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.source.api.EmptyRequestLifecycleCallback
+import com.won983212.mongle.domain.repository.AuthRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.domain.usecase.ValidateTokenUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
@@ -17,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val userRepository: UserRepository,
+    private val authRepository: AuthRepository,
     private val validateTokenUseCase: ValidateTokenUseCase
 ) : BaseViewModel() {
 
@@ -27,9 +29,9 @@ class LoginViewModel @Inject constructor(
     val eventLoggedIn = _eventLoggedIn.asLiveData()
 
     fun doLoginWithKakaoToken(token: OAuthToken) = viewModelScope.launch {
-        val response = userRepository.login(this@LoginViewModel, OAuthLoginToken.fromKakaoToken(token))
+        val response =
+            authRepository.login(this@LoginViewModel, OAuthLoginToken.fromKakaoToken(token))
         if (response != null) {
-            userRepository.setCurrentToken(response)
             FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
                 // TODO 좀 더 세련된 방법 없나..?
                 viewModelScope.launch {

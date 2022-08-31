@@ -1,12 +1,14 @@
 package com.won983212.mongle.data.source.local
 
 import android.content.Context
-import com.won983212.mongle.data.source.SecurePropertiesSource
 import com.won983212.mongle.data.model.OAuthLoginToken
+import com.won983212.mongle.data.source.SecurePropertiesSource
+import com.won983212.mongle.ofEpochMilli
+import com.won983212.mongle.toEpochMilli
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-internal class TokenDataSource @Inject constructor(
+internal class LocalTokenSource @Inject constructor(
     @ApplicationContext context: Context
 ) : SecurePropertiesSource(context) {
 
@@ -18,7 +20,9 @@ internal class TokenDataSource @Inject constructor(
         if (cachedToken == null) {
             cachedToken = OAuthLoginToken(
                 secureProperties.getString(KEY_ACCESS_TOKEN, null) ?: "",
-                secureProperties.getString(KEY_REFRESH_TOKEN, null) ?: ""
+                ofEpochMilli(secureProperties.getLong(KEY_ACCESS_EXPIRES_AT, 0)),
+                secureProperties.getString(KEY_REFRESH_TOKEN, null) ?: "",
+                ofEpochMilli(secureProperties.getLong(KEY_REFRESH_EXPIRES_AT, 0))
             )
         }
         return cachedToken as OAuthLoginToken
@@ -28,12 +32,16 @@ internal class TokenDataSource @Inject constructor(
         cachedToken = token
         secureProperties.edit()
             .putString(KEY_ACCESS_TOKEN, token.accessToken)
+            .putLong(KEY_ACCESS_EXPIRES_AT, token.accessTokenExpiresAt.toEpochMilli())
             .putString(KEY_REFRESH_TOKEN, token.refreshToken)
+            .putLong(KEY_REFRESH_EXPIRES_AT, token.refreshTokenExpiresAt.toEpochMilli())
             .apply()
     }
 
     companion object {
         private const val KEY_ACCESS_TOKEN = "access"
+        private const val KEY_ACCESS_EXPIRES_AT = "expiresAccess"
         private const val KEY_REFRESH_TOKEN = "refresh"
+        private const val KEY_REFRESH_EXPIRES_AT = "expiresRefresh"
     }
 }

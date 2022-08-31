@@ -23,15 +23,6 @@ internal class RemoteUserDataSource @Inject constructor(
         }
     }
 
-    suspend fun login(
-        callback: RequestLifecycleCallback,
-        kakaoToken: OAuthLoginToken
-    ): OAuthLoginToken? {
-        return safeApiCall(callback) {
-            api.login(kakaoToken)
-        }
-    }
-
     suspend fun setFCMToken(
         callback: RequestLifecycleCallback,
         accessToken: String,
@@ -49,15 +40,6 @@ internal class RemoteUserDataSource @Inject constructor(
     ): MessageResult? {
         return safeApiCall(callback) {
             api.setUsername(accessToken, UsernameRequest(username))
-        }
-    }
-
-    suspend fun refreshToken(
-        callback: RequestLifecycleCallback,
-        currentToken: OAuthLoginToken
-    ): OAuthLoginToken? {
-        return safeApiCall(callback) {
-            api.refreshToken(currentToken)
         }
     }
 

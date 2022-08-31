@@ -1,4 +1,4 @@
-package com.won983212.mongle.debug.test
+package com.won983212.mongle.debug.view
 
 class MainTestActivity : BaseTestActivity() {
     override val listItems: Array<IScreenInfo> = arrayOf(

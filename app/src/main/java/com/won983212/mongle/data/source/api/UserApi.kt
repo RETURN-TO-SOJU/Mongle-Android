@@ -1,6 +1,5 @@
 package com.won983212.mongle.data.source.api
 
-import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.model.User
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.request.FCMTokenRequest
@@ -10,14 +9,8 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface UserApi {
-    @POST("login/kakao")
-    suspend fun login(@Body kakaoToken: OAuthLoginToken): OAuthLoginToken
-
     @POST("users/info")
     suspend fun getUserInfo(@Header(AUTH_TOKEN_HEADER) token: String): User
-
-    @POST("reissue/token")
-    suspend fun refreshToken(@Body token: OAuthLoginToken): OAuthLoginToken
 
     @POST("users/fcm")
     suspend fun setFCMToken(
