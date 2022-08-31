@@ -1,7 +1,6 @@
 package com.won983212.mongle.domain.repository
 
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
@@ -16,10 +15,9 @@ interface CalendarRepository {
      * @param text 일기 내용
      */
     suspend fun updateDiary(
-        callback: RequestLifecycleCallback,
         date: LocalDate,
         text: String
-    ): MessageResult?
+    ): Result<MessageResult>
 
     /**
      * query parameter로 필요한 년도 및 월을 받아 해당 월의 감정 및 주제들을 반환한다.
@@ -28,25 +26,22 @@ interface CalendarRepository {
      * @param endMonth 끝 월. 이 달까지 포함해서 결과가 반환된다. 이 매개변수의 '일'은 무시됨
      */
     suspend fun getCalendarDayMetadata(
-        callback: RequestLifecycleCallback,
         startMonth: LocalDate,
         endMonth: LocalDate
-    ): List<CalendarDay>?
+    ): Result<List<CalendarDay>>
 
     /**
      * path variable로 필요한 년도, 월, 일(22/07/26)을 입력 받아 해당 일의 필요한 데이터를 조회한다.
      */
     suspend fun getCalendarDayDetail(
-        callback: RequestLifecycleCallback,
         date: LocalDate
-    ): CalendarDayDetail?
+    ): Result<CalendarDayDetail>
 
     /**
      * 특정 일의 분석화면에서 감정이를 눌렀을 때 해당하는 대화 문장들을 불러온다.
      */
     suspend fun getDayEmotionalSentences(
-        callback: RequestLifecycleCallback,
         date: LocalDate,
         emotion: Emotion
-    ): List<EmotionalSentence>?
+    ): Result<List<EmotionalSentence>>
 }

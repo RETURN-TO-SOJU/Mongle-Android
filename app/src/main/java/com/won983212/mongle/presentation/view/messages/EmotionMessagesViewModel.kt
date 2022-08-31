@@ -57,11 +57,12 @@ class EmotionMessagesViewModel @Inject constructor(
         val date = _date.value
         if (selected != null && date != null) {
             updateProportionText()
-            val messages = calendarRepository.getDayEmotionalSentences(
-                this@EmotionMessagesViewModel,
-                date,
-                selected
-            )
+            val messages = startProgressTask {
+                calendarRepository.getDayEmotionalSentences(
+                    date,
+                    selected
+                )
+            }
             if (messages != null) {
                 _messages.postValue(messages.map {
                     EmotionMessage(it.emotion, it.sentence)

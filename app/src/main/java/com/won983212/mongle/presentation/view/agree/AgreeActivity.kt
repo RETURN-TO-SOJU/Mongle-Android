@@ -30,7 +30,7 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
             finish()
         }
 
-        viewModel.attachDefaultErrorHandler(this)
+        viewModel.attachDefaultHandlers(this)
         initAgreeItems()
     }
 

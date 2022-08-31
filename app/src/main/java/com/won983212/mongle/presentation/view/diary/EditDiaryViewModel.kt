@@ -19,6 +19,7 @@ import javax.inject.Inject
 class EditDiaryViewModel @Inject constructor(
     private val calendarRepository: CalendarRepository
 ) : BaseViewModel() {
+
     private val _emotionRes = MutableLiveData(R.drawable.ic_edit)
     val emotionRes = _emotionRes.asLiveData()
 
@@ -45,11 +46,12 @@ class EditDiaryViewModel @Inject constructor(
     fun commitDiary() = viewModelScope.launch {
         val date = _diaryDate.value
         if (date != null) {
-            val diary = calendarRepository.updateDiary(
-                this@EditDiaryViewModel,
-                date, diaryContent.value ?: ""
-            )
-            if (diary != null) {
+            val result = startProgressTask {
+                calendarRepository.updateDiary(
+                    date, diaryContent.value ?: ""
+                )
+            }
+            if (result != null) {
                 _eventUpdateComplete.call()
             }
         }

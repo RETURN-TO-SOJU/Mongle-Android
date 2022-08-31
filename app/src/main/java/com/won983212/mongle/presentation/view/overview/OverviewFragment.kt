@@ -32,8 +32,7 @@ class OverviewFragment : Fragment() {
         val today = LocalDate.now()
 
         viewModel.apply {
-            attachDefaultErrorHandler(requireActivity())
-            attachDefaultLoadingHandler(requireActivity())
+            attachDefaultHandlers(requireActivity())
             synchronize()
             calendarEmotions.observe(viewLifecycleOwner) {
                 binding.calendarOverview.setDayEmotions(it)

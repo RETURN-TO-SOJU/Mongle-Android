@@ -70,8 +70,7 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>() {
         viewModel.eventOpenGiftDialog.observe(this) {
             openGiftArrivedDialog(this, it.format(DateTimeFormatter.ofPattern("yyyy.MM.dd")))
         }
-        viewModel.attachDefaultLoadingHandler(this)
-        viewModel.attachDefaultErrorHandler(this)
+        viewModel.attachDefaultHandlers(this)
         viewModel.initializeFromIntent(intent)
         readMediaStoreImages(viewModel.date)
         initRecyclerList()

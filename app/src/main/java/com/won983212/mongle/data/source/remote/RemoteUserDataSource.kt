@@ -1,7 +1,6 @@
 package com.won983212.mongle.data.source.remote
 
 import com.won983212.mongle.data.model.User
-import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.data.source.api.UserApi
 import com.won983212.mongle.data.source.api.safeApiCall
 import com.won983212.mongle.data.source.remote.model.MessageResult
@@ -13,37 +12,31 @@ internal class RemoteUserDataSource @Inject constructor(
     private val api: UserApi
 ) {
 
-    suspend fun getUserInfo(
-        callback: RequestLifecycleCallback
-    ): User? {
-        return safeApiCall(callback) {
+    suspend fun getUserInfo(): Result<User> {
+        return safeApiCall {
             api.getUserInfo()
         }
     }
 
     suspend fun setFCMToken(
-        callback: RequestLifecycleCallback,
         fcmToken: String
-    ): MessageResult? {
-        return safeApiCall(callback) {
+    ): Result<MessageResult> {
+        return safeApiCall {
             api.setFCMToken(FCMTokenRequest(fcmToken))
         }
     }
 
     // TODO Username도 Set하면 local에 저장
     suspend fun setUsername(
-        callback: RequestLifecycleCallback,
         username: String
-    ): MessageResult? {
-        return safeApiCall(callback) {
+    ): Result<MessageResult> {
+        return safeApiCall {
             api.setUsername(UsernameRequest(username))
         }
     }
 
-    suspend fun leaveAccount(
-        callback: RequestLifecycleCallback
-    ): MessageResult? {
-        return safeApiCall(callback) {
+    suspend fun leaveAccount(): Result<MessageResult> {
+        return safeApiCall {
             api.leaveAccount()
         }
     }

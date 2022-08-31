@@ -11,8 +11,6 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.won983212.mongle.R
-import com.won983212.mongle.data.source.api.RequestErrorType
-import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.domain.repository.ConfigRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
@@ -25,7 +23,7 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MongleFirebaseMessagingService : FirebaseMessagingService(), RequestLifecycleCallback {
+class MongleFirebaseMessagingService : FirebaseMessagingService() {
 
     @Inject
     lateinit var userRepository: UserRepository
@@ -36,7 +34,7 @@ class MongleFirebaseMessagingService : FirebaseMessagingService(), RequestLifecy
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         CoroutineScope(Dispatchers.IO).launch {
-            userRepository.setFCMToken(this@MongleFirebaseMessagingService, token)
+            userRepository.setFCMToken(token)
         }
     }
 
@@ -162,15 +160,6 @@ class MongleFirebaseMessagingService : FirebaseMessagingService(), RequestLifecy
 
         // 알림 생성
         notificationManager.notify(uniId, notificationBuilder.build())
-    }
-
-    override fun onStart() {
-    }
-
-    override fun onComplete() {
-    }
-
-    override fun onError(requestErrorType: RequestErrorType, msg: String) {
     }
 
     companion object {

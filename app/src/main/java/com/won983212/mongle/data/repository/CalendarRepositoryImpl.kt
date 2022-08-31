@@ -1,7 +1,6 @@
 package com.won983212.mongle.data.repository
 
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
@@ -15,43 +14,31 @@ internal class CalendarRepositoryImpl(
 ) : CalendarRepository {
 
     override suspend fun updateDiary(
-        callback: RequestLifecycleCallback,
         date: LocalDate,
         text: String
-    ): MessageResult? =
+    ): Result<MessageResult> =
         remoteCalendarDataSource.updateDiary(
-            callback,
             date,
             text
         )
 
     override suspend fun getCalendarDayMetadata(
-        callback: RequestLifecycleCallback,
         startMonth: LocalDate,
         endMonth: LocalDate
-    ): List<CalendarDay>? =
+    ): Result<List<CalendarDay>> =
         remoteCalendarDataSource.getCalendarDayMetadata(
-            callback,
             startMonth,
             endMonth
         )
 
-    override suspend fun getCalendarDayDetail(
-        callback: RequestLifecycleCallback,
-        date: LocalDate
-    ): CalendarDayDetail? =
-        remoteCalendarDataSource.getCalendarDayDetail(
-            callback,
-            date
-        )
+    override suspend fun getCalendarDayDetail(date: LocalDate): Result<CalendarDayDetail> =
+        remoteCalendarDataSource.getCalendarDayDetail(date)
 
     override suspend fun getDayEmotionalSentences(
-        callback: RequestLifecycleCallback,
         date: LocalDate,
         emotion: Emotion
-    ): List<EmotionalSentence>? =
+    ): Result<List<EmotionalSentence>> =
         remoteCalendarDataSource.getDayEmotionalSentences(
-            callback,
             date,
             emotion
         )

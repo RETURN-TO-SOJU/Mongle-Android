@@ -65,7 +65,7 @@ class DayDetailViewModel @Inject constructor(
     private val _diary = MutableLiveData("")
     val diary = _diary.asLiveData()
     val diaryText = Transformations.map(_diary) {
-        var text = it ?: ""
+        val text = it ?: ""
         if (text.isBlank()) {
             TextResource(R.string.overview_title_empty)
         } else {
@@ -73,7 +73,6 @@ class DayDetailViewModel @Inject constructor(
         }
     }
 
-    // TODO model mapper를 따로 제작하면 좋겠다
     fun initializeFromIntent(intent: Intent) {
         date = (intent.getSerializableExtra(DayDetailActivity.EXTRA_DATE)
             ?: LocalDate.now()) as LocalDate
@@ -85,23 +84,28 @@ class DayDetailViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-            val detail = calendarRepository.getCalendarDayDetail(this@DayDetailViewModel, date)
+            val detail = startProgressTask { calendarRepository.getCalendarDayDetail(date) }
+
             if (detail != null) {
                 emotion = detail.emotion
                 _diary.postValue(detail.diary)
                 if (detail.emotion != null) {
                     _emotionIcon.postValue(detail.emotion.iconRes)
                 }
+
+                // TODO model mapper를 따로 제작하면 좋겠다
                 _schedules.postValue(detail.scheduleList.map {
                     val formatter = DateTimeFormatter.ofPattern("a hh:mm")
                     val timeRangeText =
                         "${it.startTime.format(formatter)} ~ ${it.endTime.format(formatter)}"
                     Schedule(it.name, it.calendar, timeRangeText)
                 })
+
                 _photos.postValue(detail.imageList.map {
                     val formatter = DateTimeFormatter.ofPattern("hh:mm a").withLocale(Locale.US)
                     Photo(it.url, it.time.format(formatter))
                 })
+
                 _analyzedEmotions.postValue(detail.emotionList.map {
                     AnalyzedEmotion(it.emotion, it.percent)
                 })

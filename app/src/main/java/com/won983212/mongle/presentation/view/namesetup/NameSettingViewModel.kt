@@ -3,7 +3,6 @@ package com.won983212.mongle.presentation.view.namesetup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
-import com.won983212.mongle.data.source.api.RequestErrorType
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,9 +23,9 @@ class NameSettingViewModel @Inject constructor(
     fun updateUsername() = viewModelScope.launch {
         val nameText = name.value
         if (nameText != null) {
-            userRepository.setUsername(this@NameSettingViewModel, nameText)
+            startProgressTask { userRepository.setUsername(nameText) }
         } else {
-            onError(RequestErrorType.UNKNOWN, "이름을 제대로 입력해주세요.")
+            showError("이름을 제대로 입력해주세요.")
         }
     }
 }

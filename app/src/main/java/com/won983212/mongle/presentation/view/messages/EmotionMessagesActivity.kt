@@ -32,8 +32,7 @@ class EmotionMessagesActivity : BaseDataActivity<ActivityEmotionMessageBinding>(
 
         binding.listEmotionMessage.adapter = EmotionMessageListAdapter()
         binding.btnEmotionMessageCancel.setOnClickListener { finish() }
-        viewModel.attachDefaultLoadingHandler(this)
-        viewModel.attachDefaultErrorHandler(this)
+        viewModel.attachDefaultHandlers(this)
         viewModel.initializeFromIntent(intent)
     }
 

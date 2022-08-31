@@ -37,7 +37,7 @@ class SettingViewModel @Inject constructor(
     }
 
     fun updateUsernameTitle() = viewModelScope.launch {
-        val user = userRepository.getUserInfo(this@SettingViewModel)
+        val user = startProgressTask { userRepository.getUserInfo() }
         var username = "??"
         if (user != null) {
             username = user.username
@@ -46,7 +46,7 @@ class SettingViewModel @Inject constructor(
     }
 
     fun doLeave() = viewModelScope.launch {
-        val result = userRepository.leaveAccount(this@SettingViewModel)
+        val result = startProgressTask { userRepository.leaveAccount() }
         if (result != null) {
             _eventLeaveAccount.call()
         }

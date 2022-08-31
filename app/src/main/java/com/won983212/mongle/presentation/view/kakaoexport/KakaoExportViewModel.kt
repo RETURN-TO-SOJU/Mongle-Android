@@ -20,7 +20,7 @@ class KakaoExportViewModel @Inject constructor(
 
     fun uploadKakaotalk(stream: InputStream) = viewModelScope.launch {
         val content = stream.readBytes()
-        val response = kakaotalkRepository.upload(this@KakaoExportViewModel, content)
+        val response = startProgressTask { kakaotalkRepository.upload(content) }
         if (response != null) {
             _isAnalyzing.postValue(true)
         }

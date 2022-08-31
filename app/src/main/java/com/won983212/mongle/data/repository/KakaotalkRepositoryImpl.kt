@@ -1,6 +1,5 @@
 package com.won983212.mongle.data.repository
 
-import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.data.source.remote.RemoteKakaotalkDataSource
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.domain.repository.KakaotalkRepository
@@ -11,9 +10,6 @@ internal class KakaotalkRepositoryImpl
     private val kakaotalkDataSource: RemoteKakaotalkDataSource
 ) : KakaotalkRepository {
 
-    override suspend fun upload(
-        callback: RequestLifecycleCallback,
-        content: ByteArray
-    ): MessageResult? =
-        kakaotalkDataSource.upload(callback, content)
+    override suspend fun upload(content: ByteArray): Result<MessageResult> =
+        kakaotalkDataSource.upload(content)
 }

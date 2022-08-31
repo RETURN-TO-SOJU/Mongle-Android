@@ -58,8 +58,23 @@ class OverviewViewModel @Inject constructor(
         return TextResource(resId)
     }
 
-    private suspend fun updateOverviewText(date: LocalDate) {
-        val userInfo = userRepository.getUserInfo(this@OverviewViewModel)
+    fun synchronize() = viewModelScope.launch {
+        val today = LocalDate.now()
+        val days = startProgressTask {
+            calendarRepository.getCalendarDayMetadata(
+                today.minusMonths(3),
+                today.plusMonths(3)
+            )
+        }
+        if (days != null) {
+            _calendarEmotions.postValue(days.associate { it.date to it.emotion })
+            keywordMap = days.associate { it.date to it.subjectList }
+        }
+    }
+
+    fun onSelectionChanged(date: LocalDate) = viewModelScope.launch {
+        setLoading(true)
+        val userInfo = startResultTask { userRepository.getUserInfo() }
         if (userInfo != null) {
             val dateText = date.format(DateTimeFormatter.ofPattern("M월 d일 EEEE"))
             _overviewText.postValue(
@@ -71,28 +86,12 @@ class OverviewViewModel @Inject constructor(
                 )
             )
         }
-    }
 
-    fun synchronize() = viewModelScope.launch {
-        val today = LocalDate.now()
-        val days = calendarRepository.getCalendarDayMetadata(
-            this@OverviewViewModel,
-            today.minusMonths(3),
-            today.plusMonths(3)
-        )
-        if (days != null) {
-            _calendarEmotions.postValue(days.associate { it.date to it.emotion })
-            keywordMap = days.associate { it.date to it.subjectList }
-        }
-    }
-
-    fun onSelectionChanged(date: LocalDate) = viewModelScope.launch {
-        updateOverviewText(date)
         val emotion = calendarEmotions.value?.get(date)
         _selectedDayEmotion.postValue((emotion ?: Emotion.ANXIOUS).iconRes)
 
         val defaultFeedback = emotion?.descriptionRes ?: R.string.overview_title_empty
-        val detail = calendarRepository.getCalendarDayDetail(this@OverviewViewModel, date)
+        val detail = startResultTask { calendarRepository.getCalendarDayDetail(date) }
         if (detail != null && detail.diaryFeedback.isNotBlank()) {
             _diaryFeedback.postValue(TextResource(detail.diaryFeedback))
         } else {
@@ -100,5 +99,6 @@ class OverviewViewModel @Inject constructor(
         }
 
         _keywords.postValue(keywordMap.get(date) ?: listOf())
+        setLoading(false)
     }
 }

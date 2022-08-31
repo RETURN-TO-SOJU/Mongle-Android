@@ -1,9 +1,7 @@
 package com.won983212.mongle.data.source.remote
 
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.source.CalendarDataSource
 import com.won983212.mongle.data.source.api.CalendarApi
-import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.data.source.api.safeApiCall
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
@@ -16,14 +14,13 @@ import javax.inject.Inject
 
 internal class RemoteCalendarDataSource @Inject constructor(
     private val api: CalendarApi
-) : CalendarDataSource {
+) {
 
-    override suspend fun updateDiary(
-        callback: RequestLifecycleCallback,
+    suspend fun updateDiary(
         date: LocalDate,
         text: String
-    ): MessageResult? {
-        return safeApiCall(callback) {
+    ): Result<MessageResult> {
+        return safeApiCall {
             api.updateDiary(
                 date.year,
                 convertDoubleDigitFormat(date.monthValue),
@@ -33,12 +30,11 @@ internal class RemoteCalendarDataSource @Inject constructor(
         }
     }
 
-    override suspend fun getCalendarDayMetadata(
-        callback: RequestLifecycleCallback,
+    suspend fun getCalendarDayMetadata(
         startMonth: LocalDate,
         endMonth: LocalDate
-    ): List<CalendarDay>? {
-        return safeApiCall(callback) {
+    ): Result<List<CalendarDay>> {
+        return safeApiCall {
             api.getCalendarDayMetadata(
                 startMonth.format(DateTimeFormatter.ofPattern("yyyy-MM")),
                 endMonth.format(
@@ -48,11 +44,10 @@ internal class RemoteCalendarDataSource @Inject constructor(
         }
     }
 
-    override suspend fun getCalendarDayDetail(
-        callback: RequestLifecycleCallback,
+    suspend fun getCalendarDayDetail(
         date: LocalDate
-    ): CalendarDayDetail? {
-        return safeApiCall(callback) {
+    ): Result<CalendarDayDetail> {
+        return safeApiCall {
             api.getCalendarDayDetail(
                 date.year,
                 convertDoubleDigitFormat(date.monthValue),
@@ -61,12 +56,11 @@ internal class RemoteCalendarDataSource @Inject constructor(
         }
     }
 
-    override suspend fun getDayEmotionalSentences(
-        callback: RequestLifecycleCallback,
+    suspend fun getDayEmotionalSentences(
         date: LocalDate,
         emotion: Emotion
-    ): List<EmotionalSentence>? {
-        return safeApiCall(callback) {
+    ): Result<List<EmotionalSentence>> {
+        return safeApiCall {
             api.getDayEmotionalSentences(
                 date.year,
                 convertDoubleDigitFormat(date.monthValue),

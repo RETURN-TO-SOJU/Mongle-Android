@@ -1,7 +1,6 @@
 package com.won983212.mongle.data.di
 
 import com.won983212.mongle.domain.repository.AuthRepository
-import com.won983212.mongle.exception.NeedsLoginException
 import dagger.Lazy
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -22,12 +21,11 @@ class AuthenticationInterceptor @Inject constructor(
             ?.getAnnotation(NoAuthorization::class.java)
 
         if (noAuthAnnotation == null) {
-            try {
-                val token = runBlocking { authRepository.get().getAccessToken() }
+            val token = runBlocking { authRepository.get().getAccessToken() }
+            token.onSuccess {
                 request = request.newBuilder()
-                    .addHeader("Authorization", "Bearer $token")
+                    .addHeader("Authorization", "Bearer $it")
                     .build()
-            } catch (e: NeedsLoginException) {
             }
         }
 

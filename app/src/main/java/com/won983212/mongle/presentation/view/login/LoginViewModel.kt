@@ -5,7 +5,6 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.OAuthLoginToken
-import com.won983212.mongle.data.source.api.EmptyRequestLifecycleCallback
 import com.won983212.mongle.domain.repository.AuthRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.domain.usecase.ValidateTokenUseCase
@@ -29,14 +28,15 @@ class LoginViewModel @Inject constructor(
     val eventLoggedIn = _eventLoggedIn.asLiveData()
 
     fun doLoginWithKakaoToken(token: OAuthToken) = viewModelScope.launch {
-        val response =
-            authRepository.login(this@LoginViewModel, OAuthLoginToken.fromKakaoToken(token))
+        val response = startProgressTask {
+            authRepository.login(OAuthLoginToken.fromKakaoToken(token))
+        }
         if (response != null) {
             FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
                 // TODO 좀 더 세련된 방법 없나..?
                 viewModelScope.launch {
                     if (task.isSuccessful) {
-                        userRepository.setFCMToken(this@LoginViewModel, task.result)
+                        userRepository.setFCMToken(task.result)
                     }
                 }
             }
@@ -49,9 +49,9 @@ class LoginViewModel @Inject constructor(
     }
 
     suspend fun validateToken(): Boolean {
-        setLoading(true)
-        val canAutoLogin = validateTokenUseCase.execute(EmptyRequestLifecycleCallback)
-        setLoading(false)
+        val canAutoLogin = startTask {
+            validateTokenUseCase.execute()
+        }
         if (canAutoLogin) {
             _eventLoggedIn.call()
         }
