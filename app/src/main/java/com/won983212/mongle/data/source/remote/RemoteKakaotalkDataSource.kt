@@ -14,14 +14,12 @@ internal class RemoteKakaotalkDataSource @Inject constructor(
 ) {
     suspend fun upload(
         errorHandler: RequestLifecycleCallback,
-        accessToken: String,
         content: ByteArray
     ): MessageResult? {
         val fileBody = content.toRequestBody("text/plain".toMediaTypeOrNull(), 0, content.size)
         val filePart = MultipartBody.Part.createFormData("files", "KakaoData.txt", fileBody)
         return safeApiCall(errorHandler) {
             api.uploadKakaotalk(
-                accessToken,
                 filePart
             )
         }

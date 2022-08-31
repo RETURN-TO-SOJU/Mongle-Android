@@ -38,10 +38,12 @@ internal class NetworkModule {
     @Provides
     @Singleton
     fun provideHttpClient(
-        interceptor: HttpLoggingInterceptor
+        authenticationInterceptor: AuthenticationInterceptor,
+        httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(interceptor)
+            .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(authenticationInterceptor)
             .readTimeout(20, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(20, TimeUnit.SECONDS)

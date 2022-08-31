@@ -11,27 +11,23 @@ import java.time.LocalDate
 interface CalendarDataSource {
     suspend fun updateDiary(
         callback: RequestLifecycleCallback,
-        accessToken: String,
         date: LocalDate,
         text: String
     ): MessageResult?
 
     suspend fun getCalendarDayMetadata(
         callback: RequestLifecycleCallback,
-        accessToken: String,
         startMonth: LocalDate,
         endMonth: LocalDate
     ): List<CalendarDay>?
 
     suspend fun getCalendarDayDetail(
         callback: RequestLifecycleCallback,
-        accessToken: String,
         date: LocalDate
     ): CalendarDayDetail?
 
     suspend fun getDayEmotionalSentences(
         callback: RequestLifecycleCallback,
-        accessToken: String,
         date: LocalDate,
         emotion: Emotion
     ): List<EmotionalSentence>?

@@ -16,25 +16,21 @@ import java.time.LocalDateTime
 
 class MockCalendarApi : CalendarApi {
     override suspend fun updateDiary(
-        token: String,
         year: Int,
         month: String,
         day: String,
         text: DiaryRequest
     ): MessageResult =
         withContext(Dispatchers.IO) {
-            checkToken(token)
             delay(500)
             MessageResult("complete")
         }
 
     override suspend fun getCalendarDayMetadata(
-        token: String,
         start: String,
         end: String
     ): List<CalendarDay> =
         withContext(Dispatchers.IO) {
-            checkToken(token)
             delay(1000)
             listOf(
                 CalendarDay(LocalDate.of(2022, 8, 1), Emotion.HAPPY, listOf("학교", "소마")),
@@ -95,13 +91,11 @@ class MockCalendarApi : CalendarApi {
         }
 
     override suspend fun getCalendarDayDetail(
-        token: String,
         year: Int,
         month: String,
         day: String
     ): CalendarDayDetail =
         withContext(Dispatchers.IO) {
-            checkToken(token)
             delay(1000)
             CalendarDayDetail(
                 listOf(
@@ -147,14 +141,12 @@ class MockCalendarApi : CalendarApi {
         }
 
     override suspend fun getDayEmotionalSentences(
-        token: String,
         year: Int,
         month: String,
         day: String,
         emotion: String
     ): List<EmotionalSentence> =
         withContext(Dispatchers.IO) {
-            checkToken(token)
             delay(1000)
             when (emotion) {
                 Emotion.HAPPY.name -> (0..4).map {

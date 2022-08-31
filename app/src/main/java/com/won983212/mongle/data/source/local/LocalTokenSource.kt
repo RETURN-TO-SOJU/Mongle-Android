@@ -38,6 +38,10 @@ internal class LocalTokenSource @Inject constructor(
             .apply()
     }
 
+    fun clear() {
+        setToken(OAuthLoginToken.EMPTY_TOKEN)
+    }
+
     companion object {
         private const val KEY_ACCESS_TOKEN = "access"
         private const val KEY_ACCESS_EXPIRES_AT = "expiresAccess"

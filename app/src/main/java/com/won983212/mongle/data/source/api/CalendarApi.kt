@@ -10,7 +10,6 @@ import retrofit2.http.*
 interface CalendarApi {
     @POST("calender/{year}/{month}/{day}/diary")
     suspend fun updateDiary(
-        @Header(AUTH_TOKEN_HEADER) token: String,
         @Path("year") year: Int,
         @Path("month") month: String,
         @Path("day") day: String,
@@ -19,14 +18,12 @@ interface CalendarApi {
 
     @GET("calender")
     suspend fun getCalendarDayMetadata(
-        @Header(AUTH_TOKEN_HEADER) token: String,
         @Query("start") start: String,
         @Query("end") end: String
     ): List<CalendarDay>
 
     @GET("calender/{year}/{month}/{day}")
     suspend fun getCalendarDayDetail(
-        @Header(AUTH_TOKEN_HEADER) token: String,
         @Path("year") year: Int,
         @Path("month") month: String,
         @Path("day") day: String
@@ -34,7 +31,6 @@ interface CalendarApi {
 
     @GET("calender/{year}/{month}/{day}/sentences")
     suspend fun getDayEmotionalSentences(
-        @Header(AUTH_TOKEN_HEADER) token: String,
         @Path("year") year: Int,
         @Path("month") month: String,
         @Path("day") day: String,

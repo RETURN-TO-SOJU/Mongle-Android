@@ -28,10 +28,10 @@ internal class RepositoryModule {
     @Singleton
     @Provides
     fun provideUserRepository(
-        authRepository: AuthRepository,
+        localTokenSource: LocalTokenSource,
         userDataSource: RemoteUserDataSource
     ): UserRepository {
-        return UserRepositoryImpl(authRepository, userDataSource)
+        return UserRepositoryImpl(localTokenSource, userDataSource)
     }
 
     @Singleton
@@ -46,21 +46,18 @@ internal class RepositoryModule {
     @Singleton
     @Provides
     fun provideKakaotalkRepository(
-        kakaotalkDataSource: RemoteKakaotalkDataSource,
-        authRepository: AuthRepository
+        kakaotalkDataSource: RemoteKakaotalkDataSource
     ): KakaotalkRepository {
-        return KakaotalkRepositoryImpl(kakaotalkDataSource, authRepository)
+        return KakaotalkRepositoryImpl(kakaotalkDataSource)
     }
 
     @Singleton
     @Provides
     fun provideCalendarRepository(
-        remoteCalendarDataSource: RemoteCalendarDataSource,
-        authRepository: AuthRepository
+        remoteCalendarDataSource: RemoteCalendarDataSource
     ): CalendarRepository {
         return CalendarRepositoryImpl(
-            remoteCalendarDataSource,
-            authRepository
+            remoteCalendarDataSource
         )
     }
 

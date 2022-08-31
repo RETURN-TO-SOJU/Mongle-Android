@@ -33,7 +33,7 @@ internal class AuthRepositoryImpl
     }
 
     override fun clear() {
-        localTokenSource.setToken(OAuthLoginToken.EMPTY_TOKEN)
+        localTokenSource.clear()
     }
 
     override suspend fun refreshToken(

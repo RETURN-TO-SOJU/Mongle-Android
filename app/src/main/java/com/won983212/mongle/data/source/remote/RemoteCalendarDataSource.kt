@@ -20,13 +20,11 @@ internal class RemoteCalendarDataSource @Inject constructor(
 
     override suspend fun updateDiary(
         callback: RequestLifecycleCallback,
-        accessToken: String,
         date: LocalDate,
         text: String
     ): MessageResult? {
         return safeApiCall(callback) {
             api.updateDiary(
-                accessToken,
                 date.year,
                 convertDoubleDigitFormat(date.monthValue),
                 convertDoubleDigitFormat(date.dayOfMonth),
@@ -37,13 +35,11 @@ internal class RemoteCalendarDataSource @Inject constructor(
 
     override suspend fun getCalendarDayMetadata(
         callback: RequestLifecycleCallback,
-        accessToken: String,
         startMonth: LocalDate,
         endMonth: LocalDate
     ): List<CalendarDay>? {
         return safeApiCall(callback) {
             api.getCalendarDayMetadata(
-                accessToken,
                 startMonth.format(DateTimeFormatter.ofPattern("yyyy-MM")),
                 endMonth.format(
                     DateTimeFormatter.ofPattern("yyyy-MM")
@@ -54,12 +50,10 @@ internal class RemoteCalendarDataSource @Inject constructor(
 
     override suspend fun getCalendarDayDetail(
         callback: RequestLifecycleCallback,
-        accessToken: String,
         date: LocalDate
     ): CalendarDayDetail? {
         return safeApiCall(callback) {
             api.getCalendarDayDetail(
-                accessToken,
                 date.year,
                 convertDoubleDigitFormat(date.monthValue),
                 convertDoubleDigitFormat(date.dayOfMonth)
@@ -69,13 +63,11 @@ internal class RemoteCalendarDataSource @Inject constructor(
 
     override suspend fun getDayEmotionalSentences(
         callback: RequestLifecycleCallback,
-        accessToken: String,
         date: LocalDate,
         emotion: Emotion
     ): List<EmotionalSentence>? {
         return safeApiCall(callback) {
             api.getDayEmotionalSentences(
-                accessToken,
                 date.year,
                 convertDoubleDigitFormat(date.monthValue),
                 convertDoubleDigitFormat(date.dayOfMonth),
