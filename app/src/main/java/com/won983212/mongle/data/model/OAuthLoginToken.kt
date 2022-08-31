@@ -2,6 +2,7 @@ package com.won983212.mongle.data.model
 
 import com.google.gson.annotations.SerializedName
 import com.kakao.sdk.auth.model.OAuthToken
+import com.won983212.mongle.data.source.remote.model.response.LoginResponse
 import com.won983212.mongle.toLocalDateTime
 import java.time.LocalDateTime
 
@@ -30,6 +31,14 @@ data class OAuthLoginToken(
                 kakaoToken.accessTokenExpiresAt.toLocalDateTime(),
                 kakaoToken.refreshToken,
                 kakaoToken.refreshTokenExpiresAt.toLocalDateTime()
+            )
+
+        fun fromLoginResponse(response: LoginResponse) =
+            OAuthLoginToken(
+                response.accessToken,
+                response.accessTokenExpiresAt,
+                response.refreshToken,
+                response.refreshTokenExpiresAt
             )
 
         val EMPTY_TOKEN = OAuthLoginToken(

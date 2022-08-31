@@ -2,6 +2,7 @@ package com.won983212.mongle.domain.repository
 
 import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.source.api.RequestLifecycleCallback
+import com.won983212.mongle.data.source.remote.model.response.LoginResponse
 
 interface AuthRepository {
 
@@ -29,5 +30,5 @@ interface AuthRepository {
     suspend fun login(
         callback: RequestLifecycleCallback,
         kakaoToken: OAuthLoginToken
-    ): OAuthLoginToken?
+    ): LoginResponse?
 }

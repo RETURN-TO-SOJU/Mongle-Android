@@ -2,12 +2,8 @@ package com.won983212.mongle.debug.mock
 
 import android.util.Log
 import com.won983212.mongle.data.model.OAuthLoginToken
-import com.won983212.mongle.data.model.User
 import com.won983212.mongle.data.source.api.AuthApi
-import com.won983212.mongle.data.source.api.UserApi
-import com.won983212.mongle.data.source.remote.model.MessageResult
-import com.won983212.mongle.data.source.remote.model.request.FCMTokenRequest
-import com.won983212.mongle.data.source.remote.model.request.UsernameRequest
+import com.won983212.mongle.data.source.remote.model.response.LoginResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -16,15 +12,15 @@ import java.time.format.DateTimeFormatter
 
 class MockAuthApi : AuthApi {
 
-    private fun generateToken(): OAuthLoginToken {
+    private fun generateToken(): LoginResponse {
         val now = LocalDateTime.now()
         val genToken = now.format(DateTimeFormatter.ISO_DATE_TIME)
         val accessExpires = now.plusSeconds(ACCESS_TOKEN_EXPIRES_SEC)
         val refreshExpires = now.plusSeconds(REFRESH_TOKEN_EXPIRES_SEC)
-        return OAuthLoginToken(genToken, accessExpires, genToken, refreshExpires)
+        return LoginResponse("소마", genToken, accessExpires, genToken, refreshExpires, false)
     }
 
-    override suspend fun login(kakaoToken: OAuthLoginToken): OAuthLoginToken =
+    override suspend fun login(kakaoToken: OAuthLoginToken): LoginResponse =
         withContext(Dispatchers.IO) {
             delay(300)
             generateToken()
@@ -37,7 +33,7 @@ class MockAuthApi : AuthApi {
                 throw MockingHttpException("Refresh 토큰이 만료되었습니다. 다시 로그인하세요.")
             }
             Log.d("MockAuthApi", "RefreshToken 발급")
-            generateToken()
+            OAuthLoginToken.fromLoginResponse(generateToken())
         }
 
     companion object {

@@ -40,7 +40,11 @@ class LoginViewModel @Inject constructor(
                     }
                 }
             }
-            _eventReadyForRegister.call()
+            if (response.isNew) {
+                _eventReadyForRegister.call()
+            } else {
+                _eventLoggedIn.call()
+            }
         }
     }
 

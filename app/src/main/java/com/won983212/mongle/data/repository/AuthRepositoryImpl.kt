@@ -5,6 +5,7 @@ import com.won983212.mongle.data.source.api.EmptyRequestLifecycleCallback
 import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.remote.RemoteAuthSource
+import com.won983212.mongle.data.source.remote.model.response.LoginResponse
 import com.won983212.mongle.domain.repository.AuthRepository
 import com.won983212.mongle.exception.NeedsLoginException
 import javax.inject.Inject
@@ -48,11 +49,11 @@ internal class AuthRepositoryImpl
     override suspend fun login(
         callback: RequestLifecycleCallback,
         kakaoToken: OAuthLoginToken
-    ): OAuthLoginToken? {
-        val token = remoteAuthSource.login(callback, kakaoToken)
-        if (token != null) {
-            localTokenSource.setToken(token)
+    ): LoginResponse? {
+        val response = remoteAuthSource.login(callback, kakaoToken)
+        if (response != null) {
+            localTokenSource.setToken(OAuthLoginToken.fromLoginResponse(response))
         }
-        return token
+        return response
     }
 }

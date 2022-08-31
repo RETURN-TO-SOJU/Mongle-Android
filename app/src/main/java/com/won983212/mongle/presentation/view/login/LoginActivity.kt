@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnLogin.isEnabled = true
+        binding.btnLogin.isEnabled = false
         binding.btnLogin.setOnClickListener {
             loginWithKakao()
         }

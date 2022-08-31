@@ -11,6 +11,7 @@ import com.won983212.mongle.data.source.api.RequestLifecycleCallback
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.view.openLoadingDialog
 
+// TODO Loading, Error 방식도 개선이 필요하다
 open class BaseViewModel : ViewModel(), RequestLifecycleCallback {
     private val _eventErrorMessage = SingleLiveEvent<String>()
     val eventErrorMessage = _eventErrorMessage.asLiveData()
