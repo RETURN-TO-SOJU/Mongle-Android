@@ -7,6 +7,7 @@ import android.provider.MediaStore
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import com.won983212.mongle.DatetimeFormats
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.toastLong
 import com.won983212.mongle.data.model.Emotion
@@ -23,7 +24,6 @@ import com.won983212.mongle.presentation.view.openGiftArrivedDialog
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 /**
@@ -66,9 +66,8 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>() {
             }
         }
 
-        // TODO DateTimeFormatter들 한곳에 모아서 정의해도 좋을듯
         viewModel.eventOpenGiftDialog.observe(this) {
-            openGiftArrivedDialog(this, it.format(DateTimeFormatter.ofPattern("yyyy.MM.dd")))
+            openGiftArrivedDialog(this, it.format(DatetimeFormats.DATE_DOT))
         }
         viewModel.attachDefaultHandlers(this)
         viewModel.initializeFromIntent(intent)

@@ -1,5 +1,6 @@
 package com.won983212.mongle.data.source.remote
 
+import com.won983212.mongle.DatetimeFormats
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.source.api.CalendarApi
 import com.won983212.mongle.data.source.api.safeApiCall
@@ -9,7 +10,6 @@ import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 internal class RemoteCalendarDataSource @Inject constructor(
@@ -36,10 +36,8 @@ internal class RemoteCalendarDataSource @Inject constructor(
     ): Result<List<CalendarDay>> {
         return safeApiCall {
             api.getCalendarDayMetadata(
-                startMonth.format(DateTimeFormatter.ofPattern("yyyy-MM")),
-                endMonth.format(
-                    DateTimeFormatter.ofPattern("yyyy-MM")
-                )
+                startMonth.format(DatetimeFormats.MONTH_DOT_SPACE),
+                endMonth.format(DatetimeFormats.MONTH_DOT_SPACE)
             )
         }
     }

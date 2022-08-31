@@ -4,17 +4,16 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.google.android.material.datepicker.OnSelectionChangedListener
 import com.kizitonwose.calendarview.CalendarView
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
+import com.won983212.mongle.DatetimeFormats
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.dpToPx
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.CalendarMongleBinding
 import java.time.LocalDate
 import java.time.YearMonth
-import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
 import java.util.*
 
@@ -26,7 +25,6 @@ class MongleCalendar @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val yearMonthFormatter = DateTimeFormatter.ofPattern("yyyy. MM")
     private val binding = CalendarMongleBinding.inflate(LayoutInflater.from(context))
 
     var selectedDate: LocalDate? = null
@@ -48,7 +46,8 @@ class MongleCalendar @JvmOverloads constructor(
             dayBinder = MongleDayBinder(this@MongleCalendar, this@MongleCalendar::selectDate)
             monthHeaderBinder = MongleMonthWeekHeaderBinder(daysOfWeek)
             monthScrollListener = {
-                binding.textCalendarMonth.text = yearMonthFormatter.format(it.yearMonth)
+                binding.textCalendarMonth.text =
+                    DatetimeFormats.MONTH_DOT_SPACE.format(it.yearMonth)
             }
             isNestedScrollingEnabled = false
             setupAsync(

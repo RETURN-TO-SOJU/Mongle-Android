@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
+import com.won983212.mongle.DatetimeFormats
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.domain.repository.CalendarRepository
@@ -25,7 +26,7 @@ class EditDiaryViewModel @Inject constructor(
 
     private val _diaryDate = MutableLiveData<LocalDate>()
     val diaryDate = Transformations.map(_diaryDate) {
-        it.format(DateTimeFormatter.ofPattern("yyyy년 M월 d일"))
+        it.format(DatetimeFormats.DATE_KR)
     }
 
     val diaryContent = MutableLiveData("")

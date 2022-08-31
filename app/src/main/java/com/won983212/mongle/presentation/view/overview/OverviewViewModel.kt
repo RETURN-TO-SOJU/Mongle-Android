@@ -3,6 +3,7 @@ package com.won983212.mongle.presentation.view.overview
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
+import com.won983212.mongle.DatetimeFormats
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
@@ -13,7 +14,6 @@ import com.won983212.mongle.presentation.util.TextResource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -76,7 +76,7 @@ class OverviewViewModel @Inject constructor(
         setLoading(true)
         val userInfo = startResultTask { userRepository.getUserInfo() }
         if (userInfo != null) {
-            val dateText = date.format(DateTimeFormatter.ofPattern("M월 d일 EEEE"))
+            val dateText = date.format(DatetimeFormats.DATE_KR_WEEKDAY)
             _overviewText.postValue(
                 TextResource(
                     R.string.overview_intro,

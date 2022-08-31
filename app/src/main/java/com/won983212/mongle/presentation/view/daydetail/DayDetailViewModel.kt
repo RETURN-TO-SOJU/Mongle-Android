@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
+import com.won983212.mongle.DatetimeFormats
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
@@ -23,7 +24,6 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
 
@@ -95,15 +95,20 @@ class DayDetailViewModel @Inject constructor(
 
                 // TODO model mapper를 따로 제작하면 좋겠다
                 _schedules.postValue(detail.scheduleList.map {
-                    val formatter = DateTimeFormatter.ofPattern("a hh:mm")
                     val timeRangeText =
-                        "${it.startTime.format(formatter)} ~ ${it.endTime.format(formatter)}"
+                        "${it.startTime.format(DatetimeFormats.TIME_12)} ~ ${
+                            it.endTime.format(
+                                DatetimeFormats.TIME_12
+                            )
+                        }"
                     Schedule(it.name, it.calendar, timeRangeText)
                 })
 
                 _photos.postValue(detail.imageList.map {
-                    val formatter = DateTimeFormatter.ofPattern("hh:mm a").withLocale(Locale.US)
-                    Photo(it.url, it.time.format(formatter))
+                    Photo(
+                        it.url,
+                        it.time.format(DatetimeFormats.TIME_12.withLocale(Locale.US))
+                    )
                 })
 
                 _analyzedEmotions.postValue(detail.emotionList.map {
@@ -126,7 +131,7 @@ class DayDetailViewModel @Inject constructor(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id
             )
             val addedText = LocalDateTime.ofEpochSecond(added, 0, ZoneOffset.UTC)
-                .format(DateTimeFormatter.ofPattern("a hh:mm"))
+                .format(DatetimeFormats.TIME_12)
             photoList.add(Photo(contentUri.toString(), addedText))
         }
         _localPhotos.postValue(photoList)

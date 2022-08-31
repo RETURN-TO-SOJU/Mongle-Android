@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
+import com.won983212.mongle.DatetimeFormats
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
@@ -14,7 +15,6 @@ import com.won983212.mongle.presentation.util.TextResource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,7 +29,7 @@ class EmotionMessagesViewModel @Inject constructor(
 
     private val _date = MutableLiveData(LocalDate.now())
     val date = Transformations.map(_date) {
-        it.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"))
+        it.format(DatetimeFormats.DATE_KR_FULL)
     }
 
     private val _proportionText =
