@@ -2,6 +2,10 @@ package com.won983212.mongle.data.di
 
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
+import com.google.gson.TypeAdapter
+import com.google.gson.stream.JsonReader
+import com.google.gson.stream.JsonToken
+import com.google.gson.stream.JsonWriter
 import com.won983212.mongle.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -28,7 +32,6 @@ internal class NetworkModule {
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
-
         }
     }
 
@@ -81,7 +84,23 @@ internal class NetworkModule {
                         json.asString,
                         DateTimeFormatter.ofPattern("HH:mm:ss")
                     )
-                }).create()
+                })
+            .registerTypeAdapter(
+                String::class.java,
+                object : TypeAdapter<String>() {
+                    override fun write(writer: JsonWriter, value: String?) {
+                        writer.value(value)
+                    }
+
+                    override fun read(reader: JsonReader): String {
+                        if (reader.peek() == JsonToken.NULL) {
+                            reader.nextNull()
+                            return ""
+                        }
+                        return reader.nextString()
+                    }
+                })
+            .create()
         return GsonConverterFactory.create(gson)
     }
 }
