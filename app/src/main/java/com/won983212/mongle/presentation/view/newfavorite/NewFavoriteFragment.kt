@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.view
+package com.won983212.mongle.presentation.view.newfavorite
 
 import android.os.Bundle
 import android.util.TypedValue
@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.won983212.mongle.R
 import com.won983212.mongle.common.util.dpToPx
+import com.won983212.mongle.common.util.toastLong
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.BottomSheetNewFavoriteBinding
 
@@ -17,6 +20,7 @@ class NewFavoriteFragment(
     private val initialEmotion: Emotion
 ) : BottomSheetDialogFragment() {
 
+    private val viewModel by viewModels<NewFavoriteViewModel>()
     private lateinit var binding: BottomSheetNewFavoriteBinding
 
     override fun onCreateView(
@@ -26,19 +30,23 @@ class NewFavoriteFragment(
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = BottomSheetNewFavoriteBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
-        binding.edittextNewFavoriteTitle.setCompoundDrawablesWithIntrinsicBounds(
-            initialEmotion.iconRes,
-            0,
-            0,
-            0
-        )
+        binding.btnNewFavoriteOk.setOnClickListener {
+            if (!viewModel.saveFavorite()) {
+                requireContext().toastLong(R.string.new_favorite_fill_blanks)
+            } else {
+                dismiss()
+            }
+        }
 
+        viewModel.selectEmotion(initialEmotion)
         createEmotionButtons()
+
         return binding.root
     }
 
-    // TODO Viewmodel도 접목해서 만들어보자
     private fun createEmotionButtons() {
         Emotion.values().forEachIndexed { idx, emotion ->
             val btn = ImageButton(context).apply {
@@ -54,12 +62,7 @@ class NewFavoriteFragment(
                 setBackgroundResource(typedValue.resourceId)
 
                 setOnClickListener {
-                    binding.edittextNewFavoriteTitle.setCompoundDrawablesWithIntrinsicBounds(
-                        emotion.iconRes,
-                        0,
-                        0,
-                        0
-                    )
+                    viewModel.selectEmotion(emotion)
                 }
             }
 

@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.won983212.mongle.BuildConfig
 import com.won983212.mongle.R
+import com.won983212.mongle.debug.view.MainTestActivity
 import com.won983212.mongle.presentation.base.BaseActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.password.PasswordActivity
@@ -18,6 +20,13 @@ class StartingActivity : BaseActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_starting)
+
+        if (BuildConfig.USE_TEST_ACTIVITY) {
+            Intent(applicationContext, MainTestActivity::class.java).apply {
+                startActivity(this)
+            }
+            return
+        }
 
         val loginIntent = Intent(applicationContext, LoginActivity::class.java)
 

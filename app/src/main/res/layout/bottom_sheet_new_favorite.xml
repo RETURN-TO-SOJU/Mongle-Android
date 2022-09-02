@@ -1,58 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:theme="@style/Theme.Mongle">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- BottomSheetDialogFragment에서 margin을 주기위해 parent
-     layout을 선언함.-->
-    <LinearLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.won983212.mongle.presentation.view.newfavorite.NewFavoriteViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="48dp"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+        android:theme="@style/Theme.Mongle">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="@string/new_favorite_title"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <GridLayout
-            android:id="@+id/layout_new_favorite_emotion_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginVertical="24dp"
-            android:columnCount="3" />
-
-        <EditText
-            android:id="@+id/edittext_new_favorite_title"
+        <!-- BottomSheetDialogFragment에서 margin을 주기위해 parent
+         layout을 선언함.-->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:autofillHints="name"
-            android:backgroundTint="@color/gray"
-            android:drawablePadding="16dp"
-            android:hint="@string/new_favorite_title_hint"
-            android:inputType="text"
-            android:paddingBottom="20dp"
-            android:textCursorDrawable="@drawable/cursor_gray"
-            tools:drawableStart="@drawable/emotion_angry" />
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="48dp"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/ok" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/new_favorite_title"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
-</FrameLayout>
+            <GridLayout
+                android:id="@+id/layout_new_favorite_emotion_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="24dp"
+                android:columnCount="3" />
+
+            <EditText
+                android:id="@+id/edittext_new_favorite_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="name"
+                android:backgroundTint="@color/gray"
+                android:drawablePadding="16dp"
+                android:hint="@string/new_favorite_title_hint"
+                android:inputType="text"
+                android:paddingBottom="20dp"
+                android:textCursorDrawable="@drawable/cursor_gray"
+                android:text="@={viewModel.title}"
+                app:drawableStartRes="@{viewModel.selectedEmotion.iconRes}" />
+
+            <Button
+                android:id="@+id/btn_new_favorite_ok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/ok" />
+
+        </LinearLayout>
+    </FrameLayout>
+</layout>

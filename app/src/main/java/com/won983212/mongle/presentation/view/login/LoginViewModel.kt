@@ -32,12 +32,9 @@ class LoginViewModel @Inject constructor(
             authRepository.login(OAuthLoginToken.fromKakaoToken(token))
         }
         if (response != null) {
-            FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-                // TODO 좀 더 세련된 방법 없나..?
+            FirebaseMessaging.getInstance().token.addOnSuccessListener { result ->
                 viewModelScope.launch {
-                    if (task.isSuccessful) {
-                        userRepository.setFCMToken(task.result)
-                    }
+                    userRepository.setFCMToken(result)
                 }
             }
             if (response.isNew) {

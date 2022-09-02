@@ -10,6 +10,7 @@ import com.won983212.mongle.databinding.ActivityKakaotalkExportBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import dagger.hilt.android.AndroidEntryPoint
 
+// TODO Login Check
 @AndroidEntryPoint
 class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
     private val viewModel by viewModels<KakaoExportViewModel>()

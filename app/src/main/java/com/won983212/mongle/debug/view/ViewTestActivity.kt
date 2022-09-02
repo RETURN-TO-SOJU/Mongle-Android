@@ -5,13 +5,17 @@ import androidx.core.os.bundleOf
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.R
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.presentation.view.*
+import com.won983212.mongle.presentation.view.IntegrationFragment
 import com.won983212.mongle.presentation.view.agree.AgreeActivity
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
 import com.won983212.mongle.presentation.view.diary.EditDiaryActivity
 import com.won983212.mongle.presentation.view.kakaoexport.KakaoExportActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.main.MainActivity
+import com.won983212.mongle.presentation.view.newfavorite.NewFavoriteFragment
+import com.won983212.mongle.presentation.view.openAnalyzeCompleteDialog
+import com.won983212.mongle.presentation.view.openGiftArrivedDialog
+import com.won983212.mongle.presentation.view.openLoadingDialog
 import com.won983212.mongle.presentation.view.password.PasswordActivity
 import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
 

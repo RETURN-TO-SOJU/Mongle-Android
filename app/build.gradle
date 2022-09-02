@@ -21,6 +21,7 @@ android {
         buildConfigField "String", 'KAKAO_NATIVE_APP_KEY', "\"${properties["KAKAO_NATIVE_APP_KEY"]}\""
         buildConfigField "String", 'BASE_URL', "\"${properties["BASE_URL"]}\""
         buildConfigField "boolean", 'USE_MOCKING', properties["USE_MOCKING"]
+        buildConfigField "boolean", 'USE_TEST_ACTIVITY', properties["USE_TEST_ACTIVITY"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
