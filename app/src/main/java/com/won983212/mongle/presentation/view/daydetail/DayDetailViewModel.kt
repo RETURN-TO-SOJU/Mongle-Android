@@ -73,7 +73,7 @@ class DayDetailViewModel @Inject constructor(
         }
     }
 
-    fun initializeFromIntent(intent: Intent) {
+    fun initializeByIntent(intent: Intent) {
         date = (intent.getSerializableExtra(DayDetailActivity.EXTRA_DATE)
             ?: LocalDate.now()) as LocalDate
 

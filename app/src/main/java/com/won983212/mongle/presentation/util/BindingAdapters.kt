@@ -4,6 +4,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +31,13 @@ fun setImageRes(view: ImageView, @DrawableRes data: Int) {
 fun setItems(view: RecyclerView, data: List<Any>?) {
     val adapter = view.adapter as? BaseRecyclerAdapter<ViewDataBinding, Any>?
     adapter?.set(data ?: emptyList())
+}
+
+@BindingAdapter("textRes")
+fun setTextAsRes(view: TextView, @StringRes data: Int?) {
+    if (data != null && data != 0) {
+        view.setText(data)
+    }
 }
 
 @BindingAdapter("textResource")

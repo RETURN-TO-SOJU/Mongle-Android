@@ -39,7 +39,7 @@ class EmotionMessagesViewModel @Inject constructor(
     private var emotionProportions: Map<Emotion, Int>? = null
 
     @Suppress("UNCHECKED_CAST")
-    fun initializeFromIntent(intent: Intent) {
+    fun initializeByIntent(intent: Intent) {
         selectedEmotion.value = (intent.getSerializableExtra(EmotionMessagesActivity.EXTRA_EMOTION)
             ?: Emotion.values()[0]) as Emotion
 

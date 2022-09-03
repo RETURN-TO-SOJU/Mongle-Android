@@ -30,8 +30,8 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="12dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="12dp"
                 android:background="?selectableItemBackgroundBorderless"
                 android:padding="4dp"
                 android:src="@drawable/ic_alarm" />
@@ -63,7 +63,7 @@
                     android:id="@+id/text_setting_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     android:fontFamily="@font/app_semibold"
                     android:textSize="16sp"
                     app:textResource="@{viewModel.usernameTitle}"
@@ -75,7 +75,7 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="2dp"
                     android:text="@string/setting_title_2"
                     android:textSize="14sp"
@@ -104,7 +104,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="32dp"
                     android:text="@string/setting_password" />
             </LinearLayout>
 
@@ -124,7 +124,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="32dp"
                     android:layout_weight="1"
                     android:text="@string/setting_alert" />
 
@@ -156,7 +156,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="32dp"
                     android:text="@string/setting_leave" />
             </LinearLayout>
         </LinearLayout>

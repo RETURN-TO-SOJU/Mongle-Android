@@ -34,7 +34,7 @@ class EditDiaryActivity : BaseDataActivity<ActivityEditDiaryBinding>() {
         }
         viewModel.let {
             it.attachDefaultHandlers(this)
-            it.initializeFromIntent(intent)
+            it.initializeByIntent(intent)
             it.eventUpdateComplete.observe(this) {
                 finish()
             }

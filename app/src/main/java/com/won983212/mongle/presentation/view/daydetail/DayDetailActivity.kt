@@ -51,7 +51,7 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>() {
 
         val openDiary =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                viewModel.initializeFromIntent(intent) // TODO Make update(refresh) method
+                viewModel.initializeByIntent(intent) // TODO Make update(refresh) method
             }
 
         binding.textDayDetailDiary.setOnClickListener {
@@ -70,7 +70,7 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>() {
             openGiftArrivedDialog(this, it.format(DatetimeFormats.DATE_DOT))
         }
         viewModel.attachDefaultHandlers(this)
-        viewModel.initializeFromIntent(intent)
+        viewModel.initializeByIntent(intent)
         readMediaStoreImages(viewModel.date)
         initRecyclerList()
     }
