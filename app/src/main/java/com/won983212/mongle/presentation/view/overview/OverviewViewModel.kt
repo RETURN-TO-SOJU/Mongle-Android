@@ -58,6 +58,7 @@ class OverviewViewModel @Inject constructor(
         return TextResource(resId)
     }
 
+    // TODO 무한 스크롤 구현
     fun synchronize() = viewModelScope.launch {
         val today = LocalDate.now()
         val days = startProgressTask {

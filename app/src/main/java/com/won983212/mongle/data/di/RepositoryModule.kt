@@ -1,9 +1,9 @@
 package com.won983212.mongle.data.di
 
 import com.won983212.mongle.data.repository.*
-import com.won983212.mongle.data.source.local.ConfigDataSource
 import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.local.PasswordDataSource
+import com.won983212.mongle.data.source.local.config.ConfigDataSource
 import com.won983212.mongle.data.source.remote.RemoteAuthSource
 import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
 import com.won983212.mongle.data.source.remote.RemoteKakaotalkDataSource

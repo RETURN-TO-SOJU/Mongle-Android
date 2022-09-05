@@ -28,7 +28,6 @@ internal class MongleDayBinder(
                 container.setEmotion(emotion)
             }
             if (day.date == calendar.selectedDate) { // Point color rectangle
-                Log.d("TEST", "SELECTED: ${day.date}")
                 container.setSelected()
             }
         } else { // disabled text

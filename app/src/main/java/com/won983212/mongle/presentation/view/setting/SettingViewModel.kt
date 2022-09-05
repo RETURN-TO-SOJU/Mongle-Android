@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
+import com.won983212.mongle.data.source.local.config.ConfigKey
 import com.won983212.mongle.domain.repository.ConfigRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
@@ -27,12 +28,9 @@ class SettingViewModel @Inject constructor(
     val eventLeaveAccount = _eventLeaveAccount.asLiveData()
 
     init {
-        // TODO Refactor
-        isAlertEnabled.value = configRepository.get().getBoolean("useAlert", true)
+        isAlertEnabled.value = configRepository.get(ConfigKey.USE_ALERT)
         isAlertEnabled.observeForever {
-            configRepository.get().edit()
-                .putBoolean("useAlert", it)
-                .apply()
+            configRepository.editor().set(ConfigKey.USE_ALERT, it).apply()
         }
     }
 

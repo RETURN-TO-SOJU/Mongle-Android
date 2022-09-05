@@ -28,6 +28,9 @@ class DatetimeFormats {
         /** yyyy. MM */
         val MONTH_DOT_SPACE: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy. MM")
 
+        /** yyyy-MM */
+        val MONTH_SLASH: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM")
+
         /** a hh:mm */
         val TIME_12: DateTimeFormatter = DateTimeFormatter.ofPattern("a hh:mm")
 

@@ -36,8 +36,8 @@ internal class RemoteCalendarDataSource @Inject constructor(
     ): Result<List<CalendarDay>> {
         return safeApiCall {
             api.getCalendarDayMetadata(
-                startMonth.format(DatetimeFormats.MONTH_DOT_SPACE),
-                endMonth.format(DatetimeFormats.MONTH_DOT_SPACE)
+                startMonth.format(DatetimeFormats.MONTH_SLASH),
+                endMonth.format(DatetimeFormats.MONTH_SLASH)
             )
         }
     }

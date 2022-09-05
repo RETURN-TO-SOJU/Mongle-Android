@@ -68,7 +68,11 @@ internal class NetworkModule {
         val gson = GsonBuilder()
             .registerTypeAdapter(LocalDateTime::class.java,
                 JsonDeserializer { json, _, _ ->
-                    LocalDateTime.parse(json.asString)
+                    var stringData = json.asString
+                    if (stringData.endsWith("Z")) {
+                        stringData = stringData.substring(0, stringData.length - 1)
+                    }
+                    LocalDateTime.parse(stringData)
                 })
             .registerTypeAdapter(LocalDate::class.java,
                 JsonDeserializer { json, _, _ ->
