@@ -1,8 +1,10 @@
 package com.won983212.mongle.presentation.view.login
 
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.viewModels
 import com.kakao.sdk.user.UserApiClient
 import com.won983212.mongle.R
@@ -38,6 +40,7 @@ class LoginActivity : BaseDataActivity<ActivityLoginBinding>() {
                 putExtra(AgreeActivity.EXTRA_REDIRECT_TO, redirectTo)
                 startActivity(this)
             }
+            setLoginResult(LoginResult.REGISTER)
             finish()
         }
 
@@ -45,10 +48,15 @@ class LoginActivity : BaseDataActivity<ActivityLoginBinding>() {
             if (redirectTo != null) {
                 startActivity(redirectTo)
             }
+            setLoginResult(LoginResult.LOGIN)
             finish()
         }
 
         viewModel.checkCanAutoLogin()
+    }
+
+    private fun setLoginResult(result: LoginResult) {
+        setResult(RESULT_OK, Intent().putExtra(RESULT_LOGIN, result))
     }
 
     /**
@@ -77,7 +85,36 @@ class LoginActivity : BaseDataActivity<ActivityLoginBinding>() {
         }
     }
 
+    enum class LoginResult {
+        /** 사용자가 회원가입을 한 경우 */
+        REGISTER,
+
+        /** 사용자가 로그인을 한 경우 (기존 회원이라면 회원가입 절차없이 로그인) */
+        LOGIN,
+
+        /** 사용자가 로그인을 거부한 경우 (뒤로가기, 종료 등) */
+        CANCELLED
+    }
+
+    /**
+     * Input으로 [EXTRA_REDIRECT_TO]를 지정한다.
+     */
+    class LoginResultContract : ActivityResultContract<Intent?, LoginResult>() {
+        override fun createIntent(context: Context, input: Intent?): Intent =
+            Intent(context, LoginActivity::class.java).apply {
+                putExtra(EXTRA_REDIRECT_TO, input)
+            }
+
+        override fun parseResult(resultCode: Int, intent: Intent?): LoginResult {
+            if (resultCode == RESULT_OK && intent != null) {
+                return intent.getSerializableExtra(RESULT_LOGIN) as LoginResult
+            }
+            return LoginResult.CANCELLED
+        }
+    }
+
     companion object {
         const val EXTRA_REDIRECT_TO = "redirectTo"
+        private const val RESULT_LOGIN = "loginResult"
     }
 }

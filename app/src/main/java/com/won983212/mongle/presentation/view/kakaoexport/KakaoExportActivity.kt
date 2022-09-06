@@ -8,16 +8,17 @@ import com.won983212.mongle.common.util.attachCompatVectorAnim
 import com.won983212.mongle.common.util.toastLong
 import com.won983212.mongle.databinding.ActivityKakaotalkExportBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
+import com.won983212.mongle.presentation.view.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO Login Check
 @AndroidEntryPoint
 class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
     private val viewModel by viewModels<KakaoExportViewModel>()
-
     override val layoutId: Int = R.layout.activity_kakaotalk_export
 
     override fun onInitialize() {
+        checkLogin()
+
         binding.viewModel = viewModel
         binding.imageKakaotalkExportSending.attachCompatVectorAnim(
             R.drawable.avd_bounce_tired,
@@ -29,7 +30,9 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
             toastLong(it)
             finish()
         }
+    }
 
+    private fun sendKakaoMessagesData() {
         val uri = intent.getParcelableExtra(Intent.EXTRA_STREAM) as? Uri
         if (uri != null) {
             val stream = contentResolver.openInputStream(uri)
@@ -41,6 +44,20 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
         } else {
             onCantFindFile()
         }
+    }
+
+    private fun checkLogin() {
+        registerForActivityResult(LoginActivity.LoginResultContract()) {
+            when (it) {
+                LoginActivity.LoginResult.REGISTER, LoginActivity.LoginResult.LOGIN -> {
+                    sendKakaoMessagesData()
+                }
+                LoginActivity.LoginResult.CANCELLED, null -> {
+                    toastLong(R.string.error_need_login_to_analyze)
+                    finish()
+                }
+            }
+        }.launch(null)
     }
 
     private fun onCantFindFile() {

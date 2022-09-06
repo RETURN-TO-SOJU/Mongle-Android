@@ -37,8 +37,8 @@ class MockAuthApi : AuthApi {
         }
 
     companion object {
-        private const val ACCESS_TOKEN_EXPIRES_SEC = 10L
-        private const val REFRESH_TOKEN_EXPIRES_SEC = 30L
+        private const val ACCESS_TOKEN_EXPIRES_SEC = 600L
+        private const val REFRESH_TOKEN_EXPIRES_SEC = 1200L
 
         suspend fun checkToken(tokenRepository: AuthRepository) {
             tokenRepository.getAccessToken().onFailure {
