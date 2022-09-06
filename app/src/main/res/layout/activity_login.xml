@@ -1,38 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context="com.won983212.mongle.presentation.view.login.LoginActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:layout_width="168dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="4dp"
-        android:src="@drawable/app_title_x4" />
+    <data>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_subtitle"
-        android:textColor="@color/disabled"
-        android:textSize="14sp" />
+        <variable
+            name="viewModel"
+            type="com.won983212.mongle.presentation.view.login.LoginViewModel" />
+    </data>
 
-    <ImageView
-        android:layout_width="91dp"
-        android:layout_height="184dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
-        android:src="@drawable/emotion_happy_big" />
-
-    <Button
-        android:id="@+id/btn_login"
-        style="@style/Widget.Mongle.Button.Kakao"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:text="@string/login_kakao" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="com.won983212.mongle.presentation.view.login.LoginActivity">
 
-</LinearLayout>
+        <ImageView
+            android:layout_width="168dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/app_title_x4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_subtitle"
+            android:textColor="@color/disabled"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="91dp"
+            android:layout_height="184dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:src="@drawable/emotion_happy_big" />
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/Widget.Mongle.Button.Kakao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:enabled="@{viewModel.loginEnabled}"
+            android:text="@string/login_kakao" />
+
+    </LinearLayout>
+</layout>

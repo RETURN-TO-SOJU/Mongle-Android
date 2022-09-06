@@ -1,5 +1,6 @@
 package com.won983212.mongle.presentation.view.login
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
@@ -27,6 +28,10 @@ class LoginViewModel @Inject constructor(
     private val _eventLoggedIn = SingleLiveEvent<Unit>()
     val eventLoggedIn = _eventLoggedIn.asLiveData()
 
+    private val _loginEnabled = MutableLiveData(false)
+    val loginEnabled = _loginEnabled.asLiveData()
+
+
     fun doLoginWithKakaoToken(token: OAuthToken) = viewModelScope.launch {
         val response = startProgressTask {
             authRepository.login(OAuthLoginToken.fromKakaoToken(token))
@@ -45,13 +50,13 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    suspend fun validateToken(): Boolean {
+    fun checkCanAutoLogin() = viewModelScope.launch {
         val canAutoLogin = startTask {
             validateTokenUseCase.execute()
         }
         if (canAutoLogin) {
             _eventLoggedIn.call()
         }
-        return canAutoLogin
+        _loginEnabled.postValue(true)
     }
 }

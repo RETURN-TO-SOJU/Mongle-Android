@@ -8,12 +8,20 @@ import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityAgreeBinding
 import com.won983212.mongle.databinding.ListitemAgreeBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
+import com.won983212.mongle.presentation.view.agree.AgreeActivity.Companion.EXTRA_REDIRECT_TO
+import com.won983212.mongle.presentation.view.login.LoginActivity
+import com.won983212.mongle.presentation.view.login.LoginActivity.Companion.EXTRA_REDIRECT_TO
 import com.won983212.mongle.presentation.view.namesetup.NameSettingActivity
 import com.won983212.mongle.presentation.view.openTermsOfServiceDialog
 
+/**
+ * ## Extras
+ * * **(선택)** [EXTRA_REDIRECT_TO]: [Intent] -
+ * Agree과정이 끝나면, 지정한 intent를 startActivity
+ */
 class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
-    private val viewModel by viewModels<AgreeViewModel>()
 
+    private val viewModel by viewModels<AgreeViewModel>()
     override val layoutId: Int = R.layout.activity_agree
 
     override fun onInitialize() {
@@ -23,8 +31,10 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
             viewModel.setAllAgreeChecked(binding.cbxAgreeAll.isChecked)
         }
 
+        val redirectTo = intent.getParcelableExtra(LoginActivity.EXTRA_REDIRECT_TO) as? Intent
         binding.btnAgreeOk.setOnClickListener {
             Intent(this, NameSettingActivity::class.java).apply {
+                putExtra(NameSettingActivity.EXTRA_REDIRECT_TO, redirectTo)
                 startActivity(this)
             }
             finish()
@@ -69,5 +79,9 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
         } else {
             openTermsOfServiceDialog(this, contentId)
         }
+    }
+
+    companion object {
+        const val EXTRA_REDIRECT_TO = "redirectTo"
     }
 }

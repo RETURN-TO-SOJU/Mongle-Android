@@ -9,6 +9,7 @@ import com.won983212.mongle.R
 import com.won983212.mongle.debug.view.MainTestActivity
 import com.won983212.mongle.presentation.base.BaseActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity
+import com.won983212.mongle.presentation.view.main.MainActivity
 import com.won983212.mongle.presentation.view.password.PasswordActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,7 +29,9 @@ class StartingActivity : BaseActivity() {
             return
         }
 
-        val loginIntent = Intent(applicationContext, LoginActivity::class.java)
+        val loginIntent = Intent(applicationContext, LoginActivity::class.java).apply {
+            putExtra(LoginActivity.EXTRA_REDIRECT_TO, Intent(applicationContext, MainActivity::class.java))
+        }
 
         if (viewModel.needsPasswordAuth()) {
             Intent(this, PasswordActivity::class.java).apply {

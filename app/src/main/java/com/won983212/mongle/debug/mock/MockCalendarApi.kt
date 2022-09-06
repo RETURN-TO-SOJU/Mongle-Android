@@ -7,14 +7,18 @@ import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
-import com.won983212.mongle.debug.mock.MockAuthApi.Companion.checkToken
+import com.won983212.mongle.domain.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.LocalDateTime
+import javax.inject.Inject
 
-class MockCalendarApi : CalendarApi {
+class MockCalendarApi(
+    private val authRepository: AuthRepository
+) : CalendarApi {
+
     override suspend fun updateDiary(
         year: Int,
         month: String,
@@ -23,6 +27,7 @@ class MockCalendarApi : CalendarApi {
     ): MessageResult =
         withContext(Dispatchers.IO) {
             delay(500)
+            MockAuthApi.checkToken(authRepository)
             MessageResult("complete")
         }
 
@@ -32,6 +37,7 @@ class MockCalendarApi : CalendarApi {
     ): List<CalendarDay> =
         withContext(Dispatchers.IO) {
             delay(1000)
+            MockAuthApi.checkToken(authRepository)
             listOf(
                 CalendarDay(LocalDate.of(2022, 8, 1), Emotion.HAPPY, listOf("학교", "소마")),
                 CalendarDay(LocalDate.of(2022, 8, 2), Emotion.SAD, listOf("학교2", "소마1")),
@@ -97,6 +103,7 @@ class MockCalendarApi : CalendarApi {
     ): CalendarDayDetail =
         withContext(Dispatchers.IO) {
             delay(1000)
+            MockAuthApi.checkToken(authRepository)
             CalendarDayDetail(
                 listOf(
                     CalendarDayDetail.Photo(
@@ -148,6 +155,7 @@ class MockCalendarApi : CalendarApi {
     ): List<EmotionalSentence> =
         withContext(Dispatchers.IO) {
             delay(1000)
+            MockAuthApi.checkToken(authRepository)
             when (emotion) {
                 Emotion.HAPPY.name -> (0..4).map {
                     EmotionalSentence(

@@ -13,7 +13,7 @@ abstract class BaseDataActivity<T : ViewDataBinding> : BaseActivity() {
     protected lateinit var binding: T
 
     @get:LayoutRes
-    abstract val layoutId: Int
+    protected abstract val layoutId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
