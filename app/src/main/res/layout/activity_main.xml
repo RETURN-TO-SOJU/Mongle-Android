@@ -18,6 +18,29 @@
         android:orientation="vertical"
         tools:context="com.won983212.mongle.presentation.view.main.MainActivity">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_overview"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/background"
+            app:layout_collapseMode="pin">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/app_title_x4" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="12dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:padding="4dp"
+                android:src="@drawable/ic_alarm" />
+        </androidx.appcompat.widget.Toolbar>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/layout_main_content"
             android:layout_width="match_parent"

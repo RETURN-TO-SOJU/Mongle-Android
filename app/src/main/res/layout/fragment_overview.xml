@@ -13,7 +13,6 @@
             type="com.won983212.mongle.presentation.view.overview.OverviewViewModel" />
     </data>
 
-    <!-- Todo 이 상단 appbar를 mainactivity에 두고싶은데 -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,36 +29,12 @@
                 app:contentScrim="@color/point"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar_overview"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/background"
-                    app:layout_collapseMode="pin">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="18dp"
-                        android:scaleType="fitStart"
-                        android:src="@drawable/app_title_x4" />
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_marginEnd="12dp"
-                        android:background="?selectableItemBackgroundBorderless"
-                        android:padding="4dp"
-                        android:src="@drawable/ic_alarm" />
-                </androidx.appcompat.widget.Toolbar>
-
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="?android:attr/actionBarSize"
             app:layout_behavior=".presentation.behavior.BehaviorAlpha">
 
             <TextView
