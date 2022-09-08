@@ -6,6 +6,7 @@ import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.util.Utility
 import dagger.hilt.android.HiltAndroidApp
 
+// TODO 폴더 모듈화하기
 @HiltAndroidApp
 class Mongle : Application() {
     override fun onCreate() {

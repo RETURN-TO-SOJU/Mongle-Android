@@ -5,10 +5,6 @@
         android:icon="@drawable/ic_calendar"
         android:title="@string/tab_calendar_title" />
     <item
-        android:id="@+id/tab_album"
-        android:icon="@drawable/ic_album"
-        android:title="@string/tab_album_title" />
-    <item
         android:id="@+id/tab_statistics"
         android:icon="@drawable/ic_statistics"
         android:title="@string/tab_statistics_title" />
