@@ -25,6 +25,6 @@ internal class TutorialSlideAdapter(
     override fun createFragment(position: Int): Fragment {
         val titleRes = titleList.getResourceId(position, 0)
         val imageRes = imageResList.getResourceId(position, 0)
-        return TutorialPageFragment(titleRes, imageRes)
+        return TutorialPageFragment.newInstance(titleRes, imageRes)
     }
 }

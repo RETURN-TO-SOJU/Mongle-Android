@@ -27,7 +27,7 @@ class OverviewFragment : Fragment() {
     ): View {
         val binding = FragmentOverviewBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         val today = LocalDate.now()
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import com.won983212.mongle.databinding.FragmentSettingBinding
 import com.won983212.mongle.presentation.view.LeavingFragment
@@ -18,6 +19,16 @@ class SettingFragment : Fragment() {
 
     private val viewModel by viewModels<SettingViewModel>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setFragmentResultListener(LeavingFragment.REQUEST_KEY) { _, bundle ->
+            val agreed = bundle.getBoolean(LeavingFragment.RESULT_AGREED, false)
+            if (agreed) {
+                viewModel.doLeave()
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,12 +36,10 @@ class SettingFragment : Fragment() {
         val activity = requireActivity()
         val binding = FragmentSettingBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.layoutSettingLeave.setOnClickListener {
-            LeavingFragment {
-                viewModel.doLeave()
-            }.apply {
+            LeavingFragment.newInstance().apply {
                 show(activity.supportFragmentManager, tag)
             }
         }
@@ -43,7 +52,7 @@ class SettingFragment : Fragment() {
         }
 
         viewModel.attachDefaultHandlers(activity)
-        viewModel.eventLeaveAccount.observe(activity) {
+        viewModel.eventLeaveAccount.observe(viewLifecycleOwner) {
             Intent(activity, LoginActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(this)

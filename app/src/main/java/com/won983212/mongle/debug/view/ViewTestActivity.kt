@@ -75,6 +75,6 @@ class ViewTestActivity : BaseTestActivity() {
     }
 
     private fun newFavoriteFragmentFactory(): BottomSheetDialogFragment {
-        return NewFavoriteFragment(Emotion.ANXIOUS)
+        return NewFavoriteFragment.newInstance(Emotion.ANXIOUS)
     }
 }

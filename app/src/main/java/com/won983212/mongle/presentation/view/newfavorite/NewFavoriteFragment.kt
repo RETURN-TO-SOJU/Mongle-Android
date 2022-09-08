@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.R
@@ -16,12 +17,18 @@ import com.won983212.mongle.common.util.toastLong
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.BottomSheetNewFavoriteBinding
 
-class NewFavoriteFragment(
-    private val initialEmotion: Emotion
-) : BottomSheetDialogFragment() {
+class NewFavoriteFragment : BottomSheetDialogFragment() {
 
     private val viewModel by viewModels<NewFavoriteViewModel>()
     private lateinit var binding: BottomSheetNewFavoriteBinding
+    private var initialEmotion: Emotion? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            initialEmotion = it.getSerializable(ARGUMENT_INITIAL_EMOTION) as Emotion
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +38,7 @@ class NewFavoriteFragment(
         super.onCreateView(inflater, container, savedInstanceState)
         binding = BottomSheetNewFavoriteBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.btnNewFavoriteOk.setOnClickListener {
             if (!viewModel.saveFavorite()) {
@@ -41,9 +48,11 @@ class NewFavoriteFragment(
             }
         }
 
-        viewModel.selectEmotion(initialEmotion)
-        createEmotionButtons()
+        if (initialEmotion != null) {
+            viewModel.selectEmotion(initialEmotion!!)
+        }
 
+        createEmotionButtons()
         return binding.root
     }
 
@@ -84,5 +93,14 @@ class NewFavoriteFragment(
                 layoutParams
             )
         }
+    }
+
+    companion object {
+        private const val ARGUMENT_INITIAL_EMOTION = "initialEmotion"
+
+        fun newInstance(initialEmotion: Emotion) =
+            NewFavoriteFragment().apply {
+                arguments = bundleOf(ARGUMENT_INITIAL_EMOTION to initialEmotion)
+            }
     }
 }
