@@ -1,5 +1,126 @@
-<resources>
-    <string name="app_name">Mongle</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">몽글몽글</string>
+    <string name="app_subtitle">당신에게 추억을 선물합니다.</string>
+
+    <!-- Common -->
+    <string name="empty" />
+    <string name="cancel">취소</string>
+    <string name="ok">확인</string>
+    <string name="keyword_template">#%1$s</string>
+    <string name="percent_template">%1$s%%</string>
+    <string name="watch_later">다음에 볼게요</string>
+    <string name="watch_now">지금 볼게요!</string>
+    <string name="write_complete">작성완료</string>
+
+    <!-- Emotion -->
+    <string name="emotion_angry">분노</string>
+    <string name="emotion_anxious">불안</string>
+    <string name="emotion_tired">피곤</string>
+    <string name="emotion_happy">행복</string>
+    <string name="emotion_neutral">중립</string>
+    <string name="emotion_sad">슬픔</string>
+
+    <!-- Login -->
     <string name="login_anonymous"><u>로그인하지 않고 둘러보기</u></string>
     <string name="login_kakao">카카오톡으로 시작하기</string>
+
+    <!-- Service agreement -->
+    <string name="agree_title">몽글몽글이 처음이시군요 🙌\n잠시 동의받겠습니다!</string>
+    <string name="agree_all">전체동의</string>
+
+    <!-- Password -->
+    <string name="pwd_set_title">비밀번호 설정</string>
+    <string name="pwd_set_subtitle">앱에서 사용할 암호를 입력하세요.</string>
+    <string name="pwd_reenter_title">다시 입력</string>
+    <string name="pwd_reenter_subtitle">방금 입력했던 비밀번호를 다시 입력해주세요.</string>
+    <string name="pwd_auth_title">잠금번호 입력</string>
+    <string name="pwd_wrong">틀린 비밀번호입니다. 다시 입력해주세요.</string>
+    <string name="pwd_not_matched">방금 입력했던 비밀번호와 다릅니다. 다시 설정해주세요.</string>
+    <string name="pwd_lost">암호분실</string>
+    <string name="pwd_delete">암호삭제</string>
+
+    <!-- Integration dialog -->
+    <string name="integration_title">반가워요 👋\n우리 더 친해져요 :)</string>
+    <string name="integration_subtitle">클라우드 및 캘린더 연동하기</string>
+    <string name="integration_skip">다음에 할래요!</string>
+    <string name="integration_naver_cloud">네이버 MYBOX 연동하기</string>
+    <string name="integration_google_cloud">구글 클라우드 연동하기</string>
+    <string name="integration_google_calendar">구글 캘린더 연동하기</string>
+
+    <!-- Tutorial -->
+    <string name="skip">건너뛰기</string>
+    <string name="tutorial_title_1">안녕하세요! 튜토리얼에 오신것을 환영합니다!</string>
+
+    <!-- New favorite -->
+    <string name="new_favorite_title">소마님 💌\n소중한 추억을 저장하세요 :)</string>
+    <string name="new_favorite_title_hint">제목을 입력해주세요.</string>
+    <string name="new_favorite_fill_blanks">모든 입력란을 채워주세요.</string>
+
+    <!-- Bottom tab title -->
+    <string name="tab_overview_title">캘린더</string>
+    <string name="tab_album_title">앨범</string>
+    <string name="tab_statistics_title">통계</string>
+    <string name="tab_favorite_title">찜</string>
+    <string name="tab_settings_title">MY</string>
+
+    <!-- Kakaotalk analyze tutorial -->
+    <string name="kakao_tutorial_title_1">분석하고 싶은 톡방 입장 후,\n우측 상단 <font color="#EB6E6D">메뉴(3개의 줄) 아이콘</font> 클릭</string>
+    <string name="kakao_tutorial_title_2">우측 사이드바가 나타나며,\n하단 <font color="#EB6E6D">설정(톱니바퀴) 아이콘</font> 클릭</string>
+    <string name="kakao_tutorial_title_3">아래쪽 <font color="#EB6E6D">"대화내용 내보내기"</font> 클릭</string>
+    <string name="kakao_tutorial_title_4"><font color="#EB6E6D">"텍스트만 보내기"</font> 클릭</string>
+    <string name="kakao_tutorial_title_5"><font color="#EB6E6D">"몽글몽글"</font> 앱 선택</string>
+
+    <!-- Overview -->
+    <string name="overview_intro">%1$s님 👋\n<b>%2$s\n</b>%3$s</string>
+    <string name="overview_intro_message_today">오늘 하루도 수고했어요.</string>
+    <string name="overview_intro_message_other_day">이날의 기억을 떠올려봅시다.</string>
+    <string name="overview_intro_message_angry">화나는 하루였어요.</string>
+    <string name="overview_intro_message_anxious">불안한 하루였어요.</string>
+    <string name="overview_intro_message_tired">힘든 하루였어요.</string>
+    <string name="overview_intro_message_happy">기분 좋은 하루였어요.</string>
+    <string name="overview_intro_message_neutral">평범한 하루였어요.</string>
+    <string name="overview_intro_message_sad">우울한 하루였어요.</string>
+    <string name="overview_title_empty"><font color="#B2B7BD">기록이 없네요.</font></string>
+    <string name="overview_keyword">[이날의 키워드]</string>
+    <string name="overview_go_tutorial_kakao_export">카카오톡 데이터 불러오는 방법</string>
+
+    <!-- Kakaotalk exporting -->
+    <string name="sending_title" tools:ignore="TypographyEllipsis,TypographyFractions">데이터 전송 중... (1/2)</string>
+    <string name="analyzing_title" tools:ignore="TypographyEllipsis">분석 중... (2/2)</string>
+    <string name="analyzing_subtitle">분석 작업은 10분 이상 걸릴 수 있습니다.\n 분석이 완료되면 알려드릴게요.\n 그동안 휴대전화를 자유롭게 사용하세요:)</string>
+    <string name="error_cant_find_shared_file">공유된 카카오톡 텍스트파일을 불러올 수 없습니다.</string>
+    <string name="error_need_login_to_analyze">로그인해야 대화내용 분석을 요청할 수 있습니다.</string>
+
+    <!-- Day detail -->
+    <string name="detail_diary_title">이날의 일기 📖</string>
+    <string name="detail_diary_empty"><font color="#B2B7BD">기분은 어때요? 자유롭게 일기를 남겨보세요!</font></string>
+    <string name="detail_analyzed_title1">나는 어떤 감정들을 느꼈을까?</string>
+    <string name="detail_analyzed_title2">아래 감정이들을 눌러보세요 :)</string>
+    <string name="detail_photos_title">이날 찍은 사진들</string>
+    <string name="detail_plans_title">이날의 일정</string>
+
+    <!-- Dialog -->
+    <string name="analyze_complete">%1$s님,\n감정 분석을 완료했어요 :)</string>
+    <string name="arrived_gift">띵동🔔\n행복한 기억이 도착했어요:)</string>
+
+    <!-- Setting -->
+    <string name="setting_title_1">%1$s님,</string>
+    <string name="setting_title_2">오늘 기분은 어때요?</string>
+    <string name="setting_password">비밀번호 설정</string>
+    <string name="setting_alert">앱 알림</string>
+    <string name="setting_leave">몽글몽글 서비스 탈퇴</string>
+
+    <!-- Leaving -->
+    <string name="leaving_title">너무 아쉽네요 😭\n정말 몽글몽글 탈퇴하실껀가요?</string>
+    <string name="leaving_message_1">계정이 삭제됩니다.</string>
+    <string name="leaving_message_2">회원님의 작성 이력, 분석 정보, 설정이 모두 삭제됩니다.</string>
+    <string name="leaving_message_3">연결된 소셜 계정 정보가 삭제됩니다.</string>
+    <string name="leaving_message_agree">안내사항을 확인하고 회원탈퇴에 동의</string>
+    <string name="leaving_ok">탈퇴하기</string>
+    <string name="default_notification_channel_id">mongle_firebase_messaging</string>
+    <string name="emotion_message_proportion">나의 %1$s비율 <font color="#EB6E6D">%2$d%%</font></string>
+
+    <!-- Name setting -->
+    <string name="name_setting_title">몽글몽글에 오신걸 환영해요 👋\n당신의 이름을 알려주세요!</string>
+    <string name="name_setting_hint">사용하실 닉네임을 적어주세요!</string>
 </resources>

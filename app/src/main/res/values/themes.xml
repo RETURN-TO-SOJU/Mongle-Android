@@ -1,21 +1,46 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
+
     <style name="Theme.Mongle" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/point</item>
+        <item name="colorPrimaryVariant">@color/point</item>
+        <item name="colorOnPrimary">@color/on_point</item>
+        <item name="colorAccent">@color/point</item>
+
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorSecondaryVariant">@color/secondary</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/point</item>
+        <item name="colorSecondaryVariant">@color/point</item>
+        <item name="colorOnSecondary">@color/on_point</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">#ffffff</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Widget Style -->
+        <item name="android:buttonStyle">@style/Widget.Mongle.Button</item>
+        <item name="android:checkboxStyle">@style/Widget.Mongle.Checkbox</item>
+        <item name="android:textViewStyle">@style/Widget.Mongle.TextView</item>
+        <item name="android:radioButtonStyle">@style/Widget.Mongle.RadioButton</item>
+        <item name="android:editTextStyle">@style/Widget.Mongle.EditText</item>
+        <item name="android:progressBarStyle">@style/Widget.Mongle.ProgressBar</item>
+        <item name="bottomSheetDialogTheme">@style/Widget.Mongle.BottomSheet</item>
+
+        <!-- Activity default background -->
+        <item name="android:colorBackground">@color/background</item>
     </style>
 
     <style name="Theme.Mongle.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenBackground">#FFA2BF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
         <item name="postSplashScreenTheme">@style/Theme.Mongle</item>
     </style>
+
+    <style name="Theme.Mongle.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Mongle.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Mongle.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
