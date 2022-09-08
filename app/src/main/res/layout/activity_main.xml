@@ -41,17 +41,25 @@
                 android:src="@drawable/ic_alarm" />
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/layout_main_content"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1">
 
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/container_main_nav_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/bottom_nav" />
+        </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_overview_bottom"
+            android:id="@+id/nav_main_bottom"
             android:layout_width="match_parent"
             android:layout_height="54dp"
+            android:background="@color/background"
             app:itemBackground="@color/background"
             app:itemIconTint="@color/bottom_nav_item"
             app:itemTextColor="@color/bottom_nav_item"

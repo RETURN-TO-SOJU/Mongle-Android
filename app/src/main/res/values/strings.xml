@@ -57,7 +57,7 @@
     <string name="new_favorite_fill_blanks">모든 입력란을 채워주세요.</string>
 
     <!-- Bottom tab title -->
-    <string name="tab_calendar_title">캘린더</string>
+    <string name="tab_overview_title">캘린더</string>
     <string name="tab_album_title">앨범</string>
     <string name="tab_statistics_title">통계</string>
     <string name="tab_favorite_title">찜</string>
