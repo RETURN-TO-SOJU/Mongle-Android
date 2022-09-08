@@ -17,7 +17,6 @@ import java.time.YearMonth
 import java.time.temporal.WeekFields
 import java.util.*
 
-// TODO Viewpager에서 사용하면 월별 이동이 힘들다.
 class MongleCalendar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

@@ -1,11 +1,11 @@
 package com.won983212.mongle.presentation.base
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -16,17 +16,19 @@ abstract class BaseRecyclerAdapter<B : ViewDataBinding, T>(
 ) : RecyclerView.Adapter<BaseRecyclerViewHolder<B>>() {
 
     @get:LayoutRes
-    abstract val itemLayoutId: Int
+    protected abstract val itemLayoutId: Int
 
-    abstract fun bind(binding: B, item: T)
+    protected abstract fun bind(binding: B, item: T)
 
     protected lateinit var parent: ViewGroup
 
-    // TODO change it to difftool logic
-    @SuppressLint("NotifyDataSetChanged")
-    fun set(list: List<T>) {
-        this.data = list
-        notifyDataSetChanged()
+    fun set(newList: List<T>) {
+        val oldList = this.data
+        this.data = newList
+
+        val diffCallback = AdapterDiffCallback(oldList, newList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder<B> {

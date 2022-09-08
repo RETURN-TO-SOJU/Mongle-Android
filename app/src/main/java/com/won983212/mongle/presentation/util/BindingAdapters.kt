@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.bindingadapter
+package com.won983212.mongle.presentation.util
 
 import android.widget.EditText
 import android.widget.ImageView
@@ -9,7 +9,6 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.won983212.mongle.presentation.base.BaseRecyclerAdapter
-import com.won983212.mongle.presentation.util.TextResource
 
 @BindingAdapter("drawableStartRes")
 fun setDrawableStartRes(view: EditText, @DrawableRes data: Int) {
