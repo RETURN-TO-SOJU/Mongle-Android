@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/tab_overview">
+
+    <fragment
+        android:id="@+id/tab_overview"
+        android:name="com.won983212.mongle.presentation.view.overview.OverviewFragment"
+        android:label="@string/tab_overview_title" />
+    <fragment
+        android:id="@+id/tab_statistics"
+        android:name="com.won983212.mongle.presentation.view.statistics.StatisticsFragment"
+        android:label="@string/tab_statistics_title" />
+    <fragment
+        android:id="@+id/tab_favorite"
+        android:name="com.won983212.mongle.presentation.view.favorite.FavoriteFragment"
+        android:label="@string/tab_favorite_title" />
+    <fragment
+        android:id="@+id/tab_settings"
+        android:name="com.won983212.mongle.presentation.view.setting.SettingFragment"
+        android:label="@string/tab_settings_title" />
+</navigation>

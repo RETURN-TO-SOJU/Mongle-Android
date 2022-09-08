@@ -2,9 +2,9 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Button -->
-    <style name="Widget.Mongle.Button" parent="Widget.AppCompat.Button">
+    <style name="Widget.Mongle.Button" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:fontFamily">@font/app_font_default</item>
-        <item name="android:background">@drawable/button_round</item>
+        <item name="android:background">@drawable/btn_round</item>
         <item name="android:textColor">@color/on_point</item>
         <item name="android:paddingTop">18dp</item>
         <item name="android:paddingBottom">18dp</item>
@@ -16,23 +16,29 @@
         <item name="android:textStyle">bold</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
-        <item name="android:backgroundTint">@color/kakao_yellow</item>
+        <item name="android:background">@drawable/btn_kakao</item>
         <item name="android:textColor">@color/kakao_text</item>
     </style>
 
     <style name="Widget.Mongle.Button.TextButton">
         <item name="android:paddingTop">0dp</item>
         <item name="android:paddingBottom">0dp</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">@color/point</item>
     </style>
 
     <style name="Widget.Mongle.Button.Outline" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@drawable/button_outline_round</item>
+        <item name="android:background">@drawable/btn_outline_round</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:paddingTop">18dp</item>
         <item name="android:paddingBottom">18dp</item>
+    </style>
+
+
+    <!-- Progressbar -->
+    <style name="Widget.Mongle.ProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progressbar</item>
     </style>
 
 

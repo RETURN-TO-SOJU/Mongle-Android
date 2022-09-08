@@ -1,8 +1,24 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">몽글몽글</string>
     <string name="app_subtitle">당신에게 추억을 선물합니다.</string>
 
-    <string name="OK">확인</string>
+    <!-- Common -->
+    <string name="empty" />
+    <string name="cancel">취소</string>
+    <string name="ok">확인</string>
+    <string name="keyword_template">#%1$s</string>
+    <string name="percent_template">%1$s%%</string>
+    <string name="watch_later">다음에 볼게요</string>
+    <string name="watch_now">지금 볼게요!</string>
+    <string name="write_complete">작성완료</string>
+
+    <!-- Emotion -->
+    <string name="emotion_angry">분노</string>
+    <string name="emotion_anxious">불안</string>
+    <string name="emotion_tired">피곤</string>
+    <string name="emotion_happy">행복</string>
+    <string name="emotion_neutral">중립</string>
+    <string name="emotion_sad">슬픔</string>
 
     <!-- Login -->
     <string name="login_anonymous"><u>로그인하지 않고 둘러보기</u></string>
@@ -10,14 +26,18 @@
 
     <!-- Service agreement -->
     <string name="agree_title">몽글몽글이 처음이시군요 🙌\n잠시 동의받겠습니다!</string>
-    <string name="agree_item_1"><font color="#B2B7BD">[필수]</font> <u><font color="#EB6E6D">이용약관</font></u>에 동의합니다.</string>
-    <string name="agree_item_2"><font color="#B2B7BD">[필수]</font> <u><font color="#EB6E6D">개인정보 수집 및 이용</font></u>에 동의합니다.</string>
-    <string name="agree_item_3"><font color="#B2B7BD">[선택]</font> <u><font color="#EB6E6D">위치기반서비스</font></u>에 동의합니다.</string>
     <string name="agree_all">전체동의</string>
 
     <!-- Password -->
-    <string name="pwd_title">비밀번호 설정</string>
-    <string name="pwd_subtitle">앱에서 사용할 암호를 입력하세요.</string>
+    <string name="pwd_set_title">비밀번호 설정</string>
+    <string name="pwd_set_subtitle">앱에서 사용할 암호를 입력하세요.</string>
+    <string name="pwd_reenter_title">다시 입력</string>
+    <string name="pwd_reenter_subtitle">방금 입력했던 비밀번호를 다시 입력해주세요.</string>
+    <string name="pwd_auth_title">잠금번호 입력</string>
+    <string name="pwd_wrong">틀린 비밀번호입니다. 다시 입력해주세요.</string>
+    <string name="pwd_not_matched">방금 입력했던 비밀번호와 다릅니다. 다시 설정해주세요.</string>
+    <string name="pwd_lost">암호분실</string>
+    <string name="pwd_delete">암호삭제</string>
 
     <!-- Integration dialog -->
     <string name="integration_title">반가워요 👋\n우리 더 친해져요 :)</string>
@@ -33,14 +53,17 @@
 
     <!-- New favorite -->
     <string name="new_favorite_title">소마님 💌\n소중한 추억을 저장하세요 :)</string>
-    <string name="please_input_title">제목을 입력해주세요.</string>
-    <string name="tab_calendar_title">캘린더</string>
+    <string name="new_favorite_title_hint">제목을 입력해주세요.</string>
+    <string name="new_favorite_fill_blanks">모든 입력란을 채워주세요.</string>
+
+    <!-- Bottom tab title -->
+    <string name="tab_overview_title">캘린더</string>
     <string name="tab_album_title">앨범</string>
     <string name="tab_statistics_title">통계</string>
     <string name="tab_favorite_title">찜</string>
     <string name="tab_settings_title">MY</string>
 
-    <!-- Kakaotalk analyze tutorial-->
+    <!-- Kakaotalk analyze tutorial -->
     <string name="kakao_tutorial_title_1">분석하고 싶은 톡방 입장 후,\n우측 상단 <font color="#EB6E6D">메뉴(3개의 줄) 아이콘</font> 클릭</string>
     <string name="kakao_tutorial_title_2">우측 사이드바가 나타나며,\n하단 <font color="#EB6E6D">설정(톱니바퀴) 아이콘</font> 클릭</string>
     <string name="kakao_tutorial_title_3">아래쪽 <font color="#EB6E6D">"대화내용 내보내기"</font> 클릭</string>
@@ -48,102 +71,56 @@
     <string name="kakao_tutorial_title_5"><font color="#EB6E6D">"몽글몽글"</font> 앱 선택</string>
 
     <!-- Overview -->
-    <!--<string name="overview_intro">소마님 👋\n<b>%1$s</b>\n%2$s</string>-->
-    <!-- TODO Test message -->
-    <string name="overview_intro">소마님 👋\n<b>8월 2일 화요일\n</b>오늘 하루도 수고했어요.</string>
-    <string name="overview_intro_message_default">이날 하루도 수고했어요.</string>
+    <string name="overview_intro">%1$s님 👋\n<b>%2$s\n</b>%3$s</string>
     <string name="overview_intro_message_today">오늘 하루도 수고했어요.</string>
-    <string name="overview_intro_message_weekend">주말에 무엇을 했을까요?</string>
-    <string name="overview_intro_message_diary">이날 쓴 일기를 보면 재밌겠어요!</string>
-    <string name="title_activity_scrolling">ScrollingActivity</string>
-    <string name="large_text">
-        "Material is the metaphor.\n\n"
+    <string name="overview_intro_message_other_day">이날의 기억을 떠올려봅시다.</string>
+    <string name="overview_intro_message_angry">화나는 하루였어요.</string>
+    <string name="overview_intro_message_anxious">불안한 하루였어요.</string>
+    <string name="overview_intro_message_tired">힘든 하루였어요.</string>
+    <string name="overview_intro_message_happy">기분 좋은 하루였어요.</string>
+    <string name="overview_intro_message_neutral">평범한 하루였어요.</string>
+    <string name="overview_intro_message_sad">우울한 하루였어요.</string>
+    <string name="overview_title_empty"><font color="#B2B7BD">기록이 없네요.</font></string>
+    <string name="overview_keyword">[이날의 키워드]</string>
+    <string name="overview_go_tutorial_kakao_export">카카오톡 데이터 불러오는 방법</string>
 
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
-        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
-        "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
+    <!-- Kakaotalk exporting -->
+    <string name="sending_title" tools:ignore="TypographyEllipsis,TypographyFractions">데이터 전송 중... (1/2)</string>
+    <string name="analyzing_title" tools:ignore="TypographyEllipsis">분석 중... (2/2)</string>
+    <string name="analyzing_subtitle">분석 작업은 10분 이상 걸릴 수 있습니다.\n 분석이 완료되면 알려드릴게요.\n 그동안 휴대전화를 자유롭게 사용하세요:)</string>
+    <string name="error_cant_find_shared_file">공유된 카카오톡 텍스트파일을 불러올 수 없습니다.</string>
+    <string name="error_need_login_to_analyze">로그인해야 대화내용 분석을 요청할 수 있습니다.</string>
 
-        "Bold, graphic, intentional.\n\n"
+    <!-- Day detail -->
+    <string name="detail_diary_title">이날의 일기 📖</string>
+    <string name="detail_diary_empty"><font color="#B2B7BD">기분은 어때요? 자유롭게 일기를 남겨보세요!</font></string>
+    <string name="detail_analyzed_title1">나는 어떤 감정들을 느꼈을까?</string>
+    <string name="detail_analyzed_title2">아래 감정이들을 눌러보세요 :)</string>
+    <string name="detail_photos_title">이날 찍은 사진들</string>
+    <string name="detail_plans_title">이날의 일정</string>
 
-        "The foundational elements of print based design typography, grids, space, scale, color, "
-        "and use of imagery guide visual treatments. These elements do far more than please the "
-        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
-        "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
-        "An emphasis on user actions makes core functionality immediately apparent and provides "
-        "waypoints for the user.\n\n"
+    <!-- Dialog -->
+    <string name="analyze_complete">%1$s님,\n감정 분석을 완료했어요 :)</string>
+    <string name="arrived_gift">띵동🔔\n행복한 기억이 도착했어요:)</string>
 
-        "Motion provides meaning.\n\n"
+    <!-- Setting -->
+    <string name="setting_title_1">%1$s님,</string>
+    <string name="setting_title_2">오늘 기분은 어때요?</string>
+    <string name="setting_password">비밀번호 설정</string>
+    <string name="setting_alert">앱 알림</string>
+    <string name="setting_leave">몽글몽글 서비스 탈퇴</string>
 
-        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
-        "inflection points that initiate motion, transforming the whole design.\n"
-        "All action takes place in a single environment. Objects are presented to the user without "
-        "breaking the continuity of experience even as they transform and reorganize.\n"
-        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
-        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+    <!-- Leaving -->
+    <string name="leaving_title">너무 아쉽네요 😭\n정말 몽글몽글 탈퇴하실껀가요?</string>
+    <string name="leaving_message_1">계정이 삭제됩니다.</string>
+    <string name="leaving_message_2">회원님의 작성 이력, 분석 정보, 설정이 모두 삭제됩니다.</string>
+    <string name="leaving_message_3">연결된 소셜 계정 정보가 삭제됩니다.</string>
+    <string name="leaving_message_agree">안내사항을 확인하고 회원탈퇴에 동의</string>
+    <string name="leaving_ok">탈퇴하기</string>
+    <string name="default_notification_channel_id">mongle_firebase_messaging</string>
+    <string name="emotion_message_proportion">나의 %1$s비율 <font color="#EB6E6D">%2$d%%</font></string>
 
-        "3D world.\n\n"
-
-        "The material environment is a 3D space, which means all objects have x, y, and z "
-        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
-        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
-        "position along the z-axis and has a standard 1dp thickness.\n"
-        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
-        "emulated by manipulating the y-axis.\n\n"
-
-        "Light and shadow.\n\n"
-
-        "Within the material environment, virtual lights illuminate the scene. Key lights create "
-        "directional shadows, while ambient light creates soft shadows from all angles.\n"
-        "Shadows in the material environment are cast by these two light sources. In Android "
-        "development, shadows occur when light sources are blocked by sheets of material at "
-        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
-        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
-
-        "Resting elevation.\n\n"
-
-        "All material objects, regardless of size, have a resting elevation, or default elevation "
-        "that does not change. If an object changes elevation, it should return to its resting "
-        "elevation as soon as possible.\n\n"
-
-        "Component elevations.\n\n"
-
-        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
-        "does not vary from 6dp in one app to 16dp in another app).\n"
-        "Components may have different resting elevations across platforms, depending on the depth "
-        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
-
-        "Responsive elevation and dynamic elevation offsets.\n\n"
-
-        "Some component types have responsive elevation, meaning they change elevation in response "
-        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
-        "changes are consistently implemented using dynamic elevation offsets.\n"
-        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
-        "to the component’s resting state. They ensure that elevation changes are consistent "
-        "across actions and component types. For example, all components that lift on press have "
-        "the same elevation change relative to their resting elevation.\n"
-        "Once the input event is completed or cancelled, the component will return to its resting "
-        "elevation.\n\n"
-
-        "Avoiding elevation interference.\n\n"
-
-        "Components with responsive elevations may encounter other components as they move between "
-        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
-        "through other material, components avoid interfering with one another any number of ways, "
-        "whether on a per component basis or using the entire app layout.\n"
-        "On a component level, components can move or be removed before they cause interference. "
-        "For example, a floating action button (FAB) can disappear or move off screen before a "
-        "user picks up a card, or it can move if a snackbar appears.\n"
-        "On the layout level, design your app layout to minimize opportunities for interference. "
-        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
-        "when a user tries to pick up one of cards.\n\n"
-    </string>
-    <string name="action_settings">Settings</string>
+    <!-- Name setting -->
+    <string name="name_setting_title">몽글몽글에 오신걸 환영해요 👋\n당신의 이름을 알려주세요!</string>
+    <string name="name_setting_hint">사용하실 닉네임을 적어주세요!</string>
 </resources>

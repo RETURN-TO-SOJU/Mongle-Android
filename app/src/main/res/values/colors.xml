@@ -7,12 +7,20 @@
     <color name="text">#191919</color>
     <color name="disabled">#B2B7BD</color>
     <color name="gray">#DBDBDB</color>
+    <color name="lightGray">#F6F6F6</color>
 
     <color name="kakao_yellow">#F9E001</color>
     <color name="kakao_text">#3C1E1E</color>
 
     <color name="background">@color/white</color>
     <color name="ic_launcher_background">#FCEAEA</color>
+
+    <color name="emotion_angry">#D84555</color>
+    <color name="emotion_happy">#FFA2BF</color>
+    <color name="emotion_tired">#AAB2BD</color>
+    <color name="emotion_neutral">#3FBA9B</color>
+    <color name="emotion_sad">#4B8BD8</color>
+    <color name="emotion_anxious">#947CDB</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

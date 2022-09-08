@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/tab_calendar"
+        android:id="@+id/tab_overview"
         android:icon="@drawable/ic_calendar"
-        android:title="@string/tab_calendar_title" />
-    <item
-        android:id="@+id/tab_album"
-        android:icon="@drawable/ic_album"
-        android:title="@string/tab_album_title" />
+        android:title="@string/tab_overview_title" />
     <item
         android:id="@+id/tab_statistics"
         android:icon="@drawable/ic_statistics"

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--suppress AndroidDomInspection -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.won983212.mongle">
 
-    <!-- 인터넷 사용 권한 설정 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -18,12 +16,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mongle"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".OverviewActivity"
+            android:name=".presentation.view.starting.StartingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Mongle.Starting">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".domain.service.MongleFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".presentation.view.namesetup.NameSettingActivity"
             android:exported="false" />
         <activity
-            android:name=".KakaoReceiveActivity"
+            android:name=".presentation.view.diary.EditDiaryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.view.messages.EmotionMessagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.view.daydetail.DayDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".presentation.view.main.MainActivity" />
+        <activity
+            android:name=".presentation.view.main.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.view.kakaoexport.KakaoExportActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -49,27 +80,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".tutorial.TutorialActivity"
+            android:name=".presentation.view.tutorial.TutorialActivity"
             android:exported="false" />
         <activity
-            android:name=".TestActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Mongle.Starting">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".password.PasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AgreeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
+            android:name="com.won983212.mongle.debug.view.MainTestActivity"
             android:exported="true" />
+        <activity
+            android:name="com.won983212.mongle.debug.view.ViewTestActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.won983212.mongle.debug.view.ApiTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.view.password.PasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.view.agree.AgreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.view.login.LoginActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
     </application>
 
 </manifest>
