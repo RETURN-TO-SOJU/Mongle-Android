@@ -4,4 +4,8 @@
         <attr name="name" format="string" />
         <attr name="defaultValue" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="WeekDay">
+        <attr name="isSelected" format="reference|boolean" />
+    </declare-styleable>
 </resources>

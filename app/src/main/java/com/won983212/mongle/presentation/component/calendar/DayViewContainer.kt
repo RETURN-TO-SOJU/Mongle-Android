@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.view.calendar
+package com.won983212.mongle.presentation.component.calendar
 
 import android.view.View
 import android.widget.ImageView

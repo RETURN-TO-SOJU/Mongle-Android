@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/ripple_round_25"
+    android:backgroundTint="@color/point"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <TextView
+        android:id="@+id/text_week_calendar_weekday"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        tools:text="M" />
+
+    <TextView
+        android:id="@+id/text_week_calendar_day"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/ripple_round_25"
+        android:gravity="center"
+        android:textColor="@color/point"
+        android:textSize="12sp"
+        tools:text="22" />
+</LinearLayout>

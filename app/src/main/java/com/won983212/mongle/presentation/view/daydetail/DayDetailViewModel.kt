@@ -24,7 +24,6 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneOffset
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -74,47 +73,33 @@ class DayDetailViewModel @Inject constructor(
     }
 
     fun initializeByIntent(intent: Intent) {
-        date = (intent.getSerializableExtra(DayDetailActivity.EXTRA_DATE)
+        val date = (intent.getSerializableExtra(DayDetailActivity.EXTRA_DATE)
             ?: LocalDate.now()) as LocalDate
+        setDate(date)
 
         val giftDate =
             intent.getBooleanExtra(DayDetailActivity.EXTRA_SHOW_ARRIVED_GIFT_DIALOG, false)
         if (giftDate) {
             _eventOpenGiftDialog.value = date
         }
+    }
 
-        viewModelScope.launch {
-            val detail = startProgressTask { calendarRepository.getCalendarDayDetail(date) }
+    fun setDate(date: LocalDate) {
+        this.date = date
+        refresh()
+    }
 
-            if (detail != null) {
-                emotion = detail.emotion
-                _diary.postValue(detail.diary)
-                if (detail.emotion != null) {
-                    _emotionIcon.postValue(detail.emotion.iconRes)
-                }
-
-                // TODO model mapper를 따로 제작하면 좋겠다
-                _schedules.postValue(detail.scheduleList.map {
-                    val timeRangeText =
-                        "${it.startTime.format(DatetimeFormats.TIME_12)} ~ ${
-                            it.endTime.format(
-                                DatetimeFormats.TIME_12
-                            )
-                        }"
-                    Schedule(it.name, it.calendar, timeRangeText)
-                })
-
-                _photos.postValue(detail.imageList.map {
-                    Photo(
-                        it.url,
-                        it.time.format(DatetimeFormats.TIME_12.withLocale(Locale.US))
-                    )
-                })
-
-                _analyzedEmotions.postValue(detail.emotionList.map {
-                    AnalyzedEmotion(it.emotion, it.percent)
-                })
+    fun refresh() = viewModelScope.launch {
+        val detail = startProgressTask { calendarRepository.getCalendarDayDetail(date) }
+        if (detail != null) {
+            emotion = detail.emotion
+            _diary.postValue(detail.diary)
+            detail.emotion?.let {
+                _emotionIcon.postValue(it.iconRes)
             }
+            _schedules.postValue(detail.scheduleList.map { Schedule.fromResponse(it) })
+            _photos.postValue(detail.imageList.map { Photo.fromResponse(it) })
+            _analyzedEmotions.postValue(detail.emotionList.map { AnalyzedEmotion.fromResponse(it) })
         }
     }
 

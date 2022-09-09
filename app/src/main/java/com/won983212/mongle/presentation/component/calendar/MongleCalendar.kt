@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.view.calendar
+package com.won983212.mongle.presentation.component.calendar
 
 import android.content.Context
 import android.util.AttributeSet
@@ -145,10 +145,6 @@ class MongleCalendar @JvmOverloads constructor(
 
     fun setOnInitializedListener(listener: OnInitializedListener) {
         initializedListener = listener
-    }
-
-    fun interface OnSelectionChangedListener {
-        fun onSelectionChanged(selection: LocalDate)
     }
 
     fun interface OnInitializedListener {

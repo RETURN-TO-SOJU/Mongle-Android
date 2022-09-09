@@ -16,4 +16,9 @@ class SettingEditor(private val editor: SharedPreferences.Editor) {
         editor.remove(key.name)
         return this
     }
+
+    fun clear(): SettingEditor {
+        editor.clear()
+        return this
+    }
 }

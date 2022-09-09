@@ -13,11 +13,11 @@ import com.won983212.mongle.common.util.toastLong
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.ActivityDayDetailBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
+import com.won983212.mongle.presentation.component.calendar.OnSelectionChangedListener
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_DATE
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_SHOW_ARRIVED_GIFT_DIALOG
 import com.won983212.mongle.presentation.view.daydetail.adapter.AnalyzedEmotionListAdapter
 import com.won983212.mongle.presentation.view.daydetail.adapter.PhotoListAdapter
-import com.won983212.mongle.presentation.view.daydetail.adapter.ScheduleListAdapter
 import com.won983212.mongle.presentation.view.diary.EditDiaryActivity
 import com.won983212.mongle.presentation.view.messages.EmotionMessagesActivity
 import com.won983212.mongle.presentation.view.openGiftArrivedDialog
@@ -34,7 +34,7 @@ import java.util.*
  * 선물 도착 Dialog를 띄운다. 기본값은 false
  */
 @AndroidEntryPoint
-class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>() {
+class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(), OnSelectionChangedListener {
 
     private val viewModel by viewModels<DayDetailViewModel>()
 
@@ -45,14 +45,26 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>() {
         setSupportActionBar(binding.toolbarDayDetail)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        viewModel.eventOpenGiftDialog.observe(this) {
+            openGiftArrivedDialog(this, it.format(DatetimeFormats.DATE_DOT))
+        }
+
+        viewModel.attachDefaultHandlers(this)
+        viewModel.initializeByIntent(intent)
+
+        initializeUI()
+        readMediaStoreImages(viewModel.date)
+    }
+
+    private fun initializeUI() {
+        val openDiary =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                viewModel.refresh()
+            }
+
         binding.btnDayDetailBack.setOnClickListener {
             finish()
         }
-
-        val openDiary =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                viewModel.initializeByIntent(intent) // TODO Make update(refresh) method
-            }
 
         binding.textDayDetailDiary.setOnClickListener {
             Intent(this, EditDiaryActivity::class.java).apply {
@@ -66,57 +78,39 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>() {
             }
         }
 
-        viewModel.eventOpenGiftDialog.observe(this) {
-            openGiftArrivedDialog(this, it.format(DatetimeFormats.DATE_DOT))
-        }
-        viewModel.attachDefaultHandlers(this)
-        viewModel.initializeByIntent(intent)
-        readMediaStoreImages(viewModel.date)
-        initRecyclerList()
-    }
-
-    private fun initRecyclerList() {
         binding.listDayDetailAnalyzedEmotion.adapter = AnalyzedEmotionListAdapter {
-            Intent(this, EmotionMessagesActivity::class.java).apply {
-                putExtra(EmotionMessagesActivity.EXTRA_DATE, viewModel.date)
-                putExtra(EmotionMessagesActivity.EXTRA_EMOTION, it)
-
-                val proportionMap = viewModel.analyzedEmotions.value?.associate {
-                    it.emotion to it.proportion
-                }
-                if (proportionMap != null) {
-                    val enumMap = EnumMap(Emotion.values().associateWith { proportionMap[it] ?: 0 })
-                    putExtra(EmotionMessagesActivity.EXTRA_PROPORTIONS, enumMap)
-                }
-                startActivity(this)
-            }
+            openEmotionMessagesActivity(it)
         }
+
         binding.listDayDetailPhoto.adapter = PhotoListAdapter()
-        binding.listDayDetailSchedule.adapter = ScheduleListAdapter()
+
+        val dayOfWeek = viewModel.date.dayOfWeek.value % 7
+        binding.calendarDayDetailWeekday.run {
+            startDay = viewModel.date.minusDays(dayOfWeek.toLong())
+            selectIndex(dayOfWeek)
+            setOnSelectionChangedListener(this@DayDetailActivity)
+        }
     }
 
-    private fun readPermissionGrantedImages(date: LocalDate) {
-        val instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant()
-        val epoch = instant.epochSecond
-        val projection = arrayOf(
-            MediaStore.Images.Media._ID,
-            MediaStore.Images.Media.DATE_ADDED
-        )
-        val selection = "${MediaStore.Images.Media.DATE_ADDED} >= ? and " +
-                "${MediaStore.Images.Media.DATE_ADDED} <= ?"
-        val selectionArgs = arrayOf(
-            epoch.toString(),
-            (epoch + 86400).toString()
-        )
-        val query = contentResolver.query(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            projection,
-            selection,
-            selectionArgs,
-            null
-        )
-        query?.use { cursor ->
-            viewModel.readPhotosFromCursor(cursor)
+    override fun onSelectionChanged(selection: LocalDate) {
+        viewModel.setDate(selection)
+    }
+
+    private fun openEmotionMessagesActivity(emotion: Emotion) {
+        Intent(this, EmotionMessagesActivity::class.java).apply {
+            putExtra(EmotionMessagesActivity.EXTRA_DATE, viewModel.date)
+            putExtra(EmotionMessagesActivity.EXTRA_EMOTION, emotion)
+
+            val proportionMap = viewModel.analyzedEmotions.value?.associate {
+                it.emotion to it.proportion
+            }
+
+            if (proportionMap != null) {
+                val enumMap = EnumMap(Emotion.values().associateWith { proportionMap[it] ?: 0 })
+                putExtra(EmotionMessagesActivity.EXTRA_PROPORTIONS, enumMap)
+            }
+
+            startActivity(this)
         }
     }
 
@@ -143,6 +137,31 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>() {
             requestPermissionLauncher.launch(
                 Manifest.permission.READ_EXTERNAL_STORAGE
             )
+        }
+    }
+
+    private fun readPermissionGrantedImages(date: LocalDate) {
+        val instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant()
+        val epoch = instant.epochSecond
+        val projection = arrayOf(
+            MediaStore.Images.Media._ID,
+            MediaStore.Images.Media.DATE_ADDED
+        )
+        val selection = "${MediaStore.Images.Media.DATE_ADDED} >= ? and " +
+                "${MediaStore.Images.Media.DATE_ADDED} <= ?"
+        val selectionArgs = arrayOf(
+            epoch.toString(),
+            (epoch + 86400).toString()
+        )
+        val query = contentResolver.query(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            projection,
+            selection,
+            selectionArgs,
+            null
+        )
+        query?.use { cursor ->
+            viewModel.readPhotosFromCursor(cursor)
         }
     }
 
