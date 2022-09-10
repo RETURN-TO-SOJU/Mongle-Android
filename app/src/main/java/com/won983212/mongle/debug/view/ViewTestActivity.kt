@@ -17,6 +17,7 @@ import com.won983212.mongle.presentation.view.openAnalyzeCompleteDialog
 import com.won983212.mongle.presentation.view.openGiftArrivedDialog
 import com.won983212.mongle.presentation.view.openLoadingDialog
 import com.won983212.mongle.presentation.view.password.PasswordActivity
+import com.won983212.mongle.presentation.view.setemotion.SetEmotionFragment
 import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
 
 class ViewTestActivity : BaseTestActivity() {
@@ -41,7 +42,8 @@ class ViewTestActivity : BaseTestActivity() {
             )
         },
         ManualInfo("선물 도착 다이얼로그") { openGiftArrivedDialog(this, "2022.08.01") },
-        ManualInfo("로딩 다이얼로그") { openLoadingDialog(this) }
+        ManualInfo("로딩 다이얼로그") { openLoadingDialog(this) },
+        FragmentInfo("감정 설정", this::setEmotionFragmentFactory),
     )
 
     private fun testDiaryMockBundle(): Bundle {
@@ -76,5 +78,9 @@ class ViewTestActivity : BaseTestActivity() {
 
     private fun newFavoriteFragmentFactory(): BottomSheetDialogFragment {
         return NewFavoriteFragment.newInstance(Emotion.ANXIOUS)
+    }
+
+    private fun setEmotionFragmentFactory(): BottomSheetDialogFragment {
+        return SetEmotionFragment.newInstance(Emotion.ANXIOUS)
     }
 }

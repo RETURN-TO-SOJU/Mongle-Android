@@ -13,7 +13,7 @@ import com.won983212.mongle.common.util.toastLong
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.ActivityDayDetailBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
-import com.won983212.mongle.presentation.component.calendar.OnSelectionChangedListener
+import com.won983212.mongle.presentation.base.event.OnSelectedListener
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_DATE
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_SHOW_ARRIVED_GIFT_DIALOG
 import com.won983212.mongle.presentation.view.daydetail.adapter.AnalyzedEmotionListAdapter
@@ -34,7 +34,8 @@ import java.util.*
  * 선물 도착 Dialog를 띄운다. 기본값은 false
  */
 @AndroidEntryPoint
-class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(), OnSelectionChangedListener {
+class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
+    OnSelectedListener<LocalDate> {
 
     private val viewModel by viewModels<DayDetailViewModel>()
 
@@ -92,8 +93,8 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(), OnSelect
         }
     }
 
-    override fun onSelectionChanged(selection: LocalDate) {
-        viewModel.setDate(selection)
+    override fun onSelected(value: LocalDate) {
+        viewModel.setDate(value)
     }
 
     private fun openEmotionMessagesActivity(emotion: Emotion) {

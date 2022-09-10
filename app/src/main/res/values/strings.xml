@@ -52,9 +52,12 @@
     <string name="tutorial_title_1">안녕하세요! 튜토리얼에 오신것을 환영합니다!</string>
 
     <!-- New favorite -->
-    <string name="new_favorite_title">소마님 💌\n소중한 추억을 저장하세요 :)</string>
+    <string name="new_favorite_title">당신의 💌\n소중한 추억을 저장하세요 :)</string>
     <string name="new_favorite_title_hint">제목을 입력해주세요.</string>
     <string name="new_favorite_fill_blanks">모든 입력란을 채워주세요.</string>
+
+    <!-- Set emotion -->
+    <string name="set_emotion_title">이날의 기분은 어땠나요?\n궁금해요. 알려주세요!</string>
 
     <!-- Bottom tab title -->
     <string name="tab_overview_title">캘린더</string>
@@ -82,7 +85,7 @@
     <string name="overview_intro_message_sad">우울한 하루였어요.</string>
     <string name="overview_title_empty"><font color="#B2B7BD">기록이 없네요.</font></string>
     <string name="overview_keyword">[이날의 키워드]</string>
-    <string name="overview_go_tutorial_kakao_export">카카오톡 데이터 불러오는 방법</string>
+    <string name="overview_go_tutorial_kakao_export">카카오톡 분석 방법 보기</string>
 
     <!-- Kakaotalk exporting -->
     <string name="sending_title" tools:ignore="TypographyEllipsis,TypographyFractions">데이터 전송 중... (1/2)</string>

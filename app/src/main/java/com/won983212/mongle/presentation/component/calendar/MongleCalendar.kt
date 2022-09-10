@@ -12,6 +12,7 @@ import com.won983212.mongle.R
 import com.won983212.mongle.common.util.dpToPx
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.CalendarMongleBinding
+import com.won983212.mongle.presentation.base.event.OnSelectedListener
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.temporal.WeekFields
@@ -32,7 +33,7 @@ class MongleCalendar @JvmOverloads constructor(
     var dayEmotions: Map<LocalDate, Emotion>? = null
         private set
 
-    private var selectionChangedListener: OnSelectionChangedListener? = null
+    private var selectedListener: OnSelectedListener<LocalDate>? = null
     private var initializedListener: OnInitializedListener? = null
 
     init {
@@ -90,7 +91,7 @@ class MongleCalendar @JvmOverloads constructor(
             oldDate?.let { binding.calendar.notifyDateChanged(it) }
             date?.let {
                 binding.calendar.notifyDateChanged(date)
-                selectionChangedListener?.onSelectionChanged(date)
+                selectedListener?.onSelected(date)
             }
         }
     }
@@ -139,8 +140,8 @@ class MongleCalendar @JvmOverloads constructor(
         }
     }
 
-    fun setOnSelectionChangedListener(listener: OnSelectionChangedListener) {
-        selectionChangedListener = listener
+    fun setOnSelectedListener(listener: OnSelectedListener<LocalDate>) {
+        selectedListener = listener
     }
 
     fun setOnInitializedListener(listener: OnInitializedListener) {

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.presentation.view.newfavorite.NewFavoriteViewModel" />
+            type="com.won983212.mongle.presentation.view.setemotion.SetEmotionViewModel" />
     </data>
 
     <FrameLayout
@@ -29,31 +29,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/new_favorite_title"
+                android:text="@string/set_emotion_title"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <com.won983212.mongle.presentation.component.emotionselector.EmotionSelector
-                android:id="@+id/selector_new_favorite_emotion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:id="@+id/edittext_new_favorite_title"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                android:autofillHints="name"
-                android:backgroundTint="@color/gray"
-                android:drawablePadding="16dp"
-                android:hint="@string/new_favorite_title_hint"
-                android:inputType="text"
-                android:paddingBottom="20dp"
-                android:text="@={viewModel.title}"
-                android:textCursorDrawable="@drawable/cursor_gray"
-                app:drawableStartRes="@{viewModel.selectedEmotion.iconRes}" />
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="12dp"
+                    app:imgRes="@{viewModel.selectedEmotion.iconRes}"
+                    tools:src="@drawable/emotion_happy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:textRes="@{viewModel.selectedEmotion.descriptionRes}"
+                    tools:text="@string/overview_intro_message_happy" />
+            </LinearLayout>
+
+            <com.won983212.mongle.presentation.component.emotionselector.EmotionSelector
+                android:id="@+id/selector_set_emotion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/btn_new_favorite_ok"

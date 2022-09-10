@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.view.children
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.component.calendar.OnSelectionChangedListener
+import com.won983212.mongle.presentation.base.event.OnSelectedListener
 import java.time.LocalDate
 
 class WeekDaySelector @JvmOverloads constructor(
@@ -32,7 +32,7 @@ class WeekDaySelector @JvmOverloads constructor(
             updateUI()
         }
 
-    private var selectionChangedListener: OnSelectionChangedListener? = null
+    private var selectionChangedListener: OnSelectedListener<LocalDate>? = null
 
 
     init {
@@ -53,8 +53,9 @@ class WeekDaySelector @JvmOverloads constructor(
             if (selectedIndex in 0 until COUNT_OF_DAYS) {
                 (getChildAt(selectedIndex) as WeekDay).isSelected = false
             }
+
             selectedIndex = index
-            selectionChangedListener?.onSelectionChanged(startDay.plusDays(index.toLong()))
+            selectionChangedListener?.onSelected(startDay.plusDays(index.toLong()))
         }
     }
 
@@ -64,7 +65,7 @@ class WeekDaySelector @JvmOverloads constructor(
         }
     }
 
-    fun setOnSelectionChangedListener(listener: OnSelectionChangedListener) {
+    fun setOnSelectionChangedListener(listener: OnSelectedListener<LocalDate>) {
         selectionChangedListener = listener
     }
 

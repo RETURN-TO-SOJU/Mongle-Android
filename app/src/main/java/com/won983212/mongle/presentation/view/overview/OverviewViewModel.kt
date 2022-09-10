@@ -92,6 +92,8 @@ class OverviewViewModel @Inject constructor(
         _selectedDayEmotion.postValue((emotion ?: Emotion.ANXIOUS).iconRes)
 
         val defaultFeedback = emotion?.descriptionRes ?: R.string.overview_title_empty
+        hasData.postValue(emotion != null)
+
         val detail = startResultTask { calendarRepository.getCalendarDayDetail(date) }
         if (detail != null && detail.diaryFeedback.isNotBlank()) {
             _diaryFeedback.postValue(TextResource(detail.diaryFeedback))
