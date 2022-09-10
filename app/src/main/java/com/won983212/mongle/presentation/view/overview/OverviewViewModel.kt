@@ -59,7 +59,7 @@ class OverviewViewModel @Inject constructor(
     }
 
     // TODO 무한 스크롤 구현
-    fun synchronize() = viewModelScope.launch {
+    fun loadCalendarData() = viewModelScope.launch {
         val today = LocalDate.now()
         val days = startProgressTask {
             calendarRepository.getCalendarDayMetadata(
@@ -73,7 +73,7 @@ class OverviewViewModel @Inject constructor(
         }
     }
 
-    fun onSelectionChanged(date: LocalDate) = viewModelScope.launch {
+    fun setSelectedDate(date: LocalDate) = viewModelScope.launch {
         setLoading(true)
         val userInfo = startResultTask { userRepository.getUserInfo() }
         if (userInfo != null) {

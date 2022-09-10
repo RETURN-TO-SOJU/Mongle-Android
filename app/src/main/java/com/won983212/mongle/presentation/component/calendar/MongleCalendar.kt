@@ -7,6 +7,7 @@ import android.widget.FrameLayout
 import com.kizitonwose.calendarview.CalendarView
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
+import com.kizitonwose.calendarview.utils.yearMonth
 import com.won983212.mongle.DatetimeFormats
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.dpToPx
@@ -90,6 +91,7 @@ class MongleCalendar @JvmOverloads constructor(
 
             oldDate?.let { binding.calendar.notifyDateChanged(it) }
             date?.let {
+                binding.calendar.scrollToMonth(date.yearMonth)
                 binding.calendar.notifyDateChanged(date)
                 selectedListener?.onSelected(date)
             }

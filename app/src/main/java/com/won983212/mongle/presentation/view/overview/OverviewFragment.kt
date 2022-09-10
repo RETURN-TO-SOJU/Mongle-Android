@@ -33,7 +33,7 @@ class OverviewFragment : Fragment() {
 
         viewModel.apply {
             attachDefaultHandlers(requireActivity())
-            synchronize()
+            loadCalendarData()
             calendarEmotions.observe(viewLifecycleOwner) {
                 binding.calendarOverview.setDayEmotions(it)
             }
@@ -41,7 +41,7 @@ class OverviewFragment : Fragment() {
 
         binding.calendarOverview.apply {
             setOnSelectedListener { date ->
-                viewModel.onSelectionChanged(date)
+                viewModel.setSelectedDate(date)
             }
             setOnInitializedListener {
                 selectDate(today)
@@ -55,9 +55,13 @@ class OverviewFragment : Fragment() {
         // TODO For test. 중간발표 이후 refactoring
         val openDetail =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                val selectedDate = binding.calendarOverview.selectedDate
-                if (selectedDate != null) {
-                    viewModel.onSelectionChanged(selectedDate)
+                val selected = (it?.data
+                    ?.getSerializableExtra(DayDetailActivity.RESULT_SELECTED_DATE)
+                    ?: binding.calendarOverview.selectedDate)
+                        as LocalDate?
+                if (selected != null) {
+                    viewModel.setSelectedDate(selected)
+                    binding.calendarOverview.selectDate(selected)
                 }
             }
 

@@ -1,21 +1,17 @@
 package com.won983212.mongle.presentation.view.daydetail
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.provider.MediaStore
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import com.won983212.mongle.DatetimeFormats
 import com.won983212.mongle.R
-import com.won983212.mongle.common.util.toastLong
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.ActivityDayDetailBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.base.event.OnSelectedListener
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_DATE
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_SHOW_ARRIVED_GIFT_DIALOG
+import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.RESULT_SELECTED_DATE
 import com.won983212.mongle.presentation.view.daydetail.adapter.AnalyzedEmotionListAdapter
 import com.won983212.mongle.presentation.view.daydetail.adapter.PhotoListAdapter
 import com.won983212.mongle.presentation.view.diary.EditDiaryActivity
@@ -23,7 +19,6 @@ import com.won983212.mongle.presentation.view.messages.EmotionMessagesActivity
 import com.won983212.mongle.presentation.view.openGiftArrivedDialog
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
-import java.time.ZoneId
 import java.util.*
 
 /**
@@ -32,6 +27,11 @@ import java.util.*
  * 어떤 날을 상세보기로 볼 것인지 정한다.
  * * **(선택)** [EXTRA_SHOW_ARRIVED_GIFT_DIALOG]: [Boolean] -
  * 선물 도착 Dialog를 띄운다. 기본값은 false
+ *
+ * ## Result
+ * * [RESULT_SELECTED_DATE]: [LocalDate] -
+ * 이 activity내에서 선택된 date를 반환한다.
+ * 사용자가 선택하지 않았다면 [EXTRA_DATE]로 넘어온 date가 반환된다.
  */
 @AndroidEntryPoint
 class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
@@ -52,9 +52,14 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
 
         viewModel.attachDefaultHandlers(this)
         viewModel.initializeByIntent(intent)
+        setResult(RESULT_OK, Intent().putExtra(RESULT_SELECTED_DATE, viewModel.date))
 
         initializeUI()
-        readMediaStoreImages(viewModel.date)
+        LocalDateImageStore(this).readMediaStoreImages(viewModel.date) {
+            if (it != null) {
+                viewModel.setLocalPhoto(it)
+            }
+        }
     }
 
     private fun initializeUI() {
@@ -95,6 +100,7 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
 
     override fun onSelected(value: LocalDate) {
         viewModel.setDate(value)
+        setResult(RESULT_OK, Intent().putExtra(RESULT_SELECTED_DATE, viewModel.date))
     }
 
     private fun openEmotionMessagesActivity(emotion: Emotion) {
@@ -115,59 +121,9 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
         }
     }
 
-    private fun readMediaStoreImages(date: LocalDate) {
-        val requestPermissionLauncher =
-            registerForActivityResult(
-                ActivityResultContracts.RequestPermission()
-            ) { isGranted: Boolean ->
-                if (isGranted) {
-                    readPermissionGrantedImages(date)
-                } else {
-                    toastLong("사진 권한을 부여하지 않아, 사진을 불러올 수 없습니다.")
-                }
-            }
-
-        val checkPermission = ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        )
-
-        if (checkPermission == PackageManager.PERMISSION_GRANTED) {
-            readPermissionGrantedImages(date)
-        } else {
-            requestPermissionLauncher.launch(
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-        }
-    }
-
-    private fun readPermissionGrantedImages(date: LocalDate) {
-        val instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant()
-        val epoch = instant.epochSecond
-        val projection = arrayOf(
-            MediaStore.Images.Media._ID,
-            MediaStore.Images.Media.DATE_ADDED
-        )
-        val selection = "${MediaStore.Images.Media.DATE_ADDED} >= ? and " +
-                "${MediaStore.Images.Media.DATE_ADDED} <= ?"
-        val selectionArgs = arrayOf(
-            epoch.toString(),
-            (epoch + 86400).toString()
-        )
-        val query = contentResolver.query(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            projection,
-            selection,
-            selectionArgs,
-            null
-        )
-        query?.use { cursor ->
-            viewModel.readPhotosFromCursor(cursor)
-        }
-    }
-
     companion object {
         const val EXTRA_DATE = "date"
         const val EXTRA_SHOW_ARRIVED_GIFT_DIALOG = "gift"
+        const val RESULT_SELECTED_DATE = "selectedDate"
     }
 }
