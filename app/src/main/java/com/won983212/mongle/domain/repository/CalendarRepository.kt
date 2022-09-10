@@ -20,6 +20,16 @@ interface CalendarRepository {
     ): Result<MessageResult>
 
     /**
+     * path variable로 필요한 년도, 월, 일(22/07/26)을 입력 받은 후 body로 그날의 감정을 설정한다.
+     * @param date 일기 작성일
+     * @param emotion 그날의 감정
+     */
+    suspend fun updateEmotion(
+        date: LocalDate,
+        emotion: Emotion
+    ): Result<MessageResult>
+
+    /**
      * query parameter로 필요한 년도 및 월을 받아 해당 월의 감정 및 주제들을 반환한다.
      * ex) /api/calender/{year}?start=3&end=5 : 3월부터 5월까지 데이터
      * @param startMonth 시작 월. 이 매개변수의 '일'은 무시됨

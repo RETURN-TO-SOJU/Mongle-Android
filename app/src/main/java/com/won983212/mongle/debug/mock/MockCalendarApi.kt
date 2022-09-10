@@ -13,7 +13,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.LocalDateTime
-import javax.inject.Inject
 
 class MockCalendarApi(
     private val authRepository: AuthRepository
@@ -24,6 +23,18 @@ class MockCalendarApi(
         month: String,
         day: String,
         text: DiaryRequest
+    ): MessageResult =
+        withContext(Dispatchers.IO) {
+            delay(500)
+            MockAuthApi.checkToken(authRepository)
+            MessageResult("complete")
+        }
+
+    override suspend fun updateEmotion(
+        year: Int,
+        month: String,
+        day: String,
+        emotion: String
     ): MessageResult =
         withContext(Dispatchers.IO) {
             delay(500)

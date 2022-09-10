@@ -17,6 +17,7 @@ import com.won983212.mongle.presentation.view.daydetail.adapter.PhotoListAdapter
 import com.won983212.mongle.presentation.view.diary.EditDiaryActivity
 import com.won983212.mongle.presentation.view.messages.EmotionMessagesActivity
 import com.won983212.mongle.presentation.view.openGiftArrivedDialog
+import com.won983212.mongle.presentation.view.setemotion.SetEmotionFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.util.*
@@ -62,11 +63,18 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
         }
     }
 
+    // TODO (ALL) 가능하면 viewmodel에 onclick event로 처리.
+    // 물론 context가 필요한 경우에는 그냥 view에서 처리하도록
     private fun initializeUI() {
         val openDiary =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 viewModel.refresh()
             }
+
+        binding.btnDayDetailChangeEmotion.setOnClickListener {
+            val fragment = SetEmotionFragment.newInstance(viewModel.date, viewModel.emotion)
+            fragment.show(supportFragmentManager, fragment.tag)
+        }
 
         binding.btnDayDetailBack.setOnClickListener {
             finish()

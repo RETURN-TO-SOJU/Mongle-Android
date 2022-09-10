@@ -33,11 +33,16 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
+            <com.won983212.mongle.presentation.component.emotionselector.EmotionSelector
+                android:id="@+id/selector_set_emotion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
@@ -53,11 +58,6 @@
                     app:textRes="@{viewModel.selectedEmotion.descriptionRes}"
                     tools:text="@string/overview_intro_message_happy" />
             </LinearLayout>
-
-            <com.won983212.mongle.presentation.component.emotionselector.EmotionSelector
-                android:id="@+id/selector_set_emotion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/btn_new_favorite_ok"

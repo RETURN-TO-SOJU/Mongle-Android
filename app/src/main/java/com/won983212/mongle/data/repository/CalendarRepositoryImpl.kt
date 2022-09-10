@@ -13,14 +13,14 @@ internal class CalendarRepositoryImpl(
     private val remoteCalendarDataSource: RemoteCalendarDataSource
 ) : CalendarRepository {
 
-    override suspend fun updateDiary(
-        date: LocalDate,
-        text: String
-    ): Result<MessageResult> =
+    override suspend fun updateDiary(date: LocalDate, text: String): Result<MessageResult> =
         remoteCalendarDataSource.updateDiary(
             date,
             text
         )
+
+    override suspend fun updateEmotion(date: LocalDate, emotion: Emotion): Result<MessageResult> =
+        remoteCalendarDataSource.updateEmotion(date, emotion)
 
     override suspend fun getCalendarDayMetadata(
         startMonth: LocalDate,

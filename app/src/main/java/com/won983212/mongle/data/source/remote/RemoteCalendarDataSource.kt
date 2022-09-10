@@ -30,6 +30,20 @@ internal class RemoteCalendarDataSource @Inject constructor(
         }
     }
 
+    suspend fun updateEmotion(
+        date: LocalDate,
+        emotion: Emotion
+    ): Result<MessageResult> {
+        return safeApiCall {
+            api.updateEmotion(
+                date.year,
+                convertDoubleDigitFormat(date.monthValue),
+                convertDoubleDigitFormat(date.dayOfMonth),
+                emotion.name
+            )
+        }
+    }
+
     suspend fun getCalendarDayMetadata(
         startMonth: LocalDate,
         endMonth: LocalDate

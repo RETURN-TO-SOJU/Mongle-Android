@@ -19,6 +19,7 @@ import com.won983212.mongle.presentation.view.openLoadingDialog
 import com.won983212.mongle.presentation.view.password.PasswordActivity
 import com.won983212.mongle.presentation.view.setemotion.SetEmotionFragment
 import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
+import java.time.LocalDate
 
 class ViewTestActivity : BaseTestActivity() {
     override val listItems: Array<IScreenInfo> = arrayOf(
@@ -81,6 +82,6 @@ class ViewTestActivity : BaseTestActivity() {
     }
 
     private fun setEmotionFragmentFactory(): BottomSheetDialogFragment {
-        return SetEmotionFragment.newInstance(Emotion.ANXIOUS)
+        return SetEmotionFragment.newInstance(LocalDate.now(), Emotion.ANXIOUS)
     }
 }

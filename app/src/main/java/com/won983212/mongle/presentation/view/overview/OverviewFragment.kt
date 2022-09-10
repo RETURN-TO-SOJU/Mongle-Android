@@ -52,7 +52,6 @@ class OverviewFragment : Fragment() {
             context?.let { it1 -> TutorialActivity.startKakaoTutorial(it1) }
         }
 
-        // TODO For test. 중간발표 이후 refactoring
         val openDetail =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 val selected = (it?.data

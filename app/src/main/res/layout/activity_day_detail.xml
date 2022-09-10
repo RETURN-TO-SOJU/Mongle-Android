@@ -112,6 +112,7 @@
                     android:padding="16dp">
 
                     <ImageButton
+                        android:id="@+id/btn_day_detail_change_emotion"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_marginEnd="16dp"

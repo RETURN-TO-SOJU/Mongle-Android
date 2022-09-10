@@ -9,17 +9,19 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.BottomSheetSetEmotionBinding
+import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 
+@AndroidEntryPoint
 class SetEmotionFragment : BottomSheetDialogFragment() {
 
     private val viewModel by viewModels<SetEmotionViewModel>()
     private lateinit var binding: BottomSheetSetEmotionBinding
-    private var initialEmotion: Emotion? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            initialEmotion = it.getSerializable(ARGUMENT_INITIAL_EMOTION) as Emotion
+            viewModel.initializeFromBundle(it)
         }
     }
 
@@ -42,20 +44,20 @@ class SetEmotionFragment : BottomSheetDialogFragment() {
             viewModel.selectEmotion(it)
         }
 
-        if (initialEmotion != null) {
-            viewModel.selectEmotion(initialEmotion!!)
-        }
-
         return binding.root
     }
 
 
     companion object {
-        private const val ARGUMENT_INITIAL_EMOTION = "initialEmotion"
+        const val ARGUMENT_DATE = "date"
+        const val ARGUMENT_INITIAL_EMOTION = "initialEmotion"
 
-        fun newInstance(initialEmotion: Emotion) =
+        fun newInstance(date: LocalDate, initialEmotion: Emotion?) =
             SetEmotionFragment().apply {
-                arguments = bundleOf(ARGUMENT_INITIAL_EMOTION to initialEmotion)
+                arguments = bundleOf(
+                    ARGUMENT_DATE to date,
+                    ARGUMENT_INITIAL_EMOTION to initialEmotion
+                )
             }
     }
 }
