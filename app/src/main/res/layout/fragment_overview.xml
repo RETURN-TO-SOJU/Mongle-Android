@@ -144,7 +144,7 @@
                         android:visibility="@{viewModel.hasData ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
-                <com.won983212.mongle.presentation.component.calendar.MongleCalendar
+                <com.won983212.mongle.presentation.common.calendar.MongleCalendar
                     android:id="@+id/calendar_overview"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

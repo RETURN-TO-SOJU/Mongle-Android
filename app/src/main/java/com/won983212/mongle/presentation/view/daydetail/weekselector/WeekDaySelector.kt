@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.component.weekcalendar
+package com.won983212.mongle.presentation.view.daydetail.weekselector
 
 import android.content.Context
 import android.util.AttributeSet

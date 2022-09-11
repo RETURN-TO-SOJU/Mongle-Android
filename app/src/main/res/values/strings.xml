@@ -126,4 +126,7 @@
     <!-- Name setting -->
     <string name="name_setting_title">몽글몽글에 오신걸 환영해요 👋\n당신의 이름을 알려주세요!</string>
     <string name="name_setting_hint">사용하실 닉네임을 적어주세요!</string>
+
+    <!-- Favorite -->
+    <string name="favorite_title">잊고 싶지 않은 🎀\n나만의 감정 모음집</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.component.emotionselector
+package com.won983212.mongle.presentation.common.emotionselector
 
 import android.content.Context
 import android.util.AttributeSet

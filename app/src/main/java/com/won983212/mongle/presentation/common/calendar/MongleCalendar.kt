@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.component.calendar
+package com.won983212.mongle.presentation.common.calendar
 
 import android.content.Context
 import android.util.AttributeSet

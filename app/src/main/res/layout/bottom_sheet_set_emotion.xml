@@ -33,7 +33,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <com.won983212.mongle.presentation.component.emotionselector.EmotionSelector
+            <com.won983212.mongle.presentation.common.emotionselector.EmotionSelector
                 android:id="@+id/selector_set_emotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

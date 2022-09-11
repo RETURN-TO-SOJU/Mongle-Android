@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.component.calendar
+package com.won983212.mongle.presentation.common.calendar
 
 import android.view.View
 import com.kizitonwose.calendarview.ui.ViewContainer
