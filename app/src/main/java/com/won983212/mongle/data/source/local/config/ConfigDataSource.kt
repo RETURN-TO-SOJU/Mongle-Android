@@ -5,8 +5,8 @@ import android.content.SharedPreferences
 import android.content.res.Resources
 import com.won983212.mongle.R
 import dagger.hilt.android.qualifiers.ApplicationContext
-import okhttp3.internal.toImmutableMap
 import org.xmlpull.v1.XmlPullParser
+import java.util.*
 import javax.inject.Inject
 
 internal class ConfigDataSource @Inject constructor(
@@ -42,7 +42,7 @@ internal class ConfigDataSource @Inject constructor(
             }
         }
 
-        return defaultValues.toImmutableMap()
+        return Collections.unmodifiableMap(defaultValues)
     }
 
     @Suppress("UNCHECKED_CAST")

@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.won983212.mongle.presentation.base.event.OnSelectedListener
 import java.time.YearMonth
 
 class YearMonthSelector @JvmOverloads constructor(
@@ -15,7 +14,7 @@ class YearMonthSelector @JvmOverloads constructor(
 
     private var selectedIndex: Int = -1
     private val listAdapter: YearMonthListAdapter = YearMonthListAdapter(this::select)
-    private var selectionChangedListener: OnSelectedListener<YearMonth>? = null
+    private var selectionChangedListener: OnYearMonthSelectedListener? = null
 
 
     init {
@@ -41,7 +40,11 @@ class YearMonthSelector @JvmOverloads constructor(
         }
     }
 
-    fun setOnSelectionChangedListener(listener: OnSelectedListener<YearMonth>) {
+    fun setOnSelectionChangedListener(listener: OnYearMonthSelectedListener) {
         selectionChangedListener = listener
+    }
+
+    fun interface OnYearMonthSelectedListener {
+        fun onSelected(value: YearMonth)
     }
 }

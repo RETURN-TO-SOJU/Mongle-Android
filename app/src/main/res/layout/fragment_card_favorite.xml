@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_card_favorite"
+        android:layout_width="250dp"
+        android:layout_height="380dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_15"
+        android:backgroundTint="@color/emotion_happy"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <ImageButton
+            android:id="@+id/btn_card_favorite_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_delete"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/image_card_favorite_emotion"
+            android:layout_width="180dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/emotion_happy" />
+
+        <TextView
+            android:id="@+id/text_card_favorite_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:text="22.07.27" />
+
+        <TextView
+            android:id="@+id/text_card_favorite_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="36dp"
+            android:fontFamily="@font/app_semibold"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            tools:text="엄청 엄청 행복한 날 😍" />
+
+    </LinearLayout>
+</FrameLayout>

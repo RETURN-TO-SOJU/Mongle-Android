@@ -22,6 +22,9 @@ fun ofEpochMilli(epoch: Long): LocalDateTime =
 
 class DatetimeFormats {
     companion object {
+        /** yy.MM.dd */
+        val DATE_SHORT_DOT: DateTimeFormatter = DateTimeFormatter.ofPattern("yy.MM.dd")
+
         /** yyyy.MM.dd */
         val DATE_DOT: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
 
