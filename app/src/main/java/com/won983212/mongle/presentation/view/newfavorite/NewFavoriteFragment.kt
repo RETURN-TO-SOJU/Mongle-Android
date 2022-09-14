@@ -16,6 +16,7 @@ class NewFavoriteFragment : BottomSheetDialogFragment() {
 
     private val viewModel by viewModels<NewFavoriteViewModel>()
     private lateinit var binding: BottomSheetNewFavoriteBinding
+    private var requestNewFavorite: OnRequestNewFavorite? = null
     private var initialEmotion: Emotion? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +52,20 @@ class NewFavoriteFragment : BottomSheetDialogFragment() {
             viewModel.selectEmotion(initialEmotion!!)
         }
 
+        viewModel.eventNewFavorite.observe(this) {
+            requestNewFavorite?.onNewFavorite(it.first, it.second)
+        }
+
         return binding.root
+    }
+
+    fun setOnRequestNewFavorite(listener: OnRequestNewFavorite) {
+        requestNewFavorite = listener
+    }
+
+
+    fun interface OnRequestNewFavorite {
+        fun onNewFavorite(title: String, emotion: Emotion)
     }
 
     companion object {

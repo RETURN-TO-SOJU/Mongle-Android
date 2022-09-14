@@ -1,14 +1,17 @@
 package com.won983212.mongle.presentation.view.newfavorite
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.presentation.base.BaseViewModel
+import com.won983212.mongle.presentation.util.SingleLiveEvent
 import javax.inject.Inject
 
 class NewFavoriteViewModel @Inject constructor(
 ) : BaseViewModel() {
+
+    private val _eventNewFavorite = SingleLiveEvent<Pair<String, Emotion>>()
+    val eventNewFavorite = _eventNewFavorite.asLiveData()
 
     private val _selectedEmotion = MutableLiveData(Emotion.values()[0])
     val selectedEmotion = _selectedEmotion.asLiveData()
@@ -28,11 +31,13 @@ class NewFavoriteViewModel @Inject constructor(
         if (title.value?.isNotBlank() != true) {
             return false
         }
-        // TODO 찜 등록
-        Log.d(
-            "NewFavoriteViewModel",
-            "Added favorite emotion: ${selectedEmotion.value}, title: ${title.value}"
-        )
+
+        val title = title.value
+        val selectedEmotion = selectedEmotion.value
+        if (title != null && selectedEmotion != null) {
+            _eventNewFavorite.postValue(Pair(title, selectedEmotion))
+        }
+        
         return true
     }
 }

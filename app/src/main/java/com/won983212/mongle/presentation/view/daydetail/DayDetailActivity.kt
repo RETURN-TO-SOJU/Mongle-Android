@@ -16,6 +16,7 @@ import com.won983212.mongle.presentation.view.daydetail.adapter.AnalyzedEmotionL
 import com.won983212.mongle.presentation.view.daydetail.adapter.PhotoListAdapter
 import com.won983212.mongle.presentation.view.diary.EditDiaryActivity
 import com.won983212.mongle.presentation.view.messages.EmotionMessagesActivity
+import com.won983212.mongle.presentation.view.newfavorite.NewFavoriteFragment
 import com.won983212.mongle.presentation.view.openGiftArrivedDialog
 import com.won983212.mongle.presentation.view.setemotion.SetEmotionFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,6 +79,14 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
 
         binding.btnDayDetailBack.setOnClickListener {
             finish()
+        }
+
+        binding.btnDayDetailFavorite.setOnClickListener {
+            val fragment = NewFavoriteFragment.newInstance(viewModel.emotion ?: Emotion.values()[0])
+            fragment.setOnRequestNewFavorite { title, emotion ->
+                viewModel.addFavorite(title, emotion)
+            }
+            fragment.show(supportFragmentManager, fragment.tag)
         }
 
         binding.textDayDetailDiary.setOnClickListener {

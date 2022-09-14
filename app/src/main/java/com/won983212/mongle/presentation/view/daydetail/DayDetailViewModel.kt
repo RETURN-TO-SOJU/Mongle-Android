@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.data.model.Favorite
 import com.won983212.mongle.domain.repository.CalendarRepository
+import com.won983212.mongle.domain.repository.FavoriteRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
@@ -21,6 +23,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DayDetailViewModel @Inject constructor(
+    private val favoriteRepository: FavoriteRepository,
     private val calendarRepository: CalendarRepository
 ) : BaseViewModel() {
 
@@ -75,6 +78,11 @@ class DayDetailViewModel @Inject constructor(
         if (giftDate) {
             _eventOpenGiftDialog.value = date
         }
+    }
+
+    fun addFavorite(title: String, emotion: Emotion) = viewModelScope.launch {
+        favoriteRepository.insert(Favorite(0, emotion, date, title))
+        showMessage("찜 목록에 추가되었습니다.")
     }
 
     fun setDate(date: LocalDate) {

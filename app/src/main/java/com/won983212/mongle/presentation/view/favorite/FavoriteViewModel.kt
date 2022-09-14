@@ -2,13 +2,22 @@ package com.won983212.mongle.presentation.view.favorite
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.data.model.Favorite
+import com.won983212.mongle.domain.repository.FavoriteRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.YearMonth
+import javax.inject.Inject
 
-class FavoriteViewModel : BaseViewModel() {
+@HiltViewModel
+class FavoriteViewModel @Inject constructor(
+    private val favoriteRepository: FavoriteRepository
+) : BaseViewModel() {
 
     private val _yearMonths = MutableLiveData(
         listOf<YearMonth>(
@@ -31,6 +40,11 @@ class FavoriteViewModel : BaseViewModel() {
     )
     val favorites = _favorites.asLiveData()
 
+
+    fun loadFavorites() = viewModelScope.launch {
+        // TODO Implement it
+        _favorites.postValue(favoriteRepository.getAll())
+    }
 
     fun deleteFavorite(favorite: Favorite) {
         // TODO Implement it

@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.util
+package com.won983212.mongle.data.util
 
 import android.os.Parcel
 import kotlinx.parcelize.Parceler

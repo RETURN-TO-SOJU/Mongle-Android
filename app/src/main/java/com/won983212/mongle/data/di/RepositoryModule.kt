@@ -1,6 +1,7 @@
 package com.won983212.mongle.data.di
 
 import com.won983212.mongle.data.repository.*
+import com.won983212.mongle.data.source.local.LocalFavoriteDataSource
 import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.local.PasswordDataSource
 import com.won983212.mongle.data.source.local.config.ConfigDataSource
@@ -67,5 +68,13 @@ internal class RepositoryModule {
         configDataSource: ConfigDataSource
     ): ConfigRepository {
         return ConfigRepositoryImpl(configDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFavoriteRepository(
+        favoriteDataSource: LocalFavoriteDataSource
+    ): FavoriteRepository {
+        return FavoriteRepositoryImpl(favoriteDataSource)
     }
 }
