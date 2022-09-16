@@ -16,7 +16,16 @@ internal abstract class SecurePropertiesSource(
             .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
             .build()
 
-        EncryptedSharedPreferences.create(
+        try {
+            getEncryptedPreference(context, masterKey)
+        } catch (e: Exception) {
+            context.getSharedPreferences(preferenceName, 0).edit().clear().commit()
+            getEncryptedPreference(context, masterKey)
+        }
+    }
+
+    private fun getEncryptedPreference(context: Context, masterKey: MasterKey): SharedPreferences {
+        return EncryptedSharedPreferences.create(
             context,
             preferenceName,
             masterKey,

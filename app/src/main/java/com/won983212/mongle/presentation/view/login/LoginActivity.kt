@@ -8,6 +8,8 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.viewModels
 import com.kakao.sdk.user.UserApiClient
 import com.won983212.mongle.R
+import com.won983212.mongle.common.util.toastLong
+import com.won983212.mongle.common.util.toastShort
 import com.won983212.mongle.databinding.ActivityLoginBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.agree.AgreeActivity
@@ -65,20 +67,17 @@ class LoginActivity : BaseDataActivity<ActivityLoginBinding>() {
     private fun loginWithKakao() {
         val client = UserApiClient.instance
         if (!client.isKakaoTalkLoginAvailable(this)) {
-            UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->
-                if (error != null) {
-                    Log.e("KakaoLogin", error.toString())
-                    Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
-                } else if (token != null) {
-                    viewModel.doLoginWithKakaoToken(token)
-                }
-            }
+            toastLong("카카오톡이 설치되어있지 않거나, 카카오톡 로그인이 지원되지 않습니다.")
         } else {
             client.loginWithKakaoTalk(this) { token, error ->
                 if (error != null) {
                     Log.e("KakaoLogin", error.toString())
                     Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
                 } else if (token != null) {
+                    Log.d(
+                        "KakaoLogin",
+                        "ACCESS: ${token.accessToken} / REFRESH: ${token.refreshToken}"
+                    )
                     viewModel.doLoginWithKakaoToken(token)
                 }
             }
