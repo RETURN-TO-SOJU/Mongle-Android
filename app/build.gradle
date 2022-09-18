@@ -9,12 +9,12 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.won983212.mongle"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -70,7 +70,7 @@ android {
 dependencies {
     // android core
     //noinspection GradleDependency
-    implementation 'androidx.core:core-ktx:1.8.0' // 1.9.0은 33을 target으로 하므로 사용 보류
+    implementation 'androidx.core:core-ktx:1.9.0' // 1.9.0은 33을 target으로 하므로 사용 보류
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -125,7 +125,7 @@ dependencies {
 
     // 최신버전을 사용하면 D8/R8 compiler version 오류 발생
     // noinspection GradleDependency
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
 }
 
 apply plugin: 'dagger.hilt.android.plugin'
