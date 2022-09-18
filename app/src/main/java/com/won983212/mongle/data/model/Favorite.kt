@@ -25,9 +25,16 @@ data class Favorite(
     override fun hashCode(): Int = id
 
     override fun equals(other: Any?): Boolean {
-        if (other !is Favorite) {
-            return false
-        }
-        return other.id == id
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Favorite
+
+        if (id != other.id) return false
+        if (emotion != other.emotion) return false
+        if (date != other.date) return false
+        if (title != other.title) return false
+
+        return true
     }
 }

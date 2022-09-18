@@ -9,7 +9,6 @@ import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import com.won983212.mongle.domain.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -25,7 +24,6 @@ class MockCalendarApi(
         text: DiaryRequest
     ): MessageResult =
         withContext(Dispatchers.IO) {
-            delay(500)
             MockAuthApi.checkToken(authRepository)
             MessageResult("complete")
         }
@@ -37,7 +35,6 @@ class MockCalendarApi(
         emotion: String
     ): MessageResult =
         withContext(Dispatchers.IO) {
-            delay(500)
             MockAuthApi.checkToken(authRepository)
             MessageResult("complete")
         }
@@ -47,7 +44,6 @@ class MockCalendarApi(
         end: String
     ): List<CalendarDay> =
         withContext(Dispatchers.IO) {
-            delay(1000)
             MockAuthApi.checkToken(authRepository)
             listOf(
                 CalendarDay(LocalDate.of(2022, 8, 1), Emotion.HAPPY, listOf("학교", "소마")),
@@ -113,7 +109,6 @@ class MockCalendarApi(
         day: String
     ): CalendarDayDetail =
         withContext(Dispatchers.IO) {
-            delay(1000)
             MockAuthApi.checkToken(authRepository)
             CalendarDayDetail(
                 listOf(
@@ -165,7 +160,6 @@ class MockCalendarApi(
         emotion: String
     ): List<EmotionalSentence> =
         withContext(Dispatchers.IO) {
-            delay(1000)
             MockAuthApi.checkToken(authRepository)
             when (emotion) {
                 Emotion.HAPPY.name -> (0..4).map {

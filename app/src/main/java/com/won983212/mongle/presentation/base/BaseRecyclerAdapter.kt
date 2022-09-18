@@ -5,30 +5,26 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 
 /**
  * RecyclerView에 사용될 Base Adapter이다.
  */
-abstract class BaseRecyclerAdapter<B : ViewDataBinding, T>(
-    var data: List<T> = listOf()
-) : RecyclerView.Adapter<BaseRecyclerViewHolder<B>>() {
+abstract class BaseRecyclerAdapter<B : ViewDataBinding, T : Any> :
+    RecyclerView.Adapter<BaseRecyclerViewHolder<B>>() {
 
     @get:LayoutRes
     protected abstract val itemLayoutId: Int
-
     protected abstract fun bind(binding: B, item: T)
 
     protected lateinit var parent: ViewGroup
+    private val differ by lazy { AsyncListDiffer(this, AdapterDiffCallback<T>()) }
+    protected val list: List<T>
+        get() = differ.currentList
 
     fun set(newList: List<T>) {
-        val oldList = this.data
-        this.data = newList
-
-        val diffCallback = AdapterDiffCallback(oldList, newList)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-        diffResult.dispatchUpdatesTo(this)
+        differ.submitList(newList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder<B> {
@@ -43,8 +39,8 @@ abstract class BaseRecyclerAdapter<B : ViewDataBinding, T>(
     }
 
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder<B>, position: Int) {
-        bind(holder.binding, data[position])
+        bind(holder.binding, differ.currentList[position])
     }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = differ.currentList.size
 }

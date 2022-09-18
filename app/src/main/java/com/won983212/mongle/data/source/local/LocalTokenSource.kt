@@ -3,8 +3,8 @@ package com.won983212.mongle.data.source.local
 import android.content.Context
 import com.won983212.mongle.data.model.OAuthLoginToken
 import com.won983212.mongle.data.source.SecurePropertiesSource
-import com.won983212.mongle.ofEpochMilli
-import com.won983212.mongle.toEpochMilli
+import com.won983212.mongle.util.parseLocalDateTime
+import com.won983212.mongle.util.toEpochMilli
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -20,9 +20,9 @@ internal class LocalTokenSource @Inject constructor(
         if (cachedToken == null) {
             cachedToken = OAuthLoginToken(
                 secureProperties.getString(KEY_ACCESS_TOKEN, null) ?: "",
-                ofEpochMilli(secureProperties.getLong(KEY_ACCESS_EXPIRES_AT, 0)),
+                parseLocalDateTime(secureProperties.getLong(KEY_ACCESS_EXPIRES_AT, 0)),
                 secureProperties.getString(KEY_REFRESH_TOKEN, null) ?: "",
-                ofEpochMilli(secureProperties.getLong(KEY_REFRESH_EXPIRES_AT, 0))
+                parseLocalDateTime(secureProperties.getLong(KEY_REFRESH_EXPIRES_AT, 0))
             )
         }
         return cachedToken as OAuthLoginToken

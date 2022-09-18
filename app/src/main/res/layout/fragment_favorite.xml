@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.won983212.mongle.presentation.view.favorite.FavoriteViewModel" />
@@ -25,33 +27,65 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <com.won983212.mongle.presentation.view.favorite.yearmonth.YearMonthSelector
-            android:id="@+id/list_favorite_yearmonth"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
-            app:onSelectionChangedListener="@{(ym) -> viewModel.selectYearMonth(ym)}"
-            app:yearMonthList="@{viewModel.yearMonthList}" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="@{viewModel.hasData ? View.GONE : View.VISIBLE}"
+            tools:ignore="UseCompoundDrawables">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/list_favorite"
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center"
+                android:src="@drawable/emotion_tired" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/favorite_empty"
+                android:textColor="@color/disabled"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="28dp"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.hasData ? View.VISIBLE : View.GONE}">
 
-        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-            android:id="@+id/indicator_favorite_pager_page"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="48dp"
-            app:dotsColor="@color/gray"
-            app:dotsSize="8dp"
-            app:dotsSpacing="4dp"
-            app:selectedDotColor="@color/point" />
+            <com.won983212.mongle.presentation.view.favorite.yearmonth.YearMonthSelector
+                android:id="@+id/list_favorite_yearmonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                app:selection="@={viewModel.selectedYearMonth}"
+                app:yearMonthList="@{viewModel.yearMonths}" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/list_favorite"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="28dp"
+                android:layout_weight="1" />
+
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/indicator_favorite_pager_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="48dp"
+                app:dotsColor="@color/gray"
+                app:dotsSize="8dp"
+                app:dotsSpacing="4dp"
+                app:selectedDotColor="@color/point" />
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

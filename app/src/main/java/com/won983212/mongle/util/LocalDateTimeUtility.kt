@@ -1,4 +1,4 @@
-package com.won983212.mongle
+package com.won983212.mongle.util
 
 import java.time.Instant
 import java.time.LocalDate
@@ -16,7 +16,7 @@ fun Date.toLocalDate(): LocalDate =
 fun LocalDateTime.toEpochMilli(): Long =
     atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
 
-fun ofEpochMilli(epoch: Long): LocalDateTime =
+fun parseLocalDateTime(epoch: Long): LocalDateTime =
     LocalDateTime.ofInstant(Instant.ofEpochMilli(epoch), ZoneId.systemDefault())
 
 

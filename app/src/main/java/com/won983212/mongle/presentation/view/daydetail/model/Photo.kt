@@ -1,7 +1,7 @@
 package com.won983212.mongle.presentation.view.daydetail.model
 
-import com.won983212.mongle.DatetimeFormats
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.util.DatetimeFormats
 import java.util.*
 
 data class Photo(

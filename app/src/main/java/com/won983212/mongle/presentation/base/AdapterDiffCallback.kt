@@ -1,21 +1,15 @@
 package com.won983212.mongle.presentation.base
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
 
-internal class AdapterDiffCallback<T>(
-    private val oldList: List<T>,
-    private val newList: List<T>
-) : DiffUtil.Callback() {
-
-    override fun getOldListSize(): Int = oldList.size
-
-    override fun getNewListSize(): Int = newList.size
-
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].hashCode() == newList[newItemPosition].hashCode()
+internal class AdapterDiffCallback<T : Any> : DiffUtil.ItemCallback<T>() {
+    override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition] == newList[newItemPosition]
+    @SuppressLint("DiffUtilEquals")
+    override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
+        return oldItem == newItem
     }
 }

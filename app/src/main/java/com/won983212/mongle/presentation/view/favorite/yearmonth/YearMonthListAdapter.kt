@@ -1,6 +1,7 @@
 package com.won983212.mongle.presentation.view.favorite.yearmonth
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -41,6 +42,8 @@ class YearMonthListAdapter(
 
     fun getAt(index: Int) = data[index].date
 
+    fun isInIndices(index: Int) = index in data.indices
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ListitemYearmonthBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -54,6 +57,7 @@ class YearMonthListAdapter(
         val item = data[position]
         val binding = holder.binding
 
+        Log.d("YearMonthListAdapter", "Bind $position -> selected: ${item.selected}")
         if (item.selected) {
             binding.imageListitemYearmonthBackground.setImageResource(R.drawable.btn_round)
             binding.textListitemYearmonthDate.setTextColorRes(R.color.white)

@@ -1,7 +1,7 @@
 package com.won983212.mongle.presentation.view.favorite
 
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.won983212.mongle.data.model.Favorite
 import com.won983212.mongle.presentation.base.AdapterDiffCallback
@@ -11,20 +11,25 @@ class FavoriteListAdapter(
     private val deleteListener: FavoriteCardFragment.OnDeleteListener?
 ) : FragmentStateAdapter(fragment) {
 
-    private var data: List<Favorite> = listOf()
+    private val differ = AsyncListDiffer(this, AdapterDiffCallback<Favorite>())
 
     fun set(newList: List<Favorite>) {
-        val oldList = this.data
-        this.data = newList
-
-        val diffCallback = AdapterDiffCallback(oldList, newList)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-        diffResult.dispatchUpdatesTo(this)
+        differ.submitList(newList)
     }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = differ.currentList.size
 
-    override fun createFragment(position: Int): Fragment =
-        FavoriteCardFragment.newInstance(data[position])
+    override fun createFragment(position: Int): Fragment {
+        return FavoriteCardFragment.newInstance(differ.currentList[position])
             .setOnDeleteListener(deleteListener)
+    }
+
+    // Adapter는 getItemId, containsItem가 구현되어있어야 스스로 fragment를 recreate한다.
+    override fun getItemId(position: Int): Long {
+        return differ.currentList[position].id.toLong()
+    }
+
+    override fun containsItem(itemId: Long): Boolean {
+        return differ.currentList.any { it.id == itemId.toInt() }
+    }
 }

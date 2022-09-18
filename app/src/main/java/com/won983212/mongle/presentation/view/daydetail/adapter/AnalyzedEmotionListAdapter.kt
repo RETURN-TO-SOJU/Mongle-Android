@@ -15,7 +15,7 @@ class AnalyzedEmotionListAdapter(
     override fun bind(binding: ListitemAnalyzedEmotionBinding, item: AnalyzedEmotion) {
         val text = binding.textListitemAnalyzedProportion.context.resources
             .getString(R.string.percent_template, item.proportion.toString())
-        binding.root.layoutParams.width = parent.measuredWidth / data.size
+        binding.root.layoutParams.width = parent.measuredWidth / list.size
         binding.textListitemAnalyzedProportion.text = text
         binding.imageListitemAnalyzedEmotion.apply {
             setImageResource(item.emotion.bigIconRes)

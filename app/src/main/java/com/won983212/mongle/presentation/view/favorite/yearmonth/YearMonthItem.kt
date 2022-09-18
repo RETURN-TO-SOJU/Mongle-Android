@@ -1,6 +1,6 @@
 package com.won983212.mongle.presentation.view.favorite.yearmonth
 
-import com.won983212.mongle.DatetimeFormats
+import com.won983212.mongle.util.DatetimeFormats
 import java.time.YearMonth
 
 data class YearMonthItem(

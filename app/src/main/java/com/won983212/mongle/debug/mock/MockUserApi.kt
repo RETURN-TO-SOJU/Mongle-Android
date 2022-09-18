@@ -16,7 +16,6 @@ class MockUserApi(
 
     override suspend fun getUserInfo(): User =
         withContext(Dispatchers.IO) {
-            delay(300)
             MockAuthApi.checkToken(authRepository)
             User("소마", "soma")
         }
@@ -25,7 +24,6 @@ class MockUserApi(
         fcmToken: FCMTokenRequest
     ): MessageResult =
         withContext(Dispatchers.IO) {
-            delay(500)
             MockAuthApi.checkToken(authRepository)
             MessageResult("complete")
         }
@@ -34,7 +32,6 @@ class MockUserApi(
         username: UsernameRequest
     ): MessageResult =
         withContext(Dispatchers.IO) {
-            delay(500)
             MockAuthApi.checkToken(authRepository)
             MessageResult("complete")
         }

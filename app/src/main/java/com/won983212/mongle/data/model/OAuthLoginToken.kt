@@ -3,7 +3,7 @@ package com.won983212.mongle.data.model
 import com.google.gson.annotations.SerializedName
 import com.kakao.sdk.auth.model.OAuthToken
 import com.won983212.mongle.data.source.remote.model.response.LoginResponse
-import com.won983212.mongle.toLocalDateTime
+import com.won983212.mongle.util.toLocalDateTime
 import java.time.LocalDateTime
 
 data class OAuthLoginToken(

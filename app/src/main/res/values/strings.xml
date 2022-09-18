@@ -129,4 +129,5 @@
 
     <!-- Favorite -->
     <string name="favorite_title">잊고 싶지 않은 🎀\n나만의 감정 모음집</string>
+    <string name="favorite_empty">찜 목록이 비어있어요.\n즐거웠던 날들을 찜해보세요!</string>
 </resources>

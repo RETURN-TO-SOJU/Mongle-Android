@@ -34,9 +34,11 @@ class FavoriteFragment : Fragment() {
             favoriteListAdapter.set(it)
         }
 
-        // TODO suspend / coroutine 사용해서 무정지 logic구현
-        viewModel.loadFavorites()
+        viewModel.selectedYearMonth.observe(viewLifecycleOwner) {
+            viewModel.selectYearMonth()
+        }
 
+        viewModel.initialize()
         return binding.root
     }
 }
