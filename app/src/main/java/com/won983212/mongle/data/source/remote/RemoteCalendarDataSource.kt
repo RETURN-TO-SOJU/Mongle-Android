@@ -83,10 +83,10 @@ internal class RemoteCalendarDataSource @Inject constructor(
     }
 
     private fun convertDoubleDigitFormat(number: Int): String {
-        if (number < 10) {
-            return "0$number"
+        return if (number < 10) {
+            "0$number"
         } else {
-            return number.toString()
+            number.toString()
         }
     }
 }

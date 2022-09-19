@@ -8,8 +8,8 @@ import androidx.core.text.toSpanned
 
 class TextResource {
     val text: String
-    val resId: Int?
-    val args: Array<out Any?>?
+    private val resId: Int?
+    private val args: Array<out Any?>?
 
     constructor(text: String?) {
         this.text = text ?: ""
@@ -27,12 +27,12 @@ class TextResource {
     }
 
     override fun toString(): String {
-        if (text.isNotBlank()) {
-            return "StringResourceWithArg[text=${text}]"
+        return if (text.isNotBlank()) {
+            "StringResourceWithArg[text=${text}]"
         } else if (args != null) {
-            return "StringResourceWithArg[resId=${resId}, args=${args.joinToString()}]"
+            "StringResourceWithArg[resId=${resId}, args=${args.joinToString()}]"
         } else {
-            return "StringResourceWithArg[resId=${resId}]"
+            "StringResourceWithArg[resId=${resId}]"
         }
     }
 

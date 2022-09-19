@@ -71,7 +71,7 @@ class TutorialActivity : AppCompatActivity() {
 
         val imageListSize = resources.getIntArray(imageResList).size
         if (imageListSize != titleListSize) {
-            throw IllegalArgumentException("imageResList.size is not matched to titleListSize.size. (imageResList.size: ${imageListSize}, titleListSize: ${titleListSize}")
+            throw IllegalArgumentException("imageResList.size is not matched to titleListSize.size. (imageResList.size: ${imageListSize}, titleListSize: $titleListSize")
         }
     }
 

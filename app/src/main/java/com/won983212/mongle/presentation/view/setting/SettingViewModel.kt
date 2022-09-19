@@ -3,7 +3,7 @@ package com.won983212.mongle.presentation.view.setting
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
-import com.won983212.mongle.common.util.asLiveData
+import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.data.source.local.config.ConfigKey
 import com.won983212.mongle.domain.repository.ConfigRepository
 import com.won983212.mongle.domain.repository.UserRepository

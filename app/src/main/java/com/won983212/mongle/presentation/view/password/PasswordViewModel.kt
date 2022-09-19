@@ -3,7 +3,7 @@ package com.won983212.mongle.presentation.view.password
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import com.won983212.mongle.R
-import com.won983212.mongle.common.util.asLiveData
+import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.domain.repository.PasswordRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent

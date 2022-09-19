@@ -83,7 +83,7 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
             when (type) {
                 "gift" -> parseGiftIntent(data)
                 "analyze" -> parseAnalyzeCompleteIntent(data)
-                else -> throw IllegalArgumentException("Unknown Type: ${type}")
+                else -> throw IllegalArgumentException("Unknown Type: $type")
             }
         } catch (e: IllegalArgumentException) {
             Log.e(TAG, e.message ?: "")
@@ -144,7 +144,7 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
                 }
             notificationBuilder.setContentIntent(resultPendingIntent)
         } else {
-            notificationBuilder.setContentText("${body} +No Intent")
+            notificationBuilder.setContentText("$body +No Intent")
         }
 
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager

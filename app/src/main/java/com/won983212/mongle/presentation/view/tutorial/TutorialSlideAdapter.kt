@@ -13,8 +13,8 @@ internal class TutorialSlideAdapter(
 ) : FragmentStateAdapter(fa) {
 
     val size: Int
-    val titleList: TypedArray
-    val imageResList: TypedArray
+    private val titleList: TypedArray
+    private val imageResList: TypedArray
 
     init {
         titleList = fa.resources.obtainTypedArray(titleListRes)

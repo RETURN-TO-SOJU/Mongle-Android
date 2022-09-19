@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
-import com.won983212.mongle.common.util.asLiveData
+import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.UserRepository
@@ -102,7 +102,7 @@ class OverviewViewModel @Inject constructor(
             _diaryFeedback.postValue(TextResource(defaultFeedback))
         }
 
-        _keywords.postValue(keywordMap.get(date) ?: listOf())
+        _keywords.postValue(keywordMap[date] ?: listOf())
         setLoading(false)
     }
 }

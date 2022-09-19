@@ -1,6 +1,5 @@
 package com.won983212.mongle.presentation.view.daydetail.adapter
 
-import android.util.Log
 import com.bumptech.glide.Glide
 import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ListitemPhotoBinding

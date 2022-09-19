@@ -2,10 +2,11 @@ package com.won983212.mongle.presentation.view.password
 
 import android.content.Intent
 import android.widget.RadioButton
+import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.core.view.children
 import com.won983212.mongle.R
-import com.won983212.mongle.common.util.toastShort
+import com.won983212.mongle.presentation.util.toastShort
 import com.won983212.mongle.databinding.ActivityPasswordBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.password.PasswordActivity.Companion.EXTRA_MODE
@@ -39,6 +40,10 @@ class PasswordActivity : BaseDataActivity<ActivityPasswordBinding>() {
 
         viewModel.initializeByIntent(intent)
         registerViewModelEvents()
+
+        onBackPressedDispatcher.addCallback(this) {
+            finish()
+        }
     }
 
     private fun registerViewModelEvents() {
@@ -54,7 +59,7 @@ class PasswordActivity : BaseDataActivity<ActivityPasswordBinding>() {
             toastShort(it)
         }
 
-        viewModel.eventPwdIndicatorStateChanged.observe(this) {
+        viewModel.eventPwdIndicatorStateChanged.observe(this) { it ->
             val state = it.second
             if (it.first == PasswordViewModel.INDICATOR_INDEX_ALL) {
                 pwdIndicatorButtons.forEach { it.isChecked = state }
@@ -62,10 +67,6 @@ class PasswordActivity : BaseDataActivity<ActivityPasswordBinding>() {
                 pwdIndicatorButtons[it.first].isChecked = state
             }
         }
-    }
-
-    override fun onBackPressed() {
-        finish()
     }
 
     enum class Mode {

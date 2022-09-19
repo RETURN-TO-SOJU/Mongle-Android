@@ -1,4 +1,4 @@
-package com.won983212.mongle.common.util
+package com.won983212.mongle.presentation.util
 
 import android.content.Context
 import android.util.TypedValue

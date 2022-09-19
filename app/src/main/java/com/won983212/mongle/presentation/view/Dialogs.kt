@@ -9,8 +9,8 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.won983212.mongle.R
-import com.won983212.mongle.common.util.attachCompatVectorAnim
-import com.won983212.mongle.common.util.startAnim
+import com.won983212.mongle.presentation.util.attachCompatVectorAnim
+import com.won983212.mongle.presentation.util.startAnim
 import com.won983212.mongle.databinding.DialogAnalyzeCompleteBinding
 import com.won983212.mongle.databinding.DialogArrivedGiftBinding
 import com.won983212.mongle.databinding.DialogLoadingBinding

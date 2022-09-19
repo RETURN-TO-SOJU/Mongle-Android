@@ -11,7 +11,6 @@ import com.won983212.mongle.data.model.Emotion
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.junit.Ignore
 import org.junit.Test
@@ -54,27 +53,25 @@ class RetrofitTest {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
-        val authorizationInterceptor = object : Interceptor {
-            override fun intercept(chain: Interceptor.Chain): Response {
-                var request = chain.request()
-                val noAuthAnnotation = request.tag(Invocation::class.java)
-                    ?.method()
-                    ?.getAnnotation(NoAuthorization::class.java)
+        val authorizationInterceptor = Interceptor { chain ->
+            var request = chain.request()
+            val noAuthAnnotation = request.tag(Invocation::class.java)
+                ?.method()
+                ?.getAnnotation(NoAuthorization::class.java)
 
-                println("URL: ${request.url}")
-                println(
-                    "NoAuthAnnotation: ${noAuthAnnotation.toString()}"
-                )
+            println("URL: ${request.url}")
+            println(
+                "NoAuthAnnotation: ${noAuthAnnotation.toString()}"
+            )
 
-                if (noAuthAnnotation == null) {
-                    val token = "12345"
-                    request = request.newBuilder()
-                        .addHeader("Authorization", "Bearer $token")
-                        .build()
-                }
-
-                return chain.proceed(request)
+            if (noAuthAnnotation == null) {
+                val token = "12345"
+                request = request.newBuilder()
+                    .addHeader("Authorization", "Bearer $token")
+                    .build()
             }
+
+            chain.proceed(request)
         }
 
         val okHttpClient = OkHttpClient.Builder()

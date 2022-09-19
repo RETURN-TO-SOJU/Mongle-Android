@@ -5,8 +5,8 @@ import android.net.Uri
 import android.util.Log
 import androidx.activity.viewModels
 import com.won983212.mongle.R
-import com.won983212.mongle.common.util.attachCompatVectorAnim
-import com.won983212.mongle.common.util.toastLong
+import com.won983212.mongle.presentation.util.attachCompatVectorAnim
+import com.won983212.mongle.presentation.util.toastLong
 import com.won983212.mongle.databinding.ActivityKakaotalkExportBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity

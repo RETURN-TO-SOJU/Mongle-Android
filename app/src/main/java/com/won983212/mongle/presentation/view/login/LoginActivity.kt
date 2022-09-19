@@ -8,8 +8,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.viewModels
 import com.kakao.sdk.user.UserApiClient
 import com.won983212.mongle.R
-import com.won983212.mongle.common.util.toastLong
-import com.won983212.mongle.common.util.toastShort
+import com.won983212.mongle.presentation.util.toastLong
 import com.won983212.mongle.databinding.ActivityLoginBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.agree.AgreeActivity

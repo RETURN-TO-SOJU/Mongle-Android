@@ -1,7 +1,7 @@
 package com.won983212.mongle.presentation.view.newfavorite
 
 import androidx.lifecycle.MutableLiveData
-import com.won983212.mongle.common.util.asLiveData
+import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
@@ -37,7 +37,7 @@ class NewFavoriteViewModel @Inject constructor(
         if (title != null && selectedEmotion != null) {
             _eventNewFavorite.postValue(Pair(title, selectedEmotion))
         }
-        
+
         return true
     }
 }

@@ -7,7 +7,7 @@ import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.ViewContainer
 import com.won983212.mongle.R
-import com.won983212.mongle.common.util.setTextColorRes
+import com.won983212.mongle.presentation.util.setTextColorRes
 import com.won983212.mongle.data.model.Emotion
 import java.time.LocalDate
 

@@ -1,6 +1,6 @@
 package com.won983212.mongle.presentation.view.password
 
-internal class PasswordMemory(val maxDigits: Int) {
+internal class PasswordMemory(private val maxDigits: Int) {
     private var length = 0
     private val digits = CharArray(maxDigits)
     private var fullListener: PasswordInputListener? = null

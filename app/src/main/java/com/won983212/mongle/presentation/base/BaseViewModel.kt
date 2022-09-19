@@ -4,8 +4,8 @@ import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.won983212.mongle.common.util.asLiveData
-import com.won983212.mongle.common.util.toastShort
+import com.won983212.mongle.presentation.util.asLiveData
+import com.won983212.mongle.presentation.util.toastShort
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.view.openLoadingDialog
 

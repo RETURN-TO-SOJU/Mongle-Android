@@ -16,16 +16,16 @@ internal class BehaviorAlpha(context: Context, attrs: AttributeSet) :
 
     init {
         val tv = TypedValue()
-        if (context.theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+        availableHeight = if (context.theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
             val actionBarHeight =
                 TypedValue.complexToDimensionPixelSize(
                     tv.data,
                     context.resources.displayMetrics
                 )
-            availableHeight = context.resources
+            context.resources
                 .getDimension(R.dimen.appbar_height) - actionBarHeight
         } else {
-            availableHeight = 0f
+            0f
         }
     }
 
