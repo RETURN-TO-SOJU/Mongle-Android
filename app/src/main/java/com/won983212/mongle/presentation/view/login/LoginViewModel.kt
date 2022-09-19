@@ -12,6 +12,7 @@ import com.won983212.mongle.domain.usecase.ValidateTokenUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,30 +33,30 @@ class LoginViewModel @Inject constructor(
     val loginEnabled = _loginEnabled.asLiveData()
 
 
-    fun doLoginWithKakaoToken(token: OAuthToken) = viewModelScope.launch {
+    fun doLoginWithKakaoToken(token: OAuthToken) = viewModelScope.launch(Dispatchers.IO) {
         val response = startProgressTask {
             authRepository.login(OAuthLoginToken.fromKakaoToken(token))
         }
         if (response != null) {
             FirebaseMessaging.getInstance().token.addOnSuccessListener { result ->
-                viewModelScope.launch {
+                viewModelScope.launch(Dispatchers.IO) {
                     userRepository.setFCMToken(result)
                 }
             }
             if (response.isNew) {
-                _eventReadyForRegister.call()
+                _eventReadyForRegister.post()
             } else {
-                _eventLoggedIn.call()
+                _eventLoggedIn.post()
             }
         }
     }
 
-    fun checkCanAutoLogin() = viewModelScope.launch {
+    fun checkCanAutoLogin() = viewModelScope.launch(Dispatchers.IO) {
         val canAutoLogin = startTask {
             validateTokenUseCase.execute()
         }
         if (canAutoLogin) {
-            _eventLoggedIn.call()
+            _eventLoggedIn.post()
         }
         _loginEnabled.postValue(true)
     }

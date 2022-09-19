@@ -10,6 +10,7 @@ import com.won983212.mongle.data.model.Favorite
 import com.won983212.mongle.domain.repository.FavoriteRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.YearMonth
 import javax.inject.Inject
@@ -33,19 +34,19 @@ class FavoriteViewModel @Inject constructor(
     }
 
 
-    fun initialize() = viewModelScope.launch {
+    fun initialize() = viewModelScope.launch(Dispatchers.IO) {
         loadYearMonths()
         selectedYearMonth.value?.let {
             loadFavorites(it)
         }
     }
 
-    fun deleteFavorite(favorite: Favorite) = viewModelScope.launch {
+    fun deleteFavorite(favorite: Favorite) = viewModelScope.launch(Dispatchers.IO) {
         favoriteRepository.deleteById(favorite.id)
         _favorites.postValue(_favorites.value?.filter { it != favorite })
     }
 
-    fun selectYearMonth() = viewModelScope.launch {
+    fun selectYearMonth() = viewModelScope.launch(Dispatchers.IO) {
         selectedYearMonth.value?.let {
             loadFavorites(it)
         }

@@ -12,6 +12,7 @@ import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.TextResource
 import com.won983212.mongle.util.DatetimeFormats
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
@@ -59,7 +60,7 @@ class OverviewViewModel @Inject constructor(
     }
 
     // TODO 무한 스크롤 구현
-    fun loadCalendarData() = viewModelScope.launch {
+    fun loadCalendarData() = viewModelScope.launch(Dispatchers.IO) {
         val today = LocalDate.now()
         val days = startProgressTask {
             calendarRepository.getCalendarDayMetadata(
@@ -73,7 +74,7 @@ class OverviewViewModel @Inject constructor(
         }
     }
 
-    fun setSelectedDate(date: LocalDate) = viewModelScope.launch {
+    fun setSelectedDate(date: LocalDate) = viewModelScope.launch(Dispatchers.IO) {
         setLoading(true)
         val userInfo = startResultTask { userRepository.getUserInfo() }
         if (userInfo != null) {

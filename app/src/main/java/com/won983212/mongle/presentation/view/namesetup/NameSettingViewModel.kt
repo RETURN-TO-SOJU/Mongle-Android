@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ class NameSettingViewModel @Inject constructor(
         it.isNotBlank()
     }
 
-    fun updateUsername() = viewModelScope.launch {
+    fun updateUsername() = viewModelScope.launch(Dispatchers.IO) {
         val nameText = name.value
         if (nameText != null) {
             startProgressTask { userRepository.setUsername(nameText) }

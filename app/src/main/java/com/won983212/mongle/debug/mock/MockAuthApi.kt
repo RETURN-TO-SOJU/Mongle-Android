@@ -17,7 +17,7 @@ class MockAuthApi : AuthApi {
         val genToken = "TOKENTOKENTOKENTOKEN"
         val accessExpires = now.plusSeconds(ACCESS_TOKEN_EXPIRES_SEC)
         val refreshExpires = now.plusSeconds(REFRESH_TOKEN_EXPIRES_SEC)
-        return LoginResponse("소마", genToken, accessExpires, genToken, refreshExpires, false)
+        return LoginResponse("소마", genToken, accessExpires, genToken, refreshExpires, true)
     }
 
     override suspend fun login(kakaoToken: OAuthLoginToken): LoginResponse =

@@ -11,6 +11,7 @@ import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,7 +35,7 @@ class SettingViewModel @Inject constructor(
         }
     }
 
-    fun updateUsernameTitle() = viewModelScope.launch {
+    fun updateUsernameTitle() = viewModelScope.launch(Dispatchers.IO) {
         val user = startProgressTask { userRepository.getUserInfo() }
         var username = "??"
         if (user != null) {
@@ -43,10 +44,10 @@ class SettingViewModel @Inject constructor(
         _usernameTitle.postValue(TextResource(R.string.setting_title_1, username))
     }
 
-    fun doLeave() = viewModelScope.launch {
+    fun doLeave() = viewModelScope.launch(Dispatchers.IO) {
         val result = startProgressTask { userRepository.leaveAccount() }
         if (result != null) {
-            _eventLeaveAccount.call()
+            _eventLeaveAccount.post()
         }
     }
 }

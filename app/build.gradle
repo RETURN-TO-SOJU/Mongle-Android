@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 Properties properties = new Properties()
@@ -127,6 +129,3 @@ dependencies {
     // noinspection GradleDependency
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
 }
-
-apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: 'com.google.gms.google-services'

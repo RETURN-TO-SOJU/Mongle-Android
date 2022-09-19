@@ -8,6 +8,7 @@ import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
@@ -40,7 +41,7 @@ class SetEmotionViewModel @Inject constructor(
         _selectedEmotion.postValue(emotion)
     }
 
-    fun saveEmotion() = viewModelScope.launch {
+    fun saveEmotion() = viewModelScope.launch(Dispatchers.IO) {
         selectedEmotion.value?.let {
             calendarRepository.updateEmotion(date, it)
         }

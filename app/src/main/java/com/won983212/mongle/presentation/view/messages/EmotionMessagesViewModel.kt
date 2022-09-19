@@ -13,6 +13,7 @@ import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.TextResource
 import com.won983212.mongle.util.DatetimeFormats
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
@@ -52,7 +53,7 @@ class EmotionMessagesViewModel @Inject constructor(
         updateMessages()
     }
 
-    private fun updateMessages() = viewModelScope.launch {
+    private fun updateMessages() = viewModelScope.launch(Dispatchers.IO) {
         val selected = selectedEmotion.value
         val date = _date.value
         if (selected != null && date != null) {

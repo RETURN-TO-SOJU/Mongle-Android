@@ -2,6 +2,7 @@ package com.won983212.mongle.presentation.view.kakaoexport
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.activity.viewModels
 import com.won983212.mongle.R
 import com.won983212.mongle.common.util.attachCompatVectorAnim
@@ -34,7 +35,12 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
 
     private fun sendKakaoMessagesData() {
         val uri = intent.getParcelableExtra(Intent.EXTRA_STREAM) as? Uri
-        if (uri != null) {
+        val name = intent.getStringExtra(Intent.EXTRA_SUBJECT)
+
+        // TODO Apply name to sending file name
+        // 소마 팀 3 카카오톡 대화
+        Log.d("KakaoExportActivity", "NAME: $name")
+        if (uri != null && name != null) {
             val stream = contentResolver.openInputStream(uri)
             if (stream != null) {
                 viewModel.uploadKakaotalk(stream)

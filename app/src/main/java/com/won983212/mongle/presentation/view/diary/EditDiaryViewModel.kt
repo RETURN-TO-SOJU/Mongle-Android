@@ -11,6 +11,7 @@ import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.util.DatetimeFormats
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
@@ -43,7 +44,7 @@ class EditDiaryViewModel @Inject constructor(
         diaryContent.value = intent.getStringExtra(EditDiaryActivity.EXTRA_INITIAL_DIARY) ?: ""
     }
 
-    fun commitDiary() = viewModelScope.launch {
+    fun commitDiary() = viewModelScope.launch(Dispatchers.IO) {
         val date = _diaryDate.value
         if (date != null) {
             val result = startProgressTask {
@@ -52,7 +53,7 @@ class EditDiaryViewModel @Inject constructor(
                 )
             }
             if (result != null) {
-                _eventUpdateComplete.call()
+                _eventUpdateComplete.post()
             }
         }
     }

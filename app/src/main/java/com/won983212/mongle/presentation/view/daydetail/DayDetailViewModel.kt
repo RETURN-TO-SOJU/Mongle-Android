@@ -17,6 +17,7 @@ import com.won983212.mongle.presentation.view.daydetail.model.AnalyzedEmotion
 import com.won983212.mongle.presentation.view.daydetail.model.Photo
 import com.won983212.mongle.presentation.view.daydetail.model.Schedule
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
@@ -80,7 +81,7 @@ class DayDetailViewModel @Inject constructor(
         }
     }
 
-    fun addFavorite(title: String, emotion: Emotion) = viewModelScope.launch {
+    fun addFavorite(title: String, emotion: Emotion) = viewModelScope.launch(Dispatchers.IO) {
         favoriteRepository.insert(Favorite(0, emotion, date, title))
         showMessage("찜 목록에 추가되었습니다.")
     }
@@ -94,7 +95,7 @@ class DayDetailViewModel @Inject constructor(
         _localPhotos.postValue(photos)
     }
 
-    fun refresh() = viewModelScope.launch {
+    fun refresh() = viewModelScope.launch(Dispatchers.IO) {
         val detail = startProgressTask { calendarRepository.getCalendarDayDetail(date) }
         if (detail != null) {
             emotion = detail.emotion

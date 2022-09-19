@@ -18,7 +18,7 @@ class YearMonthSelector @JvmOverloads constructor(
 
     private var selectedIndex: Int = -1
     private val listAdapter: YearMonthListAdapter = YearMonthListAdapter(this::select)
-    private var selectionAttrChangeListener: InverseBindingListener? = null
+    private var selectionChangedListener: OnSelectionChanged? = null
 
 
     init {
@@ -36,7 +36,7 @@ class YearMonthSelector @JvmOverloads constructor(
         })
         Log.d("YearMonthSelector", "SET YearMonth: ${list.joinToString()}")
         selectedIndex = -1
-        setSelection(this, YearMonth.now())
+        setSelection(YearMonth.now())
     }
 
     private fun select(idx: Int) {
@@ -44,7 +44,7 @@ class YearMonthSelector @JvmOverloads constructor(
         if (selectedIndex != idx) {
             listAdapter.select(selectedIndex, idx)
             selectedIndex = idx
-            selectionAttrChangeListener?.onChange()
+            selectionChangedListener?.onChange(getSelection())
         }
     }
 
@@ -87,27 +87,30 @@ class YearMonthSelector @JvmOverloads constructor(
         }
     }
 
+    fun setOnSelectionChanged(listener: OnSelectionChanged?) {
+        selectionChangedListener = listener
+    }
 
-    // TODO Refactor Warnings
-    companion object {
-        @JvmStatic
-        @BindingAdapter("selection")
-        fun setSelection(view: YearMonthSelector, yearMonth: YearMonth?) {
-            Log.d("YearMonthSelector", "SET Selection (from ${view.getSelection()}): $yearMonth")
-            view.setSelection(yearMonth)
-        }
+    fun interface OnSelectionChanged {
+        fun onChange(selection: YearMonth?)
+    }
+}
 
-        @JvmStatic
-        @InverseBindingAdapter(attribute = "selection")
-        fun getSelection(view: YearMonthSelector): YearMonth? {
-            Log.d("YearMonthSelector", "Get Selection: ${view.getSelection()}")
-            return view.getSelection()
-        }
+@BindingAdapter("selection")
+fun setSelection(view: YearMonthSelector, yearMonth: YearMonth?) {
+    Log.d("YearMonthSelector", "SET Selection (from ${view.getSelection()}): $yearMonth")
+    view.setSelection(yearMonth)
+}
 
-        @JvmStatic
-        @BindingAdapter("selectionAttrChanged")
-        fun selectionAttrChanged(view: YearMonthSelector, listener: InverseBindingListener) {
-            view.selectionAttrChangeListener = listener
-        }
+@InverseBindingAdapter(attribute = "selection")
+fun getSelection(view: YearMonthSelector): YearMonth? {
+    Log.d("YearMonthSelector", "Get Selection: ${view.getSelection()}")
+    return view.getSelection()
+}
+
+@BindingAdapter("selectionAttrChanged")
+fun selectionAttrChanged(view: YearMonthSelector, listener: InverseBindingListener) {
+    view.setOnSelectionChanged {
+        listener.onChange()
     }
 }

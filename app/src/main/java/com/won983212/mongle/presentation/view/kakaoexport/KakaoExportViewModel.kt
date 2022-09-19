@@ -6,6 +6,7 @@ import com.won983212.mongle.common.util.asLiveData
 import com.won983212.mongle.domain.repository.KakaotalkRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.InputStream
 import javax.inject.Inject
@@ -18,7 +19,7 @@ class KakaoExportViewModel @Inject constructor(
     private val _isAnalyzing = MutableLiveData(false)
     val isAnalyzing = _isAnalyzing.asLiveData()
 
-    fun uploadKakaotalk(stream: InputStream) = viewModelScope.launch {
+    fun uploadKakaotalk(stream: InputStream) = viewModelScope.launch(Dispatchers.IO) {
         val content = stream.readBytes()
         val response = startProgressTask { kakaotalkRepository.upload(content) }
         if (response != null) {
