@@ -11,6 +11,8 @@ import com.won983212.mongle.R
 import com.won983212.mongle.presentation.util.toastLong
 import com.won983212.mongle.databinding.ActivityLoginBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
+import com.won983212.mongle.presentation.util.getParcelableExtraCompat
+import com.won983212.mongle.presentation.util.getSerializableExtraCompat
 import com.won983212.mongle.presentation.view.agree.AgreeActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity.Companion.EXTRA_REDIRECT_TO
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +35,7 @@ class LoginActivity : BaseDataActivity<ActivityLoginBinding>() {
             loginWithKakao()
         }
 
-        val redirectTo = intent.getParcelableExtra(EXTRA_REDIRECT_TO) as? Intent
+        val redirectTo: Intent? = intent.getParcelableExtraCompat(EXTRA_REDIRECT_TO)
 
         viewModel.attachDefaultHandlers(this)
         viewModel.eventReadyForRegister.observe(this) {
@@ -105,7 +107,7 @@ class LoginActivity : BaseDataActivity<ActivityLoginBinding>() {
 
         override fun parseResult(resultCode: Int, intent: Intent?): LoginResult {
             if (resultCode == RESULT_OK && intent != null) {
-                return intent.getSerializableExtra(RESULT_LOGIN) as LoginResult
+                return intent.getSerializableExtraCompat(RESULT_LOGIN)!!
             }
             return LoginResult.CANCELLED
         }

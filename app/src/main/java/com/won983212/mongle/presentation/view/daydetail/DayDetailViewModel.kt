@@ -13,6 +13,7 @@ import com.won983212.mongle.domain.repository.FavoriteRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
+import com.won983212.mongle.presentation.util.getSerializableExtraCompat
 import com.won983212.mongle.presentation.view.daydetail.model.AnalyzedEmotion
 import com.won983212.mongle.presentation.view.daydetail.model.Photo
 import com.won983212.mongle.presentation.view.daydetail.model.Schedule
@@ -70,8 +71,10 @@ class DayDetailViewModel @Inject constructor(
     }
 
     fun initializeByIntent(intent: Intent) {
-        val date = (intent.getSerializableExtra(DayDetailActivity.EXTRA_DATE)
-            ?: LocalDate.now()) as LocalDate
+        val date: LocalDate = intent.getSerializableExtraCompat(
+            DayDetailActivity.EXTRA_DATE,
+            LocalDate.now()
+        )
         setDate(date)
 
         val giftDate =

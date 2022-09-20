@@ -8,6 +8,7 @@ import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityAgreeBinding
 import com.won983212.mongle.databinding.ListitemAgreeBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
+import com.won983212.mongle.presentation.util.getParcelableExtraCompat
 import com.won983212.mongle.presentation.view.agree.AgreeActivity.Companion.EXTRA_REDIRECT_TO
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity.Companion.EXTRA_REDIRECT_TO
@@ -31,7 +32,7 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
             viewModel.setAllAgreeChecked(binding.cbxAgreeAll.isChecked)
         }
 
-        val redirectTo = intent.getParcelableExtra(LoginActivity.EXTRA_REDIRECT_TO) as? Intent
+        val redirectTo: Intent? = intent.getParcelableExtraCompat(LoginActivity.EXTRA_REDIRECT_TO)
         binding.btnAgreeOk.setOnClickListener {
             Intent(this, NameSettingActivity::class.java).apply {
                 putExtra(NameSettingActivity.EXTRA_REDIRECT_TO, redirectTo)

@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.won983212.mongle.data.model.Favorite
 import com.won983212.mongle.databinding.FragmentCardFavoriteBinding
+import com.won983212.mongle.presentation.util.getParcelableCompat
 import com.won983212.mongle.util.DatetimeFormats
 
 class FavoriteCardFragment : Fragment() {
@@ -19,7 +20,7 @@ class FavoriteCardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            favorite = it.getParcelable(ARGUMENT_FAVORITE)
+            favorite = it.getParcelableCompat(ARGUMENT_FAVORITE)
         }
     }
 

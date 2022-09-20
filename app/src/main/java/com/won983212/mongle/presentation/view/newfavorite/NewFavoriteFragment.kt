@@ -11,6 +11,7 @@ import com.won983212.mongle.R
 import com.won983212.mongle.presentation.util.toastLong
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.BottomSheetNewFavoriteBinding
+import com.won983212.mongle.presentation.util.getSerializableCompat
 
 class NewFavoriteFragment : BottomSheetDialogFragment() {
 
@@ -22,7 +23,7 @@ class NewFavoriteFragment : BottomSheetDialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            initialEmotion = it.getSerializable(ARGUMENT_INITIAL_EMOTION) as Emotion
+            initialEmotion = it.getSerializableCompat(ARGUMENT_INITIAL_EMOTION)
         }
     }
 

@@ -7,6 +7,7 @@ import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityKakaotalkExportBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.util.attachCompatVectorAnim
+import com.won983212.mongle.presentation.util.getParcelableExtraCompat
 import com.won983212.mongle.presentation.util.toastLong
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.openInputRoomNameDialog
@@ -42,7 +43,7 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
     }
 
     private fun sendKakaoMessagesData() {
-        val uri = intent.getParcelableExtra(Intent.EXTRA_STREAM) as? Uri
+        val uri: Uri? = intent.getParcelableExtraCompat(Intent.EXTRA_STREAM)
         val name = intent.getStringExtra(Intent.EXTRA_SUBJECT)
 
         if (uri != null) {

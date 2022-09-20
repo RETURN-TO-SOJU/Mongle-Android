@@ -7,6 +7,8 @@ import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.domain.repository.PasswordRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
+import com.won983212.mongle.presentation.util.getParcelableExtraCompat
+import com.won983212.mongle.presentation.util.getSerializableExtraCompat
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -47,9 +49,11 @@ class PasswordViewModel @Inject constructor(
 
 
     fun initializeByIntent(intent: Intent) {
-        mode = (intent.getSerializableExtra(PasswordActivity.EXTRA_MODE)
-            ?: PasswordActivity.Mode.AUTH) as PasswordActivity.Mode
-        redirectTo = intent.getParcelableExtra(PasswordActivity.EXTRA_REDIRECT_INTENT)
+        mode = intent.getSerializableExtraCompat(
+            PasswordActivity.EXTRA_MODE,
+            PasswordActivity.Mode.AUTH
+        )
+        redirectTo = intent.getParcelableExtraCompat(PasswordActivity.EXTRA_REDIRECT_INTENT)
         pwdMemory.setOnFullListener(this)
         setupUIByMode()
     }

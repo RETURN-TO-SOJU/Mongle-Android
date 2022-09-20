@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.won983212.mongle.databinding.FragmentOverviewBinding
+import com.won983212.mongle.presentation.util.getSerializableExtraCompat
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
 import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,10 +55,10 @@ class OverviewFragment : Fragment() {
 
         val openDetail =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                val selected = (it?.data
-                    ?.getSerializableExtra(DayDetailActivity.RESULT_SELECTED_DATE)
-                    ?: binding.calendarOverview.selectedDate)
-                        as LocalDate?
+                val selected = it?.data
+                    ?.getSerializableExtraCompat(
+                        DayDetailActivity.RESULT_SELECTED_DATE
+                    ) ?: binding.calendarOverview.selectedDate
                 if (selected != null) {
                     viewModel.setSelectedDate(selected)
                     binding.calendarOverview.selectDate(selected)

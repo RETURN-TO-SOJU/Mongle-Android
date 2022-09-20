@@ -9,6 +9,7 @@ import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
+import com.won983212.mongle.presentation.util.getSerializableExtraCompat
 import com.won983212.mongle.util.DatetimeFormats
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -39,9 +40,11 @@ class EditDiaryViewModel @Inject constructor(
             EditDiaryActivity.EXTRA_EMOTION_RES,
             R.drawable.ic_edit
         )
-        _diaryDate.value = (intent.getSerializableExtra(EditDiaryActivity.EXTRA_DATE)
-            ?: LocalDate.now()) as LocalDate
-        diaryContent.value = intent.getStringExtra(EditDiaryActivity.EXTRA_INITIAL_DIARY) ?: ""
+        _diaryDate.value = intent.getSerializableExtraCompat(
+            EditDiaryActivity.EXTRA_DATE,
+            LocalDate.now()
+        )
+        diaryContent . value = intent . getStringExtra (EditDiaryActivity.EXTRA_INITIAL_DIARY) ?: ""
     }
 
     fun commitDiary() = viewModelScope.launch(Dispatchers.IO) {

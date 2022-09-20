@@ -11,6 +11,7 @@ import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.TextResource
+import com.won983212.mongle.presentation.util.getSerializableExtraCompat
 import com.won983212.mongle.util.DatetimeFormats
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -41,14 +42,17 @@ class EmotionMessagesViewModel @Inject constructor(
 
     @Suppress("UNCHECKED_CAST")
     fun initializeByIntent(intent: Intent) {
-        selectedEmotion.value = (intent.getSerializableExtra(EmotionMessagesActivity.EXTRA_EMOTION)
-            ?: Emotion.values()[0]) as Emotion
-
-        _date.value = (intent.getSerializableExtra(EmotionMessagesActivity.EXTRA_DATE)
-            ?: LocalDate.now()) as LocalDate
-
-        emotionProportions = intent.getSerializableExtra(EmotionMessagesActivity.EXTRA_PROPORTIONS)
-                as Map<Emotion, Int>?
+        selectedEmotion.value = intent.getSerializableExtraCompat(
+            EmotionMessagesActivity.EXTRA_EMOTION,
+            Emotion.values()[0]
+        )
+        _date.value = intent.getSerializableExtraCompat(
+            EmotionMessagesActivity.EXTRA_DATE,
+            LocalDate.now()
+        )
+        emotionProportions = intent.getSerializableExtraCompat(
+            EmotionMessagesActivity.EXTRA_PROPORTIONS
+        )
 
         updateMessages()
     }
