@@ -12,10 +12,11 @@ internal class RemoteKakaotalkDataSource @Inject constructor(
     private val api: KakaoSendApi,
 ) {
     suspend fun upload(
+        roomName: String,
         content: ByteArray
     ): Result<MessageResult> {
         val fileBody = content.toRequestBody("text/plain".toMediaTypeOrNull(), 0, content.size)
-        val filePart = MultipartBody.Part.createFormData("files", "KakaoData.txt", fileBody)
+        val filePart = MultipartBody.Part.createFormData("files", "$roomName.txt", fileBody)
         return safeApiCall {
             api.uploadKakaotalk(
                 filePart

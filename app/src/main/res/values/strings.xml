@@ -103,8 +103,10 @@
     <string name="detail_plans_title">이날의 일정</string>
 
     <!-- Dialog -->
-    <string name="analyze_complete">%1$s님,\n감정 분석을 완료했어요 :)</string>
-    <string name="arrived_gift">띵동🔔\n행복한 기억이 도착했어요:)</string>
+    <string name="dialog_analyze_complete">%1$s님,\n감정 분석을 완료했어요 :)</string>
+    <string name="dialog_arrived_gift">띵동🔔\n행복한 기억이 도착했어요:)</string>
+    <string name="dialog_input_room_name">상대 또는 카톡방 이름을 입력해주세요!\n중복 분석 방지를 위해 사용됩니다.</string>
+    <string name="dialog_input_room_name_hint">상대 또는 카톡 방의 이름</string>
 
     <!-- Setting -->
     <string name="setting_title_1">%1$s님,</string>

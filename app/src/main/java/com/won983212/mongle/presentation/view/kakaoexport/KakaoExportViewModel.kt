@@ -19,9 +19,9 @@ class KakaoExportViewModel @Inject constructor(
     private val _isAnalyzing = MutableLiveData(false)
     val isAnalyzing = _isAnalyzing.asLiveData()
 
-    fun uploadKakaotalk(stream: InputStream) = viewModelScope.launch(Dispatchers.IO) {
+    fun uploadKakaotalk(roomName: String, stream: InputStream) = viewModelScope.launch(Dispatchers.IO) {
         val content = stream.readBytes()
-        val response = startProgressTask { kakaotalkRepository.upload(content) }
+        val response = startProgressTask { kakaotalkRepository.upload(roomName, content) }
         if (response != null) {
             _isAnalyzing.postValue(true)
         }

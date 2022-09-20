@@ -10,6 +10,6 @@ internal class KakaotalkRepositoryImpl
     private val kakaotalkDataSource: RemoteKakaotalkDataSource
 ) : KakaotalkRepository {
 
-    override suspend fun upload(content: ByteArray): Result<MessageResult> =
-        kakaotalkDataSource.upload(content)
+    override suspend fun upload(roomName: String, content: ByteArray): Result<MessageResult> =
+        kakaotalkDataSource.upload(roomName, content)
 }

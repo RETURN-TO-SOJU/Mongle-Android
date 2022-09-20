@@ -8,6 +8,7 @@ interface KakaotalkRepository {
      * 카카오톡 텍스트를 보내면 백엔드 단에서 s3 스토리지에 올린다.
      */
     suspend fun upload(
+        roomName: String,
         content: ByteArray
     ): Result<MessageResult>
 }

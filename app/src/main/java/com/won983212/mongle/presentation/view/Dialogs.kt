@@ -13,8 +13,16 @@ import com.won983212.mongle.presentation.util.attachCompatVectorAnim
 import com.won983212.mongle.presentation.util.startAnim
 import com.won983212.mongle.databinding.DialogAnalyzeCompleteBinding
 import com.won983212.mongle.databinding.DialogArrivedGiftBinding
+import com.won983212.mongle.databinding.DialogInputRoomNameBinding
 import com.won983212.mongle.databinding.DialogLoadingBinding
 import com.won983212.mongle.databinding.DialogTermsOfServiceDetailBinding
+import com.won983212.mongle.presentation.util.toastShort
+
+
+fun interface OnDialogSubmit<T> {
+    fun onSubmit(data: T)
+}
+
 
 private fun openDialog(
     context: Context,
@@ -56,7 +64,7 @@ fun openAnalyzeCompleteDialog(
     context: Context,
     name: String,
     dateRange: String,
-    onGoResult: View.OnClickListener? = null
+    onClickOK: View.OnClickListener? = null
 ): AlertDialog {
     val layout = DialogAnalyzeCompleteBinding.inflate(
         LayoutInflater.from(context),
@@ -66,17 +74,19 @@ fun openAnalyzeCompleteDialog(
     layout.imageAnalyzeCompleteFlag.attachCompatVectorAnim(R.drawable.avd_flag_cross)
     layout.imageAnalyzeCompleteChecking.attachCompatVectorAnim(R.drawable.avd_complete)
     layout.textAnalyzeCompleteTitle.text =
-        context.resources.getString(R.string.analyze_complete, name)
+        context.resources.getString(R.string.dialog_analyze_complete, name)
     layout.textAnalyzeCompleteDateRange.text = dateRange
-    layout.btnAnalyzeCompleteGoResult.setOnClickListener(
-        onGoResult ?: View.OnClickListener { dialog.dismiss() })
+    layout.btnAnalyzeCompleteGoResult.setOnClickListener {
+        onClickOK?.onClick(it)
+        dialog.dismiss()
+    }
     return dialog
 }
 
 fun openGiftArrivedDialog(
     context: Context,
     date: String,
-    onGoResult: View.OnClickListener? = null
+    onClickOK: View.OnClickListener? = null
 ): AlertDialog {
     val layout = DialogArrivedGiftBinding.inflate(
         LayoutInflater.from(context),
@@ -86,7 +96,33 @@ fun openGiftArrivedDialog(
     val dialog = openDialog(context, layout.root, true)
     layout.imageArrivedGift.attachCompatVectorAnim(R.drawable.avd_gift)
     layout.textArrivedGiftDate.text = date
-    layout.btnArrivedGiftWatchNow.setOnClickListener(
-        onGoResult ?: View.OnClickListener { dialog.dismiss() })
+    layout.btnArrivedGiftWatchNow.setOnClickListener {
+        onClickOK?.onClick(it)
+        dialog.dismiss()
+    }
+    return dialog
+}
+
+fun openInputRoomNameDialog(
+    context: Context,
+    initialName: String,
+    onSubmitName: OnDialogSubmit<String>? = null
+): AlertDialog {
+    val layout = DialogInputRoomNameBinding.inflate(
+        LayoutInflater.from(context),
+        null, false
+    )
+
+    val dialog = openDialog(context, layout.root, true, false)
+    layout.fieldInputRoomName.setText(initialName.trim())
+    layout.btnInputRoomNameOk.setOnClickListener {
+        val roomName = layout.fieldInputRoomName.text.trim()
+        if (roomName.isEmpty()) {
+            context.toastShort("카톡 방(또는 상대) 이름을 입력해야합니다.")
+        } else {
+            onSubmitName?.onSubmit(roomName.toString())
+            dialog.dismiss()
+        }
+    }
     return dialog
 }
