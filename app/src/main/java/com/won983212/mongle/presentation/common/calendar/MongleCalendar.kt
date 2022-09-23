@@ -9,10 +9,10 @@ import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
 import com.kizitonwose.calendarview.utils.yearMonth
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.util.dpToPx
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.CalendarMongleBinding
 import com.won983212.mongle.presentation.base.event.OnSelectedListener
+import com.won983212.mongle.presentation.util.dpToPx
 import com.won983212.mongle.util.DatetimeFormats
 import java.time.LocalDate
 import java.time.YearMonth
@@ -36,11 +36,18 @@ class MongleCalendar @JvmOverloads constructor(
 
     private var selectedListener: OnSelectedListener<LocalDate>? = null
     private var initializedListener: OnInitializedListener? = null
+    private var monthLoadedListener: OnMonthLoadedListener? = null
+
+    private var startMonth: YearMonth
+    private var endMonth: YearMonth
 
     init {
         val currentMonth = YearMonth.now()
         val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
         val daysOfWeek = resources.getStringArray(R.array.calendar_weekdays)
+
+        startMonth = currentMonth.minusMonths(MONTH_LOAD_BATCH_SIZE)
+        endMonth = currentMonth.plusMonths(MONTH_LOAD_BATCH_SIZE)
 
         binding.calendar.apply {
             daySize = CalendarView.sizeAutoWidth(dpToPx(context, 44))
@@ -49,16 +56,25 @@ class MongleCalendar @JvmOverloads constructor(
             monthScrollListener = {
                 binding.textCalendarMonth.text =
                     DatetimeFormats.MONTH_DOT_SPACE.format(it.yearMonth)
+                if (it.yearMonth == startMonth) {
+                    val prevStartMonth = startMonth
+                    startMonth = startMonth.minusMonths(MONTH_LOAD_BATCH_SIZE)
+                    updateMonthRangeAsync(startMonth, endMonth)
+                    monthLoadedListener?.onLoaded(startMonth, prevStartMonth)
+                }
+                if (it.yearMonth == endMonth) {
+                    val prevEndMonth = endMonth
+                    endMonth = endMonth.plusMonths(MONTH_LOAD_BATCH_SIZE)
+                    updateMonthRangeAsync(startMonth, endMonth)
+                    monthLoadedListener?.onLoaded(prevEndMonth, endMonth)
+                }
             }
             isNestedScrollingEnabled = false
-            setupAsync(
-                currentMonth.minusMonths(5),
-                currentMonth.plusMonths(5),
-                firstDayOfWeek
-            ) {
+            setupAsync(startMonth, endMonth, firstDayOfWeek) {
                 this.scrollToMonth(currentMonth)
                 dayEmotions?.let { setDayEmotions(it) }
                 initializedListener?.onInitialize()
+                monthLoadedListener?.onLoaded(startMonth, endMonth)
             }
         }
 
@@ -114,6 +130,27 @@ class MongleCalendar @JvmOverloads constructor(
         return result
     }
 
+    /**
+     * 지금까지 불러온 감정들에 추가로 더 데이터를 추가합니다.
+     * 입력된 모든 day 데이터들 [emotionMapping]에 대해 무조건 ui update합니다.
+     */
+    fun addDayEmotions(emotionMapping: Map<LocalDate, Emotion>) {
+        if (dayEmotions == null) {
+            dayEmotions = emotionMapping
+        } else {
+            dayEmotions = dayEmotions?.plus(emotionMapping)
+        }
+        if (binding.calendar.adapter != null) {
+            for (day in emotionMapping.keys) {
+                binding.calendar.notifyDateChanged(day)
+            }
+        }
+    }
+
+    /**
+     * 기존에 있던 데이터를 삭제하고 새로운 데이터로 대체합니다.
+     * 기존 데이터, 새로운 데이터 사이에 변화된 부분만 ui update합니다.
+     */
     fun setDayEmotions(emotionMapping: Map<LocalDate, Emotion>) {
         val oldEmotions = dayEmotions
         dayEmotions = emotionMapping
@@ -131,6 +168,7 @@ class MongleCalendar @JvmOverloads constructor(
         }
     }
 
+    // TODO 향후 local cache를 사용하면 이 메서드를 사용할 예정
     fun setDayEmotion(date: LocalDate, emotion: Emotion) {
         if (dayEmotions != null) {
             dayEmotions?.toMutableMap()?.set(date, emotion)
@@ -150,7 +188,20 @@ class MongleCalendar @JvmOverloads constructor(
         initializedListener = listener
     }
 
+    fun setOnMonthLoadedListener(listener: OnMonthLoadedListener) {
+        monthLoadedListener = listener
+    }
+
+    companion object {
+        private const val MONTH_LOAD_BATCH_SIZE = 5L
+    }
+
+
     fun interface OnInitializedListener {
         fun onInitialize()
+    }
+
+    fun interface OnMonthLoadedListener {
+        fun onLoaded(from: YearMonth, to: YearMonth)
     }
 }

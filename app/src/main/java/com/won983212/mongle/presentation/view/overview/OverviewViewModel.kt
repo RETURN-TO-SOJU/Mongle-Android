@@ -1,5 +1,6 @@
 package com.won983212.mongle.presentation.view.overview
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
@@ -9,12 +10,14 @@ import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
+import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
 import com.won983212.mongle.util.DatetimeFormats
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.YearMonth
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,9 +26,7 @@ class OverviewViewModel @Inject constructor(
     private val calendarRepository: CalendarRepository
 ) : BaseViewModel() {
 
-    // TODO Emotions랑 통합하자
     private var keywordMap = mapOf<LocalDate, List<String>>()
-
     private val _keywords = MutableLiveData<List<String>>(listOf())
     val keywords = Transformations.map(_keywords) { value ->
         value.ifEmpty {
@@ -33,8 +34,9 @@ class OverviewViewModel @Inject constructor(
         }
     }
 
-    private val _calendarEmotions = MutableLiveData(mapOf<LocalDate, Emotion>())
-    val calendarEmotions = _calendarEmotions.asLiveData()
+    private val calendarEmotions = mutableMapOf<LocalDate, Emotion>()
+    private val _eventCalendarDataLoaded = SingleLiveEvent<Map<LocalDate, Emotion>>()
+    val eventCalendarDataLoaded = _eventCalendarDataLoaded.asLiveData()
 
     private val _overviewText = MutableLiveData(TextResource())
     val overviewText = _overviewText.asLiveData()
@@ -53,23 +55,21 @@ class OverviewViewModel @Inject constructor(
             return TextResource(R.string.overview_intro_message_today)
         }
 
-        val emotion = calendarEmotions.value?.get(date)
+        val emotion = calendarEmotions[date]
         val resId = emotion?.descriptionRes
             ?: R.string.overview_intro_message_other_day
         return TextResource(resId)
     }
 
-    // TODO 무한 스크롤 구현
-    fun loadCalendarData() = viewModelScope.launch(Dispatchers.IO) {
-        val today = LocalDate.now()
+    fun loadCalendarData(from: YearMonth, to: YearMonth) = viewModelScope.launch(Dispatchers.IO) {
+        Log.d("OverviewViewModel", "LOAD $from ~ $to")
         val days = startProgressTask {
-            calendarRepository.getCalendarDayMetadata(
-                today.minusMonths(3),
-                today.plusMonths(3)
-            )
+            calendarRepository.getCalendarDayMetadata(from, to)
         }
         if (days != null) {
-            _calendarEmotions.postValue(days.associate { it.date to it.emotion })
+            val emotionData = days.associate { it.date to it.emotion }
+            calendarEmotions.putAll(emotionData)
+            _eventCalendarDataLoaded.postValue(emotionData)
             keywordMap = days.associate { it.date to it.subjectList }
         }
     }
@@ -89,7 +89,7 @@ class OverviewViewModel @Inject constructor(
             )
         }
 
-        val emotion = calendarEmotions.value?.get(date)
+        val emotion = calendarEmotions[date]
         _selectedDayEmotion.postValue((emotion ?: Emotion.ANXIOUS).iconRes)
 
         val defaultFeedback = emotion?.descriptionRes ?: R.string.overview_title_empty

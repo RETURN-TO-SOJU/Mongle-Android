@@ -26,7 +26,6 @@ class SetEmotionViewModel @Inject constructor(
 
 
     fun initializeFromBundle(bundle: Bundle) {
-        // TODO getSerializable 등을 localdate, localdatetime 등으로 템플릿 함수 제작
         val initialEmotion: Emotion? =
             bundle.getSerializableCompat(
                 SetEmotionFragment.ARGUMENT_INITIAL_EMOTION

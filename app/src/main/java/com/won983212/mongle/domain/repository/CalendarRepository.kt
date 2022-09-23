@@ -6,6 +6,7 @@ import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import java.time.LocalDate
+import java.time.YearMonth
 
 interface CalendarRepository {
 
@@ -36,8 +37,8 @@ interface CalendarRepository {
      * @param endMonth 끝 월. 이 달까지 포함해서 결과가 반환된다. 이 매개변수의 '일'은 무시됨
      */
     suspend fun getCalendarDayMetadata(
-        startMonth: LocalDate,
-        endMonth: LocalDate
+        startMonth: YearMonth,
+        endMonth: YearMonth
     ): Result<List<CalendarDay>>
 
     /**

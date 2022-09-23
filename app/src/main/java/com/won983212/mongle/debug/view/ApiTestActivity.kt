@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.gson.Gson
+import com.kizitonwose.calendarview.utils.yearMonth
 import com.won983212.mongle.presentation.util.toastShort
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.source.remote.model.MessageResult
@@ -55,8 +56,8 @@ class ApiTestActivity : BaseTestActivity() {
     private fun getCalendarDayMetadata() = lifecycleScope.launch {
         val result = viewModel.startProgressTask {
             calendarRepository.getCalendarDayMetadata(
-                LocalDate.now().minusMonths(5),
-                LocalDate.now().plusMonths(5)
+                LocalDate.now().minusMonths(5).yearMonth,
+                LocalDate.now().plusMonths(5).yearMonth
             )
         }
         if (result != null) {

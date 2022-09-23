@@ -34,9 +34,8 @@ class OverviewFragment : Fragment() {
 
         viewModel.apply {
             attachDefaultHandlers(requireActivity())
-            loadCalendarData()
-            calendarEmotions.observe(viewLifecycleOwner) {
-                binding.calendarOverview.setDayEmotions(it)
+            eventCalendarDataLoaded.observe(viewLifecycleOwner) {
+                binding.calendarOverview.addDayEmotions(it)
             }
         }
 
@@ -46,6 +45,9 @@ class OverviewFragment : Fragment() {
             }
             setOnInitializedListener {
                 selectDate(today)
+            }
+            setOnMonthLoadedListener { from, to ->
+                viewModel.loadCalendarData(from, to)
             }
         }
 

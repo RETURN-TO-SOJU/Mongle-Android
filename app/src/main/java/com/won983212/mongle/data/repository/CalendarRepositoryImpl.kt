@@ -8,6 +8,7 @@ import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import com.won983212.mongle.domain.repository.CalendarRepository
 import java.time.LocalDate
+import java.time.YearMonth
 
 internal class CalendarRepositoryImpl(
     private val remoteCalendarDataSource: RemoteCalendarDataSource
@@ -23,8 +24,8 @@ internal class CalendarRepositoryImpl(
         remoteCalendarDataSource.updateEmotion(date, emotion)
 
     override suspend fun getCalendarDayMetadata(
-        startMonth: LocalDate,
-        endMonth: LocalDate
+        startMonth: YearMonth,
+        endMonth: YearMonth
     ): Result<List<CalendarDay>> =
         remoteCalendarDataSource.getCalendarDayMetadata(
             startMonth,

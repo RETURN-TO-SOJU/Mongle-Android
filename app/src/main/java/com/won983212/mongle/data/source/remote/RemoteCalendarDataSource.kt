@@ -10,6 +10,7 @@ import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import com.won983212.mongle.util.DatetimeFormats
 import java.time.LocalDate
+import java.time.YearMonth
 import javax.inject.Inject
 
 internal class RemoteCalendarDataSource @Inject constructor(
@@ -45,8 +46,8 @@ internal class RemoteCalendarDataSource @Inject constructor(
     }
 
     suspend fun getCalendarDayMetadata(
-        startMonth: LocalDate,
-        endMonth: LocalDate
+        startMonth: YearMonth,
+        endMonth: YearMonth
     ): Result<List<CalendarDay>> {
         return safeApiCall {
             api.getCalendarDayMetadata(
