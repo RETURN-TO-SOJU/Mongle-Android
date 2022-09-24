@@ -64,8 +64,6 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
         }
     }
 
-    // TODO (ALL) 가능하면 viewmodel에 onclick event로 처리.
-    // 물론 context가 필요한 경우에는 그냥 view에서 처리하도록
     private fun initializeUI() {
         val openDiary =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {

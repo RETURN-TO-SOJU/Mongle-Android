@@ -1,11 +1,14 @@
 package com.won983212.mongle
 
+import android.content.res.Resources
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.won983212.mongle.data.repository.ConfigRepositoryImpl
 import com.won983212.mongle.data.source.local.config.*
 import com.won983212.mongle.domain.repository.ConfigRepository
-import org.junit.Assert.assertEquals
+import org.assertj.core.api.Java6Assertions.assertThat
+import org.assertj.core.api.Java6Assertions.assertThatThrownBy
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -13,7 +16,15 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 internal class ConfigTest {
 
-    private val configDataSource = ConfigDataSource(ApplicationProvider.getApplicationContext())
+    private val configDataSource = ConfigDataSource(
+        ApplicationProvider.getApplicationContext(),
+        ConfigDataSource.ResourceContext(
+            R.xml.settings_test,
+            R.styleable.settings,
+            R.styleable.settings_name,
+            R.styleable.settings_defaultValue
+        )
+    )
     private val configRepository: ConfigRepository = ConfigRepositoryImpl(configDataSource)
 
     private val stringKey = StringConfigKey("stringConfigKey")
@@ -22,24 +33,44 @@ internal class ConfigTest {
     private val floatKey = FloatConfigKey("floatConfigKey")
     private val longKey = LongConfigKey("longConfigKey")
 
-    @Test
-    fun config_get_and_editor() {
-        configRepository.editor().clear().apply()
-        configRepository.editor()
-            .set(stringKey, "hello")
-            .set(intKey, 1234)
-            .set(booleanKey, false)
-            .set(floatKey, 12.1f)
-            .set(longKey, 1872367812496)
-            .apply()
+    private val wrongIntKey = IntConfigKey("wrongIntConfigKey")
+    private val unknownKey = StringConfigKey("unknownConfigKey")
 
-        assertEquals("hello", configRepository.get(stringKey))
-        assertEquals(1234, configRepository.get(intKey))
-        assertEquals(false, configRepository.get(booleanKey))
-        assertEquals(12.1f, configRepository.get(floatKey))
-        assertEquals(1872367812496, configRepository.get(longKey))
+    @Before
+    fun before() {
+        configRepository.editor().clear().apply()
     }
 
-    // TODO 값설정 안되어있을 때 기본값으로 잘 설정하는지
-    // 기본값마저 없을 때 throw가 잘 되는지
+    @Test
+    fun config_get_and_editor() {
+        configRepository.editor()
+            .set(stringKey, "he1llo")
+            .set(intKey, 12314)
+            .set(booleanKey, true)
+            .set(floatKey, 12.1f)
+            .set(longKey, 1241254125125)
+            .apply()
+
+        assertThat(configRepository.get(stringKey)).isEqualTo("he1llo")
+        assertThat(configRepository.get(intKey)).isEqualTo(12314)
+        assertThat(configRepository.get(booleanKey)).isEqualTo(true)
+        assertThat(configRepository.get(floatKey)).isEqualTo(12.1f)
+        assertThat(configRepository.get(longKey)).isEqualTo(1241254125125)
+    }
+
+    @Test
+    fun config_get_default() {
+        assertThat(configRepository.get(stringKey)).isEqualTo("STRING")
+        assertThat(configRepository.get(intKey)).isEqualTo(12)
+        assertThat(configRepository.get(booleanKey)).isEqualTo(false)
+        assertThat(configRepository.get(floatKey)).isEqualTo(12.5f)
+        assertThat(configRepository.get(longKey)).isEqualTo(1872367812496)
+    }
+
+    @Test
+    fun config_get_unknown_default_key() {
+        assertThatThrownBy {
+            configRepository.get(unknownKey)
+        }.isInstanceOf(Resources.NotFoundException::class.java)
+    }
 }
