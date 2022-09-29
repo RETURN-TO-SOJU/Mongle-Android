@@ -39,8 +39,7 @@ class NameSettingActivity : BaseDataActivity<ActivityNameSettingBinding>() {
                     if (redirectTo != null) {
                         startActivity(redirectTo)
                     }
-                    // TODO 아무래도 보안 튜토리얼을 띄워야 할 것 같음
-                    TutorialActivity.startKakaoTutorial(this@NameSettingActivity)
+                    TutorialActivity.startSecurityTutorial(this@NameSettingActivity)
                     finish()
                 }
             }

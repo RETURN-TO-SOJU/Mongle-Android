@@ -12,7 +12,7 @@ import com.won983212.mongle.R
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.CalendarMongleBinding
 import com.won983212.mongle.presentation.base.event.OnSelectedListener
-import com.won983212.mongle.presentation.util.dpToPx
+import com.won983212.mongle.presentation.util.dpToPxInt
 import com.won983212.mongle.util.DatetimeFormats
 import java.time.LocalDate
 import java.time.YearMonth
@@ -50,7 +50,7 @@ class MongleCalendar @JvmOverloads constructor(
         endMonth = currentMonth.plusMonths(MONTH_LOAD_BATCH_SIZE)
 
         binding.calendar.apply {
-            daySize = CalendarView.sizeAutoWidth(dpToPx(context, 44))
+            daySize = CalendarView.sizeAutoWidth(dpToPxInt(context, 44))
             dayBinder = MongleDayBinder(this@MongleCalendar, this@MongleCalendar::selectDate)
             monthHeaderBinder = MongleMonthWeekHeaderBinder(daysOfWeek)
             monthScrollListener = {
@@ -135,11 +135,7 @@ class MongleCalendar @JvmOverloads constructor(
      * 입력된 모든 day 데이터들 [emotionMapping]에 대해 무조건 ui update합니다.
      */
     fun addDayEmotions(emotionMapping: Map<LocalDate, Emotion>) {
-        if (dayEmotions == null) {
-            dayEmotions = emotionMapping
-        } else {
-            dayEmotions = dayEmotions?.plus(emotionMapping)
-        }
+        dayEmotions = dayEmotions?.plus(emotionMapping) ?: emotionMapping
         if (binding.calendar.adapter != null) {
             for (day in emotionMapping.keys) {
                 binding.calendar.notifyDateChanged(day)
@@ -151,7 +147,7 @@ class MongleCalendar @JvmOverloads constructor(
      * 기존에 있던 데이터를 삭제하고 새로운 데이터로 대체합니다.
      * 기존 데이터, 새로운 데이터 사이에 변화된 부분만 ui update합니다.
      */
-    fun setDayEmotions(emotionMapping: Map<LocalDate, Emotion>) {
+    private fun setDayEmotions(emotionMapping: Map<LocalDate, Emotion>) {
         val oldEmotions = dayEmotions
         dayEmotions = emotionMapping
 
@@ -165,18 +161,6 @@ class MongleCalendar @JvmOverloads constructor(
             for (day in updates) {
                 binding.calendar.notifyDateChanged(day)
             }
-        }
-    }
-
-    // TODO 향후 local cache를 사용하면 이 메서드를 사용할 예정
-    fun setDayEmotion(date: LocalDate, emotion: Emotion) {
-        if (dayEmotions != null) {
-            dayEmotions?.toMutableMap()?.set(date, emotion)
-            if (binding.calendar.adapter != null) {
-                binding.calendar.notifyDateChanged(date)
-            }
-        } else {
-            setDayEmotions(mapOf(date to emotion))
         }
     }
 

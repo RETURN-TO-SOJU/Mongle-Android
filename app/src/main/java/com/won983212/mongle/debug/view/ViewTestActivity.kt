@@ -30,8 +30,8 @@ class ViewTestActivity : BaseTestActivity() {
         ActivityInfo("비밀번호 입력", PasswordActivity::class.java),
         ActivityInfo("비밀번호 설정", PasswordActivity::class.java, passwordSetBundle()),
         FragmentInfo("계정 연동", this::integrationFragmentFactory),
-        ActivityInfo("튜토리얼", TutorialActivity::class.java, makeTutorialBundle()),
         ActivityInfo("카톡 튜토리얼", TutorialActivity::class.java, makeKakaoTutorialBundle()),
+        ActivityInfo("보안 튜토리얼", TutorialActivity::class.java, makeSecurityTutorialBundle()),
         FragmentInfo("찜 추가", this::newFavoriteFragmentFactory),
         ActivityInfo("카카오 카톡 데이터 전송", KakaoExportActivity::class.java),
         ActivityInfo("일기 작성", EditDiaryActivity::class.java, testDiaryMockBundle()),
@@ -59,10 +59,12 @@ class ViewTestActivity : BaseTestActivity() {
         )
     }
 
-    private fun makeTutorialBundle(): Bundle {
+    private fun makeSecurityTutorialBundle(): Bundle {
         return bundleOf(
-            TutorialActivity.EXTRA_TITLE_LIST_RES to R.array.kakao_tutorial_title,
-            TutorialActivity.EXTRA_IMAGE_LIST_RES to R.array.kakao_tutorial_image
+            TutorialActivity.EXTRA_TITLE_LIST_RES to R.array.security_tutorial_title,
+            TutorialActivity.EXTRA_SUBTITLE_LIST_RES to R.array.security_tutorial_subtitle,
+            TutorialActivity.EXTRA_IMAGE_LIST_RES to R.array.security_tutorial_image,
+            TutorialActivity.EXTRA_IMAGE_WIDTH to 190f
         )
     }
 

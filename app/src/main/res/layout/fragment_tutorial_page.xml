@@ -12,13 +12,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:fontFamily="@font/app_semibold"
         android:gravity="center_horizontal"
         android:textSize="16sp"
+        android:fontFamily="@font/app_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="화면을 옆으로 넘겨\n더 편리하게 사용하세요!" />
+
+    <TextView
+        android:id="@+id/text_tutorial_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_tutorial_title" />
 
     <ImageView
         android:id="@+id/image_tutorial"
@@ -27,7 +40,9 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="64dp"
         app:layout_constraintDimensionRatio="H,1:1"
-        app:layout_constraintTop_toBottomOf="@id/text_tutorial_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_tutorial_subtitle"
         tools:src="@drawable/kakao_tutorial_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

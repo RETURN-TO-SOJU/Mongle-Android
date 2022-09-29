@@ -73,6 +73,14 @@
     <string name="kakao_tutorial_title_4"><font color="#EB6E6D">"텍스트만 보내기"</font> 클릭</string>
     <string name="kakao_tutorial_title_5"><font color="#EB6E6D">"몽글몽글"</font> 앱 선택</string>
 
+    <!-- Security welcome messages -->
+    <string name="security_tutorial_title_1">카톡 데이터 제공이\n꺼려지시나요?</string>
+    <string name="security_tutorial_subtitle_1">몽글몽글은 안전하게 데이터를 저장합니다.\n데이터들은 오직 비밀번호를 아는 여러분들만 볼 수 있어요!</string>
+    <string name="security_tutorial_title_2">신중하게 비밀번호를\n설정해주세요.</string>
+    <string name="security_tutorial_subtitle_2">비밀번호를 잊으면 그 누구도 데이터를 열람할 수 없습니다.\n복구도 불가능하니 한번 더 신중하게!</string>
+    <string name="security_tutorial_title_3">민감한 정보라면\n안전하게 보관하는 것이 좋겠죠?</string>
+    <string name="security_tutorial_subtitle_3">비밀번호를 설정하지 않아도, 여러분의 데이터는 기본적으로\n암호화되어 보관되므로 안심하세요!</string>
+
     <!-- Overview -->
     <string name="overview_intro">%1$s님 👋\n<b>%2$s\n</b>%3$s</string>
     <string name="overview_intro_message_today">오늘 하루도 수고했어요.</string>

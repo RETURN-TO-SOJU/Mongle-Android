@@ -9,10 +9,10 @@ import android.widget.FrameLayout
 import android.widget.GridLayout
 import android.widget.ImageButton
 import android.widget.ImageView
-import com.won983212.mongle.presentation.util.dpToPx
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.EmotionSelectorBinding
 import com.won983212.mongle.presentation.base.event.OnSelectedListener
+import com.won983212.mongle.presentation.util.dpToPxInt
 
 class EmotionSelector @JvmOverloads constructor(
     context: Context,
@@ -55,7 +55,7 @@ class EmotionSelector @JvmOverloads constructor(
                 }
             }
 
-            val size = dpToPx(context, 48)
+            val size = dpToPxInt(context, 48)
             val layoutParams = GridLayout.LayoutParams(ViewGroup.LayoutParams(size, size))
 
             when (idx) {
