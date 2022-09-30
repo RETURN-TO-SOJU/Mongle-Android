@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.presentation.util.toastShort
 import com.won983212.mongle.presentation.util.SingleLiveEvent
-import com.won983212.mongle.presentation.view.openLoadingDialog
+import com.won983212.mongle.presentation.view.dialog.LoadingDialog
 
 open class BaseViewModel : ViewModel() {
     private val _eventErrorMessage = SingleLiveEvent<String>()
@@ -50,7 +50,7 @@ open class BaseViewModel : ViewModel() {
         isLoading.observe(context) {
             if (it) {
                 loadingDialog?.dismiss()
-                loadingDialog = openLoadingDialog(context)
+                loadingDialog = LoadingDialog(context).open()
             } else {
                 loadingDialog?.dismiss()
             }

@@ -8,14 +8,14 @@ import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.presentation.view.IntegrationFragment
 import com.won983212.mongle.presentation.view.agree.AgreeActivity
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
+import com.won983212.mongle.presentation.view.dialog.AnalyzeCompleteDialog
+import com.won983212.mongle.presentation.view.dialog.GiftArrivedDialog
+import com.won983212.mongle.presentation.view.dialog.LoadingDialog
 import com.won983212.mongle.presentation.view.diary.EditDiaryActivity
 import com.won983212.mongle.presentation.view.kakaoexport.KakaoExportActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.main.MainActivity
 import com.won983212.mongle.presentation.view.newfavorite.NewFavoriteFragment
-import com.won983212.mongle.presentation.view.openAnalyzeCompleteDialog
-import com.won983212.mongle.presentation.view.openGiftArrivedDialog
-import com.won983212.mongle.presentation.view.openLoadingDialog
 import com.won983212.mongle.presentation.view.password.PasswordActivity
 import com.won983212.mongle.presentation.view.setemotion.SetEmotionFragment
 import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
@@ -36,14 +36,14 @@ class ViewTestActivity : BaseTestActivity() {
         ActivityInfo("카카오 카톡 데이터 전송", KakaoExportActivity::class.java),
         ActivityInfo("일기 작성", EditDiaryActivity::class.java, testDiaryMockBundle()),
         ManualInfo("분석 완료 다이얼로그") {
-            openAnalyzeCompleteDialog(
+            AnalyzeCompleteDialog(
                 this,
                 "소마",
                 "2022.08.01 ~ 2022.09.11"
-            )
+            ).open()
         },
-        ManualInfo("선물 도착 다이얼로그") { openGiftArrivedDialog(this, "2022.08.01") },
-        ManualInfo("로딩 다이얼로그") { openLoadingDialog(this) },
+        ManualInfo("선물 도착 다이얼로그") { GiftArrivedDialog(this, "2022.08.01").open() },
+        ManualInfo("로딩 다이얼로그") { LoadingDialog(this).open() },
         FragmentInfo("감정 설정", this::setEmotionFragmentFactory),
     )
 

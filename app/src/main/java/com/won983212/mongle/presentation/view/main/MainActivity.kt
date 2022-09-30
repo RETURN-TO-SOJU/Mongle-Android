@@ -6,8 +6,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityMainBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
+import com.won983212.mongle.presentation.view.dialog.AnalyzeCompleteDialog
 import com.won983212.mongle.presentation.view.main.MainActivity.Companion.EXTRA_ANALYZED_DATE_RANGE
-import com.won983212.mongle.presentation.view.openAnalyzeCompleteDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -27,11 +27,11 @@ class MainActivity : BaseDataActivity<ActivityMainBinding>() {
 
         val dateText = intent.getStringExtra(EXTRA_ANALYZED_DATE_RANGE)
         if (dateText != null) {
-            openAnalyzeCompleteDialog(
+            AnalyzeCompleteDialog(
                 this,
                 "",
                 dateText
-            )
+            ).open()
         }
     }
 

@@ -13,10 +13,10 @@ import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Compan
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.RESULT_SELECTED_DATE
 import com.won983212.mongle.presentation.view.daydetail.adapter.AnalyzedEmotionListAdapter
 import com.won983212.mongle.presentation.view.daydetail.adapter.PhotoListAdapter
+import com.won983212.mongle.presentation.view.dialog.GiftArrivedDialog
 import com.won983212.mongle.presentation.view.diary.EditDiaryActivity
 import com.won983212.mongle.presentation.view.messages.EmotionMessagesActivity
 import com.won983212.mongle.presentation.view.newfavorite.NewFavoriteFragment
-import com.won983212.mongle.presentation.view.openGiftArrivedDialog
 import com.won983212.mongle.presentation.view.setemotion.SetEmotionFragment
 import com.won983212.mongle.util.DatetimeFormats
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,7 +49,7 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         viewModel.eventOpenGiftDialog.observe(this) {
-            openGiftArrivedDialog(this, it.format(DatetimeFormats.DATE_DOT))
+            GiftArrivedDialog(this, it.format(DatetimeFormats.DATE_DOT)).open()
         }
 
         viewModel.attachDefaultHandlers(this)

@@ -9,8 +9,8 @@ import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.util.attachCompatVectorAnim
 import com.won983212.mongle.presentation.util.getParcelableExtraCompat
 import com.won983212.mongle.presentation.util.toastLong
+import com.won983212.mongle.presentation.view.dialog.InputRoomNameDialog
 import com.won983212.mongle.presentation.view.login.LoginActivity
-import com.won983212.mongle.presentation.view.openInputRoomNameDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,9 +50,9 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
             val stream = contentResolver.openInputStream(uri)
             if (stream != null) {
                 val roomName = parseRoomName(name ?: "")
-                openInputRoomNameDialog(this, roomName) {
+                InputRoomNameDialog(this, roomName) {
                     viewModel.uploadKakaotalk(it, stream)
-                }
+                }.open()
             } else {
                 onCantFindFile()
             }

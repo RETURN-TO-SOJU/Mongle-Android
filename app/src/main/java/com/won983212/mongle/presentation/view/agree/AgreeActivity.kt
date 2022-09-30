@@ -10,10 +10,10 @@ import com.won983212.mongle.databinding.ListitemAgreeBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.util.getParcelableExtraCompat
 import com.won983212.mongle.presentation.view.agree.AgreeActivity.Companion.EXTRA_REDIRECT_TO
+import com.won983212.mongle.presentation.view.dialog.TermsOfServiceDialog
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity.Companion.EXTRA_REDIRECT_TO
 import com.won983212.mongle.presentation.view.namesetup.NameSettingActivity
-import com.won983212.mongle.presentation.view.openTermsOfServiceDialog
 
 /**
  * ## Extras
@@ -78,7 +78,7 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
                 startActivity(this)
             }
         } else {
-            openTermsOfServiceDialog(this, contentId)
+            TermsOfServiceDialog(this, contentId).open()
         }
     }
 
