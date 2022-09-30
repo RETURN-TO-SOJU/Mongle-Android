@@ -21,13 +21,22 @@ internal fun Context.getColorCompat(@ColorRes color: Int) = ContextCompat.getCol
 internal fun TextView.setTextColorRes(@ColorRes color: Int) =
     setTextColor(context.getColorCompat(color))
 
-internal fun ImageView.attachCompatVectorAnim(@DrawableRes avdRes: Int, loop: Boolean = false) {
+internal fun ImageView.attachCompatVectorAnim(
+    @DrawableRes avdRes: Int,
+    loop: Boolean = false,
+    onEnd: (() -> Unit)? = null
+) {
     val avd = AnimatedVectorDrawableCompat.create(context, avdRes)
     avd?.let {
-        if (loop) {
+        if (loop || onEnd != null) {
             it.registerAnimationCallback(object : Animatable2Compat.AnimationCallback() {
                 override fun onAnimationEnd(drawable: Drawable?) {
-                    this@attachCompatVectorAnim.post { avd.start() }
+                    this@attachCompatVectorAnim.post {
+                        if (loop) {
+                            avd.start()
+                        }
+                        onEnd?.invoke()
+                    }
                 }
             })
         }
