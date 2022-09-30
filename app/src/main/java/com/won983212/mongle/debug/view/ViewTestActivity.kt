@@ -5,12 +5,11 @@ import androidx.core.os.bundleOf
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.R
 import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.presentation.util.toastShort
 import com.won983212.mongle.presentation.view.IntegrationFragment
 import com.won983212.mongle.presentation.view.agree.AgreeActivity
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
-import com.won983212.mongle.presentation.view.dialog.AnalyzeCompleteDialog
-import com.won983212.mongle.presentation.view.dialog.GiftArrivedDialog
-import com.won983212.mongle.presentation.view.dialog.LoadingDialog
+import com.won983212.mongle.presentation.view.dialog.*
 import com.won983212.mongle.presentation.view.diary.EditDiaryActivity
 import com.won983212.mongle.presentation.view.kakaoexport.KakaoExportActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity
@@ -44,6 +43,8 @@ class ViewTestActivity : BaseTestActivity() {
         },
         ManualInfo("선물 도착 다이얼로그") { GiftArrivedDialog(this, "2022.08.01").open() },
         ManualInfo("로딩 다이얼로그") { LoadingDialog(this).open() },
+        ManualInfo("비밀번호 입력 다이얼로그") { InputPasswordDialog(this) { toastShort(it) }.open() },
+        ManualInfo("잠금 해제 다이얼로그") { UnlockByPasswordDialog(this) { toastShort("Let's us unlock!") }.open() },
         FragmentInfo("감정 설정", this::setEmotionFragmentFactory),
     )
 
