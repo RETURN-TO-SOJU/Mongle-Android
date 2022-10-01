@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import com.won983212.mongle.databinding.FragmentSettingBinding
+import com.won983212.mongle.presentation.util.toastShort
 import com.won983212.mongle.presentation.view.LeavingFragment
+import com.won983212.mongle.presentation.view.dialog.InputPasswordDialog
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.password.PasswordActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,11 +46,18 @@ class SettingFragment : Fragment() {
             }
         }
 
-        binding.layoutSettingPasswordSetup.setOnClickListener {
+        binding.layoutSettingScreenPassword.setOnClickListener {
             Intent(activity, PasswordActivity::class.java).apply {
                 putExtra(PasswordActivity.EXTRA_MODE, PasswordActivity.Mode.SET)
                 startActivity(this)
             }
+        }
+
+        binding.layoutSettingEncryptPassword.setOnClickListener {
+            InputPasswordDialog(activity) {
+                viewModel.setPasswordTo(it)
+                activity.toastShort("암호키 비밀번호가 설정되었습니다.")
+            }.open()
         }
 
         viewModel.attachDefaultHandlers(activity)

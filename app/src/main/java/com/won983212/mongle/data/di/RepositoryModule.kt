@@ -3,9 +3,10 @@ package com.won983212.mongle.data.di
 import android.content.Context
 import com.won983212.mongle.R
 import com.won983212.mongle.data.repository.*
+import com.won983212.mongle.data.source.PasswordDataSource
 import com.won983212.mongle.data.source.local.LocalFavoriteDataSource
 import com.won983212.mongle.data.source.local.LocalTokenSource
-import com.won983212.mongle.data.source.local.PasswordDataSource
+import com.won983212.mongle.data.source.local.LocalPasswordDataSource
 import com.won983212.mongle.data.source.local.config.ConfigDataSource
 import com.won983212.mongle.data.source.remote.RemoteAuthSource
 import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
@@ -25,8 +26,16 @@ internal class RepositoryModule {
 
     @Singleton
     @Provides
-    fun providePasswordRepository(passwordDataSource: PasswordDataSource): PasswordRepository {
+    fun providePasswordRepository(passwordDataSource: LocalPasswordDataSource): PasswordRepository {
         return PasswordRepositoryImpl(passwordDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun providePasswordDataSource(
+        @ApplicationContext context: Context
+    ): PasswordDataSource {
+        return LocalPasswordDataSource(context)
     }
 
     @Singleton

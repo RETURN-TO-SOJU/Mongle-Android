@@ -6,6 +6,7 @@ import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.databinding.ActivityEmotionMessageBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_DATE
+import com.won983212.mongle.presentation.view.dialog.UnlockByPasswordDialog
 import com.won983212.mongle.presentation.view.messages.EmotionMessagesActivity.Companion.EXTRA_DATE
 import com.won983212.mongle.presentation.view.messages.EmotionMessagesActivity.Companion.EXTRA_EMOTION
 import com.won983212.mongle.presentation.view.messages.EmotionMessagesActivity.Companion.EXTRA_PROPORTIONS
@@ -34,6 +35,12 @@ class EmotionMessagesActivity : BaseDataActivity<ActivityEmotionMessageBinding>(
         binding.btnEmotionMessageCancel.setOnClickListener { finish() }
         viewModel.attachDefaultHandlers(this)
         viewModel.initializeByIntent(intent)
+
+        if(viewModel.needShowUnlockDialog()){
+            UnlockByPasswordDialog(this) {
+                viewModel.unlock()
+            }.open()
+        }
     }
 
     companion object {

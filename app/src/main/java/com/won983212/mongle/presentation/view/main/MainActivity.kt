@@ -6,7 +6,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityMainBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
+import com.won983212.mongle.presentation.util.toastShort
 import com.won983212.mongle.presentation.view.dialog.AnalyzeCompleteDialog
+import com.won983212.mongle.presentation.view.dialog.InputPasswordDialog
 import com.won983212.mongle.presentation.view.main.MainActivity.Companion.EXTRA_ANALYZED_DATE_RANGE
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +34,14 @@ class MainActivity : BaseDataActivity<ActivityMainBinding>() {
                 "",
                 dateText
             ).open()
+        }
+
+        viewModel.checkIfPasswordEmpty()
+        viewModel.eventEmptyPassword.observe(this) {
+            InputPasswordDialog(this) {
+                viewModel.setPasswordTo(it)
+                toastShort("암호키 비밀번호가 설정되었습니다.")
+            }.open()
         }
     }
 

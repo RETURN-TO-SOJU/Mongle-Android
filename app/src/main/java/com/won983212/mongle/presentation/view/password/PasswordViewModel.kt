@@ -3,10 +3,10 @@ package com.won983212.mongle.presentation.view.password
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.domain.repository.PasswordRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
+import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.presentation.util.getParcelableExtraCompat
 import com.won983212.mongle.presentation.util.getSerializableExtraCompat
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -64,7 +64,7 @@ class PasswordViewModel @Inject constructor(
     fun doAction() {
         when (mode) {
             PasswordActivity.Mode.SET -> {
-                passwordRepository.setPassword(null)
+                passwordRepository.setScreenPassword(null)
                 _eventAuthFinish.call()
             }
             PasswordActivity.Mode.AUTH -> {
@@ -96,7 +96,7 @@ class PasswordViewModel @Inject constructor(
     override fun onPasswordInput(password: String) {
         when (mode) {
             PasswordActivity.Mode.AUTH -> {
-                if (passwordRepository.getPassword() == password) {
+                if (passwordRepository.checkScreenPassword(password)) {
                     _eventAuthFinish.value = redirectTo
                 } else {
                     _eventFail.value = R.string.pwd_wrong
@@ -104,7 +104,7 @@ class PasswordViewModel @Inject constructor(
             }
             PasswordActivity.Mode.REENTER -> {
                 if (pwdPrevInput == password) {
-                    passwordRepository.setPassword(password)
+                    passwordRepository.setScreenPassword(password)
                     _eventAuthFinish.value = redirectTo
                 } else {
                     _eventFail.value = R.string.pwd_not_matched

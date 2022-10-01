@@ -14,5 +14,5 @@ class StartingViewModel @Inject constructor(
         setLoading(true)
     }
 
-    fun needsPasswordAuth(): Boolean = passwordRepository.getPassword() != null
+    fun needsPasswordAuth(): Boolean = passwordRepository.hasScreenPassword()
 }

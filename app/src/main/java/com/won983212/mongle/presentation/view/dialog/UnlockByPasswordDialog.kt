@@ -20,7 +20,7 @@ class UnlockByPasswordDialog(
             null, false
         )
 
-        val dialog = openDialog(layout.root, true, false)
+        val dialog = openDialog(layout.root, true, true)
         layout.imgUnlock.setOnClickListener {
             if(!isUnlocking) {
                 isUnlocking = true

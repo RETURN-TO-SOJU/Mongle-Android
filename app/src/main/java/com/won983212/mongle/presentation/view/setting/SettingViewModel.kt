@@ -3,13 +3,14 @@ package com.won983212.mongle.presentation.view.setting
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.data.source.local.config.ConfigKey
 import com.won983212.mongle.domain.repository.ConfigRepository
+import com.won983212.mongle.domain.repository.PasswordRepository
 import com.won983212.mongle.domain.repository.UserRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
+import com.won983212.mongle.presentation.util.asLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val configRepository: ConfigRepository
+    private val configRepository: ConfigRepository,
+    private val passwordRepository: PasswordRepository
 ) : BaseViewModel() {
     val isAlertEnabled = MutableLiveData(true)
 
@@ -33,6 +35,10 @@ class SettingViewModel @Inject constructor(
         isAlertEnabled.observeForever {
             configRepository.editor().set(ConfigKey.USE_ALERT, it).apply()
         }
+    }
+
+    fun setPasswordTo(password: String) {
+        passwordRepository.setDataKeyPassword(password)
     }
 
     fun updateUsernameTitle() = viewModelScope.launch(Dispatchers.IO) {
