@@ -8,7 +8,7 @@ import com.won983212.mongle.R
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.model.Favorite
 import com.won983212.mongle.domain.repository.FavoriteRepository
-import com.won983212.mongle.domain.usecase.GetCalendarDayDetailUseCase
+import com.won983212.mongle.domain.usecase.calendar.GetCalendarDayDetailUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource

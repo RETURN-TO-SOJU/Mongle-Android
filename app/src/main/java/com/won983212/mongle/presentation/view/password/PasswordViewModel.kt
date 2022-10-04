@@ -3,7 +3,8 @@ package com.won983212.mongle.presentation.view.password
 import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import com.won983212.mongle.R
-import com.won983212.mongle.domain.repository.PasswordRepository
+import com.won983212.mongle.domain.usecase.password.CheckScreenPasswordUseCase
+import com.won983212.mongle.domain.usecase.password.SetScreenPasswordUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.asLiveData
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PasswordViewModel @Inject constructor(
-    private val passwordRepository: PasswordRepository
+    private val setScreenPassword: SetScreenPasswordUseCase,
+    private val checkScreenPassword: CheckScreenPasswordUseCase
 ) : BaseViewModel(), PasswordInputListener {
 
     private val _title = MutableLiveData(0)
@@ -64,7 +66,7 @@ class PasswordViewModel @Inject constructor(
     fun doAction() {
         when (mode) {
             PasswordActivity.Mode.SET -> {
-                passwordRepository.setScreenPassword(null)
+                setScreenPassword(null)
                 _eventAuthFinish.call()
             }
             PasswordActivity.Mode.AUTH -> {
@@ -96,7 +98,7 @@ class PasswordViewModel @Inject constructor(
     override fun onPasswordInput(password: String) {
         when (mode) {
             PasswordActivity.Mode.AUTH -> {
-                if (passwordRepository.checkScreenPassword(password)) {
+                if (checkScreenPassword(password)) {
                     _eventAuthFinish.value = redirectTo
                 } else {
                     _eventFail.value = R.string.pwd_wrong
@@ -104,7 +106,7 @@ class PasswordViewModel @Inject constructor(
             }
             PasswordActivity.Mode.REENTER -> {
                 if (pwdPrevInput == password) {
-                    passwordRepository.setScreenPassword(password)
+                    setScreenPassword(password)
                     _eventAuthFinish.value = redirectTo
                 } else {
                     _eventFail.value = R.string.pwd_not_matched

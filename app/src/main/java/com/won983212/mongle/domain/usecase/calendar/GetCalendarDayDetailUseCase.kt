@@ -1,4 +1,4 @@
-package com.won983212.mongle.domain.usecase
+package com.won983212.mongle.domain.usecase.calendar
 
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.util.CachePolicy
@@ -6,6 +6,9 @@ import com.won983212.mongle.domain.repository.CalendarRepository
 import java.time.LocalDate
 import javax.inject.Inject
 
+/**
+ * path variable로 필요한 년도, 월, 일(22/07/26)을 입력 받아 해당 일의 필요한 데이터를 조회한다.
+ */
 class GetCalendarDayDetailUseCase @Inject constructor(
     private val calendarRepository: CalendarRepository
 ) {

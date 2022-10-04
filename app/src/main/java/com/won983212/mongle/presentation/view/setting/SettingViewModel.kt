@@ -4,9 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.data.source.local.config.ConfigKey
-import com.won983212.mongle.domain.repository.ConfigRepository
-import com.won983212.mongle.domain.repository.PasswordRepository
-import com.won983212.mongle.domain.repository.UserRepository
+import com.won983212.mongle.domain.usecase.config.EditConfigUseCase
+import com.won983212.mongle.domain.usecase.config.GetConfigUseCase
+import com.won983212.mongle.domain.usecase.password.SetDataKeyPasswordUseCase
+import com.won983212.mongle.domain.usecase.user.GetUserInfoUseCase
+import com.won983212.mongle.domain.usecase.user.LeaveAccountUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
@@ -18,9 +20,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingViewModel @Inject constructor(
-    private val userRepository: UserRepository,
-    private val configRepository: ConfigRepository,
-    private val passwordRepository: PasswordRepository
+    getConfig: GetConfigUseCase,
+    editConfig: EditConfigUseCase,
+    private val getUserInfo: GetUserInfoUseCase,
+    private val leaveAccount: LeaveAccountUseCase,
+    private val setDataKeyPassword: SetDataKeyPasswordUseCase
 ) : BaseViewModel() {
     val isAlertEnabled = MutableLiveData(true)
 
@@ -31,18 +35,18 @@ class SettingViewModel @Inject constructor(
     val eventLeaveAccount = _eventLeaveAccount.asLiveData()
 
     init {
-        isAlertEnabled.value = configRepository.get(ConfigKey.USE_ALERT)
+        isAlertEnabled.value = getConfig(ConfigKey.USE_ALERT)
         isAlertEnabled.observeForever {
-            configRepository.editor().set(ConfigKey.USE_ALERT, it).apply()
+            editConfig().set(ConfigKey.USE_ALERT, it).apply()
         }
     }
 
     fun setPasswordTo(password: String) {
-        passwordRepository.setDataKeyPassword(password)
+        setDataKeyPassword(password)
     }
 
     fun updateUsernameTitle() = viewModelScope.launch(Dispatchers.IO) {
-        val user = startProgressTask { userRepository.getUserInfo() }
+        val user = startProgressTask { getUserInfo() }
         var username = "??"
         if (user != null) {
             username = user.username
@@ -51,7 +55,7 @@ class SettingViewModel @Inject constructor(
     }
 
     fun doLeave() = viewModelScope.launch(Dispatchers.IO) {
-        val result = startProgressTask { userRepository.leaveAccount() }
+        val result = startProgressTask { leaveAccount() }
         if (result != null) {
             _eventLeaveAccount.post()
         }

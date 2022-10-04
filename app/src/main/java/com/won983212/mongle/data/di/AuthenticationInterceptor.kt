@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.di
 
-import com.won983212.mongle.domain.repository.AuthRepository
+import com.won983212.mongle.domain.usecase.auth.GetAccessTokenUseCase
 import dagger.Lazy
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -10,8 +10,9 @@ import javax.inject.Inject
 
 annotation class NoAuthorization
 
+// TODO 전부 usecase로 바꾸면 cycle dep이 사라질지도?
 class AuthenticationInterceptor @Inject constructor(
-    private val authRepository: Lazy<AuthRepository>
+    private val getAccessToken: Lazy<GetAccessTokenUseCase>
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -21,7 +22,7 @@ class AuthenticationInterceptor @Inject constructor(
             ?.getAnnotation(NoAuthorization::class.java)
 
         if (noAuthAnnotation == null) {
-            val token = runBlocking { authRepository.get().getAccessToken() }
+            val token = runBlocking { getAccessToken.get().invoke() }
             token.onSuccess {
                 request = request.newBuilder()
                     .addHeader("Authorization", "Bearer $it")

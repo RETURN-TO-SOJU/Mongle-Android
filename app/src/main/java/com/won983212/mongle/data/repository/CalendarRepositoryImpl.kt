@@ -24,6 +24,7 @@ internal class CalendarRepositoryImpl(
     override suspend fun updateEmotion(date: LocalDate, emotion: Emotion): Result<MessageResult> =
         remoteCalendarDataSource.updateEmotion(date, emotion)
 
+    // TODO Cache Policy 구현
     override suspend fun getCalendarDayMetadata(
         startMonth: YearMonth,
         endMonth: YearMonth,

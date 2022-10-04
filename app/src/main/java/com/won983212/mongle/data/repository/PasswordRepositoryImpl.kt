@@ -25,17 +25,21 @@ internal class PasswordRepositoryImpl
         passwordDataSource.setScreenPassword(password)
 
     override fun decryptByKeyPassword(data: String): String {
-        val pwd = passwordDataSource.getDataKeyPassword()?.toByteArray(PASSWORD_CHARSET)
-            ?: return data
-        val key = SecretKeySpec(pwd, "AES")
-        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
-        val decodedData = Base64.decode(data, Base64.DEFAULT)
-        cipher.init(
-            Cipher.DECRYPT_MODE,
-            key,
-            IvParameterSpec(decodedData.sliceArray(0 until 16))
-        )
-        return String(cipher.doFinal(decodedData.sliceArray(16 until decodedData.size)))
+        try {
+            val pwd = passwordDataSource.getDataKeyPassword()?.toByteArray(PASSWORD_CHARSET)
+                ?: return data
+            val key = SecretKeySpec(pwd, "AES")
+            val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+            val decodedData = Base64.decode(data, Base64.DEFAULT)
+            cipher.init(
+                Cipher.DECRYPT_MODE,
+                key,
+                IvParameterSpec(decodedData.sliceArray(0 until 16))
+            )
+            return String(cipher.doFinal(decodedData.sliceArray(16 until decodedData.size)))
+        } catch (e: Exception) {
+            return data
+        }
     }
 
     override fun makePwdKakaotalkDataPacket(dataStream: InputStream): ByteArray {

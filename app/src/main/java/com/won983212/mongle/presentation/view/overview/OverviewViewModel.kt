@@ -6,9 +6,9 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.domain.repository.UserRepository
-import com.won983212.mongle.domain.usecase.GetCalendarDayDetailUseCase
-import com.won983212.mongle.domain.usecase.GetCalendarDayMetadataUseCase
+import com.won983212.mongle.domain.usecase.calendar.GetCalendarDayDetailUseCase
+import com.won983212.mongle.domain.usecase.calendar.GetCalendarDayMetadataUseCase
+import com.won983212.mongle.domain.usecase.user.GetUserInfoUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
@@ -23,7 +23,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OverviewViewModel @Inject constructor(
-    private val userRepository: UserRepository,
+    private val getUserInfo: GetUserInfoUseCase,
     private val getCalendarDayMetadata: GetCalendarDayMetadataUseCase,
     private val getCalendarDayDetail: GetCalendarDayDetailUseCase
 ) : BaseViewModel() {
@@ -78,7 +78,7 @@ class OverviewViewModel @Inject constructor(
 
     fun setSelectedDate(date: LocalDate) = viewModelScope.launch(Dispatchers.IO) {
         setLoading(true)
-        val userInfo = startResultTask { userRepository.getUserInfo() }
+        val userInfo = startResultTask { getUserInfo() }
         if (userInfo != null) {
             val dateText = date.format(DatetimeFormats.DATE_KR_WEEKDAY)
             _overviewText.postValue(

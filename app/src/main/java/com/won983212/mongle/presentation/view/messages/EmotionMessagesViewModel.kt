@@ -7,8 +7,9 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.domain.repository.PasswordRepository
-import com.won983212.mongle.domain.usecase.GetDayEmotionalSentencesUseCase
+import com.won983212.mongle.domain.usecase.calendar.GetDayEmotionalSentencesUseCase
+import com.won983212.mongle.domain.usecase.password.DecryptByKeyPasswordUseCase
+import com.won983212.mongle.domain.usecase.password.HasDataKeyPasswordUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.TextResource
 import com.won983212.mongle.presentation.util.asLiveData
@@ -23,7 +24,8 @@ import javax.inject.Inject
 @HiltViewModel
 class EmotionMessagesViewModel @Inject constructor(
     private val getDayEmotionalSentences: GetDayEmotionalSentencesUseCase,
-    private val passwordRepository: PasswordRepository
+    private val decryptByKeyPassword: DecryptByKeyPasswordUseCase,
+    private val hasDataKeyPassword: HasDataKeyPasswordUseCase
 ) : BaseViewModel() {
 
     private var isUnlocked = false
@@ -108,7 +110,7 @@ class EmotionMessagesViewModel @Inject constructor(
         if (!isUnlocked) {
             isUnlocked = true
             _messages.postValue(messages.map {
-                EmotionMessage(it.emotion, passwordRepository.decryptByKeyPassword(it.message))
+                EmotionMessage(it.emotion, decryptByKeyPassword(it.message))
             })
         }
     }
@@ -120,7 +122,7 @@ class EmotionMessagesViewModel @Inject constructor(
         }
     }
 
-    fun needShowUnlockDialog() = passwordRepository.hasDataKeyPassword() && !useAutoUnlock
+    fun needShowUnlockDialog() = hasDataKeyPassword() && !useAutoUnlock
 
     companion object {
         const val TAG = "EmotionMessagesViewModel"

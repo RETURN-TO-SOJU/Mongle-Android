@@ -7,7 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.kizitonwose.calendarview.utils.yearMonth
 import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.data.model.Favorite
-import com.won983212.mongle.domain.repository.FavoriteRepository
+import com.won983212.mongle.domain.usecase.favorite.DeleteFavoriteUseCase
+import com.won983212.mongle.domain.usecase.favorite.GetFavoritesUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
-    private val favoriteRepository: FavoriteRepository
+    private val getFavorites: GetFavoritesUseCase,
+    private val deleteFavorite: DeleteFavoriteUseCase
 ) : BaseViewModel() {
 
     var selectedYearMonth = MutableLiveData(YearMonth.now())
@@ -42,7 +44,7 @@ class FavoriteViewModel @Inject constructor(
     }
 
     fun deleteFavorite(favorite: Favorite) = viewModelScope.launch(Dispatchers.IO) {
-        favoriteRepository.deleteById(favorite.id)
+        deleteFavorite(favorite.id)
         _favorites.postValue(_favorites.value?.filter { it != favorite })
     }
 
@@ -53,14 +55,14 @@ class FavoriteViewModel @Inject constructor(
     }
 
     private suspend fun loadFavorites(yearMonth: YearMonth) {
-        _favorites.postValue(favoriteRepository.getRange(yearMonth))
+        _favorites.postValue(getFavorites(yearMonth))
     }
 
     private suspend fun loadYearMonths() {
         val yearMonths = mutableListOf<YearMonth>()
 
         // favoriteRepository.getAll은 반드시 date순으로 정렬되어있어야 한다.
-        favoriteRepository.getAll().forEach {
+        getFavorites().forEach {
             val yearMonth = it.date.yearMonth
             if (yearMonths.isEmpty() || yearMonths.last() != yearMonth) {
                 yearMonths.add(yearMonth)

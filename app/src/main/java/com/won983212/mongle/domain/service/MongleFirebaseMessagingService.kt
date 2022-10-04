@@ -12,8 +12,8 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.won983212.mongle.R
 import com.won983212.mongle.data.source.local.config.ConfigKey
-import com.won983212.mongle.domain.repository.ConfigRepository
-import com.won983212.mongle.domain.repository.UserRepository
+import com.won983212.mongle.domain.usecase.config.GetConfigUseCase
+import com.won983212.mongle.domain.usecase.user.SetFCMTokenUseCase
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
 import com.won983212.mongle.presentation.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,22 +27,22 @@ import javax.inject.Inject
 class MongleFirebaseMessagingService : FirebaseMessagingService() {
 
     @Inject
-    lateinit var userRepository: UserRepository
+    lateinit var setFCMToken: SetFCMTokenUseCase
 
     @Inject
-    lateinit var configRepository: ConfigRepository
+    lateinit var getConfig: GetConfigUseCase
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         CoroutineScope(Dispatchers.IO).launch {
-            userRepository.setFCMToken(token)
+            setFCMToken(token)
         }
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
 
-        val useAlert = configRepository.get(ConfigKey.USE_ALERT)
+        val useAlert = getConfig(ConfigKey.USE_ALERT)
         if (!useAlert) {
             Log.w(TAG, "Alert is disabled. This message ignored.")
             return
