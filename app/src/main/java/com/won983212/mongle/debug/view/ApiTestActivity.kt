@@ -5,12 +5,10 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.gson.Gson
-import com.kizitonwose.calendarview.utils.yearMonth
-import com.won983212.mongle.presentation.util.toastShort
-import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
+import com.won983212.mongle.presentation.util.toastShort
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -28,10 +26,7 @@ class ApiTestActivity : BaseTestActivity() {
     private val viewModel by viewModels<BaseViewModel>()
 
     override val listItems: Array<IScreenInfo> = arrayOf(
-        ManualInfo("UPDATE 일기", this::updateDiary),
-        ManualInfo("GET 캘린더 월별 데이터", this::getCalendarDayMetadata),
-        ManualInfo("GET 캘린더 일자 Detail", this::getCalendarDayDetail),
-        ManualInfo("GET 일자 감정 문장", this::getDayEmotionalSentences)
+        ManualInfo("UPDATE 일기", this::updateDiary)
     )
 
 
@@ -46,41 +41,6 @@ class ApiTestActivity : BaseTestActivity() {
                 LocalDate.of(2021, 12, 11),
                 "안녕하세요. 이 일기를 작성한 시각은 " + LocalDateTime.now()
                     .format(DateTimeFormatter.ISO_DATE) + "입니다."
-            )
-        }
-        if (result != null) {
-            showResult(result)
-        }
-    }
-
-    private fun getCalendarDayMetadata() = lifecycleScope.launch {
-        val result = viewModel.startProgressTask {
-            calendarRepository.getCalendarDayMetadata(
-                LocalDate.now().minusMonths(5).yearMonth,
-                LocalDate.now().plusMonths(5).yearMonth
-            )
-        }
-        if (result != null) {
-            showResult(result)
-        }
-    }
-
-    private fun getCalendarDayDetail() = lifecycleScope.launch {
-        val result = viewModel.startProgressTask {
-            calendarRepository.getCalendarDayDetail(
-                LocalDate.now()
-            )
-        }
-        if (result != null) {
-            showResult(result)
-        }
-    }
-
-    private fun getDayEmotionalSentences() = lifecycleScope.launch {
-        val result = viewModel.startProgressTask {
-            calendarRepository.getDayEmotionalSentences(
-                LocalDate.now(),
-                Emotion.HAPPY
             )
         }
         if (result != null) {

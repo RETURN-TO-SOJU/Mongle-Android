@@ -5,13 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.UserRepository
+import com.won983212.mongle.domain.usecase.GetCalendarDayDetailUseCase
+import com.won983212.mongle.domain.usecase.GetCalendarDayMetadataUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
+import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.util.DatetimeFormats
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +24,8 @@ import javax.inject.Inject
 @HiltViewModel
 class OverviewViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val calendarRepository: CalendarRepository
+    private val getCalendarDayMetadata: GetCalendarDayMetadataUseCase,
+    private val getCalendarDayDetail: GetCalendarDayDetailUseCase
 ) : BaseViewModel() {
 
     private var keywordMap = mapOf<LocalDate, List<String>>()
@@ -64,7 +66,7 @@ class OverviewViewModel @Inject constructor(
     fun loadCalendarData(from: YearMonth, to: YearMonth) = viewModelScope.launch(Dispatchers.IO) {
         Log.d("OverviewViewModel", "LOAD $from ~ $to")
         val days = startProgressTask {
-            calendarRepository.getCalendarDayMetadata(from, to)
+            getCalendarDayMetadata(from, to)
         }
         if (days != null) {
             val emotionData = days.associate { it.date to it.emotion }
@@ -95,7 +97,7 @@ class OverviewViewModel @Inject constructor(
         val defaultFeedback = emotion?.descriptionRes ?: R.string.overview_title_empty
         hasData.postValue(emotion != null)
 
-        val detail = startResultTask { calendarRepository.getCalendarDayDetail(date) }
+        val detail = startResultTask { getCalendarDayDetail(date) }
         if (detail != null && detail.diaryFeedback.isNotBlank()) {
             _diaryFeedback.postValue(TextResource(detail.diaryFeedback))
         } else {

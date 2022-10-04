@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.model.Favorite
-import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.FavoriteRepository
+import com.won983212.mongle.domain.usecase.GetCalendarDayDetailUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
+import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.presentation.util.getSerializableExtraCompat
 import com.won983212.mongle.presentation.view.daydetail.model.AnalyzedEmotion
 import com.won983212.mongle.presentation.view.daydetail.model.Photo
@@ -26,7 +26,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DayDetailViewModel @Inject constructor(
     private val favoriteRepository: FavoriteRepository,
-    private val calendarRepository: CalendarRepository
+    private val getCalendarDayDetail: GetCalendarDayDetailUseCase
 ) : BaseViewModel() {
 
     lateinit var date: LocalDate
@@ -99,7 +99,7 @@ class DayDetailViewModel @Inject constructor(
     }
 
     fun refresh() = viewModelScope.launch(Dispatchers.IO) {
-        val detail = startProgressTask { calendarRepository.getCalendarDayDetail(date) }
+        val detail = startProgressTask { getCalendarDayDetail(date) }
         if (detail != null) {
             emotion = detail.emotion
             _diary.postValue(detail.diary)

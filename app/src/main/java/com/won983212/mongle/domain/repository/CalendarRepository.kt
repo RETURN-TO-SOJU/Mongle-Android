@@ -5,6 +5,7 @@ import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
+import com.won983212.mongle.data.util.CachePolicy
 import java.time.LocalDate
 import java.time.YearMonth
 
@@ -38,14 +39,16 @@ interface CalendarRepository {
      */
     suspend fun getCalendarDayMetadata(
         startMonth: YearMonth,
-        endMonth: YearMonth
+        endMonth: YearMonth,
+        cachePolicy: CachePolicy
     ): Result<List<CalendarDay>>
 
     /**
      * path variable로 필요한 년도, 월, 일(22/07/26)을 입력 받아 해당 일의 필요한 데이터를 조회한다.
      */
     suspend fun getCalendarDayDetail(
-        date: LocalDate
+        date: LocalDate,
+        cachePolicy: CachePolicy
     ): Result<CalendarDayDetail>
 
     /**
@@ -53,6 +56,7 @@ interface CalendarRepository {
      */
     suspend fun getDayEmotionalSentences(
         date: LocalDate,
-        emotion: Emotion
+        emotion: Emotion,
+        cachePolicy: CachePolicy
     ): Result<List<EmotionalSentence>>
 }

@@ -6,6 +6,7 @@ import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
+import com.won983212.mongle.data.util.CachePolicy
 import com.won983212.mongle.domain.repository.CalendarRepository
 import java.time.LocalDate
 import java.time.YearMonth
@@ -25,19 +26,24 @@ internal class CalendarRepositoryImpl(
 
     override suspend fun getCalendarDayMetadata(
         startMonth: YearMonth,
-        endMonth: YearMonth
+        endMonth: YearMonth,
+        cachePolicy: CachePolicy
     ): Result<List<CalendarDay>> =
         remoteCalendarDataSource.getCalendarDayMetadata(
             startMonth,
             endMonth
         )
 
-    override suspend fun getCalendarDayDetail(date: LocalDate): Result<CalendarDayDetail> =
+    override suspend fun getCalendarDayDetail(
+        date: LocalDate,
+        cachePolicy: CachePolicy
+    ): Result<CalendarDayDetail> =
         remoteCalendarDataSource.getCalendarDayDetail(date)
 
     override suspend fun getDayEmotionalSentences(
         date: LocalDate,
-        emotion: Emotion
+        emotion: Emotion,
+        cachePolicy: CachePolicy
     ): Result<List<EmotionalSentence>> =
         remoteCalendarDataSource.getDayEmotionalSentences(
             date,

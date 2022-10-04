@@ -7,8 +7,8 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.domain.repository.PasswordRepository
+import com.won983212.mongle.domain.usecase.GetDayEmotionalSentencesUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.TextResource
 import com.won983212.mongle.presentation.util.asLiveData
@@ -22,7 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EmotionMessagesViewModel @Inject constructor(
-    private val calendarRepository: CalendarRepository,
+    private val getDayEmotionalSentences: GetDayEmotionalSentencesUseCase,
     private val passwordRepository: PasswordRepository
 ) : BaseViewModel() {
 
@@ -67,7 +67,7 @@ class EmotionMessagesViewModel @Inject constructor(
         if (selected != null && date != null) {
             updateProportionText()
             val messages = startProgressTask {
-                calendarRepository.getDayEmotionalSentences(
+                getDayEmotionalSentences(
                     date,
                     selected
                 )
