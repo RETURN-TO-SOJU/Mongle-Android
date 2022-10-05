@@ -62,6 +62,7 @@ class SettingFragment : Fragment() {
             }
         }
 
+        // TODO (LATER) 우선은 비밀번호 변경 api가 만들어지면 추가하도록 하자
         /*binding.layoutSettingEncryptPassword.setOnClickListener {
             InputPasswordDialog(activity) {
                 viewModel.setPasswordTo(it)

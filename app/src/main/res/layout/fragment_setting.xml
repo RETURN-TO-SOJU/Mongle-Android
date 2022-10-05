@@ -103,7 +103,7 @@
                 android:text="@string/setting_screen_password" />
         </LinearLayout>
 
-        <!-- TODO 우선은 비밀번호 변경 api가 만들어지면 추가하도록 하자
+        <!-- TODO (LATER) 우선은 비밀번호 변경 api가 만들어지면 추가하도록 하자
     <LinearLayout
         android:id="@+id/layout_setting_encrypt_password"
         android:layout_width="match_parent"
