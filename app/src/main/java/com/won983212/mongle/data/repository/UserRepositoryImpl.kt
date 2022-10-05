@@ -4,6 +4,7 @@ import com.won983212.mongle.data.model.User
 import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.remote.RemoteUserDataSource
 import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.util.CachePolicy
 import com.won983212.mongle.domain.repository.UserRepository
 import javax.inject.Inject
 
@@ -13,7 +14,10 @@ internal class UserRepositoryImpl
     private val userDataSource: RemoteUserDataSource
 ) : UserRepository {
 
-    override suspend fun getUserInfo(): Result<User> =
+    // TODO Cache Policy 구현
+    override suspend fun getUserInfo(
+        cachePolicy: CachePolicy
+    ): Result<User> =
         userDataSource.getUserInfo()
 
     override suspend fun setFCMToken(fcmToken: String): Result<MessageResult> =

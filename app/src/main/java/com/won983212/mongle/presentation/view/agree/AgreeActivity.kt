@@ -13,7 +13,7 @@ import com.won983212.mongle.presentation.view.agree.AgreeActivity.Companion.EXTR
 import com.won983212.mongle.presentation.view.dialog.TermsOfServiceDialog
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity.Companion.EXTRA_REDIRECT_TO
-import com.won983212.mongle.presentation.view.namesetup.NameSettingActivity
+import com.won983212.mongle.presentation.view.setname.SetNameActivity
 
 /**
  * ## Extras
@@ -34,8 +34,9 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
 
         val redirectTo: Intent? = intent.getParcelableExtraCompat(LoginActivity.EXTRA_REDIRECT_TO)
         binding.btnAgreeOk.setOnClickListener {
-            Intent(this, NameSettingActivity::class.java).apply {
-                putExtra(NameSettingActivity.EXTRA_REDIRECT_TO, redirectTo)
+            Intent(this, SetNameActivity::class.java).apply {
+                putExtra(SetNameActivity.EXTRA_REDIRECT_TO, redirectTo)
+                putExtra(SetNameActivity.EXTRA_SHOW_TUTORIAL, true)
                 startActivity(this)
             }
             finish()

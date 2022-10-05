@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -14,6 +15,7 @@ import com.won983212.mongle.presentation.view.LeavingFragment
 import com.won983212.mongle.presentation.view.dialog.InputPasswordDialog
 import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.password.PasswordActivity
+import com.won983212.mongle.presentation.view.setname.SetNameActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,6 +41,15 @@ class SettingFragment : Fragment() {
         val binding = FragmentSettingBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        val refreshUsername =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                viewModel.updateUsernameTitle()
+            }
+
+        binding.layoutSettingUsername.setOnClickListener {
+            refreshUsername.launch(Intent(activity, SetNameActivity::class.java))
+        }
 
         binding.layoutSettingLeave.setOnClickListener {
             LeavingFragment.newInstance().apply {

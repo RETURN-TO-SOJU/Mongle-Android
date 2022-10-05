@@ -3,6 +3,7 @@ package com.won983212.mongle.data.repository
 import android.util.Base64
 import com.won983212.mongle.data.source.PasswordDataSource
 import com.won983212.mongle.domain.repository.PasswordRepository
+import com.won983212.mongle.util.generateFillZero
 import java.io.InputStream
 import java.io.InputStreamReader
 import javax.crypto.Cipher
@@ -54,11 +55,23 @@ internal class PasswordRepositoryImpl
     override fun hasDataKeyPassword(): Boolean =
         passwordDataSource.getDataKeyPassword() != null
 
-    override fun setDataKeyPassword(password: String?) =
-        passwordDataSource.setDataKeyPassword(password)
+    override fun setDataKeyPassword(password: String?) {
+        var filteredPwd = password
+        if (filteredPwd != null) {
+            if (filteredPwd.length > PASSWORD_LEN) {
+                filteredPwd = filteredPwd.substring(0, PASSWORD_LEN)
+            } else if (filteredPwd.length < PASSWORD_LEN) {
+                filteredPwd += generateFillZero(PASSWORD_LEN - filteredPwd.length)
+            }
+        }
+        passwordDataSource.setDataKeyPassword(filteredPwd)
+    }
 
     companion object {
         @JvmStatic
         val PASSWORD_CHARSET = Charsets.UTF_8
+
+        @JvmStatic
+        val PASSWORD_LEN = 32
     }
 }

@@ -77,6 +77,7 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
         }
     }
 
+    // TODO 분석 오류도 받기
     private fun createIntentFromData(data: Map<String, String>): Intent? {
         val type = data["type"]
         return try {

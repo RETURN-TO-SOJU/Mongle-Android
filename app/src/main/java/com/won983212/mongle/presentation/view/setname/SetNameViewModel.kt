@@ -1,4 +1,4 @@
-package com.won983212.mongle.presentation.view.namesetup
+package com.won983212.mongle.presentation.view.setname
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NameSettingViewModel @Inject constructor(
+class SetNameViewModel @Inject constructor(
     private val setUsername: SetUsernameUseCase
 ) : BaseViewModel() {
 

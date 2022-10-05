@@ -3,10 +3,12 @@ package com.won983212.mongle.data.repository
 import android.util.Base64
 import com.won983212.mongle.data.source.PasswordDataSource
 import com.won983212.mongle.domain.repository.PasswordRepository
-import org.assertj.core.api.Assertions.*
+import com.won983212.mongle.util.generateFillZero
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mockStatic
 import java.io.ByteArrayInputStream
 
 
@@ -213,6 +215,22 @@ internal class PasswordRepositoryImplTest {
         val result = String(packet, PasswordRepositoryImpl.PASSWORD_CHARSET)
         val expect = "${text}\n${dataSource.getDataKeyPassword()}"
         assertThat(result).isEqualTo(expect)
+    }
+
+    @Test
+    fun setDataKeyPasswordLessLen() {
+        val pwd = "abcd"
+        repository.setDataKeyPassword(pwd)
+        val expect = pwd + generateFillZero(PasswordRepositoryImpl.PASSWORD_LEN - pwd.length)
+        assertThat(dataSource.getDataKeyPassword()).isEqualTo(expect)
+    }
+
+    @Test
+    fun setDataKeyPasswordGreaterLen() {
+        val pwd = "abcd1234567812345678123456781234567812345678"
+        repository.setDataKeyPassword(pwd)
+        val expect = pwd.substring(0, PasswordRepositoryImpl.PASSWORD_LEN)
+        assertThat(dataSource.getDataKeyPassword()).isEqualTo(expect)
     }
 
     class MockPasswordDataSource : PasswordDataSource {

@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 annotation class NoAuthorization
 
-// TODO 전부 usecase로 바꾸면 cycle dep이 사라질지도?
 class AuthenticationInterceptor @Inject constructor(
     private val getAccessToken: Lazy<GetAccessTokenUseCase>
 ) : Interceptor {
