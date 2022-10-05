@@ -15,8 +15,8 @@ interface CalendarApi {
         @Path("day") day: String,
         @Body text: DiaryRequest
     ): MessageResult
- 
-    @POST("calender/{year}/{month}/{day}/emotion")
+
+    @PATCH("calender/{year}/{month}/{day}/emotion")
     suspend fun updateEmotion(
         @Path("year") year: Int,
         @Path("month") month: String,
