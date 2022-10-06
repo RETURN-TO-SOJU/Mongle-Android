@@ -16,13 +16,12 @@ interface CalendarApi {
         @Body text: DiaryRequest
     ): MessageResult
 
-    // TODO (SUGGEST) Emotion 설정하는 api필요
-    @POST("calender/{year}/{month}/{day}/emotion")
+    @PATCH("calender/{year}/{month}/{day}/emotion")
     suspend fun updateEmotion(
         @Path("year") year: Int,
         @Path("month") month: String,
         @Path("day") day: String,
-        @Body emotion: String
+        @Query("value") emotion: String
     ): MessageResult
 
     @GET("calender")

@@ -2,10 +2,11 @@ package com.won983212.mongle.domain.repository
 
 import com.won983212.mongle.data.model.User
 import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.util.CachePolicy
 
 interface UserRepository {
 
-    suspend fun getUserInfo(): Result<User>
+    suspend fun getUserInfo(cachePolicy: CachePolicy): Result<User>
 
     suspend fun setFCMToken(
         fcmToken: String

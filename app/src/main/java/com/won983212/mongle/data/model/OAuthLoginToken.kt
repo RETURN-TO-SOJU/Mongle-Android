@@ -9,11 +9,11 @@ import java.time.LocalDateTime
 data class OAuthLoginToken(
     @SerializedName("accessToken")
     val accessToken: String,
-    @SerializedName("accessTokenExpiresAt")
+    @SerializedName("accessExpiredAt")
     val accessTokenExpiresAt: LocalDateTime,
     @SerializedName("refreshToken")
     val refreshToken: String,
-    @SerializedName("refreshTokenExpiresAt")
+    @SerializedName("refreshExpiredAt")
     val refreshTokenExpiresAt: LocalDateTime,
 ) {
     fun isAccessTokenExpired(): Boolean {
