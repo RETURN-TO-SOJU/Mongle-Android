@@ -3,28 +3,28 @@ package com.won983212.mongle.data.db
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.won983212.mongle.data.source.local.model.Favorite
+import com.won983212.mongle.data.source.local.entity.FavoriteEntity
 
 @Dao
 interface FavoriteDao {
     @Query(
-        "SELECT * FROM favorite " +
+        "SELECT * FROM favoriteentity " +
                 "ORDER BY date"
     )
     /** Ordered by date */
-    suspend fun getAll(): List<Favorite>
+    suspend fun getAll(): List<FavoriteEntity>
 
     @Query(
-        "SELECT * FROM favorite " +
+        "SELECT * FROM favoriteentity " +
                 "WHERE date >= :fromEpochDay AND date <= :toEpochDay " +
                 "ORDER BY date"
     )
     /** Ordered by date */
-    suspend fun getRange(fromEpochDay: Long, toEpochDay: Long): List<Favorite>
+    suspend fun getRange(fromEpochDay: Long, toEpochDay: Long): List<FavoriteEntity>
 
     @Insert
-    suspend fun insert(favorite: Favorite)
+    suspend fun insert(favorite: FavoriteEntity)
 
-    @Query("DELETE FROM favorite WHERE id=:userId")
-    suspend fun deleteById(userId: Int)
+    @Query("DELETE FROM favoriteentity WHERE id=:userId")
+    suspend fun deleteById(userId: Long)
 }

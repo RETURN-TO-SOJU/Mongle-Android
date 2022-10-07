@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
-import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.domain.usecase.calendar.GetDayEmotionalSentencesUseCase
 import com.won983212.mongle.domain.usecase.password.DecryptByKeyPasswordUseCase
 import com.won983212.mongle.domain.usecase.password.HasDataKeyPasswordUseCase

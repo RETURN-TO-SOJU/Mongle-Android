@@ -1,6 +1,6 @@
 package com.won983212.mongle.domain.repository
 
-import com.won983212.mongle.data.source.local.model.Favorite
+import com.won983212.mongle.domain.model.Favorite
 import java.time.YearMonth
 
 interface FavoriteRepository {
@@ -10,5 +10,5 @@ interface FavoriteRepository {
 
     suspend fun insert(favorite: Favorite)
 
-    suspend fun deleteById(id: Int)
+    suspend fun deleteById(id: Long)
 }

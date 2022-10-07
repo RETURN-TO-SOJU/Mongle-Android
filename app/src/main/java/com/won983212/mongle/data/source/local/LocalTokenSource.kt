@@ -1,8 +1,8 @@
 package com.won983212.mongle.data.source.local
 
 import android.content.Context
-import com.won983212.mongle.data.source.remote.model.OAuthLoginToken
 import com.won983212.mongle.data.source.SecurePropertiesSource
+import com.won983212.mongle.domain.model.OAuthLoginToken
 import com.won983212.mongle.util.parseLocalDateTime
 import com.won983212.mongle.util.toEpochMilli
 import dagger.hilt.android.qualifiers.ApplicationContext

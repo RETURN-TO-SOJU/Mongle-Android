@@ -1,11 +1,12 @@
 package com.won983212.mongle.data.source.remote
 
-import com.won983212.mongle.data.source.remote.model.User
 import com.won983212.mongle.data.source.api.UserApi
 import com.won983212.mongle.data.source.api.safeApiCall
-import com.won983212.mongle.data.source.remote.model.MessageResult
-import com.won983212.mongle.data.source.remote.model.request.FCMTokenRequest
-import com.won983212.mongle.data.source.remote.model.request.UsernameRequest
+import com.won983212.mongle.data.source.remote.dto.MessageResult
+import com.won983212.mongle.data.source.remote.dto.request.FCMTokenRequest
+import com.won983212.mongle.data.source.remote.dto.request.UsernameRequest
+import com.won983212.mongle.data.util.toDomainModel
+import com.won983212.mongle.domain.model.User
 import javax.inject.Inject
 
 internal class RemoteUserDataSource @Inject constructor(
@@ -14,7 +15,7 @@ internal class RemoteUserDataSource @Inject constructor(
 
     suspend fun getUserInfo(): Result<User> {
         return safeApiCall {
-            api.getUserInfo()
+            api.getUserInfo().toDomainModel()
         }
     }
 

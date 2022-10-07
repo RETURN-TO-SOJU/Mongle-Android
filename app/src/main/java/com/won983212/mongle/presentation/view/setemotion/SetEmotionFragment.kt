@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.databinding.BottomSheetSetEmotionBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate

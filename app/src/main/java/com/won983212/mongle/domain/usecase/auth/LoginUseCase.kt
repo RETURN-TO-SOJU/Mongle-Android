@@ -1,7 +1,7 @@
 package com.won983212.mongle.domain.usecase.auth
 
-import com.won983212.mongle.data.source.remote.model.OAuthLoginToken
-import com.won983212.mongle.data.source.remote.model.response.LoginResponse
+import com.won983212.mongle.domain.model.LoginResult
+import com.won983212.mongle.domain.model.OAuthLoginToken
 import com.won983212.mongle.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -13,7 +13,7 @@ class LoginUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(
         kakaoToken: OAuthLoginToken
-    ): Result<LoginResponse> {
+    ): Result<LoginResult> {
         return authRepository.login(kakaoToken)
     }
 }

@@ -3,8 +3,8 @@ package com.won983212.mongle.data.db;
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.source.local.model.Favorite
+import com.won983212.mongle.domain.model.Emotion
+import com.won983212.mongle.data.source.local.entity.FavoriteEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.assertj.core.api.Java6Assertions.*
@@ -36,8 +36,8 @@ class FavoriteDaoTest {
     @Test
     @OptIn(ExperimentalCoroutinesApi::class)
     fun delete_favorite() = runTest {
-        val favorite1 = Favorite(1, Emotion.ANGRY, LocalDate.now(), "test title")
-        val favorite2 = Favorite(2, Emotion.ANGRY, LocalDate.now(), "test title")
+        val favorite1 = FavoriteEntity(1, Emotion.ANGRY, LocalDate.now(), "test title")
+        val favorite2 = FavoriteEntity(2, Emotion.ANGRY, LocalDate.now(), "test title")
 
         dao.insert(favorite1)
         dao.insert(favorite2)
@@ -51,8 +51,8 @@ class FavoriteDaoTest {
     @Test
     @OptIn(ExperimentalCoroutinesApi::class)
     fun insert_favorite() = runTest {
-        val favorite1 = Favorite(1, Emotion.ANGRY, LocalDate.now(), "test title")
-        val favorite2 = Favorite(2, Emotion.ANGRY, LocalDate.now(), "test title")
+        val favorite1 = FavoriteEntity(1, Emotion.ANGRY, LocalDate.now(), "test title")
+        val favorite2 = FavoriteEntity(2, Emotion.ANGRY, LocalDate.now(), "test title")
 
         dao.insert(favorite1)
         dao.insert(favorite2)
@@ -65,15 +65,15 @@ class FavoriteDaoTest {
     @Test
     @OptIn(ExperimentalCoroutinesApi::class)
     fun get_range_favorite() = runTest {
-        val targets = mutableListOf<Favorite>()
+        val targets = mutableListOf<FavoriteEntity>()
         val startDay = LocalDate.of(2021, 12, 25)
 
         val from = LocalDate.of(2022, 1, 3).toEpochDay()
         val to = LocalDate.of(2022, 2, 3).toEpochDay()
-        for (i in 1..50) {
-            val date = startDay.plusDays(i.toLong())
+        for (i in 1L..50L) {
+            val date = startDay.plusDays(i)
             val dateEpoch = date.toEpochDay()
-            val data = Favorite(i, Emotion.ANGRY, date, "test")
+            val data = FavoriteEntity(i, Emotion.ANGRY, date, "test")
             if (dateEpoch in from..to) {
                 targets.add(data)
             }

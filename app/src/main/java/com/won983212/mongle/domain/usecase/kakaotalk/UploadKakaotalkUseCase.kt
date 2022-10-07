@@ -1,6 +1,6 @@
 package com.won983212.mongle.domain.usecase.kakaotalk
 
-import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.dto.MessageResult
 import com.won983212.mongle.domain.repository.KakaotalkRepository
 import javax.inject.Inject
 

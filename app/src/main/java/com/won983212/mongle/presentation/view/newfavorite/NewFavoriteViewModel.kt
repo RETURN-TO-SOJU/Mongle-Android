@@ -2,7 +2,7 @@ package com.won983212.mongle.presentation.view.newfavorite
 
 import androidx.lifecycle.MutableLiveData
 import com.won983212.mongle.presentation.util.asLiveData
-import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.SingleLiveEvent
 import javax.inject.Inject

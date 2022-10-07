@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.source.api
 
-import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.dto.MessageResult
 import okhttp3.MultipartBody
 import retrofit2.http.Multipart
 import retrofit2.http.POST

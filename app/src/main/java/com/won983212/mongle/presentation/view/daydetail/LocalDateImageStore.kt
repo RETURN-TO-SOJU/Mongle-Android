@@ -10,7 +10,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.won983212.mongle.presentation.util.toastLong
-import com.won983212.mongle.presentation.view.daydetail.model.Photo
+import com.won983212.mongle.presentation.view.daydetail.model.PhotoPresentationModel
 import com.won983212.mongle.util.DatetimeFormats
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -26,7 +26,10 @@ class LocalDateImageStore(
     private val activity: ComponentActivity
 ) {
 
-    fun readMediaStoreImages(date: LocalDate, callback: (photos: List<Photo>?) -> Unit) {
+    fun readMediaStoreImages(
+        date: LocalDate,
+        callback: (photos: List<PhotoPresentationModel>?) -> Unit
+    ) {
         val requestPermissionLauncher =
             activity.registerForActivityResult(
                 ActivityResultContracts.RequestPermission()
@@ -52,7 +55,7 @@ class LocalDateImageStore(
         }
     }
 
-    private fun readPermissionGrantedImages(date: LocalDate): List<Photo>? {
+    private fun readPermissionGrantedImages(date: LocalDate): List<PhotoPresentationModel>? {
         val instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant()
         val epoch = instant.epochSecond
         val projection = arrayOf(
@@ -78,11 +81,11 @@ class LocalDateImageStore(
         return null
     }
 
-    private fun readPhotosFromCursor(cursor: Cursor): List<Photo> {
+    private fun readPhotosFromCursor(cursor: Cursor): List<PhotoPresentationModel> {
         val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
         val addedColumn =
             cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED)
-        val photoList = mutableListOf<Photo>()
+        val photoList = mutableListOf<PhotoPresentationModel>()
 
         while (cursor.moveToNext()) {
             val id = cursor.getLong(idColumn)
@@ -92,7 +95,7 @@ class LocalDateImageStore(
             )
             val addedText = LocalDateTime.ofEpochSecond(added, 0, ZoneOffset.UTC)
                 .format(DatetimeFormats.TIME_12)
-            photoList.add(Photo(contentUri.toString(), addedText))
+            photoList.add(PhotoPresentationModel(contentUri.toString(), addedText))
         }
 
         return photoList

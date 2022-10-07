@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.gson.Gson
-import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.dto.MessageResult
 import com.won983212.mongle.domain.repository.CalendarRepository
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.toastShort

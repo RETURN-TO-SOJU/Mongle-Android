@@ -2,7 +2,7 @@ package com.won983212.mongle.data.source.remote
 
 import com.won983212.mongle.data.source.api.KakaoSendApi
 import com.won983212.mongle.data.source.api.safeApiCall
-import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.dto.MessageResult
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody

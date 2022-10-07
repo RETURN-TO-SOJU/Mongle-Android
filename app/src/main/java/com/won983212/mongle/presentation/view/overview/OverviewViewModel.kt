@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
-import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.domain.usecase.calendar.GetCalendarDayDetailUseCase
 import com.won983212.mongle.domain.usecase.calendar.GetCalendarDayMetadataUseCase
 import com.won983212.mongle.domain.usecase.user.GetUserInfoUseCase
@@ -72,7 +72,7 @@ class OverviewViewModel @Inject constructor(
             val emotionData = days.associate { it.date to it.emotion }
             calendarEmotions.putAll(emotionData)
             _eventCalendarDataLoaded.postValue(emotionData)
-            keywordMap = days.associate { it.date to it.subjectList }
+            keywordMap = days.associate { it.date to it.keywords }
         }
     }
 

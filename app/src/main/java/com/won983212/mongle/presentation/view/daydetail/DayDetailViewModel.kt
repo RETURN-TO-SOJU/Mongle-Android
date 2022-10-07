@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
-import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.source.local.model.Favorite
+import com.won983212.mongle.domain.model.Emotion
+import com.won983212.mongle.domain.model.Favorite
 import com.won983212.mongle.domain.repository.FavoriteRepository
 import com.won983212.mongle.domain.usecase.calendar.GetCalendarDayDetailUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
@@ -14,9 +14,9 @@ import com.won983212.mongle.presentation.util.SingleLiveEvent
 import com.won983212.mongle.presentation.util.TextResource
 import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.presentation.util.getSerializableExtraCompat
-import com.won983212.mongle.presentation.view.daydetail.model.AnalyzedEmotion
-import com.won983212.mongle.presentation.view.daydetail.model.Photo
-import com.won983212.mongle.presentation.view.daydetail.model.Schedule
+import com.won983212.mongle.presentation.view.daydetail.model.AnalyzedEmotionPresentationModel
+import com.won983212.mongle.presentation.view.daydetail.model.PhotoPresentationModel
+import com.won983212.mongle.presentation.view.daydetail.model.SchedulePresentationModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,11 +38,11 @@ class DayDetailViewModel @Inject constructor(
     private val _eventOpenGiftDialog = SingleLiveEvent<LocalDate>()
     val eventOpenGiftDialog = _eventOpenGiftDialog.asLiveData()
 
-    private val _analyzedEmotions = MutableLiveData(listOf<AnalyzedEmotion>())
+    private val _analyzedEmotions = MutableLiveData(listOf<AnalyzedEmotionPresentationModel>())
     val analyzedEmotions = _analyzedEmotions.asLiveData()
 
-    private val _localPhotos = MutableLiveData(listOf<Photo>())
-    private val _photos = MutableLiveData(listOf<Photo>())
+    private val _localPhotos = MutableLiveData(listOf<PhotoPresentationModel>())
+    private val _photos = MutableLiveData(listOf<PhotoPresentationModel>())
     val photos = Transformations.switchMap(_localPhotos) { local ->
         Transformations.map(_photos) {
             if (local == null) {
@@ -53,7 +53,7 @@ class DayDetailViewModel @Inject constructor(
         }
     }
 
-    private val _schedules = MutableLiveData(listOf<Schedule>())
+    private val _schedules = MutableLiveData(listOf<SchedulePresentationModel>())
     val schedules = _schedules.asLiveData()
 
     private val _emotionIcon = MutableLiveData(R.drawable.ic_add_emotion)
@@ -94,7 +94,7 @@ class DayDetailViewModel @Inject constructor(
         refresh()
     }
 
-    fun setLocalPhoto(photos: List<Photo>) {
+    fun setLocalPhoto(photos: List<PhotoPresentationModel>) {
         _localPhotos.postValue(photos)
     }
 
@@ -106,9 +106,17 @@ class DayDetailViewModel @Inject constructor(
             detail.emotion?.let {
                 _emotionIcon.postValue(it.iconRes)
             }
-            _schedules.postValue(detail.scheduleList.map { Schedule.fromResponse(it) })
-            _photos.postValue(detail.imageList.map { Photo.fromResponse(it) })
-            _analyzedEmotions.postValue(detail.emotionList.map { AnalyzedEmotion.fromResponse(it) })
+            _schedules.postValue(detail.scheduleList.map {
+                SchedulePresentationModel.fromDomainModel(
+                    it
+                )
+            })
+            _photos.postValue(detail.imageList.map { PhotoPresentationModel.fromDomainModel(it) })
+            _analyzedEmotions.postValue(detail.emotionList.map {
+                AnalyzedEmotionPresentationModel.fromDomainModel(
+                    it
+                )
+            })
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.won983212.mongle.domain.usecase.calendar
 
-import com.won983212.mongle.data.source.remote.model.response.CalendarDayPreview
 import com.won983212.mongle.data.util.CachePolicy
+import com.won983212.mongle.domain.model.CalendarDayPreview
 import com.won983212.mongle.domain.repository.CalendarRepository
 import java.time.YearMonth
 import javax.inject.Inject
@@ -20,6 +20,6 @@ class GetCalendarDayMetadataUseCase @Inject constructor(
         endMonth: YearMonth,
         cachePolicy: CachePolicy = CachePolicy.DEFAULT
     ): Result<List<CalendarDayPreview>> {
-        return calendarRepository.getCalendarDayMetadata(startMonth, endMonth, cachePolicy)
+        return calendarRepository.getCalendarDayPreview(startMonth, endMonth, cachePolicy)
     }
 }

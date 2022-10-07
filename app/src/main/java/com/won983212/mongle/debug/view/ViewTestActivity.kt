@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.R
-import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.presentation.util.toastShort
 import com.won983212.mongle.presentation.view.IntegrationFragment
 import com.won983212.mongle.presentation.view.agree.AgreeActivity

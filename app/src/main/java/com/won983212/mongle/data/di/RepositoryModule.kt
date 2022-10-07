@@ -4,6 +4,7 @@ import android.content.Context
 import com.won983212.mongle.R
 import com.won983212.mongle.data.repository.*
 import com.won983212.mongle.data.source.PasswordDataSource
+import com.won983212.mongle.data.source.local.LocalCalendarDataSource
 import com.won983212.mongle.data.source.local.LocalFavoriteDataSource
 import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.local.LocalPasswordDataSource
@@ -67,9 +68,11 @@ internal class RepositoryModule {
     @Singleton
     @Provides
     fun provideCalendarRepository(
-        remoteCalendarDataSource: RemoteCalendarDataSource
+        remoteCalendarDataSource: RemoteCalendarDataSource,
+        localCalendarDataSource: LocalCalendarDataSource
     ): CalendarRepository {
         return CalendarRepositoryImpl(
+            localCalendarDataSource,
             remoteCalendarDataSource
         )
     }

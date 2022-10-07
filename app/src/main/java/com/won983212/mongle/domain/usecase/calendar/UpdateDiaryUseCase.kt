@@ -1,6 +1,6 @@
 package com.won983212.mongle.domain.usecase.calendar
 
-import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.dto.MessageResult
 import com.won983212.mongle.domain.repository.CalendarRepository
 import java.time.LocalDate
 import javax.inject.Inject

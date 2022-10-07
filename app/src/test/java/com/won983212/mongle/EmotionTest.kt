@@ -1,7 +1,7 @@
 package com.won983212.mongle
 
 import android.content.res.Resources
-import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.domain.model.Emotion
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Test

@@ -1,15 +1,15 @@
 package com.won983212.mongle.data.source.api
 
-import com.won983212.mongle.data.source.remote.model.User
-import com.won983212.mongle.data.source.remote.model.MessageResult
-import com.won983212.mongle.data.source.remote.model.request.FCMTokenRequest
-import com.won983212.mongle.data.source.remote.model.request.UsernameRequest
+import com.won983212.mongle.data.source.remote.dto.response.UserResponse
+import com.won983212.mongle.data.source.remote.dto.MessageResult
+import com.won983212.mongle.data.source.remote.dto.request.FCMTokenRequest
+import com.won983212.mongle.data.source.remote.dto.request.UsernameRequest
 import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface UserApi {
     @POST("users/info")
-    suspend fun getUserInfo(): User
+    suspend fun getUserInfo(): UserResponse
 
     @POST("users/fcm")
     suspend fun setFCMToken(

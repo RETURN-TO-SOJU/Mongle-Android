@@ -1,9 +1,10 @@
 package com.won983212.mongle.data.source.remote
 
-import com.won983212.mongle.data.source.remote.model.OAuthLoginToken
 import com.won983212.mongle.data.source.api.AuthApi
 import com.won983212.mongle.data.source.api.safeApiCall
-import com.won983212.mongle.data.source.remote.model.response.LoginResponse
+import com.won983212.mongle.data.util.toDomainModel
+import com.won983212.mongle.domain.model.LoginResult
+import com.won983212.mongle.domain.model.OAuthLoginToken
 import javax.inject.Inject
 
 class RemoteAuthSource @Inject constructor(
@@ -11,9 +12,9 @@ class RemoteAuthSource @Inject constructor(
 ) {
     suspend fun login(
         kakaoToken: OAuthLoginToken
-    ): Result<LoginResponse> {
+    ): Result<LoginResult> {
         return safeApiCall {
-            api.login(kakaoToken)
+            api.login(kakaoToken).toDomainModel()
         }
     }
 

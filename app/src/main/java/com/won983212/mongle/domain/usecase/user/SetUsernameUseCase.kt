@@ -1,6 +1,6 @@
 package com.won983212.mongle.domain.usecase.user
 
-import com.won983212.mongle.data.source.remote.model.MessageResult
+import com.won983212.mongle.data.source.remote.dto.MessageResult
 import com.won983212.mongle.domain.repository.UserRepository
 import javax.inject.Inject
 

@@ -2,7 +2,7 @@ package com.won983212.mongle.presentation.view.messages
 
 import androidx.activity.viewModels
 import com.won983212.mongle.R
-import com.won983212.mongle.data.model.Emotion
+import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.databinding.ActivityEmotionMessageBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_DATE
@@ -36,7 +36,7 @@ class EmotionMessagesActivity : BaseDataActivity<ActivityEmotionMessageBinding>(
         viewModel.attachDefaultHandlers(this)
         viewModel.initializeByIntent(intent)
 
-        if(viewModel.needShowUnlockDialog()){
+        if (viewModel.needShowUnlockDialog()) {
             UnlockByPasswordDialog(this) {
                 viewModel.unlock()
             }.open()

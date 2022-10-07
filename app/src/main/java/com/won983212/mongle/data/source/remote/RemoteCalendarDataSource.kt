@@ -1,13 +1,14 @@
 package com.won983212.mongle.data.source.remote
 
-import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.source.api.CalendarApi
 import com.won983212.mongle.data.source.api.safeApiCall
-import com.won983212.mongle.data.source.remote.model.MessageResult
-import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
-import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
-import com.won983212.mongle.data.source.remote.model.response.CalendarDayPreview
-import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
+import com.won983212.mongle.data.source.remote.dto.MessageResult
+import com.won983212.mongle.data.source.remote.dto.request.DiaryRequest
+import com.won983212.mongle.data.util.toDomainModel
+import com.won983212.mongle.domain.model.CalendarDayDetail
+import com.won983212.mongle.domain.model.CalendarDayPreview
+import com.won983212.mongle.domain.model.Emotion
+import com.won983212.mongle.domain.model.EmotionalSentence
 import com.won983212.mongle.util.DatetimeFormats
 import java.time.LocalDate
 import java.time.YearMonth
@@ -53,7 +54,7 @@ internal class RemoteCalendarDataSource @Inject constructor(
             api.getCalendarDayMetadata(
                 startMonth.format(DatetimeFormats.MONTH_SLASH),
                 endMonth.format(DatetimeFormats.MONTH_SLASH)
-            )
+            ).map { it.toDomainModel() }
         }
     }
 
@@ -65,7 +66,7 @@ internal class RemoteCalendarDataSource @Inject constructor(
                 date.year,
                 convertDoubleDigitFormat(date.monthValue),
                 convertDoubleDigitFormat(date.dayOfMonth)
-            )
+            ).toDomainModel()
         }
     }
 
@@ -79,7 +80,7 @@ internal class RemoteCalendarDataSource @Inject constructor(
                 convertDoubleDigitFormat(date.monthValue),
                 convertDoubleDigitFormat(date.dayOfMonth),
                 emotion.name
-            )
+            ).map { it.toDomainModel() }
         }
     }
 

@@ -1,9 +1,9 @@
 package com.won983212.mongle.data.repository
 
-import com.won983212.mongle.data.source.remote.model.OAuthLoginToken
 import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.remote.RemoteAuthSource
-import com.won983212.mongle.data.source.remote.model.response.LoginResponse
+import com.won983212.mongle.domain.model.LoginResult
+import com.won983212.mongle.domain.model.OAuthLoginToken
 import com.won983212.mongle.domain.repository.AuthRepository
 import com.won983212.mongle.exception.NeedsLoginException
 import javax.inject.Inject
@@ -43,10 +43,10 @@ internal class AuthRepositoryImpl
 
     override suspend fun login(
         kakaoToken: OAuthLoginToken
-    ): Result<LoginResponse> {
+    ): Result<LoginResult> {
         val response = remoteAuthSource.login(kakaoToken)
         response.onSuccess {
-            localTokenSource.setToken(OAuthLoginToken.fromLoginResponse(response.getOrThrow()))
+            localTokenSource.setToken(OAuthLoginToken.fromLoginResult(response.getOrThrow()))
         }
         return response
     }

@@ -1,7 +1,7 @@
 package com.won983212.mongle.domain.repository
 
-import com.won983212.mongle.data.source.remote.model.OAuthLoginToken
-import com.won983212.mongle.data.source.remote.model.response.LoginResponse
+import com.won983212.mongle.domain.model.LoginResult
+import com.won983212.mongle.domain.model.OAuthLoginToken
 
 interface AuthRepository {
 
@@ -15,5 +15,5 @@ interface AuthRepository {
 
     suspend fun login(
         kakaoToken: OAuthLoginToken
-    ): Result<LoginResponse>
+    ): Result<LoginResult>
 }

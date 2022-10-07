@@ -1,28 +1,80 @@
 package com.won983212.mongle.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import com.won983212.mongle.data.source.local.model.Favorite
+import androidx.room.*
+import com.won983212.mongle.data.source.local.entity.CalendarDayEntity
+import com.won983212.mongle.data.source.local.entity.EmotionalSentenceEntity
+import com.won983212.mongle.data.source.local.entity.relation.CalendarDayWithDetails
+import com.won983212.mongle.domain.model.CalendarDayPreview
+import com.won983212.mongle.domain.model.Emotion
+import java.time.LocalDate
 
 @Dao
 interface CalendarDao {
     @Query(
-        "SELECT * FROM calendarday"
-    )
-    suspend fun getCalendarDayPreview(): List<Favorite>
-
-    @Query(
-        "SELECT * FROM favorite " +
+        "SELECT date, emotion, keywords FROM calendardayentity " +
                 "WHERE date >= :fromEpochDay AND date <= :toEpochDay " +
                 "ORDER BY date"
     )
-    /** Ordered by date */
-    suspend fun getRange(fromEpochDay: Long, toEpochDay: Long): List<Favorite>
+    suspend fun getCalendarDayPreview(
+        fromEpochDay: Long,
+        toEpochDay: Long
+    ): List<CalendarDayPreview>
 
-    @Insert
-    suspend fun insert(favorite: Favorite)
+    @Query(
+        "UPDATE calendardayentity " +
+                "SET emotion = :emotion AND keywords = :keywords " +
+                "WHERE date = :date"
+    )
+    suspend fun updateCalendarDayPreview(
+        date: LocalDate,
+        emotion: Emotion,
+        keywords: List<String>
+    ): Int
 
-    @Query("DELETE FROM favorite WHERE id=:userId")
-    suspend fun deleteById(userId: Int)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertCalendarDayPreview(calendarDayEntity: CalendarDayEntity)
+
+    @Transaction
+    suspend fun cacheCalendarDayPreview(
+        values: List<CalendarDayPreview>
+    ) {
+        values.forEach {
+            val updated = updateCalendarDayPreview(it.date, it.emotion, it.keywords)
+            if (updated == 0) {
+                insertCalendarDayPreview(
+                    CalendarDayEntity(
+                        0,
+                        it.date,
+                        it.emotion,
+                        it.keywords,
+                        "",
+                        ""
+                    )
+                )
+            }
+        }
+    }
+
+    @Query("SELECT * FROM calendardayentity WHERE date = :date")
+    suspend fun getCalendarDayDetails(
+        date: LocalDate
+    ): CalendarDayWithDetails?
+
+    @Query("SELECT * FROM emotionalsentenceentity WHERE date = :date AND emotion = :emotion")
+    suspend fun getDayEmotionalSentences(
+        date: LocalDate,
+        emotion: Emotion
+    ): List<EmotionalSentenceEntity>
+
+    @Query("UPDATE calendardayentity SET diary = :diary WHERE date = :date")
+    suspend fun updateDiary(
+        date: LocalDate,
+        diary: String
+    )
+
+    @Query("UPDATE calendardayentity SET emotion = :emotion WHERE date = :date")
+    suspend fun updateEmotion(
+        date: LocalDate,
+        emotion: Emotion
+    )
 }

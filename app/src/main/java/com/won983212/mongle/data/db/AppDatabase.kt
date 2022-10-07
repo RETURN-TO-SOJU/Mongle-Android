@@ -3,17 +3,20 @@ package com.won983212.mongle.data.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.won983212.mongle.data.source.local.model.CalendarDay
-import com.won983212.mongle.data.source.local.model.EmotionalSentence
-import com.won983212.mongle.data.source.local.model.Favorite
-import com.won983212.mongle.data.source.local.model.Schedule
+import com.won983212.mongle.data.source.local.entity.*
 
-// TODO Model local, remote, common 잘 분리하기
 @Database(
-    entities = [Favorite::class, CalendarDay::class, EmotionalSentence::class, Schedule::class],
+    entities = [
+        FavoriteEntity::class,
+        CalendarDayEntity::class,
+        EmotionalSentenceEntity::class,
+        ScheduleEntity::class,
+        PhotoEntity::class,
+        EmotionProportionEntity::class
+    ],
     version = 1
 )
-@TypeConverters(LocalDateTimeConverter::class)
+@TypeConverters(LocalDateTimeConverter::class, StringListConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun favoriteDao(): FavoriteDao
     abstract fun calenderDao(): CalendarDao

@@ -1,10 +1,10 @@
 package com.won983212.mongle.data.source.api
 
-import com.won983212.mongle.data.source.remote.model.MessageResult
-import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
-import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
-import com.won983212.mongle.data.source.remote.model.response.CalendarDayPreview
-import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
+import com.won983212.mongle.data.source.remote.dto.MessageResult
+import com.won983212.mongle.data.source.remote.dto.request.DiaryRequest
+import com.won983212.mongle.data.source.remote.dto.response.CalendarDayDetailResponse
+import com.won983212.mongle.data.source.remote.dto.response.CalendarDayPreviewResponse
+import com.won983212.mongle.data.source.remote.dto.response.EmotionalSentenceResponse
 import retrofit2.http.*
 
 interface CalendarApi {
@@ -28,14 +28,14 @@ interface CalendarApi {
     suspend fun getCalendarDayMetadata(
         @Query("start") start: String,
         @Query("end") end: String
-    ): List<CalendarDayPreview>
+    ): List<CalendarDayPreviewResponse>
 
     @GET("calender/{year}/{month}/{day}")
     suspend fun getCalendarDayDetail(
         @Path("year") year: Int,
         @Path("month") month: String,
         @Path("day") day: String
-    ): CalendarDayDetail
+    ): CalendarDayDetailResponse
 
     @GET("calender/{year}/{month}/{day}/sentences")
     suspend fun getDayEmotionalSentences(
@@ -43,5 +43,5 @@ interface CalendarApi {
         @Path("month") month: String,
         @Path("day") day: String,
         @Query("emotion") emotion: String
-    ): List<EmotionalSentence>
+    ): List<EmotionalSentenceResponse>
 }

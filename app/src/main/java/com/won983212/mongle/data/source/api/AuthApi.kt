@@ -1,8 +1,9 @@
 package com.won983212.mongle.data.source.api
 
 import com.won983212.mongle.data.di.NoAuthorization
-import com.won983212.mongle.data.source.remote.model.OAuthLoginToken
-import com.won983212.mongle.data.source.remote.model.response.LoginResponse
+import com.won983212.mongle.data.source.remote.dto.response.LoginResponse
+import com.won983212.mongle.domain.model.LoginResult
+import com.won983212.mongle.domain.model.OAuthLoginToken
 import retrofit2.http.Body
 import retrofit2.http.POST
 

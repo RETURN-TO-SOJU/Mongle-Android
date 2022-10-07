@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import com.won983212.mongle.data.source.local.model.Favorite
+import com.won983212.mongle.data.source.local.entity.FavoriteEntity
 import com.won983212.mongle.databinding.FragmentCardFavoriteBinding
+import com.won983212.mongle.domain.model.Favorite
 import com.won983212.mongle.presentation.util.getParcelableCompat
 import com.won983212.mongle.util.DatetimeFormats
 
