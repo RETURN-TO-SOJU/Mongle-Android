@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.source.remote
 
-import com.won983212.mongle.data.model.User
+import com.won983212.mongle.data.source.remote.model.User
 import com.won983212.mongle.data.source.api.UserApi
 import com.won983212.mongle.data.source.api.safeApiCall
 import com.won983212.mongle.data.source.remote.model.MessageResult

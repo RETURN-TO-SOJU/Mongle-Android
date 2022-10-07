@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.repository
 
-import com.won983212.mongle.data.model.Favorite
+import com.won983212.mongle.data.source.local.model.Favorite
 import com.won983212.mongle.data.source.local.LocalFavoriteDataSource
 import com.won983212.mongle.domain.repository.FavoriteRepository
 import java.time.YearMonth

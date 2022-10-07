@@ -1,4 +1,4 @@
-package com.won983212.mongle.data.model
+package com.won983212.mongle.data.source.remote.model
 
 import com.google.gson.annotations.SerializedName
 

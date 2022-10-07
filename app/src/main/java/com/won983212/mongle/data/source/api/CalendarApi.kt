@@ -2,8 +2,8 @@ package com.won983212.mongle.data.source.api
 
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
-import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.CalendarDayPreview
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import retrofit2.http.*
 
@@ -28,7 +28,7 @@ interface CalendarApi {
     suspend fun getCalendarDayMetadata(
         @Query("start") start: String,
         @Query("end") end: String
-    ): List<CalendarDay>
+    ): List<CalendarDayPreview>
 
     @GET("calender/{year}/{month}/{day}")
     suspend fun getCalendarDayDetail(

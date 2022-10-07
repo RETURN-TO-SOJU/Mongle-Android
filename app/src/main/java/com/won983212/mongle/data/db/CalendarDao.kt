@@ -6,13 +6,11 @@ import androidx.room.Query
 import com.won983212.mongle.data.source.local.model.Favorite
 
 @Dao
-interface FavoriteDao {
+interface CalendarDao {
     @Query(
-        "SELECT * FROM favorite " +
-                "ORDER BY date"
+        "SELECT * FROM calendarday"
     )
-    /** Ordered by date */
-    suspend fun getAll(): List<Favorite>
+    suspend fun getCalendarDayPreview(): List<Favorite>
 
     @Query(
         "SELECT * FROM favorite " +

@@ -2,8 +2,8 @@ package com.won983212.mongle.domain.repository
 
 import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.source.remote.model.MessageResult
-import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.CalendarDayPreview
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import com.won983212.mongle.data.util.CachePolicy
 import java.time.LocalDate
@@ -25,7 +25,7 @@ interface CalendarRepository {
         startMonth: YearMonth,
         endMonth: YearMonth,
         cachePolicy: CachePolicy
-    ): Result<List<CalendarDay>>
+    ): Result<List<CalendarDayPreview>>
 
     suspend fun getCalendarDayDetail(
         date: LocalDate,

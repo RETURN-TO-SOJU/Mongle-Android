@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.repository
 
-import com.won983212.mongle.data.model.OAuthLoginToken
+import com.won983212.mongle.data.source.remote.model.OAuthLoginToken
 import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.remote.RemoteAuthSource
 import com.won983212.mongle.data.source.remote.model.response.LoginResponse

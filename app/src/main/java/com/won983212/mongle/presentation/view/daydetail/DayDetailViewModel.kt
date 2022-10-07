@@ -6,7 +6,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
 import com.won983212.mongle.data.model.Emotion
-import com.won983212.mongle.data.model.Favorite
+import com.won983212.mongle.data.source.local.model.Favorite
 import com.won983212.mongle.domain.repository.FavoriteRepository
 import com.won983212.mongle.domain.usecase.calendar.GetCalendarDayDetailUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel

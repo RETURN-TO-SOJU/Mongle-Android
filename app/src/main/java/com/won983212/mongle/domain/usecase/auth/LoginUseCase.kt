@@ -1,6 +1,6 @@
 package com.won983212.mongle.domain.usecase.auth
 
-import com.won983212.mongle.data.model.OAuthLoginToken
+import com.won983212.mongle.data.source.remote.model.OAuthLoginToken
 import com.won983212.mongle.data.source.remote.model.response.LoginResponse
 import com.won983212.mongle.domain.repository.AuthRepository
 import javax.inject.Inject

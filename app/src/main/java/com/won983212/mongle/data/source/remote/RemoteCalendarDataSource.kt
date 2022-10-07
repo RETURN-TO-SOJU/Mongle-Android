@@ -5,8 +5,8 @@ import com.won983212.mongle.data.source.api.CalendarApi
 import com.won983212.mongle.data.source.api.safeApiCall
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
-import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.CalendarDayPreview
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import com.won983212.mongle.util.DatetimeFormats
 import java.time.LocalDate
@@ -48,7 +48,7 @@ internal class RemoteCalendarDataSource @Inject constructor(
     suspend fun getCalendarDayMetadata(
         startMonth: YearMonth,
         endMonth: YearMonth
-    ): Result<List<CalendarDay>> {
+    ): Result<List<CalendarDayPreview>> {
         return safeApiCall {
             api.getCalendarDayMetadata(
                 startMonth.format(DatetimeFormats.MONTH_SLASH),

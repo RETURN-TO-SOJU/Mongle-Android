@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
-import com.won983212.mongle.data.model.OAuthLoginToken
+import com.won983212.mongle.data.source.remote.model.OAuthLoginToken
 import com.won983212.mongle.domain.usecase.auth.LoginUseCase
 import com.won983212.mongle.domain.usecase.auth.ValidateTokenUseCase
 import com.won983212.mongle.domain.usecase.user.SetFCMTokenUseCase

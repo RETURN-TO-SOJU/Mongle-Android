@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.source.api
 
-import com.won983212.mongle.data.model.User
+import com.won983212.mongle.data.source.remote.model.User
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.request.FCMTokenRequest
 import com.won983212.mongle.data.source.remote.model.request.UsernameRequest

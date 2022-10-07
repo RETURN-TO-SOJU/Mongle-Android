@@ -1,7 +1,7 @@
 package com.won983212.mongle.data.source.local
 
 import com.won983212.mongle.data.db.AppDatabase
-import com.won983212.mongle.data.model.Favorite
+import com.won983212.mongle.data.source.local.model.Favorite
 import java.time.YearMonth
 import javax.inject.Inject
 

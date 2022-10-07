@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.won983212.mongle.data.model.Emotion
 import java.time.LocalDate
 
-data class CalendarDay(
+data class CalendarDayPreview(
     @SerializedName("date")
     val date: LocalDate,
     @SerializedName("emotion")

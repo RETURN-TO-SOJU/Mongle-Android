@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.repository
 
-import com.won983212.mongle.data.model.User
+import com.won983212.mongle.data.source.remote.model.User
 import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.remote.RemoteUserDataSource
 import com.won983212.mongle.data.source.remote.model.MessageResult

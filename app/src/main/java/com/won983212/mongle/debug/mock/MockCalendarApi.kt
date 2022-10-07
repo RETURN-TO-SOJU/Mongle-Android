@@ -5,8 +5,8 @@ import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.source.api.CalendarApi
 import com.won983212.mongle.data.source.remote.model.MessageResult
 import com.won983212.mongle.data.source.remote.model.request.DiaryRequest
-import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.CalendarDayPreview
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import com.won983212.mongle.domain.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers
@@ -44,64 +44,64 @@ class MockCalendarApi(
     override suspend fun getCalendarDayMetadata(
         start: String,
         end: String
-    ): List<CalendarDay> =
+    ): List<CalendarDayPreview> =
         withContext(Dispatchers.IO) {
             MockAuthApi.checkToken(authRepository)
             val list = listOf(
-                CalendarDay(LocalDate.of(2022, 8, 1), Emotion.HAPPY, listOf("학교", "소마")),
-                CalendarDay(LocalDate.of(2022, 7, 2), Emotion.SAD, listOf("학교2", "소마1")),
-                CalendarDay(
+                CalendarDayPreview(LocalDate.of(2022, 8, 1), Emotion.HAPPY, listOf("학교", "소마")),
+                CalendarDayPreview(LocalDate.of(2022, 7, 2), Emotion.SAD, listOf("학교2", "소마1")),
+                CalendarDayPreview(
                     LocalDate.of(2022, 7, 4),
                     Emotion.ANXIOUS,
                     listOf("학교3", "소마2", "노래방1")
                 ),
-                CalendarDay(LocalDate.of(2022, 7, 7), Emotion.SAD, listOf("학교4", "소마3")),
-                CalendarDay(
+                CalendarDayPreview(LocalDate.of(2022, 7, 7), Emotion.SAD, listOf("학교4", "소마3")),
+                CalendarDayPreview(
                     LocalDate.of(2022, 8, 11),
                     Emotion.HAPPY,
                     listOf("학교5", "소마4", "노래방2")
                 ),
-                CalendarDay(
+                CalendarDayPreview(
                     LocalDate.of(2022, 6, 12),
                     Emotion.NEUTRAL,
                     listOf("학교6", "소마5")
                 ),
-                CalendarDay(
+                CalendarDayPreview(
                     LocalDate.of(2022, 8, 13),
                     Emotion.HAPPY,
                     listOf("학교7a", "소마6", "노래방3")
                 ),
-                CalendarDay(
+                CalendarDayPreview(
                     LocalDate.of(2022, 6, 16),
                     Emotion.NEUTRAL,
                     listOf("학교7b", "소마6", "노래방3")
                 ),
-                CalendarDay(
+                CalendarDayPreview(
                     LocalDate.of(2022, 6, 19),
                     Emotion.HAPPY,
                     listOf("학교7c", "소마6", "노래방3")
                 ),
-                CalendarDay(
+                CalendarDayPreview(
                     LocalDate.of(2022, 8, 20),
                     Emotion.NEUTRAL,
                     listOf("학교7d", "소마6", "노래방3")
                 ),
-                CalendarDay(
+                CalendarDayPreview(
                     LocalDate.of(2022, 5, 22),
                     Emotion.SAD,
                     listOf("학교7e", "소마6", "노래방3")
                 ),
-                CalendarDay(
+                CalendarDayPreview(
                     LocalDate.of(2022, 5, 24),
                     Emotion.HAPPY,
                     listOf("학교7f", "소마6", "노래방3")
                 ),
-                CalendarDay(
+                CalendarDayPreview(
                     LocalDate.of(2022, 4, 25),
                     Emotion.HAPPY,
                     listOf("학교7g", "소마6", "노래방3")
                 ),
-                CalendarDay(LocalDate.of(2022, 8, 28), Emotion.TIRED, listOf("학교8", "소마7")),
+                CalendarDayPreview(LocalDate.of(2022, 8, 28), Emotion.TIRED, listOf("학교8", "소마7")),
             )
 
             val startMonth = YearMonth.parse(start)

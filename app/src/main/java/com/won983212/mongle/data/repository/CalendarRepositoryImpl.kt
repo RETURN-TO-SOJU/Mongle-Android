@@ -4,8 +4,8 @@ import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.source.local.LocalCalendarDataSource
 import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
 import com.won983212.mongle.data.source.remote.model.MessageResult
-import com.won983212.mongle.data.source.remote.model.response.CalendarDay
 import com.won983212.mongle.data.source.remote.model.response.CalendarDayDetail
+import com.won983212.mongle.data.source.remote.model.response.CalendarDayPreview
 import com.won983212.mongle.data.source.remote.model.response.EmotionalSentence
 import com.won983212.mongle.data.util.CachePolicy
 import com.won983212.mongle.domain.repository.CalendarRepository
@@ -32,17 +32,17 @@ internal class CalendarRepositoryImpl(
         startMonth: YearMonth,
         endMonth: YearMonth,
         cachePolicy: CachePolicy
-    ): Result<List<CalendarDay>> {
-        return cachePolicy.get(object : CachePolicy.CacheableResource<List<CalendarDay>> {
-            override suspend fun loadFromCache(): Result<List<CalendarDay>> {
+    ): Result<List<CalendarDayPreview>> {
+        return cachePolicy.get(object : CachePolicy.CacheableResource<List<CalendarDayPreview>> {
+            override suspend fun loadFromCache(): Result<List<CalendarDayPreview>> {
                 return localCalendarDataSource.getCalendarDayMetadata(startMonth, endMonth)
             }
 
-            override suspend fun saveCallResult(value: List<CalendarDay>) {
-
+            override suspend fun saveCallResult(value: List<CalendarDayPreview>) {
+                localCalendarDataSource.updateCalendarDayMetadata(value)
             }
 
-            override suspend fun fetch(): Result<List<CalendarDay>> {
+            override suspend fun fetch(): Result<List<CalendarDayPreview>> {
                 return remoteCalendarDataSource.getCalendarDayMetadata(
                     startMonth,
                     endMonth
@@ -54,16 +54,39 @@ internal class CalendarRepositoryImpl(
     override suspend fun getCalendarDayDetail(
         date: LocalDate,
         cachePolicy: CachePolicy
-    ): Result<CalendarDayDetail> =
-        remoteCalendarDataSource.getCalendarDayDetail(date)
+    ): Result<CalendarDayDetail> {
+        return cachePolicy.get(object : CachePolicy.CacheableResource<CalendarDayDetail> {
+            override suspend fun loadFromCache(): Result<CalendarDayDetail> {
+                return localCalendarDataSource.getCalendarDayDetail(date)
+            }
+
+            override suspend fun saveCallResult(value: CalendarDayDetail) {
+                localCalendarDataSource.updateCalendarDayDetail(date, value)
+            }
+
+            override suspend fun fetch(): Result<CalendarDayDetail> {
+                return remoteCalendarDataSource.getCalendarDayDetail(date)
+            }
+        })
+    }
 
     override suspend fun getDayEmotionalSentences(
         date: LocalDate,
         emotion: Emotion,
         cachePolicy: CachePolicy
-    ): Result<List<EmotionalSentence>> =
-        remoteCalendarDataSource.getDayEmotionalSentences(
-            date,
-            emotion
-        )
+    ): Result<List<EmotionalSentence>> {
+        return cachePolicy.get(object : CachePolicy.CacheableResource<List<EmotionalSentence>> {
+            override suspend fun loadFromCache(): Result<List<EmotionalSentence>> {
+                return localCalendarDataSource.getDayEmotionalSentences(date, emotion)
+            }
+
+            override suspend fun saveCallResult(value: List<EmotionalSentence>) {
+                localCalendarDataSource.updateDayEmotionalSentences(date, value)
+            }
+
+            override suspend fun fetch(): Result<List<EmotionalSentence>> {
+                return remoteCalendarDataSource.getDayEmotionalSentences(date, emotion)
+            }
+        })
+    }
 }

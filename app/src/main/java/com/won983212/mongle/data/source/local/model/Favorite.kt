@@ -1,9 +1,10 @@
-package com.won983212.mongle.data.model
+package com.won983212.mongle.data.source.local.model
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.won983212.mongle.data.model.Emotion
 import com.won983212.mongle.data.util.LocalDateParceler
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
@@ -14,7 +15,7 @@ import java.time.LocalDate
 @TypeParceler<LocalDate, LocalDateParceler>()
 data class Favorite(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Long,
     @ColumnInfo(name = "emotion")
     val emotion: Emotion,
     @ColumnInfo(name = "date")
@@ -22,7 +23,7 @@ data class Favorite(
     @ColumnInfo(name = "title")
     val title: String
 ) : Parcelable {
-    override fun hashCode(): Int = id
+    override fun hashCode(): Int = id.toInt()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
