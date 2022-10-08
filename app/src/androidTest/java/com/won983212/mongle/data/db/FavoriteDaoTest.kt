@@ -4,10 +4,9 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.data.source.local.entity.FavoriteEntity
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runTest
+import com.won983212.mongle.domain.model.Emotion
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -34,8 +33,7 @@ internal class FavoriteDaoTest {
     }
 
     @Test
-    @OptIn(ExperimentalCoroutinesApi::class)
-    fun delete_favorite() = runTest {
+    fun delete_favorite() = runBlocking {
         val favorite1 = FavoriteEntity(1, Emotion.ANGRY, LocalDate.now(), "test title")
         val favorite2 = FavoriteEntity(2, Emotion.ANGRY, LocalDate.now(), "test title")
 
@@ -49,8 +47,7 @@ internal class FavoriteDaoTest {
     }
 
     @Test
-    @OptIn(ExperimentalCoroutinesApi::class)
-    fun insert_favorite() = runTest {
+    fun insert_favorite() = runBlocking {
         val favorite1 = FavoriteEntity(1, Emotion.ANGRY, LocalDate.now(), "test title")
         val favorite2 = FavoriteEntity(2, Emotion.ANGRY, LocalDate.now(), "test title")
 
@@ -63,8 +60,7 @@ internal class FavoriteDaoTest {
     }
 
     @Test
-    @OptIn(ExperimentalCoroutinesApi::class)
-    fun get_range_favorite() = runTest {
+    fun get_range_favorite(): Unit = runBlocking {
         val targets = mutableListOf<FavoriteEntity>()
         val startDay = LocalDate.of(2021, 12, 25)
 
