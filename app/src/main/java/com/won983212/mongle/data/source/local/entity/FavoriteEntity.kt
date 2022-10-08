@@ -3,7 +3,6 @@ package com.won983212.mongle.data.source.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.won983212.mongle.domain.model.Emotion
-import com.won983212.mongle.domain.model.Favorite
 import java.time.LocalDate
 
 @Entity

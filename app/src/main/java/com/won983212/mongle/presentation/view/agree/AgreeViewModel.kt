@@ -1,8 +1,8 @@
 package com.won983212.mongle.presentation.view.agree
 
 import androidx.lifecycle.MutableLiveData
-import com.won983212.mongle.presentation.util.asLiveData
 import com.won983212.mongle.presentation.base.BaseViewModel
+import com.won983212.mongle.presentation.util.asLiveData
 
 class AgreeViewModel : BaseViewModel() {
     private val _agreeSelected = MutableLiveData(BooleanArray(4))

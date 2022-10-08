@@ -1,8 +1,6 @@
 package com.won983212.mongle.data.source.remote.dto.response
 
 import com.google.gson.annotations.SerializedName
-import com.won983212.mongle.domain.model.CalendarDayDetail
-import com.won983212.mongle.domain.model.CalendarDayPreview
 import com.won983212.mongle.domain.model.Emotion
 import java.time.LocalDate
 

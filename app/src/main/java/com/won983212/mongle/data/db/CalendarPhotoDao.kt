@@ -3,9 +3,7 @@ package com.won983212.mongle.data.db
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.won983212.mongle.data.source.local.entity.EmotionalSentenceEntity
 import com.won983212.mongle.data.source.local.entity.PhotoEntity
-import com.won983212.mongle.domain.model.Emotion
 import java.time.LocalDate
 
 @Dao

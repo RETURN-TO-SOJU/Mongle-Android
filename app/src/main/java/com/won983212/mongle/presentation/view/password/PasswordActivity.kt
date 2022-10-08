@@ -6,9 +6,9 @@ import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.core.view.children
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.util.toastShort
 import com.won983212.mongle.databinding.ActivityPasswordBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
+import com.won983212.mongle.presentation.util.toastShort
 import com.won983212.mongle.presentation.view.password.PasswordActivity.Companion.EXTRA_MODE
 import com.won983212.mongle.presentation.view.password.PasswordActivity.Companion.EXTRA_REDIRECT_INTENT
 import com.won983212.mongle.presentation.view.password.PasswordActivity.Mode

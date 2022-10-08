@@ -1,9 +1,9 @@
 package com.won983212.mongle.data.source.api
 
-import com.won983212.mongle.data.source.remote.dto.response.UserResponse
 import com.won983212.mongle.data.source.remote.dto.MessageResult
 import com.won983212.mongle.data.source.remote.dto.request.FCMTokenRequest
 import com.won983212.mongle.data.source.remote.dto.request.UsernameRequest
+import com.won983212.mongle.data.source.remote.dto.response.UserResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 

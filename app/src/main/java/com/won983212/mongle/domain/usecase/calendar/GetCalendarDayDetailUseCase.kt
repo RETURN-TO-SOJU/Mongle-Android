@@ -1,6 +1,5 @@
 package com.won983212.mongle.domain.usecase.calendar
 
-import com.won983212.mongle.data.source.remote.dto.response.CalendarDayDetailResponse
 import com.won983212.mongle.data.util.CachePolicy
 import com.won983212.mongle.domain.model.CalendarDayDetail
 import com.won983212.mongle.domain.repository.CalendarRepository

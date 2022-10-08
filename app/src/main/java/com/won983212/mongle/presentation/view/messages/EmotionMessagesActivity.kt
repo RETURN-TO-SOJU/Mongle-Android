@@ -2,8 +2,8 @@ package com.won983212.mongle.presentation.view.messages
 
 import androidx.activity.viewModels
 import com.won983212.mongle.R
-import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.databinding.ActivityEmotionMessageBinding
+import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_DATE
 import com.won983212.mongle.presentation.view.dialog.UnlockByPasswordDialog

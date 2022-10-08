@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.util.setTextColorRes
 import com.won983212.mongle.databinding.WeekCalendarDayBinding
+import com.won983212.mongle.presentation.util.setTextColorRes
 
 class WeekDay @JvmOverloads constructor(
     context: Context,

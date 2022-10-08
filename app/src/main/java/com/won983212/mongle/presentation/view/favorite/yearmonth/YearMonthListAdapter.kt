@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.util.setTextColorRes
 import com.won983212.mongle.databinding.ListitemYearmonthBinding
+import com.won983212.mongle.presentation.util.setTextColorRes
 
 class YearMonthListAdapter(
     private val onItemClickListener: (index: Int) -> Unit

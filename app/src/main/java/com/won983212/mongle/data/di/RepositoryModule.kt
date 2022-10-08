@@ -6,8 +6,8 @@ import com.won983212.mongle.data.repository.*
 import com.won983212.mongle.data.source.PasswordDataSource
 import com.won983212.mongle.data.source.local.LocalCalendarDataSource
 import com.won983212.mongle.data.source.local.LocalFavoriteDataSource
-import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.local.LocalPasswordDataSource
+import com.won983212.mongle.data.source.local.LocalTokenSource
 import com.won983212.mongle.data.source.local.config.ConfigDataSource
 import com.won983212.mongle.data.source.remote.RemoteAuthSource
 import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource

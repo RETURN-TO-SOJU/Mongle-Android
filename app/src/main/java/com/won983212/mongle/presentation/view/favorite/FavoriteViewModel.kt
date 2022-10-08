@@ -5,12 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.kizitonwose.calendarview.utils.yearMonth
-import com.won983212.mongle.presentation.util.asLiveData
-import com.won983212.mongle.data.source.local.entity.FavoriteEntity
 import com.won983212.mongle.domain.model.Favorite
 import com.won983212.mongle.domain.usecase.favorite.DeleteFavoriteUseCase
 import com.won983212.mongle.domain.usecase.favorite.GetFavoritesUseCase
 import com.won983212.mongle.presentation.base.BaseViewModel
+import com.won983212.mongle.presentation.util.asLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -8,11 +8,11 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.viewModels
 import com.kakao.sdk.user.UserApiClient
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.util.toastLong
 import com.won983212.mongle.databinding.ActivityLoginBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.util.getParcelableExtraCompat
 import com.won983212.mongle.presentation.util.getSerializableExtraCompat
+import com.won983212.mongle.presentation.util.toastLong
 import com.won983212.mongle.presentation.view.agree.AgreeActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity.Companion.EXTRA_REDIRECT_TO
 import dagger.hilt.android.AndroidEntryPoint

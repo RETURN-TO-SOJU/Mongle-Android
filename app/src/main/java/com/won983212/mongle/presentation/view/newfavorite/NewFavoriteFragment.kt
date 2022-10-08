@@ -8,10 +8,10 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.won983212.mongle.R
-import com.won983212.mongle.presentation.util.toastLong
-import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.databinding.BottomSheetNewFavoriteBinding
+import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.presentation.util.getSerializableCompat
+import com.won983212.mongle.presentation.util.toastLong
 
 class NewFavoriteFragment : BottomSheetDialogFragment() {
 

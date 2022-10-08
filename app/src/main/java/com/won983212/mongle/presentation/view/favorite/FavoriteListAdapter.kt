@@ -3,7 +3,6 @@ package com.won983212.mongle.presentation.view.favorite
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.won983212.mongle.data.source.local.entity.FavoriteEntity
 import com.won983212.mongle.domain.model.Favorite
 import com.won983212.mongle.presentation.base.AdapterDiffCallback
 
