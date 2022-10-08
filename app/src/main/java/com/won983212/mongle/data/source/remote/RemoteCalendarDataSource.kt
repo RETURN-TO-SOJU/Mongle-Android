@@ -1,10 +1,10 @@
 package com.won983212.mongle.data.source.remote
 
+import com.won983212.mongle.data.mapper.toDomainModel
 import com.won983212.mongle.data.source.api.CalendarApi
 import com.won983212.mongle.data.source.api.safeApiCall
 import com.won983212.mongle.data.source.remote.dto.MessageResult
 import com.won983212.mongle.data.source.remote.dto.request.DiaryRequest
-import com.won983212.mongle.data.util.toDomainModel
 import com.won983212.mongle.domain.model.CalendarDayDetail
 import com.won983212.mongle.domain.model.CalendarDayPreview
 import com.won983212.mongle.domain.model.Emotion
@@ -66,7 +66,7 @@ internal class RemoteCalendarDataSource @Inject constructor(
                 date.year,
                 convertDoubleDigitFormat(date.monthValue),
                 convertDoubleDigitFormat(date.dayOfMonth)
-            ).toDomainModel()
+            ).toDomainModel(date)
         }
     }
 

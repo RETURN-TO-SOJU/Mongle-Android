@@ -1,7 +1,10 @@
 package com.won983212.mongle.data.source.local
 
+import androidx.room.withTransaction
 import com.won983212.mongle.data.db.AppDatabase
-import com.won983212.mongle.data.util.toDomainModel
+import com.won983212.mongle.data.mapper.toCalendarDayEntity
+import com.won983212.mongle.data.mapper.toDomainModel
+import com.won983212.mongle.data.mapper.toEntity
 import com.won983212.mongle.domain.model.CalendarDayDetail
 import com.won983212.mongle.domain.model.CalendarDayPreview
 import com.won983212.mongle.domain.model.Emotion
@@ -11,22 +14,27 @@ import java.time.LocalDate
 import java.time.YearMonth
 import javax.inject.Inject
 
-internal class LocalCalendarDataSource @Inject constructor(
-    private val db: AppDatabase
-) {
+internal class LocalCalendarDataSource
+@Inject constructor(private val db: AppDatabase) {
+
+    private val calendarDao = db.calenderDao()
+    private val sentencesDao = db.emotionalSentencesDao()
+    private val photoDao = db.calendarPhotoDao()
+    private val scheduleDao = db.calenderScheduleDao()
+    private val emotionsDao = db.calendarEmotionProportionDao()
 
     suspend fun updateDiary(
         date: LocalDate,
         text: String
     ) {
-        db.calenderDao().updateDiary(date, text)
+        calendarDao.updateDiary(date, text)
     }
 
     suspend fun updateEmotion(
         date: LocalDate,
         emotion: Emotion
     ) {
-        db.calenderDao().updateEmotion(date, emotion)
+        calendarDao.updateEmotion(date, emotion)
     }
 
     suspend fun getCalendarDayPreview(
@@ -35,7 +43,7 @@ internal class LocalCalendarDataSource @Inject constructor(
     ): Result<List<CalendarDayPreview>> {
         val startEpoch = startMonth.atDay(1).toEpochDay()
         val endEpoch = endMonth.atEndOfMonth().toEpochDay()
-        val result = db.calenderDao().getCalendarDayPreview(startEpoch, endEpoch)
+        val result = calendarDao.getCalendarDayPreview(startEpoch, endEpoch)
         return if (result.isNotEmpty()) {
             Result.success(result)
         } else {
@@ -43,19 +51,24 @@ internal class LocalCalendarDataSource @Inject constructor(
         }
     }
 
-    suspend fun updateCalendarDayPreview(
-        days: List<CalendarDayPreview>
-    ) {
-        db.calenderDao().cacheCalendarDayPreview(days)
+    suspend fun updateCalendarDayPreview(days: List<CalendarDayPreview>) {
+        db.withTransaction {
+            days.forEach {
+                val updated =
+                    calendarDao.updateCalendarDayPreview(it.date, it.emotion, it.keywords)
+                if (updated == 0) {
+                    calendarDao.insertCalendarDay(it.toCalendarDayEntity())
+                }
+            }
+        }
     }
 
-    suspend fun getCalendarDayDetail(
-        date: LocalDate
-    ): Result<CalendarDayDetail> {
-        val result = db.calenderDao().getCalendarDayDetails(date)
+    suspend fun getCalendarDayDetail(date: LocalDate): Result<CalendarDayDetail> {
+        val result = calendarDao.getCalendarDay(date)
         return if (result != null) {
             Result.success(
                 CalendarDayDetail(
+                    result.day.date,
                     result.photos.map { it.toDomainModel() },
                     result.day.diary,
                     result.day.diaryFeedback,
@@ -69,18 +82,31 @@ internal class LocalCalendarDataSource @Inject constructor(
         }
     }
 
-    suspend fun updateCalendarDayDetail(
-        date: LocalDate,
-        detail: CalendarDayDetail
-    ) {
-
+    suspend fun updateCalendarDayDetail(detail: CalendarDayDetail) {
+        db.withTransaction {
+            val updated = calendarDao.updateCalendarDayDetail(
+                detail.date,
+                detail.emotion,
+                detail.diary,
+                detail.diaryFeedback
+            )
+            if (updated == 0) {
+                calendarDao.insertCalendarDay(detail.toCalendarDayEntity())
+            }
+            photoDao.deleteByDate(detail.date)
+            photoDao.insertPhotos(detail.imageList.map { it.toEntity(detail.date) })
+            scheduleDao.deleteByDate(detail.date)
+            scheduleDao.insertSchedules(detail.scheduleList.map { it.toEntity(detail.date) })
+            emotionsDao.deleteByDate(detail.date)
+            emotionsDao.insertEmotionProportions(detail.emotionList.map { it.toEntity(detail.date) })
+        }
     }
 
     suspend fun getDayEmotionalSentences(
         date: LocalDate,
         emotion: Emotion
     ): Result<List<EmotionalSentence>> {
-        val result = db.calenderDao().getDayEmotionalSentences(date, emotion)
+        val result = sentencesDao.getSentences(date, emotion)
         return if (result.isNotEmpty()) {
             Result.success(result.map { it.toDomainModel() })
         } else {
@@ -90,8 +116,12 @@ internal class LocalCalendarDataSource @Inject constructor(
 
     suspend fun updateDayEmotionalSentences(
         date: LocalDate,
+        emotion: Emotion,
         sentences: List<EmotionalSentence>
     ) {
-
+        db.withTransaction {
+            sentencesDao.deleteSentences(date, emotion)
+            sentencesDao.insertSentences(sentences.map { it.toEntity(date) })
+        }
     }
 }

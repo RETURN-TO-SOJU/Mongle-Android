@@ -1,13 +1,13 @@
-package com.won983212.mongle.data.db;
+package com.won983212.mongle.data.db
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.common.truth.Truth.assertThat
 import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.data.source.local.entity.FavoriteEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.assertj.core.api.Java6Assertions.*
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -15,7 +15,7 @@ import org.junit.runner.RunWith
 import java.time.LocalDate
 
 @RunWith(AndroidJUnit4::class)
-class FavoriteDaoTest {
+internal class FavoriteDaoTest {
     private lateinit var database: AppDatabase
     private lateinit var dao: FavoriteDao
 
@@ -81,6 +81,6 @@ class FavoriteDaoTest {
         }
 
         val favorites = dao.getRange(from, to)
-        assertThat(favorites).containsAll(targets)
+        assertThat(favorites).containsExactlyElementsIn(targets)
     }
 }

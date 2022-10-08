@@ -61,7 +61,7 @@ internal class CalendarRepositoryImpl(
             }
 
             override suspend fun saveCallResult(value: CalendarDayDetail) {
-                localCalendarDataSource.updateCalendarDayDetail(date, value)
+                localCalendarDataSource.updateCalendarDayDetail(value)
             }
 
             override suspend fun fetch(): Result<CalendarDayDetail> {
@@ -82,7 +82,7 @@ internal class CalendarRepositoryImpl(
             }
 
             override suspend fun saveCallResult(value: List<EmotionalSentence>) {
-                localCalendarDataSource.updateDayEmotionalSentences(date, value)
+                localCalendarDataSource.updateDayEmotionalSentences(date, emotion, value)
             }
 
             override suspend fun fetch(): Result<List<EmotionalSentence>> {

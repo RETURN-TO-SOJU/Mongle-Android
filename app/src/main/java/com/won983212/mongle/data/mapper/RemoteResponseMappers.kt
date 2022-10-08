@@ -1,12 +1,14 @@
-package com.won983212.mongle.data.util
+package com.won983212.mongle.data.mapper
 
 import com.won983212.mongle.data.source.remote.dto.response.*
 import com.won983212.mongle.domain.model.*
+import java.time.LocalDate
 
-fun CalendarDayDetailResponse.toDomainModel(): CalendarDayDetail {
+fun CalendarDayDetailResponse.toDomainModel(date: LocalDate): CalendarDayDetail {
     return CalendarDayDetail(
+        date,
         imageList.map { it.toDomainModel() },
-        diary,
+        diary ?: "",
         diaryFeedback,
         scheduleList.map { it.toDomainModel() },
         emotionList.map { it.toDomainModel() },

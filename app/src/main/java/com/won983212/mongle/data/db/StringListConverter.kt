@@ -14,6 +14,6 @@ class StringListConverter {
 
     @TypeConverter
     fun toString(datetime: List<String>?): String? {
-        return datetime?.joinToString()
+        return datetime?.joinToString(separator = ",")
     }
 }

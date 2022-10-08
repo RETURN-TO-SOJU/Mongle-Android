@@ -1,10 +1,9 @@
 package com.won983212.mongle.debug.mock
 
 import android.util.Log
+import com.won983212.mongle.data.mapper.toDomainModel
 import com.won983212.mongle.data.source.api.AuthApi
 import com.won983212.mongle.data.source.remote.dto.response.LoginResponse
-import com.won983212.mongle.data.util.toDomainModel
-import com.won983212.mongle.domain.model.LoginResult
 import com.won983212.mongle.domain.model.OAuthLoginToken
 import com.won983212.mongle.domain.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers

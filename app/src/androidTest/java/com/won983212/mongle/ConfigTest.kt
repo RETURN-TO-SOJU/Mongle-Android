@@ -3,11 +3,10 @@ package com.won983212.mongle
 import android.content.res.Resources
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.common.truth.Truth.assertThat
 import com.won983212.mongle.data.repository.ConfigRepositoryImpl
 import com.won983212.mongle.data.source.local.config.*
 import com.won983212.mongle.domain.repository.ConfigRepository
-import org.assertj.core.api.Java6Assertions.assertThat
-import org.assertj.core.api.Java6Assertions.assertThatThrownBy
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -69,8 +68,10 @@ internal class ConfigTest {
 
     @Test
     fun config_get_unknown_default_key() {
-        assertThatThrownBy {
+        try {
             configRepository.get(unknownKey)
-        }.isInstanceOf(Resources.NotFoundException::class.java)
+        } catch (e: java.lang.Exception) {
+            assertThat(e).isInstanceOf(Resources.NotFoundException::class.java)
+        }
     }
 }

@@ -1,8 +1,8 @@
-package com.won983212.mongle.data.util
+package com.won983212.mongle.data.mapper
 
 import com.won983212.mongle.data.source.local.entity.*
-import com.won983212.mongle.data.source.remote.dto.response.*
 import com.won983212.mongle.domain.model.*
+import java.time.LocalDate
 
 fun FavoriteEntity.toDomainModel(): Favorite {
     return Favorite(id, emotion, date, title)
@@ -26,4 +26,40 @@ fun EmotionalSentenceEntity.toDomainModel(): EmotionalSentence {
 
 fun Favorite.toEntity(): FavoriteEntity {
     return FavoriteEntity(id, emotion, date, title)
+}
+
+fun Photo.toEntity(date: LocalDate): PhotoEntity {
+    return PhotoEntity(0, date, url, time)
+}
+
+fun Schedule.toEntity(date: LocalDate): ScheduleEntity {
+    return ScheduleEntity(0, date, name, calendar, startTime, endTime)
+}
+
+fun EmotionProportion.toEntity(date: LocalDate): EmotionProportionEntity {
+    return EmotionProportionEntity(0, date, emotion, percent)
+}
+
+fun EmotionalSentence.toEntity(date: LocalDate): EmotionalSentenceEntity {
+    return EmotionalSentenceEntity(id, date, sentence, emotion)
+}
+
+fun CalendarDayPreview.toCalendarDayEntity(): CalendarDayEntity {
+    return CalendarDayEntity(
+        date,
+        emotion,
+        keywords,
+        "",
+        ""
+    )
+}
+
+fun CalendarDayDetail.toCalendarDayEntity(): CalendarDayEntity {
+    return CalendarDayEntity(
+        date,
+        emotion,
+        listOf(),
+        diary,
+        diaryFeedback
+    )
 }

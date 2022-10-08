@@ -10,10 +10,10 @@ import com.won983212.mongle.data.source.local.entity.ScheduleEntity
 data class CalendarDayWithDetails(
     @Embedded
     val day: CalendarDayEntity,
-    @Relation(parentColumn = "id", entityColumn = "calendarDayId")
+    @Relation(parentColumn = "date", entityColumn = "date")
     val photos: List<PhotoEntity>,
-    @Relation(parentColumn = "id", entityColumn = "calendarDayId")
+    @Relation(parentColumn = "date", entityColumn = "date")
     val schedules: List<ScheduleEntity>,
-    @Relation(parentColumn = "id", entityColumn = "calendarDayId")
+    @Relation(parentColumn = "date", entityColumn = "date")
     val emotionProportions: List<EmotionProportionEntity>
 )

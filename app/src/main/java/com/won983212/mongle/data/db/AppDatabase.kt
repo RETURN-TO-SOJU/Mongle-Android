@@ -20,4 +20,8 @@ import com.won983212.mongle.data.source.local.entity.*
 abstract class AppDatabase : RoomDatabase() {
     abstract fun favoriteDao(): FavoriteDao
     abstract fun calenderDao(): CalendarDao
+    abstract fun emotionalSentencesDao(): EmotionalSentenceDao
+    abstract fun calendarPhotoDao(): CalendarPhotoDao
+    abstract fun calenderScheduleDao(): CalendarScheduleDao
+    abstract fun calendarEmotionProportionDao(): CalendarEmotionProportionDao
 }
