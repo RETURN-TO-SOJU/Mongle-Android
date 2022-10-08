@@ -42,7 +42,7 @@ interface CalendarDao {
 
     @Query(
         "UPDATE calendardayentity " +
-                "SET emotion = :emotion AND diary = :diary AND diaryFeedback = :diaryFeedback " +
+                "SET emotion = :emotion, diary = :diary, diaryFeedback = :diaryFeedback " +
                 "WHERE date = :date"
     )
     suspend fun updateCalendarDayDetail(

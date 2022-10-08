@@ -6,8 +6,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import com.won983212.mongle.data.source.local.entity.CalendarDayEntity
 import com.won983212.mongle.domain.model.Emotion
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -33,24 +32,28 @@ internal class CalendarDaoTest {
         database.close()
     }
 
-    @Test
-    @OptIn(ExperimentalCoroutinesApi::class)
-    fun get_calendar_day() = runTest {
-        val date = LocalDate.now()
-        val data1 = CalendarDayEntity(
+    private fun generateTestEntity(date: LocalDate): CalendarDayEntity{
+        return CalendarDayEntity(
             date,
             Emotion.ANGRY,
             listOf("Hello", "Nice", "안녕"),
             "하이",
             "좋은 하루였네요."
         )
-        val data2 = CalendarDayEntity(
-            date.plusDays(1),
-            null,
-            listOf(""),
-            "",
-            ""
-        )
+    }
+
+    private suspend fun insertWeeklyTestEntity(date: LocalDate){
+        for (i in 1..10) {
+            val data = generateTestEntity(date.plusDays((i * 7).toLong()))
+            dao.insertCalendarDay(data)
+        }
+    }
+
+    @Test
+    fun get_calendar_day() = runBlocking {
+        val date = LocalDate.now()
+        val data1 = generateTestEntity(date)
+        val data2 = generateTestEntity(date.plusDays(1))
 
         dao.insertCalendarDay(data1)
         dao.insertCalendarDay(data2)
@@ -63,33 +66,79 @@ internal class CalendarDaoTest {
     }
 
     @Test
-    @OptIn(ExperimentalCoroutinesApi::class)
-    fun get_calendar_day_preview() = runTest {
+    fun get_calendar_day_preview() = runBlocking {
         val date = LocalDate.of(2022, 7, 26)
-        val outBoundData = CalendarDayEntity(
-            date,
-            Emotion.SAD,
-            listOf("Hello"),
-            "rrr",
-            "aaaaaaa"
-        )
+        val outBoundData = generateTestEntity(date)
         dao.insertCalendarDay(outBoundData)
 
-        for (i in 1..10) {
-            val data = CalendarDayEntity(
-                date.plusDays((i * 7).toLong()),
-                Emotion.ANGRY,
-                listOf("Hello", "Nice", "안녕"),
-                "하이",
-                "좋은 하루였네요."
-            )
-            dao.insertCalendarDay(data)
-        }
+        insertWeeklyTestEntity(date)
 
         val from = LocalDate.of(2022, 8, 1).toEpochDay()
         val to = LocalDate.of(2022, 8, 31).toEpochDay()
         val result = dao.getCalendarDayPreview(from, to)
         assertThat(result.size).isEqualTo(5)
         assertThat(result).doesNotContain(outBoundData)
+    }
+
+    private suspend fun initializeUpdateEnv(): LocalDate {
+        val date = LocalDate.now()
+
+        insertWeeklyTestEntity(date)
+
+        val targetDate = date.plusDays(10)
+        val targetValue = generateTestEntity(targetDate)
+        dao.insertCalendarDay(targetValue)
+
+        return targetDate
+    }
+
+    @Test
+    fun update_calendar_day_preview() = runBlocking {
+        val targetDate = initializeUpdateEnv()
+        dao.updateCalendarDayPreview(targetDate, Emotion.HAPPY, listOf("HI"))
+
+        val result = dao.getCalendarDay(targetDate)?.day
+        assertThat(result?.keywords).isEqualTo(listOf("HI"))
+        assertThat(result?.emotion).isEqualTo(Emotion.HAPPY)
+    }
+
+    @Test
+    fun update_calendar_day_detail() = runBlocking {
+        val targetDate = initializeUpdateEnv()
+        dao.updateCalendarDayDetail(targetDate, Emotion.HAPPY, "zz", "zzzzz")
+
+        val result = dao.getCalendarDay(targetDate)?.day
+        assertThat(result?.emotion).isEqualTo(Emotion.HAPPY)
+        assertThat(result?.diary).isEqualTo("zz")
+        assertThat(result?.diaryFeedback).isEqualTo("zzzzz")
+    }
+
+    @Test
+    fun update_calendar_day_detail_null_emotion() = runBlocking {
+        val targetDate = initializeUpdateEnv()
+        dao.updateCalendarDayDetail(targetDate, null, "diary", "feedback")
+
+        val result = dao.getCalendarDay(targetDate)?.day
+        assertThat(result?.emotion).isEqualTo(null)
+        assertThat(result?.diary).isEqualTo("diary")
+        assertThat(result?.diaryFeedback).isEqualTo("feedback")
+    }
+
+    @Test
+    fun update_diary() = runBlocking {
+        val targetDate = initializeUpdateEnv()
+        dao.updateDiary(targetDate, "Hello")
+
+        val result = dao.getCalendarDay(targetDate)?.day
+        assertThat(result?.diary).isEqualTo("Hello")
+    }
+
+    @Test
+    fun update_emotion() = runBlocking {
+        val targetDate = initializeUpdateEnv()
+        dao.updateEmotion(targetDate, Emotion.TIRED)
+
+        val result = dao.getCalendarDay(targetDate)?.day
+        assertThat(result?.emotion).isEqualTo(Emotion.TIRED)
     }
 }
