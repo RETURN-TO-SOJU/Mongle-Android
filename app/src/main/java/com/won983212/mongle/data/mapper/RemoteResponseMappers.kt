@@ -33,7 +33,7 @@ fun CalendarDayPreviewResponse.toDomainModel(): CalendarDayPreview {
 }
 
 fun EmotionalSentenceResponse.toDomainModel(): EmotionalSentence {
-    return EmotionalSentence(id, sentence, emotion)
+    return EmotionalSentence(sentence, emotion)
 }
 
 fun LoginResponse.toDomainModel(): LoginResult {

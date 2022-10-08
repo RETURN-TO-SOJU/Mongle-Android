@@ -4,8 +4,8 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import com.won983212.mongle.data.source.local.entity.CalendarDayEntity
 import com.won983212.mongle.domain.model.Emotion
+import com.won983212.mongle.util.generateCalendarDayEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -32,19 +32,9 @@ internal class CalendarDaoTest {
         database.close()
     }
 
-    private fun generateTestEntity(date: LocalDate): CalendarDayEntity{
-        return CalendarDayEntity(
-            date,
-            Emotion.ANGRY,
-            listOf("Hello", "Nice", "안녕"),
-            "하이",
-            "좋은 하루였네요."
-        )
-    }
-
-    private suspend fun insertWeeklyTestEntity(date: LocalDate){
+    private suspend fun insertWeeklyTestEntity(date: LocalDate) {
         for (i in 1..10) {
-            val data = generateTestEntity(date.plusDays((i * 7).toLong()))
+            val data = generateCalendarDayEntity(date.plusDays((i * 7).toLong()))
             dao.insertCalendarDay(data)
         }
     }
@@ -52,8 +42,8 @@ internal class CalendarDaoTest {
     @Test
     fun get_calendar_day() = runBlocking {
         val date = LocalDate.now()
-        val data1 = generateTestEntity(date)
-        val data2 = generateTestEntity(date.plusDays(1))
+        val data1 = generateCalendarDayEntity(date)
+        val data2 = generateCalendarDayEntity(date.plusDays(1))
 
         dao.insertCalendarDay(data1)
         dao.insertCalendarDay(data2)
@@ -68,7 +58,7 @@ internal class CalendarDaoTest {
     @Test
     fun get_calendar_day_preview() = runBlocking {
         val date = LocalDate.of(2022, 7, 26)
-        val outBoundData = generateTestEntity(date)
+        val outBoundData = generateCalendarDayEntity(date)
         dao.insertCalendarDay(outBoundData)
 
         insertWeeklyTestEntity(date)
@@ -86,7 +76,7 @@ internal class CalendarDaoTest {
         insertWeeklyTestEntity(date)
 
         val targetDate = date.plusDays(10)
-        val targetValue = generateTestEntity(targetDate)
+        val targetValue = generateCalendarDayEntity(targetDate)
         dao.insertCalendarDay(targetValue)
 
         return targetDate

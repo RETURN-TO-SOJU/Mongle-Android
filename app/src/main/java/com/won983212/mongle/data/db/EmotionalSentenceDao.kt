@@ -15,7 +15,7 @@ interface EmotionalSentenceDao {
         emotion: Emotion
     ): List<EmotionalSentenceEntity>
 
-    @Query("DELETE FROM emotionproportionentity WHERE date = :date AND emotion = :emotion")
+    @Query("DELETE FROM emotionalsentenceentity WHERE date = :date AND emotion = :emotion")
     suspend fun deleteSentences(
         date: LocalDate,
         emotion: Emotion

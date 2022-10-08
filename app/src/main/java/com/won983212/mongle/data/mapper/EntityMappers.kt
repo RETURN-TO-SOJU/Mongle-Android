@@ -21,7 +21,7 @@ fun EmotionProportionEntity.toDomainModel(): EmotionProportion {
 }
 
 fun EmotionalSentenceEntity.toDomainModel(): EmotionalSentence {
-    return EmotionalSentence(id, sentence, emotion)
+    return EmotionalSentence(sentence, emotion)
 }
 
 fun Favorite.toEntity(): FavoriteEntity {
@@ -41,7 +41,7 @@ fun EmotionProportion.toEntity(date: LocalDate): EmotionProportionEntity {
 }
 
 fun EmotionalSentence.toEntity(date: LocalDate): EmotionalSentenceEntity {
-    return EmotionalSentenceEntity(id, date, sentence, emotion)
+    return EmotionalSentenceEntity(0, date, sentence, emotion)
 }
 
 fun CalendarDayPreview.toCalendarDayEntity(): CalendarDayEntity {

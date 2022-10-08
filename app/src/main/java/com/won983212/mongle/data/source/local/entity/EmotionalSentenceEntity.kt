@@ -7,7 +7,7 @@ import java.time.LocalDate
 
 @Entity
 data class EmotionalSentenceEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id: Long,
     val date: LocalDate,
     val sentence: String,

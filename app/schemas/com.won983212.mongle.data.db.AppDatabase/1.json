@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "904d7174024276b93b4af84dc1e2a324",
+    "identityHash": "5f4fa69bdefd999f093522d8c067c2dc",
     "entities": [
       {
         "tableName": "FavoriteEntity",
@@ -104,7 +104,7 @@
       },
       {
         "tableName": "EmotionalSentenceEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `date` INTEGER NOT NULL, `sentence` TEXT NOT NULL, `emotion` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` INTEGER NOT NULL, `sentence` TEXT NOT NULL, `emotion` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -135,7 +135,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -336,7 +336,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '904d7174024276b93b4af84dc1e2a324')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5f4fa69bdefd999f093522d8c067c2dc')"
     ]
   }
 }
