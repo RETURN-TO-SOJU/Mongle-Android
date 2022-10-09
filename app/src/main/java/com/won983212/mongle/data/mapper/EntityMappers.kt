@@ -1,6 +1,6 @@
 package com.won983212.mongle.data.mapper
 
-import com.won983212.mongle.data.source.local.entity.*
+import com.won983212.mongle.data.db.entity.*
 import com.won983212.mongle.domain.model.*
 import java.time.LocalDate
 
@@ -16,8 +16,10 @@ fun ScheduleEntity.toDomainModel(): Schedule {
     return Schedule(name, calendar, startTime, endTime)
 }
 
-fun EmotionProportionEntity.toDomainModel(): EmotionProportion {
-    return EmotionProportion(emotion, percent)
+fun Map<String, Int>.toDomainModel(): List<EmotionProportion> {
+    return entries.map {
+        EmotionProportion(Emotion.of(it.key), it.value)
+    }
 }
 
 fun EmotionalSentenceEntity.toDomainModel(): EmotionalSentence {
@@ -36,12 +38,14 @@ fun Schedule.toEntity(date: LocalDate): ScheduleEntity {
     return ScheduleEntity(0, date, name, calendar, startTime, endTime)
 }
 
-fun EmotionProportion.toEntity(date: LocalDate): EmotionProportionEntity {
-    return EmotionProportionEntity(0, date, emotion, percent)
-}
-
 fun EmotionalSentence.toEntity(date: LocalDate): EmotionalSentenceEntity {
     return EmotionalSentenceEntity(0, date, sentence, emotion)
+}
+
+fun List<EmotionProportion>.toEntity(): Map<String, Int> {
+    return associate {
+        it.emotion.name to it.percent
+    }
 }
 
 fun CalendarDayPreview.toCalendarDayEntity(): CalendarDayEntity {
@@ -50,7 +54,8 @@ fun CalendarDayPreview.toCalendarDayEntity(): CalendarDayEntity {
         emotion,
         keywords,
         "",
-        ""
+        "",
+        EmotionProportion.defaultProportionMap()
     )
 }
 
@@ -60,6 +65,7 @@ fun CalendarDayDetail.toCalendarDayEntity(): CalendarDayEntity {
         emotion,
         listOf(),
         diary,
-        diaryFeedback
+        diaryFeedback,
+        emotionList.toEntity()
     )
 }

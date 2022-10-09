@@ -20,6 +20,6 @@ internal class DBModule {
         return Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "mongle-database"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 }

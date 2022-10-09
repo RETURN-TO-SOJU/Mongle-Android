@@ -1,4 +1,4 @@
-package com.won983212.mongle.data.db
+package com.won983212.mongle.data.db.converter
 
 import androidx.room.TypeConverter
 import com.won983212.mongle.util.parseLocalDateTime

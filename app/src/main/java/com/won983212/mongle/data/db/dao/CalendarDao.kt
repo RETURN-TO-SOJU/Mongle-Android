@@ -1,8 +1,8 @@
-package com.won983212.mongle.data.db
+package com.won983212.mongle.data.db.dao
 
 import androidx.room.*
-import com.won983212.mongle.data.source.local.entity.CalendarDayEntity
-import com.won983212.mongle.data.source.local.entity.relation.CalendarDayWithDetails
+import com.won983212.mongle.data.db.entity.CalendarDayEntity
+import com.won983212.mongle.data.db.entity.relation.CalendarDayWithDetails
 import com.won983212.mongle.domain.model.CalendarDayPreview
 import com.won983212.mongle.domain.model.Emotion
 import java.time.LocalDate
@@ -36,20 +36,24 @@ interface CalendarDao {
     )
     suspend fun updateCalendarDayPreview(
         date: LocalDate,
-        emotion: Emotion,
+        emotion: Emotion?,
         keywords: List<String>
     ): Int
 
     @Query(
         "UPDATE calendardayentity " +
-                "SET emotion = :emotion, diary = :diary, diaryFeedback = :diaryFeedback " +
+                "SET emotion = :emotion, " +
+                "diary = :diary, " +
+                "diaryFeedback = :diaryFeedback, " +
+                "emotionProportions = :emotionProportions " +
                 "WHERE date = :date"
     )
     suspend fun updateCalendarDayDetail(
         date: LocalDate,
         emotion: Emotion?,
         diary: String,
-        diaryFeedback: String
+        diaryFeedback: String,
+        emotionProportions: Map<String, Int>
     ): Int
 
 

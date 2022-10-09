@@ -1,4 +1,4 @@
-package com.won983212.mongle.data.db
+package com.won983212.mongle.data.db.converter
 
 import androidx.room.TypeConverter
 
@@ -9,7 +9,7 @@ class StringListConverter {
     }
 
     @TypeConverter
-    fun toString(datetime: List<String>?): String? {
-        return datetime?.joinToString(separator = ",")
+    fun toString(data: List<String>?): String? {
+        return data?.joinToString(separator = ",")
     }
 }

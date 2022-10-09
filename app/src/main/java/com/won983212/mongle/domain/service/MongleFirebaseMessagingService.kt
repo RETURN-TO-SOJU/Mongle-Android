@@ -77,7 +77,7 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
         }
     }
 
-    private fun parseErrorIntent(data: Map<String, String>): Intent {
+    private fun parseErrorIntent(): Intent {
         return Intent(this, MainActivity::class.java)
     }
 
@@ -87,7 +87,7 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
             when (type) {
                 "gift" -> parseGiftIntent(data)
                 "analyze" -> parseAnalyzeCompleteIntent(data)
-                "error" -> parseErrorIntent(data)
+                "error" -> parseErrorIntent()
                 else -> throw IllegalArgumentException("Unknown Type: $type")
             }
         } catch (e: IllegalArgumentException) {

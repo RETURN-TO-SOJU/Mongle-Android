@@ -69,7 +69,9 @@ class OverviewViewModel @Inject constructor(
             getCalendarDayMetadata(from, to)
         }
         if (days != null) {
-            val emotionData = days.associate { it.date to it.emotion }
+            val emotionData = days
+                .filter { it.emotion != null }
+                .associate { it.date to it.emotion as Emotion }
             calendarEmotions.putAll(emotionData)
             _eventCalendarDataLoaded.postValue(emotionData)
             keywordMap = days.associate { it.date to it.keywords }

@@ -8,7 +8,6 @@ import com.won983212.mongle.databinding.ActivitySetNameBinding
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.util.getParcelableExtraCompat
 import com.won983212.mongle.presentation.view.agree.AgreeActivity.Companion.EXTRA_REDIRECT_TO
-import com.won983212.mongle.presentation.view.login.LoginActivity
 import com.won983212.mongle.presentation.view.login.LoginActivity.Companion.EXTRA_REDIRECT_TO
 import com.won983212.mongle.presentation.view.setname.SetNameActivity.Companion.EXTRA_REDIRECT_TO
 import com.won983212.mongle.presentation.view.setname.SetNameActivity.Companion.EXTRA_SHOW_TUTORIAL
@@ -35,8 +34,8 @@ class SetNameActivity : BaseDataActivity<ActivitySetNameBinding>() {
     override fun onInitialize() {
         binding.viewModel = viewModel
 
-        val redirectTo: Intent? = intent.getParcelableExtraCompat(LoginActivity.EXTRA_REDIRECT_TO)
-        val showTutorial = intent.getBooleanExtra(LoginActivity.EXTRA_REDIRECT_TO, false)
+        val redirectTo: Intent? = intent.getParcelableExtraCompat(EXTRA_REDIRECT_TO)
+        val showTutorial = intent.getBooleanExtra(EXTRA_SHOW_TUTORIAL, false)
         binding.btnNameSettingOk.setOnClickListener {
             lifecycleScope.launch {
                 viewModel.updateUsername()

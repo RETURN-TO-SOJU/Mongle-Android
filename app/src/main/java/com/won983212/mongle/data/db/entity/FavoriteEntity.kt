@@ -1,4 +1,4 @@
-package com.won983212.mongle.data.source.local.entity
+package com.won983212.mongle.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

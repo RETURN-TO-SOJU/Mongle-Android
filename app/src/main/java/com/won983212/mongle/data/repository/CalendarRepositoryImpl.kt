@@ -44,8 +44,8 @@ internal class CalendarRepositoryImpl(
                 )
             }
 
-            override fun getResourceName(): ResourceName {
-                return ResourceName.CALENDAR_DAY_PREVIEW
+            override fun getResourceName(): String {
+                return "CALENDAR_DAY_PREVIEW $startMonth $endMonth"
             }
         })
     }
@@ -67,8 +67,8 @@ internal class CalendarRepositoryImpl(
                 return remoteCalendarDataSource.getCalendarDayDetail(date)
             }
 
-            override fun getResourceName(): ResourceName {
-                return ResourceName.CALENDAR_DAY_DETAIL
+            override fun getResourceName(): String {
+                return "CALENDAR_DAY_DETAIL $date"
             }
         })
     }
@@ -92,8 +92,8 @@ internal class CalendarRepositoryImpl(
                 return remoteCalendarDataSource.getDayEmotionalSentences(date, emotion)
             }
 
-            override fun getResourceName(): ResourceName {
-                return ResourceName.DAY_EMOTIONAL_SENTENCES
+            override fun getResourceName(): String {
+                return "DAY_EMOTIONAL_SENTENCES $date $emotion"
             }
         })
     }

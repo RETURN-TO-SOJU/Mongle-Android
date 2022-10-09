@@ -5,7 +5,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import com.won983212.mongle.data.db.AppDatabase
-import com.won983212.mongle.data.db.CalendarDao
+import com.won983212.mongle.data.db.dao.CalendarDao
 import com.won983212.mongle.data.mapper.toDomainModel
 import com.won983212.mongle.data.source.local.LocalCalendarDataSource
 import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource

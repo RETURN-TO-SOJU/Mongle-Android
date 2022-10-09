@@ -1,4 +1,4 @@
-package com.won983212.mongle.data.source.local.entity
+package com.won983212.mongle.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.Index
@@ -13,6 +13,7 @@ data class CalendarDayEntity(
     val keywords: List<String>,
     val diary: String,
     val diaryFeedback: String,
+    val emotionProportions: Map<String, Int>,
     @PrimaryKey
     val id: Long = date.toString().hashCode().toLong()
 )

@@ -34,6 +34,11 @@ internal class LocalUserDataSource
         }
     }
 
+    fun setUsername(username: String) {
+        val kakaoName = secureProperties.getString(KEY_KAKAONAME, "")
+        saveUser(User(username, kakaoName!!))
+    }
+
     companion object {
         private const val KEY_USERNAME = "username"
         private const val KEY_KAKAONAME = "kakaoname"

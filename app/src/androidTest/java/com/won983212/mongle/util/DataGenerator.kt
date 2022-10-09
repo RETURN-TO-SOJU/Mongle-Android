@@ -1,6 +1,6 @@
 package com.won983212.mongle.util
 
-import com.won983212.mongle.data.source.local.entity.CalendarDayEntity
+import com.won983212.mongle.data.db.entity.CalendarDayEntity
 import com.won983212.mongle.data.source.remote.dto.response.CalendarDayDetailResponse
 import com.won983212.mongle.data.source.remote.dto.response.CalendarDayPreviewResponse
 import com.won983212.mongle.domain.model.*
@@ -14,7 +14,8 @@ fun generateCalendarDayEntity(date: LocalDate): CalendarDayEntity {
         Emotion.ANGRY,
         listOf("Hello", "Nice", "안녕"),
         "하이",
-        "좋은 하루였네요."
+        "좋은 하루였네요.",
+        EmotionProportion.defaultProportionMap()
     )
 }
 

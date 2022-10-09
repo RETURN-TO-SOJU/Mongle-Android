@@ -8,7 +8,7 @@ data class CalendarDayPreviewResponse(
     @SerializedName("date")
     val date: LocalDate,
     @SerializedName("emotion")
-    val emotion: Emotion,
+    val emotion: Emotion?,
     @SerializedName("subjectList")
     val subjectList: List<String>
 )

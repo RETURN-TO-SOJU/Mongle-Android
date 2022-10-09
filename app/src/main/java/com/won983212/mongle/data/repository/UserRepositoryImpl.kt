@@ -5,7 +5,6 @@ import com.won983212.mongle.data.source.local.LocalUserDataSource
 import com.won983212.mongle.data.source.remote.RemoteUserDataSource
 import com.won983212.mongle.data.source.remote.dto.MessageResult
 import com.won983212.mongle.domain.model.CachePolicy
-import com.won983212.mongle.domain.model.ResourceName
 import com.won983212.mongle.domain.model.User
 import com.won983212.mongle.domain.repository.UserRepository
 import javax.inject.Inject
@@ -33,8 +32,8 @@ internal class UserRepositoryImpl
                 return remoteUserDataSource.getUserInfo()
             }
 
-            override fun getResourceName(): ResourceName {
-                return ResourceName.USER
+            override fun getResourceName(): String {
+                return "USER"
             }
         })
     }
@@ -44,6 +43,7 @@ internal class UserRepositoryImpl
     }
 
     override suspend fun setUsername(username: String): Result<MessageResult> {
+        localUserDataSource.setUsername(username)
         return remoteUserDataSource.setUsername(username)
     }
 

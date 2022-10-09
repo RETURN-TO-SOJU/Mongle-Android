@@ -1,5 +1,7 @@
 package com.won983212.mongle.domain.model
 
+import android.util.Log
+
 enum class CachePolicy {
     /** **기본값.** 앱 시작후 최초 1회, 무조건 Remote에서 요청을 받아 캐싱한다. 이후에 계속 캐싱된 데이터를 반환. */
     ONCE,
@@ -17,8 +19,8 @@ enum class CachePolicy {
         when (this) {
             ONCE -> {
                 val resourceName = resource.getResourceName()
-                if (!FETCHED_RESOURCES.contains(resourceName.ordinal)) {
-                    FETCHED_RESOURCES.add(resourceName.ordinal)
+                if (!FETCHED_RESOURCES.contains(resourceName)) {
+                    FETCHED_RESOURCES.add(resourceName)
                     return fetchAndCache(resource)
                 }
                 return getOrFetchAndCache(resource)
@@ -27,6 +29,7 @@ enum class CachePolicy {
                 return getOrFetchAndCache(resource)
             }
             NEVER -> {
+                Log.d(LOG_TAG, "Fetching: ${resource.getResourceName()}")
                 return resource.fetch()
             }
             REFRESH -> {
@@ -38,31 +41,36 @@ enum class CachePolicy {
     private suspend fun <T> getOrFetchAndCache(resource: CacheableResource<T>): Result<T> {
         val cache = resource.loadFromCache()
         cache.onSuccess {
+            Log.d(LOG_TAG, "Use local cache: ${resource.getResourceName()}")
             return cache
         }
         return fetchAndCache(resource)
     }
 
     private suspend fun <T> fetchAndCache(resource: CacheableResource<T>): Result<T> {
+        Log.d(LOG_TAG, "Fetching: ${resource.getResourceName()}")
         return resource.fetch().also {
             it.onSuccess { data ->
+                Log.d(LOG_TAG, "Caching: ${resource.getResourceName()}")
                 resource.saveCallResult(data)
             }
         }
     }
 
     companion object {
+        const val LOG_TAG = "CachePolicy"
+
         @JvmStatic
         val DEFAULT = ONCE
 
         @JvmStatic
-        val FETCHED_RESOURCES = mutableSetOf<Int>()
+        val FETCHED_RESOURCES = mutableSetOf<String>()
     }
 
     interface CacheableResource<T> {
         suspend fun loadFromCache(): Result<T>
         suspend fun saveCallResult(value: T)
         suspend fun fetch(): Result<T>
-        fun getResourceName(): ResourceName
+        fun getResourceName(): String
     }
 }

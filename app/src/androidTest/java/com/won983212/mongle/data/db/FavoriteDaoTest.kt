@@ -4,7 +4,8 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import com.won983212.mongle.data.source.local.entity.FavoriteEntity
+import com.won983212.mongle.data.db.dao.FavoriteDao
+import com.won983212.mongle.data.db.entity.FavoriteEntity
 import com.won983212.mongle.domain.model.Emotion
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

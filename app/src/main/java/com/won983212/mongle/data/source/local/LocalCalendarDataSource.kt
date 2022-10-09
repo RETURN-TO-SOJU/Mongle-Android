@@ -2,14 +2,11 @@ package com.won983212.mongle.data.source.local
 
 import androidx.room.withTransaction
 import com.won983212.mongle.data.db.AppDatabase
+import com.won983212.mongle.data.db.entity.CalendarDayEntity
 import com.won983212.mongle.data.mapper.toCalendarDayEntity
 import com.won983212.mongle.data.mapper.toDomainModel
 import com.won983212.mongle.data.mapper.toEntity
-import com.won983212.mongle.data.source.local.entity.CalendarDayEntity
-import com.won983212.mongle.domain.model.CalendarDayDetail
-import com.won983212.mongle.domain.model.CalendarDayPreview
-import com.won983212.mongle.domain.model.Emotion
-import com.won983212.mongle.domain.model.EmotionalSentence
+import com.won983212.mongle.domain.model.*
 import com.won983212.mongle.exception.NoResultException
 import java.time.LocalDate
 import java.time.YearMonth
@@ -22,7 +19,6 @@ internal class LocalCalendarDataSource
     private val sentencesDao = db.emotionalSentencesDao()
     private val photoDao = db.calendarPhotoDao()
     private val scheduleDao = db.calenderScheduleDao()
-    private val emotionsDao = db.calendarEmotionProportionDao()
 
     suspend fun updateDiary(
         date: LocalDate,
@@ -32,7 +28,14 @@ internal class LocalCalendarDataSource
             val updated = calendarDao.updateDiary(date, text)
             if (updated == 0) {
                 calendarDao.insertCalendarDay(
-                    CalendarDayEntity(date, null, listOf(), text, "")
+                    CalendarDayEntity(
+                        date,
+                        null,
+                        listOf(),
+                        text,
+                        "",
+                        EmotionProportion.defaultProportionMap()
+                    )
                 )
             }
         }
@@ -46,7 +49,14 @@ internal class LocalCalendarDataSource
             val updated = calendarDao.updateEmotion(date, emotion)
             if (updated == 0) {
                 calendarDao.insertCalendarDay(
-                    CalendarDayEntity(date, emotion, listOf(), "", "")
+                    CalendarDayEntity(
+                        date,
+                        emotion,
+                        listOf(),
+                        "",
+                        "",
+                        EmotionProportion.defaultProportionMap()
+                    )
                 )
             }
         }
@@ -88,7 +98,7 @@ internal class LocalCalendarDataSource
                     result.day.diary,
                     result.day.diaryFeedback,
                     result.schedules.map { it.toDomainModel() },
-                    result.emotionProportions.map { it.toDomainModel() },
+                    result.day.emotionProportions.toDomainModel(),
                     result.day.emotion
                 )
             )
@@ -103,7 +113,8 @@ internal class LocalCalendarDataSource
                 detail.date,
                 detail.emotion,
                 detail.diary,
-                detail.diaryFeedback
+                detail.diaryFeedback,
+                detail.emotionList.toEntity()
             )
             if (updated == 0) {
                 calendarDao.insertCalendarDay(detail.toCalendarDayEntity())
@@ -112,8 +123,6 @@ internal class LocalCalendarDataSource
             photoDao.insertPhotos(detail.imageList.map { it.toEntity(detail.date) })
             scheduleDao.deleteByDate(detail.date)
             scheduleDao.insertSchedules(detail.scheduleList.map { it.toEntity(detail.date) })
-            emotionsDao.deleteByDate(detail.date)
-            emotionsDao.insertEmotionProportions(detail.emotionList.map { it.toEntity(detail.date) })
         }
     }
 

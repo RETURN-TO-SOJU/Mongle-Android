@@ -4,6 +4,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
+import com.won983212.mongle.data.db.dao.CalendarDao
 import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.util.generateCalendarDayEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -100,24 +101,42 @@ internal class CalendarDaoTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     fun update_calendar_day_detail() = runTest {
         val targetDate = initializeUpdateEnv()
-        dao.updateCalendarDayDetail(targetDate, Emotion.HAPPY, "zz", "zzzzz")
+        val proportions = mapOf(
+            Emotion.HAPPY.name to 10,
+            Emotion.SAD.name to 20,
+            Emotion.ANXIOUS.name to 10,
+            Emotion.ANGRY.name to 20,
+            Emotion.NEUTRAL.name to 20,
+            Emotion.TIRED.name to 20,
+        )
+        dao.updateCalendarDayDetail(targetDate, Emotion.HAPPY, "zz", "zzzzz", proportions)
 
         val result = dao.getCalendarDay(targetDate)?.day
         assertThat(result?.emotion).isEqualTo(Emotion.HAPPY)
         assertThat(result?.diary).isEqualTo("zz")
         assertThat(result?.diaryFeedback).isEqualTo("zzzzz")
+        assertThat(result?.emotionProportions).isEqualTo(proportions)
     }
 
     @Test
     @OptIn(ExperimentalCoroutinesApi::class)
     fun update_calendar_day_detail_null_emotion() = runTest {
         val targetDate = initializeUpdateEnv()
-        dao.updateCalendarDayDetail(targetDate, null, "diary", "feedback")
+        val proportions = mapOf(
+            Emotion.HAPPY.name to 10,
+            Emotion.SAD.name to 20,
+            Emotion.ANXIOUS.name to 10,
+            Emotion.ANGRY.name to 20,
+            Emotion.NEUTRAL.name to 20,
+            Emotion.TIRED.name to 20,
+        )
+        dao.updateCalendarDayDetail(targetDate, null, "diary", "feedback", proportions)
 
         val result = dao.getCalendarDay(targetDate)?.day
         assertThat(result?.emotion).isEqualTo(null)
         assertThat(result?.diary).isEqualTo("diary")
         assertThat(result?.diaryFeedback).isEqualTo("feedback")
+        assertThat(result?.emotionProportions).isEqualTo(proportions)
     }
 
     @Test

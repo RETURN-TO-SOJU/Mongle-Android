@@ -1,9 +1,9 @@
-package com.won983212.mongle.data.db
+package com.won983212.mongle.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.won983212.mongle.data.source.local.entity.FavoriteEntity
+import com.won983212.mongle.data.db.entity.FavoriteEntity
 
 @Dao
 interface FavoriteDao {

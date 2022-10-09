@@ -5,7 +5,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import com.won983212.mongle.data.db.AppDatabase
-import com.won983212.mongle.data.db.CalendarDao
+import com.won983212.mongle.data.db.dao.CalendarDao
 import com.won983212.mongle.domain.model.CalendarDayPreview
 import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.exception.NoResultException
