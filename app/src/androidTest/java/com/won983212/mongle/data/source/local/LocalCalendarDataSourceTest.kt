@@ -6,10 +6,12 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import com.won983212.mongle.data.db.AppDatabase
 import com.won983212.mongle.data.db.CalendarDao
-import com.won983212.mongle.domain.model.*
+import com.won983212.mongle.domain.model.CalendarDayPreview
+import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.exception.NoResultException
 import com.won983212.mongle.util.*
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -17,6 +19,7 @@ import org.junit.runner.RunWith
 import java.time.LocalDate
 import java.time.YearMonth
 
+// TODO 일반 Unit테스트로 변경
 @RunWith(AndroidJUnit4::class)
 internal class LocalCalendarDataSourceTest {
     private lateinit var database: AppDatabase
@@ -46,7 +49,8 @@ internal class LocalCalendarDataSourceTest {
     }
 
     @Test
-    fun get_calendar_day_empty(): Unit = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun get_calendar_day_empty(): Unit = runTest {
         val from = YearMonth.of(2022, 8)
         val to = YearMonth.of(2022, 12)
 
@@ -56,7 +60,8 @@ internal class LocalCalendarDataSourceTest {
     }
 
     @Test
-    fun get_calendar_day(): Unit = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun get_calendar_day(): Unit = runTest {
         val from = YearMonth.of(2022, 8)
         val to = YearMonth.of(2022, 9)
         insertWeeklyTestEntity(from.atDay(1))
@@ -67,7 +72,8 @@ internal class LocalCalendarDataSourceTest {
     }
 
     @Test
-    fun update_calendar_day_preview_insert(): Unit = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun update_calendar_day_preview_insert(): Unit = runTest {
         val date = LocalDate.of(2022, 8, 1)
         val testDatas = mutableListOf<CalendarDayPreview>()
 
@@ -97,7 +103,8 @@ internal class LocalCalendarDataSourceTest {
     }
 
     @Test
-    fun update_calendar_day_detail() = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun update_calendar_day_detail() = runTest {
         val date = LocalDate.of(2022, 8, 20)
         val preCachedData = generateDetailedCalendarDay1(date)
         val updatedData = generateDetailedCalendarDay2(date)
@@ -118,7 +125,8 @@ internal class LocalCalendarDataSourceTest {
     }
 
     @Test
-    fun update_day_emotional_sentences() = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun update_day_emotional_sentences() = runTest {
         val date = LocalDate.of(2022, 8, 20)
         val emotion = Emotion.SAD
         val emotion2 = Emotion.HAPPY

@@ -3,11 +3,7 @@ package com.won983212.mongle.data.repository
 import com.won983212.mongle.data.source.local.LocalCalendarDataSource
 import com.won983212.mongle.data.source.remote.RemoteCalendarDataSource
 import com.won983212.mongle.data.source.remote.dto.MessageResult
-import com.won983212.mongle.data.util.CachePolicy
-import com.won983212.mongle.domain.model.CalendarDayDetail
-import com.won983212.mongle.domain.model.CalendarDayPreview
-import com.won983212.mongle.domain.model.Emotion
-import com.won983212.mongle.domain.model.EmotionalSentence
+import com.won983212.mongle.domain.model.*
 import com.won983212.mongle.domain.repository.CalendarRepository
 import java.time.LocalDate
 import java.time.YearMonth
@@ -27,7 +23,6 @@ internal class CalendarRepositoryImpl(
         return remoteCalendarDataSource.updateEmotion(date, emotion)
     }
 
-    // TODO Cache Policy 구현
     override suspend fun getCalendarDayPreview(
         startMonth: YearMonth,
         endMonth: YearMonth,
@@ -48,6 +43,10 @@ internal class CalendarRepositoryImpl(
                     endMonth
                 )
             }
+
+            override fun getResourceName(): ResourceName {
+                return ResourceName.CALENDAR_DAY_PREVIEW
+            }
         })
     }
 
@@ -66,6 +65,10 @@ internal class CalendarRepositoryImpl(
 
             override suspend fun fetch(): Result<CalendarDayDetail> {
                 return remoteCalendarDataSource.getCalendarDayDetail(date)
+            }
+
+            override fun getResourceName(): ResourceName {
+                return ResourceName.CALENDAR_DAY_DETAIL
             }
         })
     }
@@ -87,6 +90,10 @@ internal class CalendarRepositoryImpl(
 
             override suspend fun fetch(): Result<List<EmotionalSentence>> {
                 return remoteCalendarDataSource.getDayEmotionalSentences(date, emotion)
+            }
+
+            override fun getResourceName(): ResourceName {
+                return ResourceName.DAY_EMOTIONAL_SENTENCES
             }
         })
     }

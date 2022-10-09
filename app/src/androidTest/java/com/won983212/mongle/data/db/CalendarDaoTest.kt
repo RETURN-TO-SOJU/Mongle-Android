@@ -6,7 +6,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.util.generateCalendarDayEntity
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -40,7 +41,8 @@ internal class CalendarDaoTest {
     }
 
     @Test
-    fun get_calendar_day() = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun get_calendar_day() = runTest {
         val date = LocalDate.now()
         val data1 = generateCalendarDayEntity(date)
         val data2 = generateCalendarDayEntity(date.plusDays(1))
@@ -56,7 +58,8 @@ internal class CalendarDaoTest {
     }
 
     @Test
-    fun get_calendar_day_preview() = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun get_calendar_day_preview() = runTest {
         val date = LocalDate.of(2022, 7, 26)
         val outBoundData = generateCalendarDayEntity(date)
         dao.insertCalendarDay(outBoundData)
@@ -83,7 +86,8 @@ internal class CalendarDaoTest {
     }
 
     @Test
-    fun update_calendar_day_preview() = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun update_calendar_day_preview() = runTest {
         val targetDate = initializeUpdateEnv()
         dao.updateCalendarDayPreview(targetDate, Emotion.HAPPY, listOf("HI"))
 
@@ -93,7 +97,8 @@ internal class CalendarDaoTest {
     }
 
     @Test
-    fun update_calendar_day_detail() = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun update_calendar_day_detail() = runTest {
         val targetDate = initializeUpdateEnv()
         dao.updateCalendarDayDetail(targetDate, Emotion.HAPPY, "zz", "zzzzz")
 
@@ -104,7 +109,8 @@ internal class CalendarDaoTest {
     }
 
     @Test
-    fun update_calendar_day_detail_null_emotion() = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun update_calendar_day_detail_null_emotion() = runTest {
         val targetDate = initializeUpdateEnv()
         dao.updateCalendarDayDetail(targetDate, null, "diary", "feedback")
 
@@ -115,7 +121,8 @@ internal class CalendarDaoTest {
     }
 
     @Test
-    fun update_diary() = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun update_diary() = runTest {
         val targetDate = initializeUpdateEnv()
         dao.updateDiary(targetDate, "Hello")
 
@@ -124,7 +131,8 @@ internal class CalendarDaoTest {
     }
 
     @Test
-    fun update_emotion() = runBlocking {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun update_emotion() = runTest {
         val targetDate = initializeUpdateEnv()
         dao.updateEmotion(targetDate, Emotion.TIRED)
 

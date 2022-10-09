@@ -1,6 +1,6 @@
 package com.won983212.mongle.domain.usecase.user
 
-import com.won983212.mongle.data.util.CachePolicy
+import com.won983212.mongle.domain.model.CachePolicy
 import com.won983212.mongle.domain.model.User
 import com.won983212.mongle.domain.repository.UserRepository
 import javax.inject.Inject

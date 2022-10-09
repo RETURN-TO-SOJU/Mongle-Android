@@ -1,7 +1,7 @@
 package com.won983212.mongle.domain.repository
 
 import com.won983212.mongle.data.source.remote.dto.MessageResult
-import com.won983212.mongle.data.util.CachePolicy
+import com.won983212.mongle.domain.model.CachePolicy
 import com.won983212.mongle.domain.model.User
 
 interface UserRepository {

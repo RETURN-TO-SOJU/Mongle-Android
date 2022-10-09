@@ -5,6 +5,7 @@ import com.won983212.mongle.data.db.AppDatabase
 import com.won983212.mongle.data.mapper.toCalendarDayEntity
 import com.won983212.mongle.data.mapper.toDomainModel
 import com.won983212.mongle.data.mapper.toEntity
+import com.won983212.mongle.data.source.local.entity.CalendarDayEntity
 import com.won983212.mongle.domain.model.CalendarDayDetail
 import com.won983212.mongle.domain.model.CalendarDayPreview
 import com.won983212.mongle.domain.model.Emotion
@@ -27,14 +28,28 @@ internal class LocalCalendarDataSource
         date: LocalDate,
         text: String
     ) {
-        calendarDao.updateDiary(date, text)
+        db.withTransaction {
+            val updated = calendarDao.updateDiary(date, text)
+            if (updated == 0) {
+                calendarDao.insertCalendarDay(
+                    CalendarDayEntity(date, null, listOf(), text, "")
+                )
+            }
+        }
     }
 
     suspend fun updateEmotion(
         date: LocalDate,
         emotion: Emotion
     ) {
-        calendarDao.updateEmotion(date, emotion)
+        db.withTransaction {
+            val updated = calendarDao.updateEmotion(date, emotion)
+            if (updated == 0) {
+                calendarDao.insertCalendarDay(
+                    CalendarDayEntity(date, emotion, listOf(), "", "")
+                )
+            }
+        }
     }
 
     suspend fun getCalendarDayPreview(

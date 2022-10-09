@@ -57,11 +57,11 @@ interface CalendarDao {
     suspend fun updateDiary(
         date: LocalDate,
         diary: String
-    )
+    ): Int
 
     @Query("UPDATE calendardayentity SET emotion = :emotion WHERE date = :date")
     suspend fun updateEmotion(
         date: LocalDate,
         emotion: Emotion
-    )
+    ): Int
 }
