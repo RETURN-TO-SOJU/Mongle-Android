@@ -149,7 +149,7 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
                 }
             notificationBuilder.setContentIntent(resultPendingIntent)
         } else {
-            notificationBuilder.setContentText("$body +No Intent")
+            notificationBuilder.setContentText(body)
         }
 
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
