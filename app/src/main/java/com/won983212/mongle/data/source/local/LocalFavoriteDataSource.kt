@@ -8,8 +8,9 @@ import javax.inject.Inject
 internal class LocalFavoriteDataSource @Inject constructor(
     private val db: AppDatabase
 ) {
-    suspend fun getAll(): List<FavoriteEntity> =
-        db.favoriteDao().getAll()
+    suspend fun getAll(): List<FavoriteEntity> {
+        return db.favoriteDao().getAll()
+    }
 
     suspend fun getRange(yearMonth: YearMonth): List<FavoriteEntity> {
         val fromEpochDay = yearMonth.atDay(1).toEpochDay()
@@ -17,9 +18,15 @@ internal class LocalFavoriteDataSource @Inject constructor(
         return db.favoriteDao().getRange(fromEpochDay, toEpochDay)
     }
 
-    suspend fun insert(favorite: FavoriteEntity) =
+    suspend fun insert(favorite: FavoriteEntity) {
         db.favoriteDao().insert(favorite)
+    }
 
-    suspend fun deleteById(userId: Long) =
+    suspend fun deleteById(userId: Long) {
         db.favoriteDao().deleteById(userId)
+    }
+
+    suspend fun clear() {
+        db.favoriteDao().clear()
+    }
 }

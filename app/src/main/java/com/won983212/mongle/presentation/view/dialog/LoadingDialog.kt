@@ -13,6 +13,6 @@ class LoadingDialog(context: Context) : MongleDialog(context) {
             null, false
         )
         layout.imageLoading.startAnim(true)
-        return openDialog(layout.root, true)
+        return openDialog(layout.root, true, false)
     }
 }

@@ -75,6 +75,7 @@ class EmotionMessagesViewModel @Inject constructor(
                     selected
                 )
             }
+            Log.d("EmotionMessagesViewModel", messages?.joinToString() ?: "null")
             if (messages != null) {
                 val mappedMessages = messages.map {
                     EmotionMessage(it.emotion, it.sentence)

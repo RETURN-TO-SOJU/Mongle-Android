@@ -75,10 +75,6 @@ class LoginActivity : BaseDataActivity<ActivityLoginBinding>() {
                     Log.e("KakaoLogin", error.toString())
                     Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
                 } else if (token != null) {
-                    Log.d(
-                        "KakaoLogin",
-                        "ACCESS: ${token.accessToken} / REFRESH: ${token.refreshToken}"
-                    )
                     viewModel.doLoginWithKakaoToken(token)
                 }
             }

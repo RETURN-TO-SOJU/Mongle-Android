@@ -11,4 +11,6 @@ interface FavoriteRepository {
     suspend fun insert(favorite: Favorite)
 
     suspend fun deleteById(id: Long)
+
+    suspend fun clear()
 }

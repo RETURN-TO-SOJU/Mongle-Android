@@ -49,11 +49,12 @@ class SettingFragment : Fragment() {
             refreshUsername.launch(Intent(activity, SetNameActivity::class.java))
         }
 
-        binding.layoutSettingLeave.setOnClickListener {
+        // TODO (LATER) 향후 leaving 구현
+        /*binding.layoutSettingLeave.setOnClickListener {
             LeavingFragment.newInstance().apply {
                 show(activity.supportFragmentManager, tag)
             }
-        }
+        }*/
 
         binding.layoutSettingScreenPassword.setOnClickListener {
             Intent(activity, PasswordActivity::class.java).apply {

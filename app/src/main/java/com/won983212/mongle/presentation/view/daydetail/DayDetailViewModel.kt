@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.won983212.mongle.R
+import com.won983212.mongle.domain.model.CachePolicy
 import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.domain.model.Favorite
 import com.won983212.mongle.domain.repository.FavoriteRepository
@@ -94,29 +95,34 @@ class DayDetailViewModel @Inject constructor(
         refresh()
     }
 
+    fun setEmotion(emotion: Emotion) {
+        _emotionIcon.postValue(emotion.iconRes)
+    }
+
     fun setLocalPhoto(photos: List<PhotoPresentationModel>) {
         _localPhotos.postValue(photos)
     }
 
-    fun refresh() = viewModelScope.launch(Dispatchers.IO) {
-        val detail = startProgressTask { getCalendarDayDetail(date) }
-        if (detail != null) {
-            emotion = detail.emotion
-            _diary.postValue(detail.diary)
-            detail.emotion?.let {
-                _emotionIcon.postValue(it.iconRes)
+    fun refresh(cachePolicy: CachePolicy = CachePolicy.DEFAULT) =
+        viewModelScope.launch(Dispatchers.IO) {
+            val detail = startProgressTask { getCalendarDayDetail(date, cachePolicy) }
+            if (detail != null) {
+                emotion = detail.emotion
+                _diary.postValue(detail.diary)
+                detail.emotion?.let {
+                    setEmotion(it)
+                }
+                _schedules.postValue(detail.scheduleList.map {
+                    SchedulePresentationModel.fromDomainModel(
+                        it
+                    )
+                })
+                _photos.postValue(detail.imageList.map { PhotoPresentationModel.fromDomainModel(it) })
+                _analyzedEmotions.postValue(detail.emotionList.map {
+                    AnalyzedEmotionPresentationModel.fromDomainModel(
+                        it
+                    )
+                })
             }
-            _schedules.postValue(detail.scheduleList.map {
-                SchedulePresentationModel.fromDomainModel(
-                    it
-                )
-            })
-            _photos.postValue(detail.imageList.map { PhotoPresentationModel.fromDomainModel(it) })
-            _analyzedEmotions.postValue(detail.emotionList.map {
-                AnalyzedEmotionPresentationModel.fromDomainModel(
-                    it
-                )
-            })
         }
-    }
 }

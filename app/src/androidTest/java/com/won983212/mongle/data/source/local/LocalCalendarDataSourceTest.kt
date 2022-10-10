@@ -77,9 +77,7 @@ internal class LocalCalendarDataSourceTest {
         val date = LocalDate.of(2022, 8, 1)
         val testDatas = mutableListOf<CalendarDayPreview>()
 
-        // precached:          3     5     7     9
-        //   updates:  8.1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
-        insertWeeklyTestEntity(date.plusDays(2), 4, 2)
+        insertWeeklyTestEntity(date.plusDays(2), 8, 2)
         for (i in 0..10) {
             val testData = CalendarDayPreview(
                 date.plusDays(i.toLong()),
@@ -91,10 +89,10 @@ internal class LocalCalendarDataSourceTest {
 
         val fromAndTo = YearMonth.of(2022, 8)
         testSuccessResult(dataSource.getCalendarDayPreview(fromAndTo, fromAndTo)) {
-            assertThat(it.size).isEqualTo(4)
+            assertThat(it.size).isEqualTo(8)
         }
 
-        dataSource.updateCalendarDayPreview(testDatas)
+        dataSource.updateCalendarDayPreview(fromAndTo, fromAndTo, testDatas)
 
         testSuccessResult(dataSource.getCalendarDayPreview(fromAndTo, fromAndTo)) {
             assertThat(it.size).isEqualTo(11)

@@ -1,5 +1,6 @@
 package com.won983212.mongle.presentation.view.favorite
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.won983212.mongle.databinding.FragmentCardFavoriteBinding
 import com.won983212.mongle.domain.model.Favorite
 import com.won983212.mongle.presentation.util.getParcelableCompat
+import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
 import com.won983212.mongle.util.DatetimeFormats
 
 class FavoriteCardFragment : Fragment() {
@@ -34,6 +36,12 @@ class FavoriteCardFragment : Fragment() {
 
         favorite?.let { favorite ->
             binding.imageCardFavoriteEmotion.setImageResource(favorite.emotion.iconRes)
+            binding.imageCardFavoriteEmotion.setOnClickListener {
+                Intent(context, DayDetailActivity::class.java).apply {
+                    putExtra(DayDetailActivity.EXTRA_DATE, favorite.date)
+                    startActivity(this)
+                }
+            }
             binding.textCardFavoriteDate.text = favorite.date.format(DatetimeFormats.DATE_SHORT_DOT)
             binding.textCardFavoriteTitle.text = favorite.title
             binding.layoutCardFavorite.backgroundTintList =

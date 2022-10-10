@@ -27,13 +27,20 @@
             android:src="@drawable/ic_delete"
             app:tint="@color/white" />
 
-        <ImageView
-            android:id="@+id/image_card_favorite_emotion"
-            android:layout_width="180dp"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/emotion_happy" />
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/image_card_favorite_emotion"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:background="?selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                android:src="@drawable/emotion_happy" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/text_card_favorite_date"

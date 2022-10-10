@@ -43,7 +43,7 @@ class LoginViewModel @Inject constructor(
                     setFCMToken(result)
                 }
             }
-            if (response.isNew || response.name.isEmpty()) {
+            if (response.isNew || response.name?.isNotEmpty() != true) {
                 _eventReadyForRegister.post()
             } else {
                 _eventLoggedIn.post()

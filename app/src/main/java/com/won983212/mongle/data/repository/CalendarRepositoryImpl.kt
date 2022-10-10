@@ -34,7 +34,7 @@ internal class CalendarRepositoryImpl(
             }
 
             override suspend fun saveCallResult(value: List<CalendarDayPreview>) {
-                localCalendarDataSource.updateCalendarDayPreview(value)
+                localCalendarDataSource.updateCalendarDayPreview(startMonth, endMonth, value)
             }
 
             override suspend fun fetch(): Result<List<CalendarDayPreview>> {

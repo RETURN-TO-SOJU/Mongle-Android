@@ -76,8 +76,16 @@ internal class LocalCalendarDataSource
         }
     }
 
-    suspend fun updateCalendarDayPreview(days: List<CalendarDayPreview>) {
+    suspend fun updateCalendarDayPreview(
+        startMonth: YearMonth,
+        endMonth: YearMonth,
+        days: List<CalendarDayPreview>
+    ) {
         db.withTransaction {
+            val start = startMonth.atDay(1).toEpochDay()
+            val end = endMonth.atEndOfMonth().toEpochDay()
+            calendarDao.deleteCalendarDayRange(start, end)
+
             days.forEach {
                 val updated =
                     calendarDao.updateCalendarDayPreview(it.date, it.emotion, it.keywords)

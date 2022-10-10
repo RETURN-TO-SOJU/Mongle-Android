@@ -22,6 +22,12 @@ class Mongle : Application() {
 
         // Get FCM Token
         logFCMToken()
+
+        logApiUrl()
+    }
+
+    private fun logApiUrl() {
+        Log.d("API", BuildConfig.BASE_URL)
     }
 
     private fun logKeyHash() {

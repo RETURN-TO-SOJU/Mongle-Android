@@ -20,6 +20,15 @@ interface CalendarDao {
     suspend fun insertCalendarDay(calendarDayEntity: CalendarDayEntity)
 
     @Query(
+        "DELETE FROM calendardayentity " +
+                "WHERE date >= :fromEpochDay AND date <= :toEpochDay"
+    )
+    suspend fun deleteCalendarDayRange(
+        fromEpochDay: Long,
+        toEpochDay: Long
+    )
+
+    @Query(
         "SELECT date, emotion, keywords FROM calendardayentity " +
                 "WHERE date >= :fromEpochDay AND date <= :toEpochDay " +
                 "ORDER BY date"

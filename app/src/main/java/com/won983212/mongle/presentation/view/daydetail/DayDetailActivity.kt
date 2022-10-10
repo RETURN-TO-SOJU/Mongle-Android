@@ -5,6 +5,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.won983212.mongle.R
 import com.won983212.mongle.databinding.ActivityDayDetailBinding
+import com.won983212.mongle.domain.model.CachePolicy
 import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.presentation.base.BaseDataActivity
 import com.won983212.mongle.presentation.base.event.OnSelectedListener
@@ -34,6 +35,9 @@ import java.util.*
  * * [RESULT_SELECTED_DATE]: [LocalDate] -
  * 이 activity내에서 선택된 date를 반환한다.
  * 사용자가 선택하지 않았다면 [EXTRA_DATE]로 넘어온 date가 반환된다.
+ * * [RESULT_CHANGED_EMOTION]: [Emotion] -
+ * 이 activity내에서 Emotion을 변경하였다면 그 Emotion을 반환한다.
+ * 바꾸지 않았다면 null
  */
 @AndroidEntryPoint
 class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
@@ -54,7 +58,7 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
 
         viewModel.attachDefaultHandlers(this)
         viewModel.initializeByIntent(intent)
-        setResult(RESULT_OK, Intent().putExtra(RESULT_SELECTED_DATE, viewModel.date))
+        saveResult(viewModel.date, null)
 
         initializeUI()
         LocalDateImageStore(this).readMediaStoreImages(viewModel.date) {
@@ -67,11 +71,15 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
     private fun initializeUI() {
         val openDiary =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                viewModel.refresh()
+                viewModel.refresh(CachePolicy.REFRESH)
             }
 
         binding.btnDayDetailChangeEmotion.setOnClickListener {
             val fragment = SetEmotionFragment.newInstance(viewModel.date, viewModel.emotion)
+            fragment.setOnSelectedListener {
+                saveResult(viewModel.date, it)
+                viewModel.setEmotion(it)
+            }
             fragment.show(supportFragmentManager, fragment.tag)
         }
 
@@ -115,7 +123,15 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
 
     override fun onSelected(value: LocalDate) {
         viewModel.setDate(value)
-        setResult(RESULT_OK, Intent().putExtra(RESULT_SELECTED_DATE, viewModel.date))
+        saveResult(viewModel.date, null)
+    }
+
+    private fun saveResult(date: LocalDate?, emotion: Emotion?) {
+        setResult(
+            RESULT_OK, Intent()
+                .putExtra(RESULT_SELECTED_DATE, date)
+                .putExtra(RESULT_CHANGED_EMOTION, emotion)
+        )
     }
 
     private fun openEmotionMessagesActivity(emotion: Emotion) {
@@ -140,5 +156,6 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
         const val EXTRA_DATE = "date"
         const val EXTRA_SHOW_ARRIVED_GIFT_DIALOG = "gift"
         const val RESULT_SELECTED_DATE = "selectedDate"
+        const val RESULT_CHANGED_EMOTION = "changedEmotion"
     }
 }

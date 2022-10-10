@@ -133,6 +133,7 @@ class MongleCalendar @JvmOverloads constructor(
     /**
      * 지금까지 불러온 감정들에 추가로 더 데이터를 추가합니다.
      * 입력된 모든 day 데이터들 [emotionMapping]에 대해 무조건 ui update합니다.
+     * 이미 있는 데이터들은 교체되고, 마찬가지로 ui update를 실시합니다.
      */
     fun addDayEmotions(emotionMapping: Map<LocalDate, Emotion>) {
         dayEmotions = dayEmotions?.plus(emotionMapping) ?: emotionMapping

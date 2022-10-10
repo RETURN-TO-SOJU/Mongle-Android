@@ -11,7 +11,11 @@ import javax.inject.Inject
 class GetFavoritesUseCase @Inject constructor(
     private val favoriteRepository: FavoriteRepository
 ) {
-    suspend operator fun invoke(yearMonth: YearMonth? = null): List<Favorite> {
+    suspend operator fun invoke(): List<Favorite> {
         return favoriteRepository.getAll()
+    }
+
+    suspend operator fun invoke(yearMonth: YearMonth): List<Favorite> {
+        return favoriteRepository.getRange(yearMonth)
     }
 }

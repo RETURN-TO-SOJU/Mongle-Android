@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.won983212.mongle.databinding.FragmentOverviewBinding
+import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.presentation.util.getSerializableExtraCompat
 import com.won983212.mongle.presentation.view.daydetail.DayDetailActivity
 import com.won983212.mongle.presentation.view.tutorial.TutorialActivity
@@ -57,13 +58,23 @@ class OverviewFragment : Fragment() {
 
         val openDetail =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                val selected = it?.data
-                    ?.getSerializableExtraCompat(
-                        DayDetailActivity.RESULT_SELECTED_DATE
-                    ) ?: binding.calendarOverview.selectedDate
+                val selected = it?.data?.getSerializableExtraCompat(
+                    DayDetailActivity.RESULT_SELECTED_DATE
+                ) ?: binding.calendarOverview.selectedDate
+
                 if (selected != null) {
                     viewModel.setSelectedDate(selected)
                     binding.calendarOverview.selectDate(selected)
+
+                    val changedEmotion: Emotion? =
+                        it?.data?.getSerializableExtraCompat(DayDetailActivity.RESULT_CHANGED_EMOTION)
+
+                    if (changedEmotion != null) {
+                        viewModel.updateEmotion(selected, changedEmotion)
+                        binding.calendarOverview.addDayEmotions(
+                            mapOf(selected to changedEmotion)
+                        )
+                    }
                 }
             }
 

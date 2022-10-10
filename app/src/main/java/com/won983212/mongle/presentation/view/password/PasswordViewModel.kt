@@ -89,8 +89,9 @@ class PasswordViewModel @Inject constructor(
             PasswordActivity.Mode.AUTH -> {
                 _title.value = R.string.pwd_auth_title
                 _subtitle.value = 0
-                // TODO 암호분실 기능은 향후에 구현
-                _actionBtnText.value = R.string.pwd_lost
+                // TODO (LATER) 암호분실 기능은 향후에 구현
+                // _actionBtnText.value = R.string.pwd_lost
+                _actionBtnText.value = 0
             }
         }
     }

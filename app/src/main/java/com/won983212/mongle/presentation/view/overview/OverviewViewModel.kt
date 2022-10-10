@@ -17,6 +17,8 @@ import com.won983212.mongle.util.DatetimeFormats
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import java.time.LocalDate
 import java.time.YearMonth
 import javax.inject.Inject
@@ -51,6 +53,8 @@ class OverviewViewModel @Inject constructor(
 
     val hasData = MutableLiveData(false)
 
+    private var apiCallMutex = Mutex()
+
 
     private fun getOverviewText(date: LocalDate): TextResource {
         if (date == LocalDate.now()) {
@@ -65,8 +69,10 @@ class OverviewViewModel @Inject constructor(
 
     fun loadCalendarData(from: YearMonth, to: YearMonth) = viewModelScope.launch(Dispatchers.IO) {
         Log.d("OverviewViewModel", "LOAD $from ~ $to")
-        val days = startProgressTask {
-            getCalendarDayMetadata(from, to)
+        val days = apiCallMutex.withLock {
+            startProgressTask {
+                getCalendarDayMetadata(from, to)
+            }
         }
         if (days != null) {
             val emotionData = days
@@ -76,6 +82,12 @@ class OverviewViewModel @Inject constructor(
             _eventCalendarDataLoaded.postValue(emotionData)
             keywordMap = days.associate { it.date to it.keywords }
         }
+    }
+
+    fun updateEmotion(date: LocalDate, emotion: Emotion?) {
+        val actualEmotion = emotion ?: Emotion.ANXIOUS
+        calendarEmotions[date] = actualEmotion
+        _selectedDayEmotion.postValue(actualEmotion.iconRes)
     }
 
     fun setSelectedDate(date: LocalDate) = viewModelScope.launch(Dispatchers.IO) {
@@ -99,7 +111,9 @@ class OverviewViewModel @Inject constructor(
         val defaultFeedback = emotion?.descriptionRes ?: R.string.overview_title_empty
         hasData.postValue(emotion != null)
 
-        val detail = startResultTask { getCalendarDayDetail(date) }
+        val detail = apiCallMutex.withLock {
+            startResultTask { getCalendarDayDetail(date) }
+        }
         if (detail != null && detail.diaryFeedback.isNotBlank()) {
             _diaryFeedback.postValue(TextResource(detail.diaryFeedback))
         } else {

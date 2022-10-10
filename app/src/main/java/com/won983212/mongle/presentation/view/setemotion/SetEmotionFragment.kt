@@ -17,6 +17,7 @@ class SetEmotionFragment : BottomSheetDialogFragment() {
 
     private val viewModel by viewModels<SetEmotionViewModel>()
     private lateinit var binding: BottomSheetSetEmotionBinding
+    private var onSelectedListener: OnSelected? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,9 @@ class SetEmotionFragment : BottomSheetDialogFragment() {
 
         binding.btnNewFavoriteOk.setOnClickListener {
             viewModel.saveEmotion()
+            viewModel.selectedEmotion.value?.let {
+                onSelectedListener?.onSelect(it)
+            }
             dismiss()
         }
 
@@ -47,6 +51,15 @@ class SetEmotionFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    fun setOnSelectedListener(listener: OnSelected?): SetEmotionFragment {
+        onSelectedListener = listener
+        return this
+    }
+
+
+    fun interface OnSelected {
+        fun onSelect(emotion: Emotion)
+    }
 
     companion object {
         const val ARGUMENT_DATE = "date"
