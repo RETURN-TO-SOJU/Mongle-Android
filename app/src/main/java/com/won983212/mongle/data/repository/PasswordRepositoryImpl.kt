@@ -3,6 +3,7 @@ package com.won983212.mongle.data.repository
 import android.util.Base64
 import com.won983212.mongle.data.source.PasswordDataSource
 import com.won983212.mongle.domain.repository.PasswordRepository
+import com.won983212.mongle.exception.CannotDecryptException
 import com.won983212.mongle.util.generateFillZero
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -39,7 +40,7 @@ internal class PasswordRepositoryImpl
             )
             return String(cipher.doFinal(decodedData.sliceArray(16 until decodedData.size)))
         } catch (e: Exception) {
-            return data
+            throw CannotDecryptException(e)
         }
     }
 

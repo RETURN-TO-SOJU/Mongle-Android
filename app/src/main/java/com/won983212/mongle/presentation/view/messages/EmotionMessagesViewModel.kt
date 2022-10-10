@@ -10,6 +10,7 @@ import com.won983212.mongle.domain.model.Emotion
 import com.won983212.mongle.domain.usecase.calendar.GetDayEmotionalSentencesUseCase
 import com.won983212.mongle.domain.usecase.password.DecryptByKeyPasswordUseCase
 import com.won983212.mongle.domain.usecase.password.HasDataKeyPasswordUseCase
+import com.won983212.mongle.exception.CannotDecryptException
 import com.won983212.mongle.presentation.base.BaseViewModel
 import com.won983212.mongle.presentation.util.TextResource
 import com.won983212.mongle.presentation.util.asLiveData
@@ -109,9 +110,17 @@ class EmotionMessagesViewModel @Inject constructor(
     private fun doUnlock(messages: List<EmotionMessage>) {
         if (!isUnlocked) {
             isUnlocked = true
-            _messages.postValue(messages.map {
-                EmotionMessage(it.emotion, decryptByKeyPassword(it.message))
-            })
+            val decryptedMessages = try {
+                messages.map {
+                    EmotionMessage(it.emotion, decryptByKeyPassword(it.message))
+                }
+            } catch (e: CannotDecryptException) {
+                if (e.message != null) {
+                    showError(e.message!!)
+                }
+                messages
+            }
+            _messages.postValue(decryptedMessages)
         }
     }
 

@@ -26,8 +26,17 @@ class InputPasswordDialog(
             } else if (!PASSWORD_REGEX.matcher(pwd).matches()) {
                 context.toastShort("비밀번호는 영문, 숫자, 특수문자로만 되어있어야합니다. 공백도 안됩니다.")
             } else {
-                onSubmitPassword?.onSubmit(pwd.toString())
-                dialog.dismiss()
+                AlertMessageDialog(
+                    context,
+                    R.string.pwd_input_confirm_message_title,
+                    R.string.pwd_input_confirm_message_subtitle,
+                    {
+                        if (it == AlertMessageDialog.Result.OK) {
+                            onSubmitPassword?.onSubmit(pwd.toString())
+                            dialog.dismiss()
+                        }
+                    }
+                ).open()
             }
         }
         layout.btnInputPasswordCancel.setOnClickListener {

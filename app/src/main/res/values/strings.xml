@@ -43,12 +43,14 @@
     <string name="pwd_delete">암호삭제</string>
 
     <!-- Password Input Dialog -->
+    <string name="pwd_input_confirm_message_title">이 비밀번호를 사용할까요?</string>
+    <string name="pwd_input_confirm_message_subtitle">비밀번호는 앱에 저장되지만, 앱을 삭제하면 비밀번호도 삭제되므로 기억할 수 있는 비밀번호로 설정해야합니다.</string>
     <string name="pwd_input_nopwd_message_title">비밀번호를 사용하지 않으세요?</string>
     <string name="pwd_input_nopwd_message_subtitle">그러면 저희가 임의로 비밀번호를 설정해서 \n암호화합니다. 그래도 될까요?</string>
     <string name="pwd_input_title_1">카카오톡 메시지를 잠글</string>
     <string name="pwd_input_title_2">비밀번호를 입력해주세요.</string>
     <string name="pwd_input_hint">원하는 암호 입력</string>
-    <string name="pwd_input_hint_apply_all_time">＊ 1회만 입력하면 이후에 계속 적용됩니다.</string>
+    <string name="pwd_input_hint_apply_all_time">＊ 한번 입력하면 기기에 저장되어 자동으로 계속 적용됩니다.</string>
     <string name="pwd_input_not_want_to_use">사용 안 함</string>
 
     <!-- Unlock Dialog -->
