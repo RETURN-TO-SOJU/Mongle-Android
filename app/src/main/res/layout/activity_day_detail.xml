@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.presentation.view.daydetail.DayDetailViewModel" />
+            type="com.rtsoju.mongle.presentation.view.daydetail.DayDetailViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:clipChildren="false"
         android:clipToPadding="false"
-        tools:context="com.won983212.mongle.presentation.view.daydetail.DayDetailActivity">
+        tools:context="com.rtsoju.mongle.presentation.view.daydetail.DayDetailActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                 android:gravity="center"
                 android:padding="16dp">
 
-                <com.won983212.mongle.presentation.view.daydetail.weekselector.WeekDaySelector
+                <com.rtsoju.mongle.presentation.view.daydetail.weekselector.WeekDaySelector
                     android:id="@+id/calendar_day_detail_weekday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.won983212.mongle.presentation.view.tutorial.TutorialPageFragment">
+    tools:context="com.rtsoju.mongle.presentation.view.tutorial.TutorialPageFragment">
 
     <TextView
         android:id="@+id/text_tutorial_title"

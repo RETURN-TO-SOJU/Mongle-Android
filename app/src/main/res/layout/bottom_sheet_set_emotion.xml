@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.presentation.view.setemotion.SetEmotionViewModel" />
+            type="com.rtsoju.mongle.presentation.view.setemotion.SetEmotionViewModel" />
     </data>
 
     <FrameLayout
@@ -33,7 +33,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <com.won983212.mongle.presentation.common.emotionselector.EmotionSelector
+            <com.rtsoju.mongle.presentation.common.emotionselector.EmotionSelector
                 android:id="@+id/selector_set_emotion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

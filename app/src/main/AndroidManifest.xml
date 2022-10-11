@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.won983212.mongle">
+    package="com.rtsoju.mongle">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".Mongle"
+        android:name="com.rtsoju.mongle.Mongle"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.view.starting.StartingActivity"
+            android:name="com.rtsoju.mongle.presentation.view.starting.StartingActivity"
             android:exported="true"
             android:theme="@style/Theme.Mongle.Starting">
             <intent-filter>
@@ -30,7 +30,7 @@
         </activity>
 
         <service
-            android:name=".domain.service.MongleFirebaseMessagingService"
+            android:name="com.rtsoju.mongle.domain.service.MongleFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -38,23 +38,23 @@
         </service>
 
         <activity
-            android:name=".presentation.view.setname.SetNameActivity"
+            android:name="com.rtsoju.mongle.presentation.view.setname.SetNameActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.diary.EditDiaryActivity"
+            android:name="com.rtsoju.mongle.presentation.view.diary.EditDiaryActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.messages.EmotionMessagesActivity"
+            android:name="com.rtsoju.mongle.presentation.view.messages.EmotionMessagesActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.daydetail.DayDetailActivity"
+            android:name="com.rtsoju.mongle.presentation.view.daydetail.DayDetailActivity"
             android:exported="false"
-            android:parentActivityName=".presentation.view.main.MainActivity" />
+            android:parentActivityName="com.rtsoju.mongle.presentation.view.main.MainActivity" />
         <activity
-            android:name=".presentation.view.main.MainActivity"
+            android:name="com.rtsoju.mongle.presentation.view.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.kakaoexport.KakaoExportActivity"
+            android:name="com.rtsoju.mongle.presentation.view.kakaoexport.KakaoExportActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -80,25 +80,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.view.tutorial.TutorialActivity"
+            android:name="com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity"
             android:exported="false" />
         <activity
-            android:name="com.won983212.mongle.debug.view.MainTestActivity"
+            android:name="com.rtsoju.mongle.debug.view.MainTestActivity"
             android:exported="true" />
         <activity
-            android:name="com.won983212.mongle.debug.view.ViewTestActivity"
+            android:name="com.rtsoju.mongle.debug.view.ViewTestActivity"
             android:exported="false" />
         <activity
-            android:name="com.won983212.mongle.debug.view.ApiTestActivity"
+            android:name="com.rtsoju.mongle.debug.view.ApiTestActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.password.PasswordActivity"
+            android:name="com.rtsoju.mongle.presentation.view.password.PasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.agree.AgreeActivity"
+            android:name="com.rtsoju.mongle.presentation.view.agree.AgreeActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.view.login.LoginActivity"
+            android:name="com.rtsoju.mongle.presentation.view.login.LoginActivity"
             android:exported="false" />
 
         <meta-data

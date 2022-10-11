@@ -6,18 +6,18 @@
 
     <fragment
         android:id="@+id/tab_overview"
-        android:name="com.won983212.mongle.presentation.view.overview.OverviewFragment"
+        android:name="com.rtsoju.mongle.presentation.view.overview.OverviewFragment"
         android:label="@string/tab_overview_title" />
     <fragment
         android:id="@+id/tab_statistics"
-        android:name="com.won983212.mongle.presentation.view.statistics.StatisticsFragment"
+        android:name="com.rtsoju.mongle.presentation.view.statistics.StatisticsFragment"
         android:label="@string/tab_statistics_title" />
     <fragment
         android:id="@+id/tab_favorite"
-        android:name="com.won983212.mongle.presentation.view.favorite.FavoriteFragment"
+        android:name="com.rtsoju.mongle.presentation.view.favorite.FavoriteFragment"
         android:label="@string/tab_favorite_title" />
     <fragment
         android:id="@+id/tab_settings"
-        android:name="com.won983212.mongle.presentation.view.setting.SettingFragment"
+        android:name="com.rtsoju.mongle.presentation.view.setting.SettingFragment"
         android:label="@string/tab_settings_title" />
 </navigation>
