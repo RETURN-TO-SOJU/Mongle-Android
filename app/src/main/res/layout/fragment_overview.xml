@@ -10,13 +10,13 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.presentation.view.overview.OverviewViewModel" />
+            type="com.rtsoju.mongle.presentation.view.overview.OverviewViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.won983212.mongle.presentation.view.main.MainActivity">
+        tools:context="com.rtsoju.mongle.presentation.view.main.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_behavior=".presentation.behavior.BehaviorAlpha">
+            app:layout_behavior="com.rtsoju.mongle.presentation.behavior.BehaviorAlpha">
 
             <TextView
                 android:id="@+id/text_overview_intro"
@@ -144,7 +144,7 @@
                         android:visibility="@{viewModel.hasData ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
-                <com.won983212.mongle.presentation.view.calendar.MongleCalendar
+                <com.rtsoju.mongle.presentation.common.calendar.MongleCalendar
                     android:id="@+id/calendar_overview"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

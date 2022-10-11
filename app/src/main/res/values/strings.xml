@@ -12,6 +12,9 @@
     <string name="watch_now">지금 볼게요!</string>
     <string name="write_complete">작성완료</string>
 
+    <string name="wip_title">공사중인 기능이에요</string>
+    <string name="wip_subtitle">통계 기능은 아직 개발중이에요…\n다음 버전에 봐요!</string>
+
     <!-- Emotion -->
     <string name="emotion_angry">분노</string>
     <string name="emotion_anxious">불안</string>
@@ -39,6 +42,23 @@
     <string name="pwd_lost">암호분실</string>
     <string name="pwd_delete">암호삭제</string>
 
+    <!-- Password Input Dialog -->
+    <string name="pwd_input_confirm_message_title">이 비밀번호를 사용할까요?</string>
+    <string name="pwd_input_confirm_message_subtitle">비밀번호는 앱에 저장되지만, 앱을 삭제하면 비밀번호도 삭제되므로 기억할 수 있는 비밀번호로 설정해야합니다.</string>
+    <string name="pwd_input_nopwd_message_title">비밀번호를 사용하지 않으세요?</string>
+    <string name="pwd_input_nopwd_message_subtitle">그러면 저희가 임의로 비밀번호를 설정해서 \n암호화합니다. 그래도 될까요?</string>
+    <string name="pwd_input_title_1">카카오톡 메시지를 잠글</string>
+    <string name="pwd_input_title_2">비밀번호를 입력해주세요.</string>
+    <string name="pwd_input_hint">원하는 암호 입력</string>
+    <string name="pwd_input_hint_apply_all_time">＊ 한번 입력하면 기기에 저장되어 자동으로 계속 적용됩니다.</string>
+    <string name="pwd_input_not_want_to_use">사용 안 함</string>
+
+    <!-- Unlock Dialog -->
+    <string name="unlock_title_1">이 메시지들은 잠겨있습니다.</string>
+    <string name="unlock_title_2">기기에 저장된 비밀번호로\n암호를 해제할까요?</string>
+    <string name="unlock_hint_1">* 클릭시 암호화 해제</string>
+    <string name="unlock_hint_2">한번만 해제하면 앱이 꺼질때까지 자동으로 해제됩니다.</string>
+
     <!-- Integration dialog -->
     <string name="integration_title">반가워요 👋\n우리 더 친해져요 :)</string>
     <string name="integration_subtitle">클라우드 및 캘린더 연동하기</string>
@@ -52,9 +72,12 @@
     <string name="tutorial_title_1">안녕하세요! 튜토리얼에 오신것을 환영합니다!</string>
 
     <!-- New favorite -->
-    <string name="new_favorite_title">소마님 💌\n소중한 추억을 저장하세요 :)</string>
+    <string name="new_favorite_title">당신의 💌\n소중한 추억을 저장하세요 :)</string>
     <string name="new_favorite_title_hint">제목을 입력해주세요.</string>
     <string name="new_favorite_fill_blanks">모든 입력란을 채워주세요.</string>
+
+    <!-- Set emotion -->
+    <string name="set_emotion_title">이날의 기분은 어땠나요?\n궁금해요. 알려주세요!</string>
 
     <!-- Bottom tab title -->
     <string name="tab_overview_title">캘린더</string>
@@ -70,6 +93,14 @@
     <string name="kakao_tutorial_title_4"><font color="#EB6E6D">"텍스트만 보내기"</font> 클릭</string>
     <string name="kakao_tutorial_title_5"><font color="#EB6E6D">"몽글몽글"</font> 앱 선택</string>
 
+    <!-- Security welcome messages -->
+    <string name="security_tutorial_title_1">카톡 데이터 제공이\n꺼려지시나요?</string>
+    <string name="security_tutorial_subtitle_1">몽글몽글은 안전하게 데이터를 저장합니다.\n데이터들은 오직 비밀번호를 아는 여러분들만 볼 수 있어요!</string>
+    <string name="security_tutorial_title_2">신중하게 비밀번호를\n설정해주세요.</string>
+    <string name="security_tutorial_subtitle_2">비밀번호를 잊으면 그 누구도 데이터를 열람할 수 없습니다.\n복구도 불가능하니 한번 더 신중하게!</string>
+    <string name="security_tutorial_title_3">민감한 정보라면\n안전하게 보관하는 것이 좋겠죠?</string>
+    <string name="security_tutorial_subtitle_3">비밀번호를 설정하지 않아도, 여러분의 데이터는 기본적으로\n암호화되어 보관되므로 안심하세요!</string>
+
     <!-- Overview -->
     <string name="overview_intro">%1$s님 👋\n<b>%2$s\n</b>%3$s</string>
     <string name="overview_intro_message_today">오늘 하루도 수고했어요.</string>
@@ -82,7 +113,7 @@
     <string name="overview_intro_message_sad">우울한 하루였어요.</string>
     <string name="overview_title_empty"><font color="#B2B7BD">기록이 없네요.</font></string>
     <string name="overview_keyword">[이날의 키워드]</string>
-    <string name="overview_go_tutorial_kakao_export">카카오톡 데이터 불러오는 방법</string>
+    <string name="overview_go_tutorial_kakao_export">카카오톡 분석 방법 보기</string>
 
     <!-- Kakaotalk exporting -->
     <string name="sending_title" tools:ignore="TypographyEllipsis,TypographyFractions">데이터 전송 중... (1/2)</string>
@@ -100,13 +131,17 @@
     <string name="detail_plans_title">이날의 일정</string>
 
     <!-- Dialog -->
-    <string name="analyze_complete">%1$s님,\n감정 분석을 완료했어요 :)</string>
-    <string name="arrived_gift">띵동🔔\n행복한 기억이 도착했어요:)</string>
+    <string name="dialog_analyze_complete">%1$s님,\n감정 분석을 완료했어요 :)</string>
+    <string name="dialog_arrived_gift">띵동🔔\n행복한 기억이 도착했어요:)</string>
+    <string name="dialog_input_room_name">상대 또는 카톡방 이름을 입력해주세요!\n중복 분석 방지를 위해 사용됩니다.</string>
+    <string name="dialog_input_room_name_hint">상대 또는 카톡 방의 이름</string>
 
     <!-- Setting -->
     <string name="setting_title_1">%1$s님,</string>
     <string name="setting_title_2">오늘 기분은 어때요?</string>
-    <string name="setting_password">비밀번호 설정</string>
+    <string name="setting_change_username">이름 변경</string>
+    <string name="setting_screen_password">화면보호 비밀번호 설정</string>
+    <string name="setting_encrypt_password">개인 데이터 암호 설정</string>
     <string name="setting_alert">앱 알림</string>
     <string name="setting_leave">몽글몽글 서비스 탈퇴</string>
 
@@ -123,4 +158,8 @@
     <!-- Name setting -->
     <string name="name_setting_title">몽글몽글에 오신걸 환영해요 👋\n당신의 이름을 알려주세요!</string>
     <string name="name_setting_hint">사용하실 닉네임을 적어주세요!</string>
+
+    <!-- Favorite -->
+    <string name="favorite_title">잊고 싶지 않은 🎀\n나만의 감정 모음집</string>
+    <string name="favorite_empty">찜 목록이 비어있어요.\n즐거웠던 날들을 찜해보세요!</string>
 </resources>

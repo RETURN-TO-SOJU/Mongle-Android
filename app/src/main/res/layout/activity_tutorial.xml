@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.won983212.mongle.presentation.view.tutorial.TutorialActivity">
+    tools:context="com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_tutorial"
@@ -19,7 +19,7 @@
             style="@style/Widget.Mongle.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:text="@string/skip" />
     </androidx.appcompat.widget.Toolbar>
 

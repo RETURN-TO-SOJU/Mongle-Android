@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        app:name="stringConfigKey"
+        app:defaultValue="STRING" />
+    <item
+        app:name="intConfigKey"
+        app:defaultValue="12" />
+    <item
+        app:name="wrongIntConfigKey"
+        app:defaultValue="12.5" />
+    <item
+        app:name="booleanConfigKey"
+        app:defaultValue="false" />
+    <item
+        app:name="floatConfigKey"
+        app:defaultValue="12.5" />
+    <item
+        app:name="longConfigKey"
+        app:defaultValue="1872367812496" />
+</settings>

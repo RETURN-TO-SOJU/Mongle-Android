@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.presentation.view.newfavorite.NewFavoriteViewModel" />
+            type="com.rtsoju.mongle.presentation.view.newfavorite.NewFavoriteViewModel" />
     </data>
 
     <FrameLayout
@@ -34,13 +34,10 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <GridLayout
-                android:id="@+id/layout_new_favorite_emotion_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginVertical="24dp"
-                android:columnCount="3" />
+            <com.rtsoju.mongle.presentation.common.emotionselector.EmotionSelector
+                android:id="@+id/selector_new_favorite_emotion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <EditText
                 android:id="@+id/edittext_new_favorite_title"
@@ -54,8 +51,8 @@
                 android:hint="@string/new_favorite_title_hint"
                 android:inputType="text"
                 android:paddingBottom="20dp"
-                android:textCursorDrawable="@drawable/cursor_gray"
                 android:text="@={viewModel.title}"
+                android:textCursorDrawable="@drawable/cursor_gray"
                 app:drawableStartRes="@{viewModel.selectedEmotion.iconRes}" />
 
             <Button
