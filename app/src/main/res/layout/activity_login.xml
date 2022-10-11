@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.presentation.view.login.LoginViewModel" />
+            type="com.rtsoju.mongle.presentation.view.login.LoginViewModel" />
     </data>
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context="com.won983212.mongle.presentation.view.login.LoginActivity">
+        tools:context="com.rtsoju.mongle.presentation.view.login.LoginActivity">
 
         <ImageView
             android:layout_width="168dp"

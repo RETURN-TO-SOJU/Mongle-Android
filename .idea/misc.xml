@@ -25,22 +25,9 @@
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/text_login_title.xml" value="0.301" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/text_title.xml" value="0.301" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/drawable/title.xml" value="0.282" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_day_detail.xml" value="0.25" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_name_setting.xml" value="0.25" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_password.xml" value="0.30012825994014536" />
         <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_splash.xml" value="0.26452991452991453" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/activity_tutorial.xml" value="0.30012825994014536" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/bottom_sheet_new_favorite.xml" value="0.30012825994014536" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/calendar_mongle.xml" value="0.30012825994014536" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/fragment_blank.xml" value="0.30012825994014536" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/fragment_favorite.xml" value="0.30012825994014536" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/fragment_overview.xml" value="0.30683760683760686" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/fragment_setting.xml" value="0.33" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/fragment_statistics.xml" value="0.2992731936725096" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/layout/fragment_tutorial_page.xml" value="0.30012825994014536" />
-        <entry key="..\:/Users/psvm/AndroidStudioProjects/Mongle/app/src/main/res/menu/bottom_nav_menu.xml" value="0.30012825994014536" />
         <entry key="app/src/main/res/drawable/avd_complete.xml" value="0.271" />
         <entry key="app/src/main/res/drawable/avd_flag_cross.xml" value="0.271" />
         <entry key="app/src/main/res/drawable/background_checkable.xml" value="0.187" />
@@ -67,7 +54,7 @@
         <entry key="app/src/main/res/layout/bottom_sheet_integration.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/bottom_sheet_new_favorite.xml" value="0.335" />
         <entry key="app/src/main/res/layout/dialog_analyze_complete.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_overview.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/fragment_tutorial_page.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/listitem_keyword.xml" value="0.28229166666666666" />

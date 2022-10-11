@@ -9,14 +9,14 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.presentation.view.main.MainViewModel" />
+            type="com.rtsoju.mongle.presentation.view.main.MainViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.won983212.mongle.presentation.view.main.MainActivity">
+        tools:context="com.rtsoju.mongle.presentation.view.main.MainActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_overview"

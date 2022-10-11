@@ -8,10 +8,25 @@
         <item>@string/kakao_tutorial_title_5</item>
     </array>
     <array name="kakao_tutorial_image">
-        <item>@drawable/kakao_tutorial_1</item>
-        <item>@drawable/kakao_tutorial_2</item>
-        <item>@drawable/kakao_tutorial_3</item>
-        <item>@drawable/kakao_tutorial_4</item>
-        <item>@drawable/kakao_tutorial_5</item>
+        <item>@drawable/img_kakao_tutorial_1</item>
+        <item>@drawable/img_kakao_tutorial_2</item>
+        <item>@drawable/img_kakao_tutorial_3</item>
+        <item>@drawable/img_kakao_tutorial_4</item>
+        <item>@drawable/img_kakao_tutorial_5</item>
+    </array>
+    <array name="security_tutorial_title">
+        <item>@string/security_tutorial_title_1</item>
+        <item>@string/security_tutorial_title_2</item>
+        <item>@string/security_tutorial_title_3</item>
+    </array>
+    <array name="security_tutorial_subtitle">
+        <item>@string/security_tutorial_subtitle_1</item>
+        <item>@string/security_tutorial_subtitle_2</item>
+        <item>@string/security_tutorial_subtitle_3</item>
+    </array>
+    <array name="security_tutorial_image">
+        <item>@drawable/img_security_tutorial_1</item>
+        <item>@drawable/img_security_tutorial_2</item>
+        <item>@drawable/img_security_tutorial_3</item>
     </array>
 </resources>

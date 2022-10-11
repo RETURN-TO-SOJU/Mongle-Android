@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rtsoju.mongle.presentation.view.setemotion.SetEmotionViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/Theme.Mongle">
+
+        <!-- BottomSheetDialogFragment에서 margin을 주기위해 parent
+         layout을 선언함.-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="48dp"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_emotion_title"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <com.rtsoju.mongle.presentation.common.emotionselector.EmotionSelector
+                android:id="@+id/selector_set_emotion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="12dp"
+                    app:imgRes="@{viewModel.selectedEmotion.iconRes}"
+                    tools:src="@drawable/emotion_happy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:textRes="@{viewModel.selectedEmotion.descriptionRes}"
+                    tools:text="@string/overview_intro_message_happy" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_new_favorite_ok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/ok" />
+
+        </LinearLayout>
+    </FrameLayout>
+</layout>
