@@ -34,34 +34,34 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@drawable/radio_btn_round"
-                    android:textColor="@color/radio_btn_text"
-                    tools:checked="true"
                     android:button="@null"
-                    android:text="Weekly" />
+                    android:gravity="center"
+                    android:text="@string/statistics_weekly"
+                    android:textColor="@color/radio_btn_text"
+                    tools:checked="true" />
 
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@drawable/radio_btn_round"
-                    android:textColor="@color/radio_btn_text"
                     android:button="@null"
-                    android:text="Monthly" />
+                    android:gravity="center"
+                    android:text="@string/statistics_monthly"
+                    android:textColor="@color/radio_btn_text" />
 
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@drawable/radio_btn_round"
-                    android:textColor="@color/radio_btn_text"
                     android:button="@null"
-                    android:text="Yearly" />
+                    android:gravity="center"
+                    android:text="@string/statistics_yearly"
+                    android:textColor="@color/radio_btn_text" />
             </RadioGroup>
 
             <LinearLayout
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:text="이번달은 얼마나 행복했을까?"
+                android:text="@string/statistics_monthly_happy_score"
                 android:textColor="@color/point"
                 android:textSize="12sp" />
 
@@ -113,16 +113,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:gravity="center"
-                android:text="꽤나 행복했던 한 달 😀"
+                android:text="@string/statistics_monthly_3"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <FrameLayout
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/linechart_statistics"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/gray" />
+                android:layout_marginBottom="16dp" />
         </LinearLayout>
 
         <FrameLayout
@@ -137,7 +137,7 @@
             android:layout_marginBottom="30dp"
             android:fontFamily="@font/app_semibold"
             android:gravity="center"
-            android:text="이번달은 어떤 감정들이 있었을까?"
+            android:text="@string/statistics_monthly_emotions"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -146,18 +146,10 @@
             android:layout_marginHorizontal="36dp"
             android:orientation="horizontal">
 
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="140dp"
-                android:layout_marginEnd="32dp"
-                android:layout_weight="1"
-                android:background="@color/gray" />
-
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="140dp"
-                android:layout_weight="1"
-                android:background="@color/gray" />
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/piechart_statistics"
+                android:layout_width="match_parent"
+                android:layout_height="140dp" />
         </LinearLayout>
     </LinearLayout>
 </layout>

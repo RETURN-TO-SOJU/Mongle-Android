@@ -162,4 +162,12 @@
     <!-- Favorite -->
     <string name="favorite_title">잊고 싶지 않은 🎀\n나만의 감정 모음집</string>
     <string name="favorite_empty">찜 목록이 비어있어요.\n즐거웠던 날들을 찜해보세요!</string>
+
+    <!-- Statistics -->
+    <string name="statistics_weekly">Weekly</string>
+    <string name="statistics_monthly">Monthly</string>
+    <string name="statistics_yearly">Yearly</string>
+    <string name="statistics_monthly_happy_score">이번달은 얼마나 행복했을까?</string>
+    <string name="statistics_monthly_3">꽤나 행복했던 한 달 😀</string>
+    <string name="statistics_monthly_emotions">이번달은 어떤 감정들이 있었을까?</string>
 </resources>
