@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.FragmentStatisticsBinding
+import com.rtsoju.mongle.domain.model.Emotion
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class StatisticsFragment : Fragment() {
@@ -34,6 +36,7 @@ class StatisticsFragment : Fragment() {
             description.isEnabled = false
             isDoubleTapToZoomEnabled = false
             disableScroll()
+            setScaleEnabled(false)
             setDrawGridBackground(false)
             setPinchZoom(false)
 
@@ -52,6 +55,25 @@ class StatisticsFragment : Fragment() {
             animateX(300)
             setData(this, 10, 100)
         }
+
+        binding.piechartStatistics.run {
+            setUsePercentValues(false)
+            setHoleColor(resources.getColor(R.color.background, context.theme))
+
+            description.isEnabled = false
+            legend.isEnabled = false
+            isDrawHoleEnabled = true
+            isRotationEnabled = true
+            isHighlightPerTapEnabled = false
+            transparentCircleRadius = 60f
+            holeRadius = 60f
+            rotationAngle = 0f
+
+            animateY(1000, Easing.EaseInOutQuad)
+            setDrawEntryLabels(false)
+            setData(this, 30)
+        }
+
 
         return binding.root
     }
@@ -74,7 +96,7 @@ class StatisticsFragment : Fragment() {
             set1.setDrawIcons(false)
 
             // black lines and points
-            val pointColor = resources.getColor(R.color.point, context?.theme)
+            val pointColor = resources.getColor(R.color.point, requireContext().theme)
             set1.color = pointColor
             set1.setCircleColor(pointColor)
 
@@ -102,5 +124,29 @@ class StatisticsFragment : Fragment() {
             chart.data = data
         }
         chart.xAxis.setLabelCount(count, true)
+    }
+
+    private fun setData(chart: PieChart, range: Int) {
+        val entries: ArrayList<PieEntry> = ArrayList()
+        val colors: ArrayList<Int> = ArrayList()
+
+        for (emotion in Emotion.values()) {
+            colors.add(resources.getColor(emotion.colorRes, requireContext().theme))
+            entries.add(
+                PieEntry(
+                    (Math.random() * range + range / 5).toFloat(),
+                    resources.getString(emotion.labelRes)
+                )
+            )
+        }
+
+        val dataSet = PieDataSet(entries, "")
+        dataSet.setDrawIcons(false)
+        dataSet.valueTextSize = 0f
+        dataSet.colors = colors
+
+        val data = PieData(dataSet)
+        chart.data = data
+        chart.invalidate()
     }
 }
