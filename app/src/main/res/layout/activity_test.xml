@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.AppCompat"
-    tools:context=".debug.view.BaseTestActivity">
+    tools:context="com.rtsoju.mongle.debug.view.BaseTestActivity">
 
     <ListView
         android:id="@+id/list_test"

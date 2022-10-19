@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.presentation.view.setname.SetNameViewModel" />
+            type="com.rtsoju.mongle.presentation.view.setname.SetNameViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.won983212.mongle.presentation.view.setname.SetNameActivity">
+        tools:context="com.rtsoju.mongle.presentation.view.setname.SetNameActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_name_setting"

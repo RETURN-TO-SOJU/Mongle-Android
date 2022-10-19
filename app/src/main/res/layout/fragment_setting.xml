@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.won983212.mongle.presentation.view.setting.SettingViewModel" />
+            type="com.rtsoju.mongle.presentation.view.setting.SettingViewModel" />
     </data>
 
     <LinearLayout
