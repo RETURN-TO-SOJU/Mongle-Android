@@ -17,6 +17,8 @@ android {
         applicationId "com.rtsoju.mongle"
         minSdk 23
         targetSdk 33
+
+        // 버전업 -> 아래 2개 수정
         versionCode 3
         versionName "0.9.2"
 
