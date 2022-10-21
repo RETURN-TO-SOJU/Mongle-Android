@@ -19,8 +19,8 @@ android {
         targetSdk 33
 
         // 버전업 -> 아래 2개 수정
-        versionCode 3
-        versionName "0.9.2"
+        versionCode 11
+        versionName "0.9.7"
 
         manifestPlaceholders = [KAKAO_NATIVE_APP_KEY: properties["KAKAO_NATIVE_APP_KEY"]]
         buildConfigField "String", 'KAKAO_NATIVE_APP_KEY', "\"${properties["KAKAO_NATIVE_APP_KEY"]}\""
@@ -35,10 +35,24 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile file("release.jks")
+            storePassword properties["KEY_PASSWORD"]
+            keyAlias "key0"
+            keyPassword properties["KEY_PASSWORD"]
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            debuggable true
         }
     }
 
