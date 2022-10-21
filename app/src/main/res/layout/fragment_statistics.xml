@@ -31,9 +31,12 @@
                     android:layout_marginVertical="20dp"
                     android:background="@drawable/round_30"
                     android:backgroundTint="@color/lightGray"
+                    android:checkedButton="@{viewModel.selectedTimeRange}"
+                    android:onCheckedChanged="@{(r, id) -> viewModel.selectTimeRange(id)}"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/radio_statistics_weekly"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -46,6 +49,7 @@
                         tools:checked="true" />
 
                     <RadioButton
+                        android:id="@+id/radio_statistics_monthly"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -57,6 +61,7 @@
                         android:textColor="@color/radio_btn_text" />
 
                     <RadioButton
+                        android:id="@+id/radio_statistics_yearly"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
@@ -125,6 +130,7 @@
                     android:id="@+id/linechart_statistics"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="16dp" />
             </LinearLayout>
@@ -156,11 +162,13 @@
                     android:layout_height="140dp"
                     android:layout_weight="1" />
 
-                <FrameLayout
+                <LinearLayout
+                    android:id="@+id/layout_statistics_chart_labels"
                     android:layout_width="0dp"
                     android:layout_height="140dp"
                     android:layout_weight="1"
-                    android:background="@color/gray"/>
+                    android:gravity="center"
+                    android:orientation="vertical" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

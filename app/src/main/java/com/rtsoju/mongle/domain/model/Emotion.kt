@@ -8,10 +8,12 @@ import com.google.gson.annotations.SerializedName
 import com.rtsoju.mongle.R
 
 enum class Emotion(
+    /** Label resource id (korean) */
     @StringRes val labelRes: Int,
     @DrawableRes val iconRes: Int,
     @DrawableRes val bigIconRes: Int,
     @ColorRes val colorRes: Int,
+    /** Short description message (single-line) resource id (korean) */
     @StringRes val descriptionRes: Int
 ) {
     @SerializedName("HAPPY")

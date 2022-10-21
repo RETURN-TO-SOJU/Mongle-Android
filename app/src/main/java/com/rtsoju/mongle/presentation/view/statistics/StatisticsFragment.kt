@@ -1,5 +1,6 @@
 package com.rtsoju.mongle.presentation.view.statistics
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.FragmentStatisticsBinding
+import com.rtsoju.mongle.databinding.ListitemChartLabelBinding
 import com.rtsoju.mongle.domain.model.Emotion
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +32,7 @@ class StatisticsFragment : Fragment() {
     ): View {
         val binding = FragmentStatisticsBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.linechartStatistics.run {
             description.isEnabled = false
@@ -74,8 +76,23 @@ class StatisticsFragment : Fragment() {
             setData(this, 30)
         }
 
-
+        createChartLabels(binding)
         return binding.root
+    }
+
+    private fun createChartLabels(binding: FragmentStatisticsBinding) {
+        val context = requireContext()
+        for (emotion in Emotion.values()) {
+            val color = context.resources.getColor(emotion.colorRes, context.theme)
+            val label = context.resources.getString(emotion.labelRes)
+            val labelView = ListitemChartLabelBinding.inflate(layoutInflater).apply {
+                dotChartLabel.imageTintList = ColorStateList.valueOf(color)
+                textChartLabel.text = label
+                textChartLabelCount.text = "800개 (100%)"
+
+            }
+            binding.layoutStatisticsChartLabels.addView(labelView.root)
+        }
     }
 
     private fun setData(chart: LineChart, count: Int, range: Int) {
