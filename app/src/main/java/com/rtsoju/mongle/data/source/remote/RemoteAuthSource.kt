@@ -1,8 +1,8 @@
 package com.rtsoju.mongle.data.source.remote
 
 import com.rtsoju.mongle.data.mapper.toDomainModel
-import com.rtsoju.mongle.data.source.api.AuthApi
-import com.rtsoju.mongle.data.source.api.safeApiCall
+import com.rtsoju.mongle.data.source.remote.api.AuthApi
+import com.rtsoju.mongle.data.source.remote.api.safeApiCall
 import com.rtsoju.mongle.domain.model.LoginResult
 import com.rtsoju.mongle.domain.model.OAuthLoginToken
 import javax.inject.Inject

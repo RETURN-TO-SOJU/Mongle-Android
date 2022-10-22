@@ -19,6 +19,7 @@ import com.rtsoju.mongle.data.source.remote.RemoteAuthSource
 import com.rtsoju.mongle.data.source.remote.RemoteCalendarDataSource
 import com.rtsoju.mongle.data.source.remote.RemoteKakaotalkDataSource
 import com.rtsoju.mongle.data.source.remote.RemoteUserDataSource
+import com.rtsoju.mongle.data.source.remote.dto.RemoteStatisticsDataSource
 import com.rtsoju.mongle.domain.repository.*
 import dagger.Module
 import dagger.Provides
@@ -114,5 +115,13 @@ internal class RepositoryModule {
         favoriteDataSource: LocalFavoriteDataSource
     ): FavoriteRepository {
         return FavoriteRepositoryImpl(favoriteDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideStatisticsRepository(
+        statisticsDataSource: RemoteStatisticsDataSource
+    ): StatisticsRepository {
+        return StatisticsRepositoryImpl(statisticsDataSource)
     }
 }

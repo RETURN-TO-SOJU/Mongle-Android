@@ -96,6 +96,7 @@
                         android:gravity="center"
                         android:textColor="@color/disabled"
                         android:textSize="14sp"
+                        android:text="@{viewModel.selectedTimeText}"
                         tools:text="2022년 8월" />
 
                     <ImageButton

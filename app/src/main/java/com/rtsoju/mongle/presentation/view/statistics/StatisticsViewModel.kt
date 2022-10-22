@@ -14,10 +14,15 @@ class StatisticsViewModel : BaseViewModel() {
     val selectedTimeRange = _selectedTimeRange.asLiveData()
 
     private val _selectedTime = MutableLiveData(LocalDate.now())
-    val selectedTimeText = _selectedTime.map {  }
+    val selectedTimeText = _selectedTime.map { formatSelectedTimeRange(it) }
 
 
     fun selectTimeRange(@IdRes id: Int) {
         _selectedTimeRange.postValue(id)
+    }
+
+    private fun formatSelectedTimeRange(date: LocalDate): String {
+        // TODO Implementation
+        return ""
     }
 }

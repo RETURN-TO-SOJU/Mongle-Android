@@ -1,8 +1,8 @@
 package com.rtsoju.mongle.data.source.remote
 
 import com.rtsoju.mongle.data.mapper.toDomainModel
-import com.rtsoju.mongle.data.source.api.UserApi
-import com.rtsoju.mongle.data.source.api.safeApiCall
+import com.rtsoju.mongle.data.source.remote.api.UserApi
+import com.rtsoju.mongle.data.source.remote.api.safeApiCall
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.data.source.remote.dto.request.FCMTokenRequest
 import com.rtsoju.mongle.data.source.remote.dto.request.UsernameRequest

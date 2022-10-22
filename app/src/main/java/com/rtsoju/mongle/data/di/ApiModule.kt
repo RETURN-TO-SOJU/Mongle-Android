@@ -1,14 +1,8 @@
 package com.rtsoju.mongle.data.di
 
 import com.rtsoju.mongle.USE_MOCKING
-import com.rtsoju.mongle.data.source.api.AuthApi
-import com.rtsoju.mongle.data.source.api.CalendarApi
-import com.rtsoju.mongle.data.source.api.KakaoSendApi
-import com.rtsoju.mongle.data.source.api.UserApi
-import com.rtsoju.mongle.debug.mock.MockAuthApi
-import com.rtsoju.mongle.debug.mock.MockCalendarApi
-import com.rtsoju.mongle.debug.mock.MockKakaoSendApi
-import com.rtsoju.mongle.debug.mock.MockUserApi
+import com.rtsoju.mongle.data.source.remote.api.*
+import com.rtsoju.mongle.debug.mock.*
 import com.rtsoju.mongle.domain.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
@@ -55,5 +49,14 @@ internal class ApiModule {
             return MockAuthApi()
         }
         return retrofit.create(AuthApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideStatisticsApi(retrofit: Retrofit): StatisticsApi {
+        if (USE_MOCKING) {
+            return MockStatisticsApi()
+        }
+        return retrofit.create(StatisticsApi::class.java)
     }
 }

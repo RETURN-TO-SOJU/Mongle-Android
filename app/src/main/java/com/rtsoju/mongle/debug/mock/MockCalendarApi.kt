@@ -1,7 +1,7 @@
 package com.rtsoju.mongle.debug.mock
 
 import com.kizitonwose.calendarview.utils.yearMonth
-import com.rtsoju.mongle.data.source.api.CalendarApi
+import com.rtsoju.mongle.data.source.remote.api.CalendarApi
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.data.source.remote.dto.request.DiaryRequest
 import com.rtsoju.mongle.data.source.remote.dto.response.CalendarDayDetailResponse

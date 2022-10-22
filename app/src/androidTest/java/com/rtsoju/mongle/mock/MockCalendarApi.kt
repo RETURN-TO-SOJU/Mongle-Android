@@ -1,6 +1,6 @@
 package com.rtsoju.mongle.mock
 
-import com.rtsoju.mongle.data.source.api.CalendarApi
+import com.rtsoju.mongle.data.source.remote.api.CalendarApi
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.data.source.remote.dto.request.DiaryRequest
 import com.rtsoju.mongle.data.source.remote.dto.response.CalendarDayDetailResponse
