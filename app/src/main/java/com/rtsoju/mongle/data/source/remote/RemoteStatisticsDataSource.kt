@@ -1,4 +1,4 @@
-package com.rtsoju.mongle.data.source.remote.dto
+package com.rtsoju.mongle.data.source.remote
 
 import com.rtsoju.mongle.data.source.remote.api.StatisticsApi
 import com.rtsoju.mongle.data.source.remote.api.safeApiCall

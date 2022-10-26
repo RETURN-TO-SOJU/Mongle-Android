@@ -65,21 +65,21 @@ private fun <T> packStatisticsEmotions(statisticsData: StatisticsResponse.Data<T
     return result.asList()
 }
 
-fun StatisticsResponse<Float?>.toYearlyDomainModel(): Statistics {
-    return Statistics(
-        data.scoreList.mapIndexed { idx, score -> Statistics.Score("${idx + 1}월", score) },
+fun StatisticsResponse<Float?>.toYearlyDomainModel(): StatisticsResult {
+    return StatisticsResult(
+        data.scoreList.mapIndexed { idx, score -> StatisticsResult.Score("${idx + 1}월", score) },
         packStatisticsEmotions(data)
     )
 }
 
-fun StatisticsResponse<Float?>.toMonthlyDomainModel(): Statistics {
-    return Statistics(
-        data.scoreList.mapIndexed { idx, score -> Statistics.Score("${idx + 1}주", score) },
+fun StatisticsResponse<Float?>.toMonthlyDomainModel(): StatisticsResult {
+    return StatisticsResult(
+        data.scoreList.mapIndexed { idx, score -> StatisticsResult.Score("${idx + 1}주", score) },
         packStatisticsEmotions(data)
     )
 }
 
-fun StatisticsResponse<StatisticsResponse.DateScore>.toWeeklyDomainModel(): Statistics {
+fun StatisticsResponse<StatisticsResponse.DateScore>.toWeeklyDomainModel(): StatisticsResult {
     val startDate = data.startDate
     val scores = Array<Float?>(7) { null }
 
@@ -88,10 +88,10 @@ fun StatisticsResponse<StatisticsResponse.DateScore>.toWeeklyDomainModel(): Stat
         scores[idx] = it.score
     }
 
-    return Statistics(
+    return StatisticsResult(
         scores.mapIndexed { idx, score ->
             val day = startDate.plusDays(idx.toLong())
-            Statistics.Score("${day.dayOfMonth}일", score)
+            StatisticsResult.Score("${day.dayOfMonth}일", score)
         },
         packStatisticsEmotions(data)
     )

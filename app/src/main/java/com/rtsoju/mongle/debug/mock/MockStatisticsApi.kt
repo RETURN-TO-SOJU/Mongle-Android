@@ -4,7 +4,6 @@ import com.rtsoju.mongle.data.source.remote.api.StatisticsApi
 import com.rtsoju.mongle.data.source.remote.dto.response.StatisticsResponse
 import java.time.LocalDate
 
-// TODO 데이터를 좀 더 품질 좋게 다듬기
 class MockStatisticsApi : StatisticsApi {
     override suspend fun getYearlyStatistics(
         year: Int
@@ -70,10 +69,10 @@ class MockStatisticsApi : StatisticsApi {
                 LocalDate.now(),
                 listOf(
                     StatisticsResponse.DateScore(20.3f, LocalDate.of(year, month, 2)),
-                    StatisticsResponse.DateScore(25.3f, LocalDate.of(year, month, 2)),
-                    StatisticsResponse.DateScore(31.3f, LocalDate.of(year, month, 2)),
-                    StatisticsResponse.DateScore(21.3f, LocalDate.of(year, month, 2)),
-                    StatisticsResponse.DateScore(10.3f, LocalDate.of(year, month, 2)),
+                    StatisticsResponse.DateScore(25.3f, LocalDate.of(year, month, 3)),
+                    StatisticsResponse.DateScore(31.3f, LocalDate.of(year, month, 4)),
+                    StatisticsResponse.DateScore(21.3f, LocalDate.of(year, month, 6)),
+                    StatisticsResponse.DateScore(10.3f, LocalDate.of(year, month, 7)),
                 ),
                 18,
                 6,

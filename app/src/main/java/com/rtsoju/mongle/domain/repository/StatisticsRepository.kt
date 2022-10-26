@@ -1,21 +1,21 @@
 package com.rtsoju.mongle.domain.repository
 
-import com.rtsoju.mongle.data.source.remote.dto.response.StatisticsResponse
+import com.rtsoju.mongle.domain.model.StatisticsResult
 
 interface StatisticsRepository {
 
     suspend fun getYearlyStatistics(
         year: Int
-    ): Result<StatisticsResponse<Float?>>
+    ): Result<StatisticsResult>
 
     suspend fun getMonthlyStatistics(
         year: Int,
         month: Int
-    ): Result<StatisticsResponse<Float?>>
+    ): Result<StatisticsResult>
 
     suspend fun getWeeklyStatistics(
         year: Int,
         month: Int,
         week: Int
-    ): Result<StatisticsResponse<StatisticsResponse.DateScore>>
+    ): Result<StatisticsResult>
 }
