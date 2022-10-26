@@ -18,12 +18,8 @@ class GetCalendarDayDetailUseCase @Inject constructor(
         date: LocalDate,
         cachePolicy: CachePolicy = CachePolicy.DEFAULT
     ): Result<CalendarDayDetail> {
-        var result = calendarRepository.getCalendarDayDetail(date, cachePolicy)
-        result.onSuccess {
-            result = Result.success(
-                it.copy(diary = passwordRepository.decryptByKeyPassword(it.diary))
-            )
+        return calendarRepository.getCalendarDayDetail(date, cachePolicy).map {
+            it.copy(diary = passwordRepository.decryptByKeyPassword(it.diary))
         }
-        return result
     }
 }
