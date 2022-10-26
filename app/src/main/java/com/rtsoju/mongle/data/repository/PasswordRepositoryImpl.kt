@@ -5,8 +5,6 @@ import com.rtsoju.mongle.data.source.PasswordDataSource
 import com.rtsoju.mongle.domain.repository.PasswordRepository
 import com.rtsoju.mongle.exception.CannotDecryptException
 import com.rtsoju.mongle.util.generateFillZero
-import java.io.InputStream
-import java.io.InputStreamReader
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
@@ -17,14 +15,17 @@ internal class PasswordRepositoryImpl
     private val passwordDataSource: PasswordDataSource
 ) : PasswordRepository {
 
-    override fun checkScreenPassword(password: String): Boolean =
-        passwordDataSource.getScreenPassword() == password
+    override fun checkScreenPassword(password: String): Boolean {
+        return passwordDataSource.getScreenPassword() == password
+    }
 
-    override fun hasScreenPassword(): Boolean =
-        passwordDataSource.getScreenPassword() != null
+    override fun hasScreenPassword(): Boolean {
+        return passwordDataSource.getScreenPassword() != null
+    }
 
-    override fun setScreenPassword(password: String?) =
-        passwordDataSource.setScreenPassword(password)
+    override fun setScreenPassword(password: String?) {
+        return passwordDataSource.setScreenPassword(password)
+    }
 
     override fun decryptByKeyPassword(data: String): String {
         try {
@@ -44,17 +45,9 @@ internal class PasswordRepositoryImpl
         }
     }
 
-    override fun makePwdKakaotalkDataPacket(dataStream: InputStream): ByteArray {
-        val reader = InputStreamReader(dataStream, PASSWORD_CHARSET)
-        val contentBuilder = StringBuilder()
-        contentBuilder.append(reader.readText())
-        contentBuilder.append('\n')
-        contentBuilder.append(passwordDataSource.getDataKeyPassword())
-        return contentBuilder.toString().toByteArray(PASSWORD_CHARSET)
+    override fun hasDataKeyPassword(): Boolean {
+        return passwordDataSource.getDataKeyPassword() != null
     }
-
-    override fun hasDataKeyPassword(): Boolean =
-        passwordDataSource.getDataKeyPassword() != null
 
     override fun setDataKeyPassword(password: String?) {
         var filteredPwd = password
@@ -66,6 +59,10 @@ internal class PasswordRepositoryImpl
             }
         }
         passwordDataSource.setDataKeyPassword(filteredPwd)
+    }
+
+    override fun getDataPassword(): String? {
+        return passwordDataSource.getDataKeyPassword()
     }
 
     companion object {

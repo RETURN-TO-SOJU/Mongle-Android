@@ -51,7 +51,7 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
             if (stream != null) {
                 val roomName = parseRoomName(name ?: "")
                 InputRoomNameDialog(this, roomName) {
-                    viewModel.uploadKakaotalk(it, stream)
+                    viewModel.uploadKakaotalkWithRoom(it, stream)
                 }.open()
             } else {
                 onCantFindFile()

@@ -1,7 +1,5 @@
 package com.rtsoju.mongle.domain.repository
 
-import java.io.InputStream
-
 interface PasswordRepository {
 
     fun checkScreenPassword(password: String): Boolean
@@ -14,7 +12,7 @@ interface PasswordRepository {
 
     fun hasDataKeyPassword(): Boolean
 
-    fun makePwdKakaotalkDataPacket(dataStream: InputStream): ByteArray
-
     fun setDataKeyPassword(password: String?)
+
+    fun getDataPassword(): String?
 }

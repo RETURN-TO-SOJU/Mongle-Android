@@ -20,14 +20,15 @@ internal class RemoteCalendarDataSource @Inject constructor(
 
     suspend fun updateDiary(
         date: LocalDate,
-        text: String
+        text: String,
+        password: String
     ): Result<MessageResult> {
         return safeApiCall {
             api.updateDiary(
                 date.year,
                 convertDoubleDigitFormat(date.monthValue),
                 convertDoubleDigitFormat(date.dayOfMonth),
-                DiaryRequest(text)
+                DiaryRequest(text, password)
             )
         }
     }

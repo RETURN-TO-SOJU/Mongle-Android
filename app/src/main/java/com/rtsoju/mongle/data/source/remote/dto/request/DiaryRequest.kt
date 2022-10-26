@@ -4,5 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class DiaryRequest(
     @SerializedName("text")
-    val text: String
+    val text: String,
+    @SerializedName("key")
+    val password: String
 )

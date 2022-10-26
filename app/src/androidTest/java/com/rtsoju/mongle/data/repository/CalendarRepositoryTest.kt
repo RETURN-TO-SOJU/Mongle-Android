@@ -4,7 +4,6 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import com.rtsoju.mongle.data.repository.CalendarRepositoryImpl
 import com.rtsoju.mongle.data.db.AppDatabase
 import com.rtsoju.mongle.data.db.dao.CalendarDao
 import com.rtsoju.mongle.data.mapper.toDomainModel
@@ -19,7 +18,6 @@ import com.rtsoju.mongle.domain.model.CalendarDayPreview
 import com.rtsoju.mongle.domain.model.Emotion
 import com.rtsoju.mongle.domain.repository.CalendarRepository
 import com.rtsoju.mongle.exception.NoResultException
-import com.rtsoju.mongle.util.*
 import com.rtsoju.mongle.mock.MockCalendarApi
 import com.rtsoju.mongle.util.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -64,7 +62,7 @@ internal class CalendarRepositoryTest {
     fun updateDiary(): Unit = runTest {
         val date = LocalDate.now()
 
-        repository.updateDiary(date, "Hello, world!")
+        repository.updateDiary(date, "Hello, world!", "")
         testSuccessResult(localDataSource.getCalendarDayDetail(date)) {
             assertThat(it.diary).isEqualTo("Hello, world!")
         }
@@ -188,7 +186,7 @@ internal class CalendarRepositoryTest {
         val date = LocalDate.of(2022, 8, 3)
         val expected = expectValueGenerator(date, "test", Emotion.HAPPY).toDomainModel(date)
 
-        mockApi.updateDiary(0, "", "", DiaryRequest("test"))
+        mockApi.updateDiary(0, "", "", DiaryRequest("test", ""))
         mockApi.updateEmotion(0, "", "", Emotion.HAPPY.name)
         mockApi.calendarDayDetailProducer = ::generateCalendarDetailResponse1
 

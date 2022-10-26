@@ -1,19 +1,10 @@
 package com.rtsoju.mongle.data.di
 
 import android.content.Context
-import com.rtsoju.mongle.data.repository.*
-import com.rtsoju.mongle.data.repository.AuthRepositoryImpl
-import com.rtsoju.mongle.data.repository.CalendarRepositoryImpl
-import com.rtsoju.mongle.data.repository.KakaotalkRepositoryImpl
-import com.rtsoju.mongle.data.repository.PasswordRepositoryImpl
-import com.rtsoju.mongle.data.repository.UserRepositoryImpl
 import com.rtsoju.mongle.R
+import com.rtsoju.mongle.data.repository.*
 import com.rtsoju.mongle.data.source.PasswordDataSource
-import com.rtsoju.mongle.data.source.local.LocalCalendarDataSource
-import com.rtsoju.mongle.data.source.local.LocalFavoriteDataSource
-import com.rtsoju.mongle.data.source.local.LocalPasswordDataSource
-import com.rtsoju.mongle.data.source.local.LocalTokenSource
-import com.rtsoju.mongle.data.source.local.LocalUserDataSource
+import com.rtsoju.mongle.data.source.local.*
 import com.rtsoju.mongle.data.source.local.config.ConfigDataSource
 import com.rtsoju.mongle.data.source.remote.RemoteAuthSource
 import com.rtsoju.mongle.data.source.remote.RemoteCalendarDataSource
@@ -67,9 +58,10 @@ internal class RepositoryModule {
     @Singleton
     @Provides
     fun provideKakaotalkRepository(
-        kakaotalkDataSource: RemoteKakaotalkDataSource
+        kakaotalkDataSource: RemoteKakaotalkDataSource,
+        passwordDataSource: LocalPasswordDataSource
     ): KakaotalkRepository {
-        return KakaotalkRepositoryImpl(kakaotalkDataSource)
+        return KakaotalkRepositoryImpl(kakaotalkDataSource, passwordDataSource)
     }
 
     @Singleton

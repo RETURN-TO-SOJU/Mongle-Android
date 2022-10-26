@@ -40,7 +40,8 @@ class ApiTestActivity : BaseTestActivity() {
             calendarRepository.updateDiary(
                 LocalDate.of(2021, 12, 11),
                 "안녕하세요. 이 일기를 작성한 시각은 " + LocalDateTime.now()
-                    .format(DateTimeFormatter.ISO_DATE) + "입니다."
+                    .format(DateTimeFormatter.ISO_DATE) + "입니다.",
+                ""
             )
         }
         if (result != null) {
