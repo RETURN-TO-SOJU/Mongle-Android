@@ -10,19 +10,16 @@ import java.time.LocalDate
 
 class StatisticsViewModel : BaseViewModel() {
 
-    private val _selectedTimeRange = MutableLiveData(R.id.radio_statistics_weekly)
-    val selectedTimeRange = _selectedTimeRange.asLiveData()
+    private val _selectedDateRangeUnit = MutableLiveData(R.id.radio_statistics_weekly)
 
-    private val _selectedTime = MutableLiveData(LocalDate.now())
-    val selectedTimeText = _selectedTime.map { formatSelectedTimeRange(it) }
+    /** Selected radio button ID of representing Time Range (Weekly, Monthly, Yearly) */
+    val selectedDateRangeUnit = _selectedDateRangeUnit.asLiveData()
+
+    private val _selectedDateRange = MutableLiveData(DateRange.fromLocalDate(LocalDate.now()))
+    val selectedDateRangeText = _selectedDateRange.map { it.toString() }
 
 
-    fun selectTimeRange(@IdRes id: Int) {
-        _selectedTimeRange.postValue(id)
-    }
-
-    private fun formatSelectedTimeRange(date: LocalDate): String {
-        // TODO Implementation
-        return ""
+    fun selectDateRangeUnit(@IdRes id: Int) {
+        _selectedDateRangeUnit.postValue(id)
     }
 }
