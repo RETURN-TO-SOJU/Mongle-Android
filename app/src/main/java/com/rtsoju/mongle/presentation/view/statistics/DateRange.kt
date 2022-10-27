@@ -13,53 +13,55 @@ import java.util.*
  * @param month 월. 년+월을 명시하면 해당 월의 모든 일들을 포함한 날짜를 표현한다. 범위는 1~12
  * @param week 주. 년+월+주를 명시하면 해당 주의 모든 일들을 포함한 날짜를 표현한다. 범위는 1~5이지만, 월에 따라서 다르다.
  */
-class DateRange private constructor(
-    private val year: Int,
-    private val month: Int = 0,
-    private val week: Int = 0
-) {
-
-    private fun zeroConditionalText(input: String, value: Int): String {
-        if (value == 0) {
-            return ""
+sealed class DateRange {
+    open class Year(val year: Int) : DateRange() {
+        override fun toString(): String {
+            return "${year}년"
         }
-        return input
+
+        companion object {
+            fun fromLocalDate(date: LocalDate): Year {
+                return Year(date.year)
+            }
+        }
     }
 
-    override fun toString(): String {
-        val yearText = "${year}년"
-        val monthText = zeroConditionalText(" ${month}월", month)
-        val weekText = zeroConditionalText(" ${week}주", week)
-        return "${yearText}${monthText}${weekText}"
-    }
-
-    companion object {
-        fun of(year: Int, month: Int? = null, week: Int? = null): DateRange {
-            if (month != null && month !in 1..12) {
+    open class Month(year: Int, val month: Int) : Year(year) {
+        init {
+            if (month !in 1..12) {
                 throw java.lang.IllegalArgumentException("Argument month is out of range. ($month is not in 1..12)")
             }
-
-            if (month != null && week != null) {
-                val weeks =
-                    YearMonth.of(year, month).atEndOfMonth().get(WeekFields.ISO.weekOfMonth())
-                if (week !in 1..weeks) {
-                    throw java.lang.IllegalArgumentException("Argument week is out of range. ($week is not in 1..$weeks)")
-                }
-            }
-
-            return DateRange(year, month ?: 0, week ?: 0)
         }
 
-        fun fromLocalDate(date: LocalDate): DateRange {
-            var yearMonth = date.yearMonth
-            var week = date.get(WeekFields.ISO.weekOfMonth())
+        override fun toString(): String {
+            return "${year}년 ${month}월"
+        }
 
-            if(week == 0){
-                yearMonth = yearMonth.minusMonths(1)
-                week = yearMonth.atEndOfMonth().get(WeekFields.ISO.weekOfMonth())
+        companion object {
+            fun fromLocalDate(date: LocalDate): Month {
+                return Month(date.year, date.monthValue)
             }
+        }
+    }
 
-            return DateRange(yearMonth.year, yearMonth.monthValue, week)
+    class Week(year: Int, month: Int, val week: Int) : Month(year, month) {
+        init {
+            val weeks =
+                YearMonth.of(year, month).atEndOfMonth().get(WeekFields.ISO.weekOfMonth())
+            if (week !in 1..weeks) {
+                throw java.lang.IllegalArgumentException("Argument week is out of range. ($week is not in 1..$weeks)")
+            }
+        }
+
+        override fun toString(): String {
+            return "${year}년 ${month}월 ${week}주"
+        }
+
+        companion object {
+            fun fromLocalDate(date: LocalDate): Week {
+                val weekDay = date.yearMonth.atDay(1).dayOfWeek.value
+
+            }
         }
     }
 }
