@@ -24,7 +24,6 @@ android {
 
         manifestPlaceholders = [KAKAO_NATIVE_APP_KEY: properties["KAKAO_NATIVE_APP_KEY"]]
         buildConfigField "String", 'KAKAO_NATIVE_APP_KEY', "\"${properties["KAKAO_NATIVE_APP_KEY"]}\""
-        buildConfigField "String", 'BASE_URL', "\"${properties["BASE_URL"]}\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -83,6 +82,7 @@ android {
     }
 }
 
+// TODO 일부 기능 업데이트
 dependencies {
     // android core
     //noinspection GradleDependency
