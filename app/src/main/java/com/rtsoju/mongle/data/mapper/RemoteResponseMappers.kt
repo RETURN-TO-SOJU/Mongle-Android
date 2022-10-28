@@ -2,6 +2,7 @@ package com.rtsoju.mongle.data.mapper
 
 import com.rtsoju.mongle.data.source.remote.dto.response.*
 import com.rtsoju.mongle.domain.model.*
+import com.rtsoju.mongle.exception.InvalidResponseException
 import java.time.LocalDate
 import java.time.Period
 
@@ -85,6 +86,9 @@ fun StatisticsResponse<StatisticsResponse.DateScore>.toWeeklyDomainModel(): Stat
 
     data.scoreList.map {
         val idx = Period.between(startDate, it.date).days
+        if (idx !in scores.indices) {
+            throw InvalidResponseException()
+        }
         scores[idx] = it.score
     }
 

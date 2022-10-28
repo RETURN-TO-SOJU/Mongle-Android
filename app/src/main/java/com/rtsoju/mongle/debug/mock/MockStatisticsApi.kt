@@ -2,35 +2,39 @@ package com.rtsoju.mongle.debug.mock
 
 import com.rtsoju.mongle.data.source.remote.api.StatisticsApi
 import com.rtsoju.mongle.data.source.remote.dto.response.StatisticsResponse
+import com.rtsoju.mongle.presentation.view.statistics.range.WeekRange
 import java.time.LocalDate
+import java.time.YearMonth
+import java.util.*
 
 class MockStatisticsApi : StatisticsApi {
+    private val rand = Random()
+
+    private fun generateScores(size: Int): List<Float?> {
+        val result = mutableListOf<Float?>()
+        for (i in 1..size) {
+            if (rand.nextInt(3) == 0) {
+                result.add(null)
+            } else {
+                result.add(rand.nextFloat() * 100)
+            }
+        }
+        return result
+    }
+
     override suspend fun getYearlyStatistics(
         year: Int
     ): StatisticsResponse<Float?> {
         return StatisticsResponse(
             StatisticsResponse.Data(
-                LocalDate.now(),
-                listOf(
-                    null,
-                    50.4f,
-                    40.4f,
-                    12.5f,
-                    40.4f,
-                    32.5f,
-                    null,
-                    null,
-                    62.4f,
-                    52.5f,
-                    12.4f,
-                    51.5f
-                ),
-                517,
-                315,
-                123,
-                112,
-                112,
-                322
+                LocalDate.of(year, 1, 1),
+                generateScores(12),
+                5170,
+                3150,
+                1230,
+                1120,
+                1120,
+                3220
             )
         )
     }
@@ -39,16 +43,11 @@ class MockStatisticsApi : StatisticsApi {
         year: Int,
         month: Int
     ): StatisticsResponse<Float?> {
+        val weeks = WeekRange.getCountOfWeeks(YearMonth.of(year, month))
         return StatisticsResponse(
             StatisticsResponse.Data(
-                LocalDate.now(),
-                listOf(
-                    null,
-                    50.4f,
-                    40.4f,
-                    12.5f,
-                    40.4f
-                ),
+                LocalDate.of(year, month, 1),
+                generateScores(weeks),
                 57,
                 35,
                 23,
@@ -64,16 +63,20 @@ class MockStatisticsApi : StatisticsApi {
         month: Int,
         week: Int
     ): StatisticsResponse<StatisticsResponse.DateScore> {
+        val weekRange = WeekRange(year, month, week)
+        val weekStart = weekRange.getRangeStart()
+        val scores = generateScores(7)
+
         return StatisticsResponse(
             StatisticsResponse.Data(
-                LocalDate.now(),
-                listOf(
-                    StatisticsResponse.DateScore(20.3f, LocalDate.of(year, month, 2)),
-                    StatisticsResponse.DateScore(25.3f, LocalDate.of(year, month, 3)),
-                    StatisticsResponse.DateScore(31.3f, LocalDate.of(year, month, 4)),
-                    StatisticsResponse.DateScore(21.3f, LocalDate.of(year, month, 6)),
-                    StatisticsResponse.DateScore(10.3f, LocalDate.of(year, month, 7)),
-                ),
+                weekStart,
+                scores.mapIndexed { idx, score ->
+                    if (score != null) {
+                        StatisticsResponse.DateScore(score, weekStart.plusDays(idx.toLong()))
+                    } else {
+                        null
+                    }
+                }.filterNotNull(),
                 18,
                 6,
                 3,

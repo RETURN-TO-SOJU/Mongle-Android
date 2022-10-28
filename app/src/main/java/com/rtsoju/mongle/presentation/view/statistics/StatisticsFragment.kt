@@ -12,11 +12,12 @@ import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.FragmentStatisticsBinding
 import com.rtsoju.mongle.databinding.ListitemChartLabelBinding
-import com.rtsoju.mongle.domain.model.Emotion
+import com.rtsoju.mongle.domain.model.StatisticsResult
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -34,6 +35,43 @@ class StatisticsFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        viewModel.attachDefaultHandlers(requireActivity())
+        initializeLineChart(binding)
+        initializePieChart(binding)
+
+        viewModel.emotionCount.observe(viewLifecycleOwner) {
+            setPieChartData(binding.piechartStatistics, it)
+            recreateChartLabels(binding, it)
+        }
+
+        viewModel.scoreStatistics.observe(viewLifecycleOwner) {
+            setLineChartData(binding.linechartStatistics, it)
+        }
+
+        viewModel.updateStatistics()
+        return binding.root
+    }
+
+    private fun initializePieChart(binding: FragmentStatisticsBinding) {
+        binding.piechartStatistics.run {
+            setUsePercentValues(false)
+            setHoleColor(resources.getColor(R.color.background, context.theme))
+
+            description.isEnabled = false
+            legend.isEnabled = false
+            isDrawHoleEnabled = true
+            isRotationEnabled = true
+            isHighlightPerTapEnabled = false
+            transparentCircleRadius = 60f
+            holeRadius = 60f
+            rotationAngle = 0f
+
+            animateY(1000, Easing.EaseInOutQuad)
+            setDrawEntryLabels(false)
+        }
+    }
+
+    private fun initializeLineChart(binding: FragmentStatisticsBinding) {
         binding.linechartStatistics.run {
             description.isEnabled = false
             isDoubleTapToZoomEnabled = false
@@ -55,83 +93,68 @@ class StatisticsFragment : Fragment() {
             legend.isEnabled = false
 
             animateX(300)
-            setData(this, 10, 100)
         }
-
-        binding.piechartStatistics.run {
-            setUsePercentValues(false)
-            setHoleColor(resources.getColor(R.color.background, context.theme))
-
-            description.isEnabled = false
-            legend.isEnabled = false
-            isDrawHoleEnabled = true
-            isRotationEnabled = true
-            isHighlightPerTapEnabled = false
-            transparentCircleRadius = 60f
-            holeRadius = 60f
-            rotationAngle = 0f
-
-            animateY(1000, Easing.EaseInOutQuad)
-            setDrawEntryLabels(false)
-            setData(this, 30)
-        }
-
-        createChartLabels(binding)
-        return binding.root
     }
 
-    private fun createChartLabels(binding: FragmentStatisticsBinding) {
+    private fun recreateChartLabels(
+        binding: FragmentStatisticsBinding,
+        datas: List<EmotionChartData>
+    ) {
         val context = requireContext()
-        for (emotion in Emotion.values()) {
-            val color = context.resources.getColor(emotion.colorRes, context.theme)
-            val label = context.resources.getString(emotion.labelRes)
+        binding.layoutStatisticsChartLabels.removeAllViews()
+
+        for (data in datas) {
+            val color = context.resources.getColor(data.getColorRes(), context.theme)
+            val label = context.resources.getString(data.getLabelRes())
             val labelView = ListitemChartLabelBinding.inflate(layoutInflater).apply {
                 dotChartLabel.imageTintList = ColorStateList.valueOf(color)
                 textChartLabel.text = label
-                textChartLabelCount.text = "800개 (100%)"
-
+                textChartLabelCount.text = data.toString()
             }
             binding.layoutStatisticsChartLabels.addView(labelView.root)
         }
     }
 
-    private fun setData(chart: LineChart, count: Int, range: Int) {
+    private fun setLineChartData(chart: LineChart, datas: List<StatisticsResult.Score>) {
         val values = ArrayList<Entry>()
-        for (i in 0 until count) {
-            val value = (Math.random() * range).toFloat()
-            values.add(Entry(i.toFloat(), value))
+        for (i in datas.indices) {
+            val score = datas[i].score
+            values.add(Entry(i.toFloat(), score ?: 0f, score == null))
         }
-        val set1: LineDataSet
+
+        val dataSet: LineDataSet
         if (chart.data != null && chart.data.dataSetCount > 0) {
-            set1 = chart.data.getDataSetByIndex(0) as LineDataSet
-            set1.values = values
-            set1.notifyDataSetChanged()
+            dataSet = chart.data.getDataSetByIndex(0) as LineDataSet
+            dataSet.values = values
+            dataSet.notifyDataSetChanged()
             chart.data.notifyDataChanged()
             chart.notifyDataSetChanged()
+            chart.invalidate()
         } else {
-            set1 = LineDataSet(values, "")
-            set1.setDrawIcons(false)
+            dataSet = LineDataSet(values, "")
+            dataSet.setDrawIcons(false)
 
             // black lines and points
             val pointColor = resources.getColor(R.color.point, requireContext().theme)
-            set1.color = pointColor
-            set1.setCircleColor(pointColor)
+            dataSet.color = pointColor
+            dataSet.setCircleColor(pointColor)
 
             // line thickness and point size
-            set1.lineWidth = 1f
-            set1.circleRadius = 1.5f
+            dataSet.lineWidth = 1f
+            dataSet.circleRadius = 1.5f
 
             // draw points as solid circles
-            set1.setDrawCircleHole(false)
+            dataSet.setDrawCircleHole(false)
 
             // customize legend entry
-            set1.formLineWidth = 1f
-            set1.formSize = 15f
+            dataSet.formLineWidth = 1f
+            dataSet.formSize = 15f
 
             // text size of values
-            set1.setDrawValues(false)
+            dataSet.setDrawValues(false)
+
             val dataSets = ArrayList<ILineDataSet>()
-            dataSets.add(set1) // add the data sets
+            dataSets.add(dataSet) // add the data sets
 
             // create a data object with the data sets
             val data = LineData(dataSets)
@@ -140,19 +163,29 @@ class StatisticsFragment : Fragment() {
             // set data
             chart.data = data
         }
-        chart.xAxis.setLabelCount(count, true)
+
+        chart.xAxis.setLabelCount(datas.size, true)
+        chart.xAxis.valueFormatter = object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                val idx = value.toInt()
+                if (idx !in datas.indices) {
+                    return value.toString()
+                }
+                return datas[idx].label
+            }
+        }
     }
 
-    private fun setData(chart: PieChart, range: Int) {
+    private fun setPieChartData(chart: PieChart, datas: List<EmotionChartData>) {
         val entries: ArrayList<PieEntry> = ArrayList()
         val colors: ArrayList<Int> = ArrayList()
 
-        for (emotion in Emotion.values()) {
-            colors.add(resources.getColor(emotion.colorRes, requireContext().theme))
+        for (data in datas) {
+            colors.add(resources.getColor(data.getColorRes(), requireContext().theme))
             entries.add(
                 PieEntry(
-                    (Math.random() * range + range / 5).toFloat(),
-                    resources.getString(emotion.labelRes)
+                    data.proportion,
+                    resources.getString(data.getLabelRes())
                 )
             )
         }

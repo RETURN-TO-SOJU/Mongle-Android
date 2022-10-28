@@ -168,6 +168,8 @@
     <string name="statistics_monthly">Monthly</string>
     <string name="statistics_yearly">Yearly</string>
     <string name="statistics_monthly_happy_score">이번달은 얼마나 행복했을까?</string>
-    <string name="statistics_monthly_3">꽤나 행복했던 한 달 😀</string>
     <string name="statistics_monthly_emotions">이번달은 어떤 감정들이 있었을까?</string>
+    <string name="statistics_overview_1">다소 우울했었어요.. 😥</string>
+    <string name="statistics_overview_2">무난했어요 🙂</string>
+    <string name="statistics_overview_3">꽤나 행복했었어요! 😀</string>
 </resources>

@@ -83,6 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="?selectableItemBackgroundBorderless"
+                        android:onClick="@{() -> viewModel.goPrevDateRange()}"
                         android:padding="4dp"
                         android:src="@drawable/ic_arrow_left"
                         app:tint="@color/disabled" />
@@ -94,9 +95,9 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/app_medium"
                         android:gravity="center"
+                        android:text="@{viewModel.selectedDateRangeText}"
                         android:textColor="@color/disabled"
                         android:textSize="14sp"
-                        android:text="@{viewModel.selectedDateRangeText}"
                         tools:text="2022년 8월" />
 
                     <ImageButton
@@ -104,6 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="?selectableItemBackgroundBorderless"
+                        android:onClick="@{() -> viewModel.goNextDateRange()}"
                         android:padding="4dp"
                         android:src="@drawable/ic_arrow_right"
                         app:tint="@color/disabled" />
@@ -123,9 +125,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:gravity="center"
-                    android:text="@string/statistics_monthly_3"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:textResource="@{viewModel.overviewText}" />
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/linechart_statistics"
@@ -163,13 +165,19 @@
                     android:layout_height="140dp"
                     android:layout_weight="1" />
 
-                <LinearLayout
-                    android:id="@+id/layout_statistics_chart_labels"
+                <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="140dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical" />
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/layout_statistics_chart_labels"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="start"
+                        android:orientation="vertical" />
+                </FrameLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
