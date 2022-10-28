@@ -1,7 +1,7 @@
 package com.rtsoju.mongle.data.source.remote
 
-import com.rtsoju.mongle.data.source.api.KakaoSendApi
-import com.rtsoju.mongle.data.source.api.safeApiCall
+import com.rtsoju.mongle.data.source.remote.api.KakaoSendApi
+import com.rtsoju.mongle.data.source.remote.api.safeApiCall
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody

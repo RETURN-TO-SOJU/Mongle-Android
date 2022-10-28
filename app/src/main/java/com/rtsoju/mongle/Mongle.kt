@@ -6,10 +6,10 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.util.Utility
-import com.rtsoju.mongle.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 
 // TODO 폴더 모듈화하기
+@Suppress("unused")
 @HiltAndroidApp
 class Mongle : Application() {
     override fun onCreate() {
@@ -19,16 +19,16 @@ class Mongle : Application() {
         KakaoSdk.init(this, BuildConfig.KAKAO_NATIVE_APP_KEY)
 
         // Get key hash
-        //logKeyHash()
+        // logKeyHash()
 
         // Get FCM Token
-        logFCMToken()
+        // logFCMToken()
 
         logApiUrl()
     }
 
     private fun logApiUrl() {
-        Log.d("API", BuildConfig.BASE_URL)
+        Log.d("API", BASE_URL)
     }
 
     private fun logKeyHash() {

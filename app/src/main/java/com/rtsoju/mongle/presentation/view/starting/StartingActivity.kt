@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.rtsoju.mongle.BuildConfig
 import com.rtsoju.mongle.R
+import com.rtsoju.mongle.USE_TEST_ACTIVITY
 import com.rtsoju.mongle.debug.view.MainTestActivity
 import com.rtsoju.mongle.presentation.base.BaseActivity
 import com.rtsoju.mongle.presentation.view.login.LoginActivity
@@ -22,7 +22,7 @@ class StartingActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_starting)
 
-        if (BuildConfig.USE_TEST_ACTIVITY) {
+        if (USE_TEST_ACTIVITY) {
             Intent(applicationContext, MainTestActivity::class.java).apply {
                 startActivity(this)
             }

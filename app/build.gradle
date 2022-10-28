@@ -24,9 +24,6 @@ android {
 
         manifestPlaceholders = [KAKAO_NATIVE_APP_KEY: properties["KAKAO_NATIVE_APP_KEY"]]
         buildConfigField "String", 'KAKAO_NATIVE_APP_KEY', "\"${properties["KAKAO_NATIVE_APP_KEY"]}\""
-        buildConfigField "String", 'BASE_URL', "\"${properties["BASE_URL"]}\""
-        buildConfigField "boolean", 'USE_MOCKING', properties["USE_MOCKING"]
-        buildConfigField "boolean", 'USE_TEST_ACTIVITY', properties["USE_TEST_ACTIVITY"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -85,6 +82,7 @@ android {
     }
 }
 
+// TODO 일부 기능 업데이트
 dependencies {
     // android core
     //noinspection GradleDependency
@@ -132,6 +130,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10' // Retrofit2 logger
     implementation 'com.github.bumptech.glide:glide:4.13.2' // glide
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0' // chart
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     // test

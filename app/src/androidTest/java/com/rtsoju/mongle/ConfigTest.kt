@@ -4,10 +4,10 @@ import android.content.res.Resources
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import com.rtsoju.mongle.data.source.local.config.*
 import com.rtsoju.mongle.data.repository.ConfigRepositoryImpl
+import com.rtsoju.mongle.data.source.local.config.*
 import com.rtsoju.mongle.domain.repository.ConfigRepository
-import com.rtsoju.mongle.R
+import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -71,6 +71,7 @@ internal class ConfigTest {
     fun config_get_unknown_default_key() {
         try {
             configRepository.get(unknownKey)
+            fail("There is no exceptions")
         } catch (e: java.lang.Exception) {
             assertThat(e).isInstanceOf(Resources.NotFoundException::class.java)
         }

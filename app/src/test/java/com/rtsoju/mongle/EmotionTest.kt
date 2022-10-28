@@ -1,6 +1,7 @@
 package com.rtsoju.mongle
 
 import android.content.res.Resources
+import android.util.Base64
 import com.rtsoju.mongle.domain.model.Emotion
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
