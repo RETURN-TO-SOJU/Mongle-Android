@@ -61,21 +61,19 @@ class StatisticsViewModel @Inject constructor(
         }
     }
 
+    val hasStatisticsData = Transformations.map(_scoreStatistics) { scores ->
+        var sumScore = 0f
+        scores.mapNotNull { it.score }.forEach { sumScore += it }
+        sumScore > 0
+    }
+
 
     fun selectDateRangeUnit(@IdRes id: Int) {
         val dateRange: DateRange = when (id) {
-            R.id.radio_statistics_weekly -> {
-                WeekRange.fromLocalDate(LocalDate.now())
-            }
-            R.id.radio_statistics_monthly -> {
-                MonthRange.fromLocalDate(LocalDate.now())
-            }
-            R.id.radio_statistics_yearly -> {
-                YearRange.fromLocalDate(LocalDate.now())
-            }
-            else -> {
-                throw java.lang.IllegalArgumentException("Unknown radio button ID of date range: $id")
-            }
+            R.id.radio_statistics_weekly -> WeekRange.fromLocalDate(LocalDate.now())
+            R.id.radio_statistics_monthly -> MonthRange.fromLocalDate(LocalDate.now())
+            R.id.radio_statistics_yearly -> YearRange.fromLocalDate(LocalDate.now())
+            else -> throw java.lang.IllegalArgumentException("Unknown radio button ID of date range: $id")
         }
 
         _selectedDateRange.value = dateRange
@@ -97,24 +95,21 @@ class StatisticsViewModel @Inject constructor(
         val dateRange = _selectedDateRange.value ?: return
         viewModelScope.launch(Dispatchers.IO) {
             val statistics = when (dateRange) {
-                is WeekRange -> {
-                    getWeeklyStatistics(dateRange.year, dateRange.month, dateRange.week)
-                }
-                is MonthRange -> {
-                    getMonthlyStatistics(dateRange.year, dateRange.month)
-                }
-                is YearRange -> {
-                    getYearlyStatistics(dateRange.year)
-                }
+                is WeekRange -> getWeeklyStatistics(dateRange.year, dateRange.month, dateRange.week)
+                is MonthRange -> getMonthlyStatistics(dateRange.year, dateRange.month)
+                is YearRange -> getYearlyStatistics(dateRange.year)
             }
             statistics.onSuccess { result ->
                 val emotionCounts = mutableListOf<EmotionChartData>()
                 val totalEmotions = result.emotionCount.sumOf { it }
                 for (emotion in Emotion.values()) {
                     val count = result.emotionCount[emotion.ordinal]
-                    emotionCounts.add(
-                        EmotionChartData(emotion, count, count.toFloat() / totalEmotions * 100)
-                    )
+                    val percent = if (totalEmotions == 0) {
+                        0f
+                    } else {
+                        count.toFloat() / totalEmotions * 100
+                    }
+                    emotionCounts.add(EmotionChartData(emotion, count, percent))
                 }
                 _emotionCount.postValue(emotionCounts)
                 _scoreStatistics.postValue(result.scores)
