@@ -4,6 +4,7 @@ import com.rtsoju.mongle.domain.model.CachePolicy
 import com.rtsoju.mongle.domain.model.CalendarDayDetail
 import com.rtsoju.mongle.domain.repository.CalendarRepository
 import com.rtsoju.mongle.domain.repository.PasswordRepository
+import com.rtsoju.mongle.exception.CannotDecryptException
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -19,7 +20,11 @@ class GetCalendarDayDetailUseCase @Inject constructor(
         cachePolicy: CachePolicy = CachePolicy.DEFAULT
     ): Result<CalendarDayDetail> {
         return calendarRepository.getCalendarDayDetail(date, cachePolicy).map {
-            it.copy(diary = passwordRepository.decryptByKeyPassword(it.diary))
+            try {
+                it.copy(diary = passwordRepository.decryptByKeyPassword(it.diary))
+            } catch (e: CannotDecryptException) {
+                it
+            }
         }
     }
 }
