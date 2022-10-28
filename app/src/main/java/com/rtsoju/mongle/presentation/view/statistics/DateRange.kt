@@ -2,6 +2,7 @@ package com.rtsoju.mongle.presentation.view.statistics
 
 import com.kizitonwose.calendarview.utils.yearMonth
 import java.time.LocalDate
+import java.time.Period
 import java.time.YearMonth
 import java.time.temporal.WeekFields
 import java.util.*
@@ -58,9 +59,34 @@ sealed class DateRange {
         }
 
         companion object {
-            fun fromLocalDate(date: LocalDate): Week {
-                val weekDay = date.yearMonth.atDay(1).dayOfWeek.value
+            private fun getWeekStartDay(yearMonth: YearMonth): LocalDate {
+                val firstDay = yearMonth.atDay(1)
+                val weekDay = firstDay.dayOfWeek.value
+                return if (weekDay > 4) {
+                    firstDay.plusDays((8 - weekDay).toLong())
+                } else {
+                    firstDay.minusDays((weekDay - 1).toLong())
+                }
+            }
 
+            fun fromLocalDate(date: LocalDate): Week {
+                val startDay = getWeekStartDay(date.yearMonth)
+                val nextMonthStartDay = getWeekStartDay(date.yearMonth.plusMonths(1))
+
+                if (date < startDay) {
+                    val prevMonth = date.yearMonth.minusMonths(1)
+                    val prevMonthStartDay = getWeekStartDay(prevMonth)
+                    val week = Period.between(prevMonthStartDay, date).days / 7 + 1
+                    return Week(prevMonth.year, prevMonth.monthValue, week)
+                } else if (date >= nextMonthStartDay) {
+                    val nextMonth = date.yearMonth.plusMonths(1)
+                    val nextMonthStartDay = getWeekStartDay(nextMonth)
+                    val week = Period.between(nextMonthStartDay, date).days / 7 + 1
+                    return Week(nextMonth.year, nextMonth.monthValue, week)
+                } else {
+                    val week = Period.between(startDay, date).days / 7 + 1
+                    return Week(date.year, date.monthValue, week)
+                }
             }
         }
     }

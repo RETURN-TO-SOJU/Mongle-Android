@@ -15,7 +15,7 @@ class StatisticsViewModel : BaseViewModel() {
     /** Selected radio button ID of representing Time Range (Weekly, Monthly, Yearly) */
     val selectedDateRangeUnit = _selectedDateRangeUnit.asLiveData()
 
-    private val _selectedDateRange = MutableLiveData(DateRange.fromLocalDate(LocalDate.now()))
+    private val _selectedDateRange = MutableLiveData(DateRange.Week.fromLocalDate(LocalDate.now()))
     val selectedDateRangeText = _selectedDateRange.map { it.toString() }
 
 
