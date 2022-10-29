@@ -22,5 +22,6 @@ abstract class BaseDataActivity<T : ViewDataBinding> : BaseActivity() {
         onInitialize()
     }
 
+    /** 호출 시점은 onCreate */
     open fun onInitialize() {}
 }

@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.provider.MediaStore
 import androidx.activity.ComponentActivity
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.rtsoju.mongle.presentation.util.toastLong
@@ -18,29 +19,30 @@ import java.time.ZoneId
 import java.time.ZoneOffset
 
 /**
- * 특정 일에 추가된 사진만 추출해, MediaStore에서 가져오는 클래스.
+ * 특정 일에 추가된 사진만 추출해, MediaStore에서 가져오는 클래스. **반드시 onCreate / onStart에서 객체를 생성해야한다.**
  * Context argument로 인한 Activity 메모리 누수가 발생할 수 있으므로 사용이 끝나고 반드시 메모리 해제.
- * Activity가 종료된 이후에도 이 클래스를 사용하면 안됨. (메모리 누수)
+ * 즉 Activity가 종료된 이후에도 이 클래스를 사용하면 안됨. (메모리 누수)
  */
-class LocalDateImageStore(
-    private val activity: ComponentActivity
-) {
+class LocalDateImageStore(private val activity: ComponentActivity) {
+    private val requestPermissionLauncher: ActivityResultLauncher<String>
+    private var callback: ((photos: List<PhotoPresentationModel>?) -> Unit)? = null
+    private var date: LocalDate = LocalDate.now()
+
+    init {
+        requestPermissionLauncher =
+            activity.registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+                if (isGranted) {
+                    callback?.invoke(readPermissionGrantedImages(date))
+                } else {
+                    activity.toastLong("사진 권한을 부여하지 않아, 사진을 불러올 수 없습니다.")
+                }
+            }
+    }
 
     fun readMediaStoreImages(
         date: LocalDate,
         callback: (photos: List<PhotoPresentationModel>?) -> Unit
     ) {
-        val requestPermissionLauncher =
-            activity.registerForActivityResult(
-                ActivityResultContracts.RequestPermission()
-            ) { isGranted: Boolean ->
-                if (isGranted) {
-                    callback(readPermissionGrantedImages(date))
-                } else {
-                    activity.toastLong("사진 권한을 부여하지 않아, 사진을 불러올 수 없습니다.")
-                }
-            }
-
         val checkPermission = ContextCompat.checkSelfPermission(
             activity,
             Manifest.permission.READ_EXTERNAL_STORAGE
@@ -49,9 +51,9 @@ class LocalDateImageStore(
         if (checkPermission == PackageManager.PERMISSION_GRANTED) {
             callback(readPermissionGrantedImages(date))
         } else {
-            requestPermissionLauncher.launch(
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            )
+            this.callback = callback
+            this.date = date
+            requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
     }
 
