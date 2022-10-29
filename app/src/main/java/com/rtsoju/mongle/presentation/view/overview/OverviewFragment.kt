@@ -34,7 +34,6 @@ class OverviewFragment : Fragment() {
         val today = LocalDate.now()
 
         viewModel.apply {
-            attachDefaultHandlers(requireActivity())
             eventCalendarDataLoaded.observe(viewLifecycleOwner) {
                 binding.calendarOverview.addDayEmotions(it)
             }
