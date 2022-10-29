@@ -46,7 +46,11 @@ class SettingFragment : Fragment() {
             }
 
         binding.layoutSettingUsername.setOnClickListener {
-            refreshUsername.launch(Intent(activity, SetNameActivity::class.java))
+            refreshUsername.launch(
+                Intent(activity, SetNameActivity::class.java).apply {
+                    putExtra(SetNameActivity.EXTRA_USE_BACK_FINISH, true)
+                }
+            )
         }
 
         // TODO (LATER) 향후 leaving 구현

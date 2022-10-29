@@ -32,6 +32,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:padding="4dp"
                 android:src="@drawable/ic_back"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.appcompat.widget.Toolbar>
@@ -65,14 +66,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
+            android:autofillHints="name"
             android:background="@drawable/field_round_gray"
+            android:hint="@string/name_setting_hint"
+            android:inputType="text"
             android:paddingHorizontal="18dp"
             android:paddingVertical="24dp"
-            android:textSize="14sp"
             android:text="@={viewModel.name}"
-            android:autofillHints="name"
-            android:inputType="text"
-            android:hint="@string/name_setting_hint"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/btn_name_setting_ok"
             app:layout_constraintTop_toBottomOf="@+id/text_name_setting_title"
             tools:layout_editor_absoluteX="16dp" />
