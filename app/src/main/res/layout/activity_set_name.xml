@@ -66,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
             android:autofillHints="name"
             android:background="@drawable/field_round_gray"
             android:hint="@string/name_setting_hint"
@@ -74,7 +75,6 @@
             android:paddingVertical="24dp"
             android:text="@={viewModel.name}"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_name_setting_ok"
             app:layout_constraintTop_toBottomOf="@+id/text_name_setting_title"
             tools:layout_editor_absoluteX="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
