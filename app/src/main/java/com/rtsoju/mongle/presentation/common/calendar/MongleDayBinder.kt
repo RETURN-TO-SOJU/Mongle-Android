@@ -1,5 +1,6 @@
 package com.rtsoju.mongle.presentation.common.calendar
 
+import android.util.Log
 import android.view.View
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner

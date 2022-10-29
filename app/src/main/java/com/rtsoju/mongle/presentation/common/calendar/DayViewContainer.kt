@@ -42,6 +42,7 @@ internal class DayViewContainer(view: View, dayClickListener: (LocalDate) -> Uni
 
     fun initialize(day: CalendarDay) {
         this.day = day
+        this.dayType = DayType.DIGIT
         dayTextView.visibility = View.VISIBLE
         dayTextView.text = day.date.dayOfMonth.toString()
         dayTextView.setTextColorRes(R.color.text)
