@@ -13,7 +13,6 @@ import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.FragmentStatisticsBinding
 import com.rtsoju.mongle.databinding.ListitemChartLabelBinding
@@ -91,8 +90,7 @@ class StatisticsFragment : Fragment() {
             axisRight.isEnabled = false
 
             legend.isEnabled = false
-
-            animateX(300)
+            animateXY(300, 300)
         }
     }
 
@@ -115,53 +113,39 @@ class StatisticsFragment : Fragment() {
         }
     }
 
+    private fun makeLineDataSet(values: List<Entry>, visible: Boolean): LineDataSet {
+        return LineDataSet(values, "").apply {
+            val pointColor = resources.getColor(R.color.point, requireContext().theme)
+            color = pointColor
+            setCircleColor(pointColor)
+            circleRadius = 3f
+            setDrawCircleHole(false)
+            setDrawValues(false)
+            isVisible = visible
+        }
+    }
+
     private fun setLineChartData(chart: LineChart, datas: List<StatisticsResult.Score>) {
-        val values = ArrayList<Entry>()
+        val lineData = LineData()
+        var values = ArrayList<Entry>()
+        var lastEnabledState = false
+
         for (i in datas.indices) {
             val score = datas[i].score
-            values.add(Entry(i.toFloat(), score ?: 0f, score == null))
+            val enabledState = score != null
+            val entry = Entry(i.toFloat(), score ?: 10f)
+            if (enabledState != lastEnabledState) {
+                if (values.isNotEmpty()) {
+                    lineData.addDataSet(makeLineDataSet(values, lastEnabledState))
+                    values = ArrayList()
+                }
+                lastEnabledState = enabledState
+            }
+            values.add(entry)
         }
 
-        val dataSet: LineDataSet
-        if (chart.data != null && chart.data.dataSetCount > 0) {
-            dataSet = chart.data.getDataSetByIndex(0) as LineDataSet
-            dataSet.values = values
-            dataSet.notifyDataSetChanged()
-            chart.data.notifyDataChanged()
-            chart.notifyDataSetChanged()
-            chart.invalidate()
-        } else {
-            dataSet = LineDataSet(values, "")
-            dataSet.setDrawIcons(false)
-
-            // black lines and points
-            val pointColor = resources.getColor(R.color.point, requireContext().theme)
-            dataSet.color = pointColor
-            dataSet.setCircleColor(pointColor)
-
-            // line thickness and point size
-            dataSet.lineWidth = 1f
-            dataSet.circleRadius = 1.5f
-
-            // draw points as solid circles
-            dataSet.setDrawCircleHole(false)
-
-            // customize legend entry
-            dataSet.formLineWidth = 1f
-            dataSet.formSize = 15f
-
-            // text size of values
-            dataSet.setDrawValues(false)
-
-            val dataSets = ArrayList<ILineDataSet>()
-            dataSets.add(dataSet) // add the data sets
-
-            // create a data object with the data sets
-            val data = LineData(dataSets)
-            data.isHighlightEnabled = false
-
-            // set data
-            chart.data = data
+        if (values.isNotEmpty()) {
+            lineData.addDataSet(makeLineDataSet(values, lastEnabledState))
         }
 
         chart.xAxis.setLabelCount(datas.size, true)
@@ -174,6 +158,9 @@ class StatisticsFragment : Fragment() {
                 return datas[idx].label
             }
         }
+
+        chart.data = lineData.apply { isHighlightEnabled = false }
+        chart.invalidate()
     }
 
     private fun setPieChartData(chart: PieChart, datas: List<EmotionChartData>) {

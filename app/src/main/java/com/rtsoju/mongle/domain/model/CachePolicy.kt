@@ -3,6 +3,7 @@ package com.rtsoju.mongle.domain.model
 import android.util.Log
 
 enum class CachePolicy {
+    // TODO 앱을 잠깐 나갔다가 들어와도 Reload할까?
     /** **기본값.** 앱 시작후 최초 1회, 무조건 Remote에서 요청을 받아 캐싱한다. 이후에 계속 캐싱된 데이터를 반환. */
     ONCE,
 
