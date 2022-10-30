@@ -141,6 +141,8 @@
     <string name="setting_title_2">오늘 기분은 어때요?</string>
     <string name="setting_change_username">이름 변경</string>
     <string name="setting_screen_password">화면보호 비밀번호 설정</string>
+    <string name="setting_qanda">Q&amp;A</string>
+    <string name="setting_qanda_url">https://mongle-bucket-test.s3.ap-northeast-2.amazonaws.com/Q%26A.html</string>
     <string name="setting_encrypt_password">개인 데이터 암호 설정</string>
     <string name="setting_alert">앱 알림</string>
     <string name="setting_leave">몽글몽글 서비스 탈퇴</string>

@@ -1,6 +1,7 @@
 package com.rtsoju.mongle.presentation.view.setting
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.FragmentSettingBinding
 import com.rtsoju.mongle.presentation.view.LeavingFragment
 import com.rtsoju.mongle.presentation.view.login.LoginActivity
@@ -63,6 +65,13 @@ class SettingFragment : Fragment() {
         binding.layoutSettingScreenPassword.setOnClickListener {
             Intent(activity, PasswordActivity::class.java).apply {
                 putExtra(PasswordActivity.EXTRA_MODE, PasswordActivity.Mode.SET)
+                startActivity(this)
+            }
+        }
+
+        binding.layoutSettingQanda.setOnClickListener {
+            val url = resources.getString(R.string.setting_qanda_url)
+            Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
                 startActivity(this)
             }
         }
