@@ -65,7 +65,17 @@ class DayDetailViewModel @Inject constructor(
     val diaryText = Transformations.map(_diary) {
         val text = it ?: ""
         if (text.isBlank()) {
-            TextResource(R.string.overview_title_empty)
+            TextResource(R.string.detail_diary_empty)
+        } else {
+            TextResource(text)
+        }
+    }
+
+    private val _diaryFeedback = MutableLiveData("")
+    val diaryFeedback = Transformations.map(_diaryFeedback) {
+        val text = it ?: ""
+        if (text.isBlank()) {
+            TextResource(R.string.detail_diary_empty_feedback)
         } else {
             TextResource(text)
         }
@@ -112,6 +122,7 @@ class DayDetailViewModel @Inject constructor(
                 detail.emotion?.let {
                     setEmotion(it)
                 }
+                _diaryFeedback.postValue(detail.diaryFeedback)
                 _schedules.postValue(detail.scheduleList.map {
                     SchedulePresentationModel.fromDomainModel(
                         it

@@ -101,7 +101,7 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
             fragment.show(supportFragmentManager, fragment.tag)
         }
 
-        binding.textDayDetailDiary.setOnClickListener {
+        binding.layoutDayDetailDiary.setOnClickListener {
             Intent(this, EditDiaryActivity::class.java).apply {
                 val emotion = viewModel.emotion
                 if (emotion != null) {

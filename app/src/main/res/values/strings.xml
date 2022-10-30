@@ -123,8 +123,9 @@
     <string name="error_need_login_to_analyze">로그인해야 대화내용 분석을 요청할 수 있습니다.</string>
 
     <!-- Day detail -->
-    <string name="detail_diary_title">이날의 일기 📖</string>
-    <string name="detail_diary_empty"><font color="#B2B7BD">기분은 어때요? 자유롭게 일기를 남겨보세요!</font></string>
+    <string name="detail_diary_title">오늘 하루 기록</string>
+    <string name="detail_diary_empty_feedback">기분은 어때요? 자유롭게 일기를 남겨보세요!\n당신의 이야기가 듣고싶어요!</string>
+    <string name="detail_diary_empty"><font color="#B2B7BD">비어있음</font></string>
     <string name="detail_analyzed_title1">나는 어떤 감정들을 느꼈을까?</string>
     <string name="detail_analyzed_title2">아래 감정이들을 눌러보세요 :)</string>
     <string name="detail_photos_title">이날 찍은 사진들</string>
