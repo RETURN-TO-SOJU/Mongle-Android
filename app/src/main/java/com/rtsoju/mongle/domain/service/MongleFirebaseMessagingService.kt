@@ -51,43 +51,37 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
         sendNotification(message)
     }
 
-    private fun parseGiftIntent(data: Map<String, String>): Intent {
-        val date = data["date"]
-        if (date != null) {
-            return Intent(this, DayDetailActivity::class.java).apply {
-                putExtra(
-                    DayDetailActivity.EXTRA_DATE,
-                    LocalDate.parse(date)
-                )
-                putExtra(DayDetailActivity.EXTRA_SHOW_ARRIVED_GIFT_DIALOG, true)
-            }
-        } else {
-            throw IllegalArgumentException("data.date is null")
+    private fun makeGiftIntent(payload: String): Intent {
+        return Intent(this, DayDetailActivity::class.java).apply {
+            putExtra(
+                DayDetailActivity.EXTRA_DATE,
+                LocalDate.parse(payload)
+            )
+            putExtra(DayDetailActivity.EXTRA_SHOW_ARRIVED_GIFT_DIALOG, true)
         }
     }
 
-    private fun parseAnalyzeCompleteIntent(data: Map<String, String>): Intent {
-        val date = data["date"]
-        if (date != null) {
-            return Intent(this, MainActivity::class.java).apply {
-                putExtra(MainActivity.EXTRA_ANALYZED_DATE_RANGE, date)
-            }
-        } else {
-            throw IllegalArgumentException("data.date is null")
+    private fun makeAnalyzeCompleteIntent(payload: String): Intent {
+        return Intent(this, MainActivity::class.java).apply {
+            putExtra(MainActivity.EXTRA_ANALYZED_DATE_RANGE, payload)
         }
     }
 
-    private fun parseErrorIntent(): Intent {
+    private fun makeErrorIntent(): Intent {
         return Intent(this, MainActivity::class.java)
     }
 
     private fun createIntentFromData(data: Map<String, String>): Intent? {
         val type = data["type"]
+        val payload = data["data"]
         return try {
+            if (payload == null) {
+                throw IllegalArgumentException("Data '$type' needs a payload.")
+            }
             when (type) {
-                "gift" -> parseGiftIntent(data)
-                "analyze" -> parseAnalyzeCompleteIntent(data)
-                "error" -> parseErrorIntent()
+                "gift" -> makeGiftIntent(payload)
+                "analyze" -> makeAnalyzeCompleteIntent(payload)
+                "error" -> makeErrorIntent()
                 else -> throw IllegalArgumentException("Unknown Type: $type")
             }
         } catch (e: IllegalArgumentException) {
@@ -97,12 +91,12 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun sendNotification(message: RemoteMessage) {
-        val notification = message.notification
         val data = message.data
 
-        if (notification != null && data.isNotEmpty()) {
-            val title = notification.title
-            val body = notification.body
+        Log.d(TAG, "Message Received: $data")
+        if (data.isNotEmpty()) {
+            val title = data["title"]
+            val body = data["body"]
             val intent = createIntentFromData(data)
             if (title != null && body != null) {
                 sendNotification(title, body, intent)
@@ -136,20 +130,13 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
 
         if (resultIntent != null) {
             val resultPendingIntent: PendingIntent? =
-                androidx.core.app.TaskStackBuilder.create(this).run {
-                    addNextIntentWithParentStack(resultIntent)
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                        getPendingIntent(
-                            0,
-                            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-                        )
-                    } else {
-                        getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
-                    }
-                }
+                PendingIntent.getActivity(
+                    this,
+                    0,
+                    resultIntent,
+                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                )
             notificationBuilder.setContentIntent(resultPendingIntent)
-        } else {
-            notificationBuilder.setContentText(body)
         }
 
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
