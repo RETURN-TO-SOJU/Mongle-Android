@@ -3,7 +3,6 @@
     <string name="app_subtitle">당신에게 추억을 선물합니다.</string>
 
     <!-- Common -->
-    <string name="empty" />
     <string name="cancel">취소</string>
     <string name="ok">확인</string>
     <string name="keyword_template">#%1$s</string>
@@ -11,6 +10,8 @@
     <string name="watch_later">다음에 볼게요</string>
     <string name="watch_now">지금 볼게요!</string>
     <string name="write_complete">작성완료</string>
+    <string name="empty"><font color="#B2B7BD">비어있음</font></string>
+    <string name="default_notification_channel_id">mongle_firebase_messaging</string>
 
     <string name="wip_title">공사중인 기능이에요</string>
     <string name="wip_subtitle">통계 기능은 아직 개발중이에요…\n다음 버전에 봐요!</string>
@@ -125,7 +126,6 @@
     <!-- Day detail -->
     <string name="detail_diary_title">오늘 하루 기록</string>
     <string name="detail_diary_empty_feedback">기분은 어때요? 자유롭게 일기를 남겨보세요!\n당신의 이야기가 듣고싶어요!</string>
-    <string name="detail_diary_empty"><font color="#B2B7BD">비어있음</font></string>
     <string name="detail_analyzed_title1">나는 어떤 감정들을 느꼈을까?</string>
     <string name="detail_analyzed_title2">아래 감정이들을 눌러보세요 :)</string>
     <string name="detail_photos_title">이날 찍은 사진들</string>
@@ -155,7 +155,10 @@
     <string name="leaving_message_3">연결된 소셜 계정 정보가 삭제됩니다.</string>
     <string name="leaving_message_agree">안내사항을 확인하고 회원탈퇴에 동의</string>
     <string name="leaving_ok">탈퇴하기</string>
-    <string name="default_notification_channel_id">mongle_firebase_messaging</string>
+
+    <!-- Emotion Messages -->
+    <string name="emotion_message_empty_data_title">메시지가 없어요..</string>
+    <string name="emotion_message_empty_data_subtitle">비율이 0%라는건 메시지가 없다는 뜻이에요.</string>
     <string name="emotion_message_proportion">나의 %1$s비율 <font color="#EB6E6D">%2$d%%</font></string>
 
     <!-- Name setting -->

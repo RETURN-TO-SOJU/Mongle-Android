@@ -48,7 +48,7 @@ class OverviewViewModel @Inject constructor(
     private val _selectedDayEmotion = MutableLiveData(R.drawable.emotion_anxious)
     val selectedDayEmotion = _selectedDayEmotion.asLiveData()
 
-    private val _diaryFeedback = MutableLiveData(TextResource(R.string.detail_diary_empty))
+    private val _diaryFeedback = MutableLiveData(TextResource(R.string.empty))
     val diaryFeedback = _diaryFeedback.asLiveData()
 
     val hasData = MutableLiveData(false)

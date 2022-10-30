@@ -65,7 +65,7 @@ class DayDetailViewModel @Inject constructor(
     val diaryText = Transformations.map(_diary) {
         val text = it ?: ""
         if (text.isBlank()) {
-            TextResource(R.string.detail_diary_empty)
+            TextResource(R.string.empty)
         } else {
             TextResource(text)
         }

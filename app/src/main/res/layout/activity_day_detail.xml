@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.rtsoju.mongle.presentation.view.daydetail.DayDetailViewModel" />
@@ -80,6 +82,8 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
@@ -108,8 +112,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="8dp"
                         android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="8dp"
                         android:fontFamily="@font/app_medium"
                         android:gravity="center_horizontal"
                         android:textSize="14sp"
@@ -187,6 +191,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="16dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
                     android:orientation="vertical">
 
                     <TextView
@@ -220,15 +226,28 @@
                         android:text="@string/detail_photos_title"
                         android:textSize="16sp" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/list_day_detail_photo"
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:orientation="horizontal"
-                        app:items="@{viewModel.photos}"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:layout_marginTop="16dp">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/empty"
+                            android:visibility="@{viewModel.photos.empty ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_day_detail_photo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            app:items="@{viewModel.photos}"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    </FrameLayout>
                 </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
