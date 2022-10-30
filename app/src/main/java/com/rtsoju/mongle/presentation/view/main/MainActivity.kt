@@ -1,7 +1,5 @@
 package com.rtsoju.mongle.presentation.view.main
 
-import android.content.Intent
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController

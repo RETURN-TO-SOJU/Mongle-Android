@@ -2,16 +2,19 @@ package com.rtsoju.mongle
 
 import android.app.Application
 import android.util.Log
+import androidx.lifecycle.*
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.util.Utility
+import com.rtsoju.mongle.domain.model.CachePolicy
 import dagger.hilt.android.HiltAndroidApp
 
 // TODO 폴더 모듈화하기
 @Suppress("unused")
 @HiltAndroidApp
-class Mongle : Application() {
+class Mongle : Application(), LifecycleEventObserver {
+
     override fun onCreate() {
         super.onCreate()
 
@@ -25,6 +28,13 @@ class Mongle : Application() {
         // logFCMToken()
 
         logApiUrl()
+        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
+    }
+
+    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+        if (event == Lifecycle.Event.ON_STOP) {
+            CachePolicy.FETCHED_RESOURCES.clear()
+        }
     }
 
     private fun logApiUrl() {
