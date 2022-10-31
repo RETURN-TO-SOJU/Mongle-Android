@@ -130,6 +130,8 @@
     <string name="detail_analyzed_title2">아래 감정이들을 눌러보세요 :)</string>
     <string name="detail_photos_title">이날 찍은 사진들</string>
     <string name="detail_plans_title">이날의 일정</string>
+    <string name="detail_diary_empty"><font color="#B2B7BD">클릭해서 일기를 작성해보세요!</font></string>
+    <string name="detail_photo_empty"><font color="#B2B7BD">이날 찍은 사진이 없어요!</font></string>
 
     <!-- Dialog -->
     <string name="dialog_analyze_complete">%1$s님,\n감정 분석을 완료했어요 :)</string>
