@@ -80,7 +80,7 @@ class OverviewViewModel @Inject constructor(
                 .associate { it.date to it.emotion as Emotion }
             calendarEmotions.putAll(emotionData)
             _eventCalendarDataLoaded.postValue(emotionData)
-            keywordMap = days.associate { it.date to it.keywords }
+            keywordMap = keywordMap + days.associate { it.date to it.keywords }
         }
     }
 
