@@ -55,12 +55,11 @@ class SettingFragment : Fragment() {
             )
         }
 
-        // TODO (LATER) 향후 leaving 구현
-        /*binding.layoutSettingLeave.setOnClickListener {
+        binding.layoutSettingLeave.setOnClickListener {
             LeavingFragment.newInstance().apply {
                 show(activity.supportFragmentManager, tag)
             }
-        }*/
+        }
 
         binding.layoutSettingScreenPassword.setOnClickListener {
             Intent(activity, PasswordActivity::class.java).apply {

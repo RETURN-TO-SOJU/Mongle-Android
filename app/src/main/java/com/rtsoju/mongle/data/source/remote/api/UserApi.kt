@@ -5,6 +5,7 @@ import com.rtsoju.mongle.data.source.remote.dto.request.FCMTokenRequest
 import com.rtsoju.mongle.data.source.remote.dto.request.UsernameRequest
 import com.rtsoju.mongle.data.source.remote.dto.response.UserResponse
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.POST
 
 interface UserApi {
@@ -21,6 +22,6 @@ interface UserApi {
         @Body username: UsernameRequest
     ): MessageResult
 
-    @POST("leave")
+    @DELETE("users")
     suspend fun leaveAccount(): MessageResult
 }
