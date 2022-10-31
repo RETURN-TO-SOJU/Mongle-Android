@@ -17,10 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mongle"
         android:usesCleartextTraffic="true"
+        tools:ignore="LockedOrientationActivity"
         tools:targetApi="31">
         <activity
             android:name="com.rtsoju.mongle.presentation.view.starting.StartingActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Mongle.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,23 +41,29 @@
 
         <activity
             android:name="com.rtsoju.mongle.presentation.view.setname.SetNameActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.presentation.view.diary.EditDiaryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.presentation.view.messages.EmotionMessagesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.presentation.view.daydetail.DayDetailActivity"
             android:exported="false"
-            android:parentActivityName="com.rtsoju.mongle.presentation.view.main.MainActivity" />
+            android:parentActivityName="com.rtsoju.mongle.presentation.view.main.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.presentation.view.main.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.presentation.view.kakaoexport.KakaoExportActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -66,7 +74,8 @@
         </activity>
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -81,25 +90,32 @@
         </activity>
         <activity
             android:name="com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.debug.view.MainTestActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.debug.view.ViewTestActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.debug.view.ApiTestActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.presentation.view.password.PasswordActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.presentation.view.agree.AgreeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.rtsoju.mongle.presentation.view.login.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
