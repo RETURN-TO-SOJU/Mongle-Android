@@ -35,7 +35,7 @@ internal class RemoteUserDataSource @Inject constructor(
         }
     }
 
-    suspend fun leaveAccount(): Result<MessageResult> {
+    suspend fun leaveAccount(): Result<Unit> {
         return safeApiCall {
             api.leaveAccount()
         }

@@ -1,6 +1,5 @@
 package com.rtsoju.mongle.domain.usecase.user
 
-import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.domain.repository.AuthRepository
 import com.rtsoju.mongle.domain.repository.FavoriteRepository
 import com.rtsoju.mongle.domain.repository.PasswordRepository
@@ -12,13 +11,14 @@ class LeaveAccountUseCase @Inject constructor(
     private val userRepository: UserRepository,
     private val authRepository: AuthRepository,
     private val passwordRepository: PasswordRepository,
-    private val favoriteRepository: FavoriteRepository
+    private val favoriteRepository: FavoriteRepository,
 ) {
-    suspend operator fun invoke(): Result<MessageResult> {
+    suspend operator fun invoke(): Result<Unit> {
+        val result = userRepository.leaveAccount()
         passwordRepository.setDataKeyPassword(null)
         passwordRepository.setScreenPassword(null)
         favoriteRepository.clear()
         authRepository.clear()
-        return userRepository.leaveAccount()
+        return result
     }
 }

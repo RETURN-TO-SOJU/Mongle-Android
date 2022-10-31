@@ -1,5 +1,6 @@
 package com.rtsoju.mongle.domain.usecase.auth
 
+import com.rtsoju.mongle.domain.model.CachePolicy
 import com.rtsoju.mongle.domain.repository.AuthRepository
 import com.rtsoju.mongle.domain.usecase.user.GetUserInfoUseCase
 import com.rtsoju.mongle.exception.NeedsLoginException
@@ -16,7 +17,7 @@ class ValidateTokenUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(): Boolean {
         return try {
-            val user = getUserInfo()
+            val user = getUserInfo(CachePolicy.NEVER)
             val userObj = user.getOrNull()
 
             // username이 설정되어있지 않다면 invalid token

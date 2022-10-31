@@ -39,7 +39,8 @@ internal class LocalTokenSource @Inject constructor(
     }
 
     fun clear() {
-        setToken(OAuthLoginToken.EMPTY_TOKEN)
+        secureProperties.edit().clear().apply()
+        cachedToken = OAuthLoginToken.EMPTY_TOKEN
     }
 
     companion object {

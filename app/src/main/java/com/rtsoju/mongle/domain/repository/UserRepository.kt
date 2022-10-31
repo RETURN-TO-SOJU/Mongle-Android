@@ -16,5 +16,5 @@ interface UserRepository {
         username: String
     ): Result<MessageResult>
 
-    suspend fun leaveAccount(): Result<MessageResult>
+    suspend fun leaveAccount(): Result<Unit>
 }

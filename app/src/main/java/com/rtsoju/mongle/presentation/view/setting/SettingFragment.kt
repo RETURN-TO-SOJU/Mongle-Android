@@ -8,30 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.FragmentSettingBinding
 import com.rtsoju.mongle.presentation.view.LeavingFragment
-import com.rtsoju.mongle.presentation.view.login.LoginActivity
 import com.rtsoju.mongle.presentation.view.password.PasswordActivity
 import com.rtsoju.mongle.presentation.view.setname.SetNameActivity
+import com.rtsoju.mongle.presentation.view.starting.StartingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingFragment : Fragment() {
 
     private val viewModel by viewModels<SettingViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setFragmentResultListener(LeavingFragment.REQUEST_KEY) { _, bundle ->
-            val agreed = bundle.getBoolean(LeavingFragment.RESULT_AGREED, false)
-            if (agreed) {
-                viewModel.doLeave()
-            }
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +42,16 @@ class SettingFragment : Fragment() {
                     putExtra(SetNameActivity.EXTRA_USE_BACK_FINISH, true)
                 }
             )
+        }
+
+        activity.supportFragmentManager.setFragmentResultListener(
+            LeavingFragment.REQUEST_KEY,
+            viewLifecycleOwner
+        ) { _, bundle ->
+            val agreed = bundle.getBoolean(LeavingFragment.RESULT_AGREED, false)
+            if (agreed) {
+                viewModel.doLeave()
+            }
         }
 
         binding.layoutSettingLeave.setOnClickListener {
@@ -85,7 +84,7 @@ class SettingFragment : Fragment() {
 
         viewModel.attachDefaultHandlers(activity)
         viewModel.eventLeaveAccount.observe(viewLifecycleOwner) {
-            Intent(activity, LoginActivity::class.java).apply {
+            Intent(activity, StartingActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(this)
             }

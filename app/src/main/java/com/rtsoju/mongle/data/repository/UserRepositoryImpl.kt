@@ -47,7 +47,7 @@ internal class UserRepositoryImpl
         return remoteUserDataSource.setUsername(username)
     }
 
-    override suspend fun leaveAccount(): Result<MessageResult> {
+    override suspend fun leaveAccount(): Result<Unit> {
         val result = remoteUserDataSource.leaveAccount()
         result.onSuccess {
             localTokenSource.clear()

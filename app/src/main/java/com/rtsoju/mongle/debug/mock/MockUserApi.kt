@@ -9,6 +9,7 @@ import com.rtsoju.mongle.domain.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 
 class MockUserApi(
     private val authRepository: AuthRepository
@@ -36,10 +37,10 @@ class MockUserApi(
             MessageResult("complete")
         }
 
-    override suspend fun leaveAccount(): MessageResult =
+    override suspend fun leaveAccount(): Response<Unit> =
         withContext(Dispatchers.IO) {
             delay(2000)
             MockAuthApi.checkToken(authRepository)
-            MessageResult("complete")
+            Response.success(null)
         }
 }
