@@ -41,8 +41,27 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_tutorial_go_kakao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_tutorial" />
+
+
+    <Button
+        android:id="@+id/btn_tutorial_go_kakao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/btn_kakao"
+        android:drawablePadding="8dp"
+        android:fontFamily="@font/app_medium"
+        android:gravity="center"
+        android:paddingHorizontal="120dp"
+        android:paddingVertical="18dp"
+        android:text="@string/tutorial_go_kakao"
+        android:textColor="@color/kakao_text"
+        android:textSize="14sp"
+        app:drawableStartCompat="@drawable/ic_kakaotalk"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

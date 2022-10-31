@@ -71,6 +71,7 @@
     <!-- Tutorial -->
     <string name="skip">건너뛰기</string>
     <string name="tutorial_title_1">안녕하세요! 튜토리얼에 오신것을 환영합니다!</string>
+    <string name="tutorial_go_kakao">카카오톡 앱 열기</string>
 
     <!-- New favorite -->
     <string name="new_favorite_title">당신의 💌\n소중한 추억을 저장하세요 :)</string>

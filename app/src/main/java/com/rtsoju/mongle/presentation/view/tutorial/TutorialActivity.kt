@@ -3,6 +3,7 @@ package com.rtsoju.mongle.presentation.view.tutorial
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.ArrayRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -12,6 +13,7 @@ import com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity.Companion.E
 import com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity.Companion.EXTRA_IMAGE_WIDTH
 import com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity.Companion.EXTRA_SUBTITLE_LIST_RES
 import com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity.Companion.EXTRA_TITLE_LIST_RES
+import com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity.Companion.EXTRA_USE_KAKAOBTN
 
 /**
  * ## Extras
@@ -28,6 +30,9 @@ import com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity.Companion.E
  * 튜토리얼 사진의 너비를 직접 지정한다. 지정하지 않으면 화면에 꽉차도록 자동 설정된다.
  * 단위는 dp이고, float으로 지정해야한다.
  *
+ * * **(선택)** [EXTRA_USE_KAKAOBTN]: [Boolean] -
+ * 튜토리얼 마지막에 카카오톡 이동하기 버튼을 보여줄 것인가? 기본값은 false
+ *
  * 반드시 튜토리얼 메시지, 사진 id 배열은 길이가 같아야 한다.
  */
 class TutorialActivity : AppCompatActivity() {
@@ -41,8 +46,16 @@ class TutorialActivity : AppCompatActivity() {
         val subtitleResList = intent.getIntExtra(EXTRA_SUBTITLE_LIST_RES, 0)
         val imageResList = intent.getIntExtra(EXTRA_IMAGE_LIST_RES, 0)
         val imageWidth = intent.getFloatExtra(EXTRA_IMAGE_WIDTH, 0f)
+        val useKakaoBtn = intent.getBooleanExtra(EXTRA_USE_KAKAOBTN, false)
 
         checkIntentExtras(titleResList, subtitleResList, imageResList)
+
+        binding.btnTutorialGoKakao.setOnClickListener {
+            packageManager.getLaunchIntentForPackage("com.kakao.talk")?.run {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(this)
+            }
+        }
 
         binding.pagerTutorial.let {
             // titleResList, imageResList는 위에서 null체크를 하므로 cast error가 발생할 수 없음.
@@ -53,13 +66,15 @@ class TutorialActivity : AppCompatActivity() {
             it.adapter = adapter
             it.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
-                    binding.btnTutorialSkip.setText(
-                        if (position == adapter.itemCount - 1) {
-                            R.string.ok
-                        } else {
-                            R.string.skip
+                    if (position == adapter.itemCount - 1) {
+                        binding.btnTutorialSkip.setText(R.string.skip)
+                        if (useKakaoBtn) {
+                            binding.btnTutorialGoKakao.visibility = View.VISIBLE
                         }
-                    )
+                    } else {
+                        binding.btnTutorialSkip.setText(R.string.ok)
+                        binding.btnTutorialGoKakao.visibility = View.GONE
+                    }
                 }
             })
             binding.indicatorTutorialPagerPage.attachTo(it)
@@ -102,11 +117,13 @@ class TutorialActivity : AppCompatActivity() {
         const val EXTRA_SUBTITLE_LIST_RES = "subtitleListRes"
         const val EXTRA_IMAGE_LIST_RES = "imageListRes"
         const val EXTRA_IMAGE_WIDTH = "imageWidth"
+        const val EXTRA_USE_KAKAOBTN = "useKakaoBtn"
 
         fun startKakaoTutorial(context: Context): Intent {
             return Intent(context, TutorialActivity::class.java).apply {
                 putExtra(EXTRA_TITLE_LIST_RES, R.array.kakao_tutorial_title)
                 putExtra(EXTRA_IMAGE_LIST_RES, R.array.kakao_tutorial_image)
+                putExtra(EXTRA_USE_KAKAOBTN, true)
                 context.startActivity(this)
             }
         }
