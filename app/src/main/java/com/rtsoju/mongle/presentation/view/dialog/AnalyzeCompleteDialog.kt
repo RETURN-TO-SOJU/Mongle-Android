@@ -2,7 +2,6 @@ package com.rtsoju.mongle.presentation.view.dialog
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.DialogAnalyzeCompleteBinding

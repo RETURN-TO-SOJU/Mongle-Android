@@ -12,6 +12,7 @@ import com.rtsoju.mongle.presentation.view.agree.AgreeActivity.Companion.EXTRA_R
 import com.rtsoju.mongle.presentation.view.login.LoginActivity.Companion.EXTRA_REDIRECT_TO
 import com.rtsoju.mongle.presentation.view.setname.SetNameActivity.Companion.EXTRA_REDIRECT_TO
 import com.rtsoju.mongle.presentation.view.setname.SetNameActivity.Companion.EXTRA_SHOW_TUTORIAL
+import com.rtsoju.mongle.presentation.view.setname.SetNameActivity.Companion.EXTRA_USE_BACK_FINISH
 import com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers

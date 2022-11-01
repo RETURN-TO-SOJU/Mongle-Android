@@ -11,6 +11,7 @@ import com.rtsoju.mongle.presentation.base.BaseDataActivity
 import com.rtsoju.mongle.presentation.base.event.OnSelectedListener
 import com.rtsoju.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_DATE
 import com.rtsoju.mongle.presentation.view.daydetail.DayDetailActivity.Companion.EXTRA_SHOW_ARRIVED_GIFT_DIALOG
+import com.rtsoju.mongle.presentation.view.daydetail.DayDetailActivity.Companion.RESULT_CHANGED_EMOTION
 import com.rtsoju.mongle.presentation.view.daydetail.DayDetailActivity.Companion.RESULT_SELECTED_DATE
 import com.rtsoju.mongle.presentation.view.daydetail.adapter.AnalyzedEmotionListAdapter
 import com.rtsoju.mongle.presentation.view.daydetail.adapter.PhotoListAdapter
