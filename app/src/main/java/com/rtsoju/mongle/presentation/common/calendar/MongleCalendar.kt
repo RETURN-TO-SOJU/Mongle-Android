@@ -35,6 +35,7 @@ class MongleCalendar @JvmOverloads constructor(
         private set
 
     private var selectedListener: OnSelectedListener<LocalDate>? = null
+    private var clickSelectedListener: OnSelectedListener<LocalDate>? = null
     private var initializedListener: OnInitializedListener? = null
     private var monthLoadedListener: OnMonthLoadedListener? = null
 
@@ -51,7 +52,7 @@ class MongleCalendar @JvmOverloads constructor(
 
         binding.calendar.apply {
             daySize = CalendarView.sizeAutoWidth(dpToPxInt(context, 44))
-            dayBinder = MongleDayBinder(this@MongleCalendar, this@MongleCalendar::selectDate)
+            dayBinder = MongleDayBinder(this@MongleCalendar, this@MongleCalendar::clickDay)
             monthHeaderBinder = MongleMonthWeekHeaderBinder(daysOfWeek)
             monthScrollListener = {
                 binding.textCalendarMonth.text =
@@ -100,8 +101,23 @@ class MongleCalendar @JvmOverloads constructor(
         }
     }
 
-    fun selectDate(date: LocalDate?) {
-        if (selectedDate != date) {
+    private fun clickDay(date: LocalDate?) {
+        if (!selectDate(date) && date != null) {
+            clickSelectedListener?.onSelected(date)
+        }
+    }
+
+    /**
+     * [date]를 선택한다. 선택된 Day는 highlight되고, 현재 month에 없으면 해당 month로 스크롤된다.
+     * SelectedListener가 등록되어있다면 호출된다. 만약 [date]를 null로 지정하면 선택을 취소한다.
+     * 이때는 SelectedListener가 호출되지않는다.
+     * @param date 선택할 date
+     * @return 선택(또는 선택 취소)에 성공할 경우 true리턴한다.
+     * 성공하는 경우는 기존에 선택된 날짜와 [date]가 다른 경우이다.
+     */
+    fun selectDate(date: LocalDate?): Boolean {
+        val hasDirty = selectedDate != date
+        if (hasDirty) {
             val oldDate = selectedDate
             selectedDate = date
 
@@ -112,6 +128,7 @@ class MongleCalendar @JvmOverloads constructor(
                 selectedListener?.onSelected(date)
             }
         }
+        return hasDirty
     }
 
     private fun findDiff(a: Map<LocalDate, Emotion>, b: Map<LocalDate, Emotion>): Set<LocalDate> {
@@ -165,14 +182,30 @@ class MongleCalendar @JvmOverloads constructor(
         }
     }
 
+    /**
+     * Calendar의 특정 Day가 선택되었을 때 발생한다.
+     */
     fun setOnSelectedListener(listener: OnSelectedListener<LocalDate>) {
         selectedListener = listener
     }
 
+    /**
+     * 이미 선택된 Day가 클릭되었을 때 발생한다.
+     */
+    fun setOnClickSelectedListener(listener: OnSelectedListener<LocalDate>) {
+        clickSelectedListener = listener
+    }
+
+    /**
+     * Calendar가 사용가능한 상태(Calendar의 메서드들을 사용할 수 있는 상태)가 되었을 때 발생한다.
+     */
     fun setOnInitializedListener(listener: OnInitializedListener) {
         initializedListener = listener
     }
 
+    /**
+     * 캐시된 month를 지나, 새로운 month가 load되었을 때 발생한다.
+     */
     fun setOnMonthLoadedListener(listener: OnMonthLoadedListener) {
         monthLoadedListener = listener
     }

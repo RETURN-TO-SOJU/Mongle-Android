@@ -2,15 +2,18 @@ package com.rtsoju.mongle.presentation.view.overview
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rtsoju.mongle.databinding.FragmentOverviewBinding
 import com.rtsoju.mongle.domain.model.Emotion
+import com.rtsoju.mongle.presentation.common.calendar.MongleCalendar
 import com.rtsoju.mongle.presentation.util.getSerializableExtraCompat
 import com.rtsoju.mongle.presentation.view.daydetail.DayDetailActivity
 import com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity
@@ -21,6 +24,7 @@ import java.time.LocalDate
 class OverviewFragment : Fragment() {
 
     private val viewModel by viewModels<OverviewViewModel>()
+    private lateinit var dayDetailResult: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +37,11 @@ class OverviewFragment : Fragment() {
 
         val today = LocalDate.now()
 
+        dayDetailResult =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                callbackDayDetailResult(binding.calendarOverview, it?.data)
+            }
+
         viewModel.attachDefaultErrorHandler(requireActivity())
         viewModel.apply {
             eventCalendarDataLoaded.observe(viewLifecycleOwner) {
@@ -43,6 +52,10 @@ class OverviewFragment : Fragment() {
         binding.calendarOverview.apply {
             setOnSelectedListener { date ->
                 viewModel.setSelectedDate(date)
+            }
+            setOnClickSelectedListener { date ->
+                Log.d("OverviewFragment", "setOnClickSelectedListener: $date")
+                openDayDetail(date)
             }
             setOnInitializedListener {
                 selectDate(today)
@@ -56,35 +69,10 @@ class OverviewFragment : Fragment() {
             context?.let { it1 -> TutorialActivity.startKakaoTutorial(it1) }
         }
 
-        val openDetail =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                val selected = it?.data?.getSerializableExtraCompat(
-                    DayDetailActivity.RESULT_SELECTED_DATE
-                ) ?: binding.calendarOverview.selectedDate
-
-                if (selected != null) {
-                    viewModel.setSelectedDate(selected)
-                    binding.calendarOverview.selectDate(selected)
-
-                    val changedEmotion: Emotion? =
-                        it?.data?.getSerializableExtraCompat(DayDetailActivity.RESULT_CHANGED_EMOTION)
-
-                    if (changedEmotion != null) {
-                        viewModel.updateEmotion(selected, changedEmotion)
-                        binding.calendarOverview.addDayEmotions(
-                            mapOf(selected to changedEmotion)
-                        )
-                    }
-                }
-            }
-
         binding.layoutOverviewSummaryCard.setOnClickListener {
-            val date = binding.calendarOverview.selectedDate
-            if (date != null) {
-                Intent(context, DayDetailActivity::class.java).apply {
-                    putExtra(DayDetailActivity.EXTRA_DATE, date)
-                    openDetail.launch(this)
-                }
+            binding.calendarOverview.selectedDate?.let {
+                Log.d("OverviewFragment", "layoutOverviewSummaryCard: $it")
+                openDayDetail(it)
             }
         }
 
@@ -96,5 +84,40 @@ class OverviewFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun openDayDetail(date: LocalDate) {
+        Intent(context, DayDetailActivity::class.java).apply {
+            putExtra(DayDetailActivity.EXTRA_DATE, date)
+            dayDetailResult.launch(this)
+        }
+    }
+
+    /**
+     * DayDetail에서 Emotion을 수정했으면, 이를 calendar와 local db에 반영해야 한다.
+     * 이를 수행하는 callback
+     */
+    private fun callbackDayDetailResult(
+        calendar: MongleCalendar,
+        data: Intent?
+    ) {
+        val selected = data?.getSerializableExtraCompat(
+            DayDetailActivity.RESULT_SELECTED_DATE
+        ) ?: calendar.selectedDate
+
+        if (selected != null) {
+            viewModel.setSelectedDate(selected)
+            calendar.selectDate(selected)
+
+            val changedEmotion: Emotion? =
+                data?.getSerializableExtraCompat(DayDetailActivity.RESULT_CHANGED_EMOTION)
+
+            if (changedEmotion != null) {
+                viewModel.updateEmotion(selected, changedEmotion)
+                calendar.addDayEmotions(
+                    mapOf(selected to changedEmotion)
+                )
+            }
+        }
     }
 }
