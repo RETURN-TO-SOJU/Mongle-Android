@@ -1,4 +1,4 @@
-package com.rtsoju.mongle.data.source.api
+package com.rtsoju.mongle.data.source.remote.api
 
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.data.source.remote.dto.request.DiaryRequest

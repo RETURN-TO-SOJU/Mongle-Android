@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -38,12 +39,19 @@
 
         <Button
             android:id="@+id/btn_login"
-            style="@style/Widget.Mongle.Button.Kakao"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/btn_kakao"
+            android:drawablePadding="8dp"
             android:enabled="@{viewModel.loginEnabled}"
-            android:text="@string/login_kakao" />
+            android:fontFamily="@font/app_medium"
+            android:gravity="center"
+            android:paddingHorizontal="100dp"
+            android:paddingVertical="18dp"
+            android:text="@string/login_kakao"
+            android:textColor="@color/kakao_text"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/ic_kakaotalk" />
 
     </LinearLayout>
 </layout>

@@ -35,10 +35,16 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
     }
 
     private fun parseRoomName(subject: String): String {
-        val matches = Regex("(.+) \\d+ 카카오톡 대화\$").matchEntire(subject)
-        matches?.let {
+        val matchesGroup = Regex("(.+) \\d+ 카카오톡 대화\$").matchEntire(subject)
+        matchesGroup?.let {
             return it.groupValues[1]
         }
+        
+        val matchesIndividual = Regex("(.+) 님과 카카오톡 대화\$").matchEntire(subject)
+        matchesIndividual?.let {
+            return it.groupValues[1]
+        }
+
         return ""
     }
 
@@ -51,7 +57,7 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
             if (stream != null) {
                 val roomName = parseRoomName(name ?: "")
                 InputRoomNameDialog(this, roomName) {
-                    viewModel.uploadKakaotalk(it, stream)
+                    viewModel.uploadKakaotalkWithRoom(it, stream)
                 }.open()
             } else {
                 onCantFindFile()

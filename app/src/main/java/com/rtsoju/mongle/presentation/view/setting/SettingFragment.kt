@@ -1,35 +1,26 @@
 package com.rtsoju.mongle.presentation.view.setting
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.FragmentSettingBinding
 import com.rtsoju.mongle.presentation.view.LeavingFragment
-import com.rtsoju.mongle.presentation.view.login.LoginActivity
 import com.rtsoju.mongle.presentation.view.password.PasswordActivity
 import com.rtsoju.mongle.presentation.view.setname.SetNameActivity
+import com.rtsoju.mongle.presentation.view.starting.StartingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingFragment : Fragment() {
 
     private val viewModel by viewModels<SettingViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setFragmentResultListener(LeavingFragment.REQUEST_KEY) { _, bundle ->
-            val agreed = bundle.getBoolean(LeavingFragment.RESULT_AGREED, false)
-            if (agreed) {
-                viewModel.doLeave()
-            }
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,19 +37,39 @@ class SettingFragment : Fragment() {
             }
 
         binding.layoutSettingUsername.setOnClickListener {
-            refreshUsername.launch(Intent(activity, SetNameActivity::class.java))
+            refreshUsername.launch(
+                Intent(activity, SetNameActivity::class.java).apply {
+                    putExtra(SetNameActivity.EXTRA_USE_BACK_FINISH, true)
+                }
+            )
         }
 
-        // TODO (LATER) 향후 leaving 구현
-        /*binding.layoutSettingLeave.setOnClickListener {
+        activity.supportFragmentManager.setFragmentResultListener(
+            LeavingFragment.REQUEST_KEY,
+            viewLifecycleOwner
+        ) { _, bundle ->
+            val agreed = bundle.getBoolean(LeavingFragment.RESULT_AGREED, false)
+            if (agreed) {
+                viewModel.doLeave()
+            }
+        }
+
+        binding.layoutSettingLeave.setOnClickListener {
             LeavingFragment.newInstance().apply {
                 show(activity.supportFragmentManager, tag)
             }
-        }*/
+        }
 
         binding.layoutSettingScreenPassword.setOnClickListener {
             Intent(activity, PasswordActivity::class.java).apply {
                 putExtra(PasswordActivity.EXTRA_MODE, PasswordActivity.Mode.SET)
+                startActivity(this)
+            }
+        }
+
+        binding.layoutSettingQanda.setOnClickListener {
+            val url = resources.getString(R.string.setting_qanda_url)
+            Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
                 startActivity(this)
             }
         }
@@ -73,7 +84,7 @@ class SettingFragment : Fragment() {
 
         viewModel.attachDefaultHandlers(activity)
         viewModel.eventLeaveAccount.observe(viewLifecycleOwner) {
-            Intent(activity, LoginActivity::class.java).apply {
+            Intent(activity, StartingActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(this)
             }

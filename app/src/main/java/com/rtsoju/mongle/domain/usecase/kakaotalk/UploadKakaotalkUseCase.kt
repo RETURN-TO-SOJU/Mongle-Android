@@ -2,6 +2,7 @@ package com.rtsoju.mongle.domain.usecase.kakaotalk
 
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.domain.repository.KakaotalkRepository
+import java.io.InputStream
 import javax.inject.Inject
 
 /**
@@ -12,8 +13,8 @@ class UploadKakaotalkUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(
         roomName: String,
-        content: ByteArray
+        stream: InputStream
     ): Result<MessageResult> {
-        return kakaotalkRepository.upload(roomName, content)
+        return kakaotalkRepository.upload(roomName, stream)
     }
 }

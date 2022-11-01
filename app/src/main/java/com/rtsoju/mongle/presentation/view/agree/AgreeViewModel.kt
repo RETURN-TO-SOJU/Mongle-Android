@@ -14,17 +14,20 @@ class AgreeViewModel : BaseViewModel() {
     private val _allSelected = MutableLiveData(false)
     val allSelected = _allSelected.asLiveData()
 
-    private fun isAllChecked(): Boolean {
-        agreeSelected.value?.forEach {
+    /**
+     * 선택 항목(index 3)를 제외한 나머지가 모두 체크되어있다면 true반환
+     */
+    private fun isRequiresAllChecked(): Boolean {
+        agreeSelected.value?.take(3)?.forEach {
             if (!it) return false
         }
         return true
     }
 
     private fun notifyAgreeItemCheck() {
-        val isAllAgreed = isAllChecked()
-        _allSelected.value = isAllAgreed
-        _canMoveNext.value = isAllAgreed
+        val isRequiresAllChecked = isRequiresAllChecked()
+        _allSelected.value = isRequiresAllChecked
+        _canMoveNext.value = isRequiresAllChecked
     }
 
     fun setAgreeChecked(at: Int, value: Boolean) {

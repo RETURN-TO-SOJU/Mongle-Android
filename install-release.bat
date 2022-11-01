@@ -1,0 +1,1 @@
+C:\Users\psvm\AppData\Local\Android\Sdk\platform-tools\adb install "./app/release/app-release.apk"

@@ -1,6 +1,6 @@
 package com.rtsoju.mongle.debug.mock
 
-import com.rtsoju.mongle.data.source.api.KakaoSendApi
+import com.rtsoju.mongle.data.source.remote.api.KakaoSendApi
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.domain.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers

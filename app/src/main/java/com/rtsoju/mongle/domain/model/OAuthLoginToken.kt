@@ -2,6 +2,7 @@ package com.rtsoju.mongle.domain.model
 
 import com.google.gson.annotations.SerializedName
 import com.kakao.sdk.auth.model.OAuthToken
+import com.rtsoju.mongle.util.parseLocalDateTime
 import com.rtsoju.mongle.util.toLocalDateTime
 import java.time.LocalDateTime
 
@@ -41,8 +42,8 @@ data class OAuthLoginToken(
             )
 
         val EMPTY_TOKEN = OAuthLoginToken(
-            "", LocalDateTime.MIN,
-            "", LocalDateTime.MIN
+            "", parseLocalDateTime(0),
+            "", parseLocalDateTime(0)
         )
     }
 }

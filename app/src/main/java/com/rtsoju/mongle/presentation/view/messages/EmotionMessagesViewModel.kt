@@ -12,6 +12,7 @@ import com.rtsoju.mongle.domain.usecase.password.DecryptByKeyPasswordUseCase
 import com.rtsoju.mongle.domain.usecase.password.HasDataKeyPasswordUseCase
 import com.rtsoju.mongle.exception.CannotDecryptException
 import com.rtsoju.mongle.presentation.base.BaseViewModel
+import com.rtsoju.mongle.presentation.util.SingleLiveEvent
 import com.rtsoju.mongle.presentation.util.TextResource
 import com.rtsoju.mongle.presentation.util.asLiveData
 import com.rtsoju.mongle.presentation.util.getSerializableExtraCompat
@@ -33,8 +34,14 @@ class EmotionMessagesViewModel @Inject constructor(
 
     private val _messages = MutableLiveData(listOf<EmotionMessage>())
     val messages = _messages.asLiveData()
+    val hasMessages = Transformations.map(_messages) {
+        it != null && it.isNotEmpty()
+    }
 
     private val selectedEmotion = MutableLiveData(Emotion.values()[0])
+
+    private val _eventNeedsUnlock = SingleLiveEvent<Unit>()
+    val eventNeedsUnlock = _eventNeedsUnlock.asLiveData()
 
     private val _date = MutableLiveData(LocalDate.now())
     val date = Transformations.map(_date) {
@@ -81,8 +88,11 @@ class EmotionMessagesViewModel @Inject constructor(
                     EmotionMessage(it.emotion, it.sentence)
                 }
                 _messages.postValue(mappedMessages)
+
                 if (useAutoUnlock) {
                     doUnlock(mappedMessages)
+                } else if (mappedMessages.isNotEmpty() && hasDataKeyPassword()) {
+                    _eventNeedsUnlock.post()
                 }
             }
         } else {
@@ -131,8 +141,6 @@ class EmotionMessagesViewModel @Inject constructor(
             doUnlock(_messages.value!!)
         }
     }
-
-    fun needShowUnlockDialog() = hasDataKeyPassword() && !useAutoUnlock
 
     companion object {
         const val TAG = "EmotionMessagesViewModel"

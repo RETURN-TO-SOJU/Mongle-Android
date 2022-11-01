@@ -9,7 +9,6 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mockStatic
-import java.io.ByteArrayInputStream
 
 
 internal class PasswordRepositoryImplTest {
@@ -40,20 +39,6 @@ internal class PasswordRepositoryImplTest {
             .isEqualTo("ㅋㅋㅋㅋㅋㅋㅋ 아... 벤치에서 술마신거까진 기억하는데 일어나보니 버스안이라 당황했네요 ㅋㅋㅋㅋ")
 
         base64Mock.close()
-    }
-
-    @Test
-    fun makePwdKakaotalkDataPacket() {
-        dataSource.setDataKeyPassword("oingisprettyintheworld1234567890")
-
-        val text = "Hello, world!\nNice to meet you."
-        val bais = ByteArrayInputStream(text.toByteArray(PasswordRepositoryImpl.PASSWORD_CHARSET))
-        val packet = repository.makePwdKakaotalkDataPacket(bais)
-        bais.close()
-
-        val result = String(packet, PasswordRepositoryImpl.PASSWORD_CHARSET)
-        val expect = "${text}\n${dataSource.getDataKeyPassword()}"
-        assertThat(result).isEqualTo(expect)
     }
 
     @Test

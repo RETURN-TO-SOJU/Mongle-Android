@@ -2,7 +2,7 @@ package com.rtsoju.mongle.debug.mock
 
 import android.util.Log
 import com.rtsoju.mongle.data.mapper.toDomainModel
-import com.rtsoju.mongle.data.source.api.AuthApi
+import com.rtsoju.mongle.data.source.remote.api.AuthApi
 import com.rtsoju.mongle.data.source.remote.dto.response.LoginResponse
 import com.rtsoju.mongle.domain.model.OAuthLoginToken
 import com.rtsoju.mongle.domain.repository.AuthRepository

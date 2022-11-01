@@ -2,6 +2,8 @@ package com.rtsoju.mongle.domain.usecase.calendar
 
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.domain.repository.CalendarRepository
+import com.rtsoju.mongle.domain.repository.PasswordRepository
+import com.rtsoju.mongle.exception.UnknownPasswordException
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -11,12 +13,16 @@ import javax.inject.Inject
  * @param text 일기 내용
  */
 class UpdateDiaryUseCase @Inject constructor(
-    private val calendarRepository: CalendarRepository
+    private val calendarRepository: CalendarRepository,
+    private val passwordRepository: PasswordRepository
 ) {
     suspend operator fun invoke(
         date: LocalDate,
         text: String
     ): Result<MessageResult> {
-        return calendarRepository.updateDiary(date, text)
+        val pwd = passwordRepository.getDataPassword() ?: return Result.failure(
+            UnknownPasswordException()
+        )
+        return calendarRepository.updateDiary(date, text, pwd)
     }
 }

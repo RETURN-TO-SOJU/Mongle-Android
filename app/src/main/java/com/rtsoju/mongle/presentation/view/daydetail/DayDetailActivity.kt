@@ -44,6 +44,7 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
     OnSelectedListener<LocalDate> {
 
     private val viewModel by viewModels<DayDetailViewModel>()
+    private lateinit var imageStore: LocalDateImageStore
 
     override val layoutId: Int = R.layout.activity_day_detail
 
@@ -61,7 +62,12 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
         saveResult(viewModel.date, null)
 
         initializeUI()
-        LocalDateImageStore(this).readMediaStoreImages(viewModel.date) {
+        imageStore = LocalDateImageStore(this)
+        loadLocalImages(viewModel.date)
+    }
+
+    private fun loadLocalImages(date: LocalDate) {
+        imageStore.readMediaStoreImages(date) {
             if (it != null) {
                 viewModel.setLocalPhoto(it)
             }
@@ -95,7 +101,7 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
             fragment.show(supportFragmentManager, fragment.tag)
         }
 
-        binding.textDayDetailDiary.setOnClickListener {
+        binding.layoutDayDetailDiary.setOnClickListener {
             Intent(this, EditDiaryActivity::class.java).apply {
                 val emotion = viewModel.emotion
                 if (emotion != null) {
@@ -123,7 +129,8 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
 
     override fun onSelected(value: LocalDate) {
         viewModel.setDate(value)
-        saveResult(viewModel.date, null)
+        saveResult(value, null)
+        loadLocalImages(value)
     }
 
     private fun saveResult(date: LocalDate?, emotion: Emotion?) {

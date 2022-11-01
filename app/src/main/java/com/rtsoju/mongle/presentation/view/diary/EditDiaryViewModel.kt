@@ -30,7 +30,11 @@ class EditDiaryViewModel @Inject constructor(
         it.format(DatetimeFormats.DATE_KR)
     }
 
+    val diaryMaxLength = MutableLiveData(1000).asLiveData()
     val diaryContent = MutableLiveData("")
+    val diaryLimitText = Transformations.map(diaryContent) {
+        "%d / %d자".format(it.length, diaryMaxLength.value ?: 0)
+    }
 
     private val _eventUpdateComplete = SingleLiveEvent<Unit>()
     val eventUpdateComplete = _eventUpdateComplete.asLiveData()

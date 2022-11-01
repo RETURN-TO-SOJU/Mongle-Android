@@ -1,14 +1,8 @@
 package com.rtsoju.mongle.data.di
 
-import com.rtsoju.mongle.BuildConfig
-import com.rtsoju.mongle.data.source.api.AuthApi
-import com.rtsoju.mongle.data.source.api.CalendarApi
-import com.rtsoju.mongle.data.source.api.KakaoSendApi
-import com.rtsoju.mongle.data.source.api.UserApi
-import com.rtsoju.mongle.debug.mock.MockAuthApi
-import com.rtsoju.mongle.debug.mock.MockCalendarApi
-import com.rtsoju.mongle.debug.mock.MockKakaoSendApi
-import com.rtsoju.mongle.debug.mock.MockUserApi
+import com.rtsoju.mongle.USE_MOCKING
+import com.rtsoju.mongle.data.source.remote.api.*
+import com.rtsoju.mongle.debug.mock.*
 import com.rtsoju.mongle.domain.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
@@ -24,7 +18,7 @@ internal class ApiModule {
     @Singleton
     @Provides
     fun provideLoginApi(authRepository: AuthRepository, retrofit: Retrofit): UserApi {
-        if (BuildConfig.USE_MOCKING) {
+        if (USE_MOCKING) {
             return MockUserApi(authRepository)
         }
         return retrofit.create(UserApi::class.java)
@@ -33,7 +27,7 @@ internal class ApiModule {
     @Singleton
     @Provides
     fun provideKakaoSendApi(authRepository: AuthRepository, retrofit: Retrofit): KakaoSendApi {
-        if (BuildConfig.USE_MOCKING) {
+        if (USE_MOCKING) {
             return MockKakaoSendApi(authRepository)
         }
         return retrofit.create(KakaoSendApi::class.java)
@@ -42,7 +36,7 @@ internal class ApiModule {
     @Singleton
     @Provides
     fun provideCalendarApi(authRepository: AuthRepository, retrofit: Retrofit): CalendarApi {
-        if (BuildConfig.USE_MOCKING) {
+        if (USE_MOCKING) {
             return MockCalendarApi(authRepository)
         }
         return retrofit.create(CalendarApi::class.java)
@@ -51,9 +45,18 @@ internal class ApiModule {
     @Singleton
     @Provides
     fun provideAuthApi(retrofit: Retrofit): AuthApi {
-        if (BuildConfig.USE_MOCKING) {
+        if (USE_MOCKING) {
             return MockAuthApi()
         }
         return retrofit.create(AuthApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideStatisticsApi(retrofit: Retrofit): StatisticsApi {
+        if (USE_MOCKING) {
+            return MockStatisticsApi()
+        }
+        return retrofit.create(StatisticsApi::class.java)
     }
 }

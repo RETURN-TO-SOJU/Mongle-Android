@@ -33,8 +33,8 @@ class OverviewFragment : Fragment() {
 
         val today = LocalDate.now()
 
+        viewModel.attachDefaultErrorHandler(requireActivity())
         viewModel.apply {
-            attachDefaultHandlers(requireActivity())
             eventCalendarDataLoaded.observe(viewLifecycleOwner) {
                 binding.calendarOverview.addDayEmotions(it)
             }
@@ -78,7 +78,7 @@ class OverviewFragment : Fragment() {
                 }
             }
 
-        binding.btnOverviewShowDetail.setOnClickListener {
+        binding.layoutOverviewSummaryCard.setOnClickListener {
             val date = binding.calendarOverview.selectedDate
             if (date != null) {
                 Intent(context, DayDetailActivity::class.java).apply {

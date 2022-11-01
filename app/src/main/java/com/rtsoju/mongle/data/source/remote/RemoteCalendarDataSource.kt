@@ -1,8 +1,8 @@
 package com.rtsoju.mongle.data.source.remote
 
 import com.rtsoju.mongle.data.mapper.toDomainModel
-import com.rtsoju.mongle.data.source.api.CalendarApi
-import com.rtsoju.mongle.data.source.api.safeApiCall
+import com.rtsoju.mongle.data.source.remote.api.CalendarApi
+import com.rtsoju.mongle.data.source.remote.api.safeApiCall
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.data.source.remote.dto.request.DiaryRequest
 import com.rtsoju.mongle.domain.model.CalendarDayDetail
@@ -20,14 +20,15 @@ internal class RemoteCalendarDataSource @Inject constructor(
 
     suspend fun updateDiary(
         date: LocalDate,
-        text: String
+        text: String,
+        password: String
     ): Result<MessageResult> {
         return safeApiCall {
             api.updateDiary(
                 date.year,
                 convertDoubleDigitFormat(date.monthValue),
                 convertDoubleDigitFormat(date.dayOfMonth),
-                DiaryRequest(text)
+                DiaryRequest(text, password)
             )
         }
     }

@@ -1,10 +1,12 @@
-package com.rtsoju.mongle.data.source.api
+package com.rtsoju.mongle.data.source.remote.api
 
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.data.source.remote.dto.request.FCMTokenRequest
 import com.rtsoju.mongle.data.source.remote.dto.request.UsernameRequest
 import com.rtsoju.mongle.data.source.remote.dto.response.UserResponse
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.POST
 
 interface UserApi {
@@ -21,6 +23,6 @@ interface UserApi {
         @Body username: UsernameRequest
     ): MessageResult
 
-    @POST("leave")
-    suspend fun leaveAccount(): MessageResult
+    @DELETE("users")
+    suspend fun leaveAccount(): Response<Unit>
 }

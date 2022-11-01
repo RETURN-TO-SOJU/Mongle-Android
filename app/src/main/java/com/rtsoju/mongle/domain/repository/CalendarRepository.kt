@@ -9,7 +9,8 @@ interface CalendarRepository {
 
     suspend fun updateDiary(
         date: LocalDate,
-        text: String
+        text: String,
+        password: String
     ): Result<MessageResult>
 
     suspend fun updateEmotion(

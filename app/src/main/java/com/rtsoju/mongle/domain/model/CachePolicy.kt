@@ -3,7 +3,8 @@ package com.rtsoju.mongle.domain.model
 import android.util.Log
 
 enum class CachePolicy {
-    /** **기본값.** 앱 시작후 최초 1회, 무조건 Remote에서 요청을 받아 캐싱한다. 이후에 계속 캐싱된 데이터를 반환. */
+    /** **기본값.** 앱 사용중 최초 1회, 무조건 Remote에서 요청을 받아 캐싱한다. 이후에 계속 캐싱된 데이터를 반환.
+     * 앱 사용중 기준은 foreground상태를 의미한다. 잠시 background상태가 되었거나 앱이 종료된다면 그 시점에서 사용 종료로 간주한다. */
     ONCE,
 
     /** 데이터가 이미 캐싱되어있다면 그 데이터를 반환하고, 아니라면 Remote에 요청후 받은 데이터를 캐싱&반환한다. */

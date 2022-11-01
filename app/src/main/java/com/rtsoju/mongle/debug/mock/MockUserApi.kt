@@ -1,6 +1,6 @@
 package com.rtsoju.mongle.debug.mock
 
-import com.rtsoju.mongle.data.source.api.UserApi
+import com.rtsoju.mongle.data.source.remote.api.UserApi
 import com.rtsoju.mongle.data.source.remote.dto.MessageResult
 import com.rtsoju.mongle.data.source.remote.dto.request.FCMTokenRequest
 import com.rtsoju.mongle.data.source.remote.dto.request.UsernameRequest
@@ -9,6 +9,7 @@ import com.rtsoju.mongle.domain.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 
 class MockUserApi(
     private val authRepository: AuthRepository
@@ -36,10 +37,10 @@ class MockUserApi(
             MessageResult("complete")
         }
 
-    override suspend fun leaveAccount(): MessageResult =
+    override suspend fun leaveAccount(): Response<Unit> =
         withContext(Dispatchers.IO) {
             delay(2000)
             MockAuthApi.checkToken(authRepository)
-            MessageResult("complete")
+            Response.success(null)
         }
 }
