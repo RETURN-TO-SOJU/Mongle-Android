@@ -2,7 +2,6 @@ package com.rtsoju.mongle.presentation.view.overview
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,7 +53,6 @@ class OverviewFragment : Fragment() {
                 viewModel.setSelectedDate(date)
             }
             setOnClickSelectedListener { date ->
-                Log.d("OverviewFragment", "setOnClickSelectedListener: $date")
                 openDayDetail(date)
             }
             setOnInitializedListener {
@@ -71,7 +69,6 @@ class OverviewFragment : Fragment() {
 
         binding.layoutOverviewSummaryCard.setOnClickListener {
             binding.calendarOverview.selectedDate?.let {
-                Log.d("OverviewFragment", "layoutOverviewSummaryCard: $it")
                 openDayDetail(it)
             }
         }
