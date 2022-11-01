@@ -39,7 +39,7 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
         matchesGroup?.let {
             return it.groupValues[1]
         }
-        
+
         val matchesIndividual = Regex("(.+) 님과 카카오톡 대화\$").matchEntire(subject)
         matchesIndividual?.let {
             return it.groupValues[1]
@@ -56,9 +56,13 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
             val stream = contentResolver.openInputStream(uri)
             if (stream != null) {
                 val roomName = parseRoomName(name ?: "")
-                InputRoomNameDialog(this, roomName) {
-                    viewModel.uploadKakaotalkWithRoom(it, stream)
-                }.open()
+                InputRoomNameDialog(this, roomName)
+                    .setOnSubmitName { viewModel.uploadKakaotalkWithRoom(it, stream) }
+                    .setOnCancelledListener {
+                        toastLong(R.string.error_cancelled_analyze)
+                        finish()
+                    }
+                    .open()
             } else {
                 onCantFindFile()
             }

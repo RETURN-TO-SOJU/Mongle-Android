@@ -38,10 +38,12 @@ class MainActivity : BaseDataActivity<ActivityMainBinding>() {
 
         viewModel.checkIfPasswordEmpty()
         viewModel.eventEmptyPassword.observe(this) {
-            InputPasswordDialog(this) {
-                viewModel.setPasswordTo(it)
-                toastShort("암호키 비밀번호가 설정되었습니다.")
-            }.open()
+            InputPasswordDialog(this)
+                .setOnSubmitPassword {
+                    viewModel.setPasswordTo(it)
+                    toastShort("암호키 비밀번호가 설정되었습니다.")
+                }
+                .open()
         }
     }
 

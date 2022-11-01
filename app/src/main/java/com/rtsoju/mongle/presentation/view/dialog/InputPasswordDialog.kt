@@ -9,9 +9,16 @@ import com.rtsoju.mongle.presentation.util.toastShort
 import java.util.regex.Pattern
 
 class InputPasswordDialog(
-    context: Context,
-    private val onSubmitPassword: OnDialogSubmit<String>? = null
+    context: Context
 ) : MongleDialog(context) {
+
+    private var onSubmitPassword: OnDialogSubmit<String>? = null
+
+    fun setOnSubmitPassword(listener: OnDialogSubmit<String>): InputPasswordDialog {
+        onSubmitPassword = listener
+        return this
+    }
+
     override fun open(): AlertDialog {
         val layout = DialogInputPasswordBinding.inflate(
             LayoutInflater.from(context),
@@ -29,28 +36,30 @@ class InputPasswordDialog(
                 AlertMessageDialog(
                     context,
                     R.string.pwd_input_confirm_message_title,
-                    R.string.pwd_input_confirm_message_subtitle,
-                    {
+                    R.string.pwd_input_confirm_message_subtitle
+                )
+                    .setOnDialogResultListener {
                         if (it == AlertMessageDialog.Result.OK) {
                             onSubmitPassword?.onSubmit(pwd.toString())
                             dialog.dismiss()
                         }
                     }
-                ).open()
+                    .open()
             }
         }
         layout.btnInputPasswordCancel.setOnClickListener {
             AlertMessageDialog(
                 context,
                 R.string.pwd_input_nopwd_message_title,
-                R.string.pwd_input_nopwd_message_subtitle,
-                {
+                R.string.pwd_input_nopwd_message_subtitle
+            )
+                .setOnDialogResultListener {
                     if (it == AlertMessageDialog.Result.OK) {
                         onSubmitPassword?.onSubmit(DEFAULT_PASSWORD)
                         dialog.dismiss()
                     }
                 }
-            ).open()
+                .open()
         }
         return dialog
     }

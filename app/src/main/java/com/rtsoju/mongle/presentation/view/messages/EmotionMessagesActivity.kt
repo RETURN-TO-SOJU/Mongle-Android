@@ -37,9 +37,9 @@ class EmotionMessagesActivity : BaseDataActivity<ActivityEmotionMessageBinding>(
         viewModel.initializeByIntent(intent)
 
         viewModel.eventNeedsUnlock.observe(this) {
-            UnlockByPasswordDialog(this) {
-                viewModel.unlock()
-            }.open()
+            UnlockByPasswordDialog(this)
+                .setOnClickOkListener { viewModel.unlock() }
+                .open()
         }
     }
 

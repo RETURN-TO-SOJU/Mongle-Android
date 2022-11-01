@@ -14,10 +14,17 @@ class AlertMessageDialog(
     private val title: Int,
     @StringRes
     private val description: Int,
-    private val onDialogResult: OnDialogSubmit<Result>? = null,
     @DrawableRes
     private val alertImage: Int = R.drawable.img_warning
 ) : MongleDialog(context) {
+
+    private var onDialogResultListener: OnDialogSubmit<Result>? = null
+
+    fun setOnDialogResultListener(listener: OnDialogSubmit<Result>): AlertMessageDialog {
+        onDialogResultListener = listener
+        return this
+    }
+
     override fun open(): AlertDialog {
         val layout = DialogMessageBinding.inflate(
             LayoutInflater.from(context),
@@ -26,11 +33,11 @@ class AlertMessageDialog(
 
         val dialog = openDialog(layout.root, true, false)
         layout.btnMessageOk.setOnClickListener {
-            onDialogResult?.onSubmit(Result.OK)
+            onDialogResultListener?.onSubmit(Result.OK)
             dialog.dismiss()
         }
         layout.btnMessageCancel.setOnClickListener {
-            onDialogResult?.onSubmit(Result.CANCEL)
+            onDialogResultListener?.onSubmit(Result.CANCEL)
             dialog.dismiss()
         }
 

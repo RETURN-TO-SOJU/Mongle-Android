@@ -10,9 +10,9 @@ import com.rtsoju.mongle.presentation.util.attachCompatVectorAnim
 
 class GiftArrivedDialog(
     context: Context,
-    private val date: String,
-    private val onClickOK: View.OnClickListener? = null
+    private val date: String
 ) : MongleDialog(context) {
+
     override fun open(): AlertDialog {
         val layout = DialogArrivedGiftBinding.inflate(
             LayoutInflater.from(context),
@@ -23,7 +23,6 @@ class GiftArrivedDialog(
         layout.imageArrivedGift.attachCompatVectorAnim(R.drawable.avd_gift)
         layout.textArrivedGiftDate.text = date
         layout.btnArrivedGiftWatchNow.setOnClickListener {
-            onClickOK?.onClick(it)
             dialog.dismiss()
         }
         return dialog
