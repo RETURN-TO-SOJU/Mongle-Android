@@ -28,6 +28,10 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
         )
         binding.imageKakaotalkExportAnalyzing.attachCompatVectorAnim(R.drawable.avd_analyzing, true)
 
+        binding.btnKakaotalkExportAnalyzingExit.setOnClickListener {
+            finish()
+        }
+
         viewModel.eventErrorMessage.observe(this) {
             toastLong(it)
             finish()
