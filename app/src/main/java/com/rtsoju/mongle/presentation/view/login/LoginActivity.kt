@@ -1,27 +1,17 @@
 package com.rtsoju.mongle.presentation.view.login
 
-import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.viewModels
 import com.kakao.sdk.user.UserApiClient
 import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.ActivityLoginBinding
 import com.rtsoju.mongle.presentation.base.BaseDataActivity
-import com.rtsoju.mongle.presentation.util.getParcelableExtraCompat
-import com.rtsoju.mongle.presentation.util.getSerializableExtraCompat
 import com.rtsoju.mongle.presentation.util.toastLong
-import com.rtsoju.mongle.presentation.view.agree.AgreeActivity
-import com.rtsoju.mongle.presentation.view.login.LoginActivity.Companion.EXTRA_REDIRECT_TO
 import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * ## Extras
- * * **(선택)** [EXTRA_REDIRECT_TO]: [Intent] -
- * 로그인이 끝나면, 지정한 intent를 startActivity
- */
+
 @AndroidEntryPoint
 class LoginActivity : BaseDataActivity<ActivityLoginBinding>() {
 
@@ -35,31 +25,18 @@ class LoginActivity : BaseDataActivity<ActivityLoginBinding>() {
             loginWithKakao()
         }
 
-        val redirectTo: Intent? = intent.getParcelableExtraCompat(EXTRA_REDIRECT_TO)
-
         viewModel.attachDefaultHandlers(this)
         viewModel.eventReadyForRegister.observe(this) {
-            Intent(this, AgreeActivity::class.java).apply {
-                putExtra(AgreeActivity.EXTRA_REDIRECT_TO, redirectTo)
-                startActivity(this)
-            }
-            setLoginResult(LoginResult.REGISTER)
+            setLoginResult(LoginFlow.LoginResult.REGISTER)
             finish()
         }
 
         viewModel.eventLoggedIn.observe(this) {
-            if (redirectTo != null) {
-                startActivity(redirectTo)
-            }
-            setLoginResult(LoginResult.LOGIN)
+            setLoginResult(LoginFlow.LoginResult.LOGIN)
             finish()
         }
 
         viewModel.checkCanAutoLogin()
-    }
-
-    private fun setLoginResult(result: LoginResult) {
-        setResult(RESULT_OK, Intent().putExtra(RESULT_LOGIN, result))
     }
 
     /**
@@ -81,36 +58,11 @@ class LoginActivity : BaseDataActivity<ActivityLoginBinding>() {
         }
     }
 
-    enum class LoginResult {
-        /** 사용자가 회원가입을 한 경우 */
-        REGISTER,
-
-        /** 사용자가 로그인을 한 경우 (기존 회원이라면 회원가입 절차없이 로그인) */
-        LOGIN,
-
-        /** 사용자가 로그인을 거부한 경우 (뒤로가기, 종료 등) */
-        CANCELLED
-    }
-
-    /**
-     * Input으로 [EXTRA_REDIRECT_TO]를 지정한다.
-     */
-    class LoginResultContract : ActivityResultContract<Intent?, LoginResult>() {
-        override fun createIntent(context: Context, input: Intent?): Intent =
-            Intent(context, LoginActivity::class.java).apply {
-                putExtra(EXTRA_REDIRECT_TO, input)
-            }
-
-        override fun parseResult(resultCode: Int, intent: Intent?): LoginResult {
-            if (resultCode == RESULT_OK && intent != null) {
-                return intent.getSerializableExtraCompat(RESULT_LOGIN)!!
-            }
-            return LoginResult.CANCELLED
-        }
+    private fun setLoginResult(result: LoginFlow.LoginResult) {
+        setResult(RESULT_OK, Intent().putExtra(RESULT_LOGIN, result))
     }
 
     companion object {
-        const val EXTRA_REDIRECT_TO = "redirectTo"
-        private const val RESULT_LOGIN = "loginResult"
+        const val RESULT_LOGIN = "loginResult"
     }
 }

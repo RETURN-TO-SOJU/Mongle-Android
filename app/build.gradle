@@ -130,6 +130,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10' // Retrofit2 logger
     implementation 'com.github.bumptech.glide:glide:4.13.2' // glide
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0' // chart
+    implementation 'com.github.faruktoptas:FancyShowCaseView:1.3.9' // showcase view
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     // test

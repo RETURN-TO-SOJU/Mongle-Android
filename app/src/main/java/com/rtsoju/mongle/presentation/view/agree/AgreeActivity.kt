@@ -8,18 +8,9 @@ import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.ActivityAgreeBinding
 import com.rtsoju.mongle.databinding.ListitemAgreeBinding
 import com.rtsoju.mongle.presentation.base.BaseDataActivity
-import com.rtsoju.mongle.presentation.util.getParcelableExtraCompat
-import com.rtsoju.mongle.presentation.view.agree.AgreeActivity.Companion.EXTRA_REDIRECT_TO
 import com.rtsoju.mongle.presentation.view.dialog.TermsOfServiceDialog
-import com.rtsoju.mongle.presentation.view.login.LoginActivity
-import com.rtsoju.mongle.presentation.view.login.LoginActivity.Companion.EXTRA_REDIRECT_TO
-import com.rtsoju.mongle.presentation.view.setname.SetNameActivity
 
-/**
- * ## Extras
- * * **(선택)** [EXTRA_REDIRECT_TO]: [Intent] -
- * Agree과정이 끝나면, 지정한 intent를 startActivity
- */
+
 class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
 
     private val viewModel by viewModels<AgreeViewModel>()
@@ -32,13 +23,8 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
             viewModel.setAllAgreeChecked(binding.cbxAgreeAll.isChecked)
         }
 
-        val redirectTo: Intent? = intent.getParcelableExtraCompat(LoginActivity.EXTRA_REDIRECT_TO)
         binding.btnAgreeOk.setOnClickListener {
-            Intent(this, SetNameActivity::class.java).apply {
-                putExtra(SetNameActivity.EXTRA_REDIRECT_TO, redirectTo)
-                putExtra(SetNameActivity.EXTRA_SHOW_TUTORIAL, true)
-                startActivity(this)
-            }
+            setResult(RESULT_OK)
             finish()
         }
 
@@ -81,9 +67,5 @@ class AgreeActivity : BaseDataActivity<ActivityAgreeBinding>() {
         } else {
             TermsOfServiceDialog(this, contentId).open()
         }
-    }
-
-    companion object {
-        const val EXTRA_REDIRECT_TO = "redirectTo"
     }
 }

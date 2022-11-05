@@ -1,5 +1,6 @@
 package com.rtsoju.mongle.presentation.view.main
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rtsoju.mongle.domain.usecase.password.HasDataKeyPasswordUseCase
 import com.rtsoju.mongle.domain.usecase.password.SetDataKeyPasswordUseCase
@@ -17,6 +18,10 @@ class MainViewModel @Inject constructor(
     private val _eventEmptyPassword = SingleLiveEvent<Unit>()
     val eventEmptyPassword = _eventEmptyPassword.asLiveData()
 
+    private val _showShowcase = MutableLiveData(false)
+    val showShowcase = _showShowcase.asLiveData()
+
+
     fun checkIfPasswordEmpty() {
         if (!hasDataKeyPassword()) {
             _eventEmptyPassword.call()
@@ -25,5 +30,9 @@ class MainViewModel @Inject constructor(
 
     fun setPasswordTo(password: String) {
         setDataKeyPassword(password)
+    }
+
+    fun setShowShowcase(show: Boolean) {
+        _showShowcase.value = show
     }
 }

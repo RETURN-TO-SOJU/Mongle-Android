@@ -8,7 +8,6 @@ import com.rtsoju.mongle.domain.usecase.password.SetScreenPasswordUseCase
 import com.rtsoju.mongle.presentation.base.BaseViewModel
 import com.rtsoju.mongle.presentation.util.SingleLiveEvent
 import com.rtsoju.mongle.presentation.util.asLiveData
-import com.rtsoju.mongle.presentation.util.getParcelableExtraCompat
 import com.rtsoju.mongle.presentation.util.getSerializableExtraCompat
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -28,7 +27,7 @@ class PasswordViewModel @Inject constructor(
     private val _actionBtnText = MutableLiveData(0)
     val actionBtnText = _actionBtnText.asLiveData()
 
-    private val _eventAuthFinish = SingleLiveEvent<Intent?>()
+    private val _eventAuthFinish = SingleLiveEvent<Unit>()
     val eventAuthFinish = _eventAuthFinish.asLiveData()
 
     private val _eventFail = SingleLiveEvent<Int>()
@@ -47,7 +46,6 @@ class PasswordViewModel @Inject constructor(
     private var pwdPrevInput: String = ""
     private val pwdMemory = PasswordMemory(4)
     private var mode = PasswordActivity.Mode.AUTH
-    private var redirectTo: Intent? = null
 
 
     fun initializeByIntent(intent: Intent) {
@@ -55,7 +53,6 @@ class PasswordViewModel @Inject constructor(
             PasswordActivity.EXTRA_MODE,
             PasswordActivity.Mode.AUTH
         )
-        redirectTo = intent.getParcelableExtraCompat(PasswordActivity.EXTRA_REDIRECT_INTENT)
         pwdMemory.setOnFullListener(this)
         setupUIByMode()
     }
@@ -100,7 +97,7 @@ class PasswordViewModel @Inject constructor(
         when (mode) {
             PasswordActivity.Mode.AUTH -> {
                 if (checkScreenPassword(password)) {
-                    _eventAuthFinish.value = redirectTo
+                    _eventAuthFinish.call()
                 } else {
                     _eventFail.value = R.string.pwd_wrong
                 }
@@ -108,7 +105,7 @@ class PasswordViewModel @Inject constructor(
             PasswordActivity.Mode.REENTER -> {
                 if (pwdPrevInput == password) {
                     setScreenPassword(password)
-                    _eventAuthFinish.value = redirectTo
+                    _eventAuthFinish.call()
                 } else {
                     _eventFail.value = R.string.pwd_not_matched
                     mode = PasswordActivity.Mode.SET

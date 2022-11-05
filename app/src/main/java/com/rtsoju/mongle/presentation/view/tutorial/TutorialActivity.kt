@@ -1,5 +1,6 @@
 package com.rtsoju.mongle.presentation.view.tutorial
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -128,7 +129,7 @@ class TutorialActivity : AppCompatActivity() {
             }
         }
 
-        fun startSecurityTutorial(context: Context): Intent {
+        fun startSecurityTutorial(context: Activity): Intent {
             return Intent(context, TutorialActivity::class.java).apply {
                 putExtra(EXTRA_TITLE_LIST_RES, R.array.security_tutorial_title)
                 putExtra(EXTRA_SUBTITLE_LIST_RES, R.array.security_tutorial_subtitle)

@@ -1,28 +1,36 @@
 package com.rtsoju.mongle.presentation.view.overview
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.rtsoju.mongle.R
 import com.rtsoju.mongle.databinding.FragmentOverviewBinding
 import com.rtsoju.mongle.domain.model.Emotion
 import com.rtsoju.mongle.presentation.common.calendar.MongleCalendar
 import com.rtsoju.mongle.presentation.util.getSerializableExtraCompat
 import com.rtsoju.mongle.presentation.view.daydetail.DayDetailActivity
+import com.rtsoju.mongle.presentation.view.main.MainViewModel
 import com.rtsoju.mongle.presentation.view.tutorial.TutorialActivity
 import dagger.hilt.android.AndroidEntryPoint
+import me.toptas.fancyshowcase.FancyShowCaseView
+import me.toptas.fancyshowcase.FocusShape
 import java.time.LocalDate
 
 @AndroidEntryPoint
 class OverviewFragment : Fragment() {
 
     private val viewModel by viewModels<OverviewViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
     private lateinit var dayDetailResult: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
@@ -34,6 +42,8 @@ class OverviewFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        val activity = requireActivity()
+        val context = requireContext()
         val today = LocalDate.now()
 
         dayDetailResult =
@@ -41,10 +51,22 @@ class OverviewFragment : Fragment() {
                 callbackDayDetailResult(binding.calendarOverview, it?.data)
             }
 
-        viewModel.attachDefaultErrorHandler(requireActivity())
+        viewModel.attachDefaultErrorHandler(activity)
         viewModel.apply {
             eventCalendarDataLoaded.observe(viewLifecycleOwner) {
                 binding.calendarOverview.addDayEmotions(it)
+            }
+        }
+
+        mainViewModel.showShowcase.observe(viewLifecycleOwner) {
+            if (it) {
+                FancyShowCaseView.Builder(activity)
+                    .focusOn(binding.btnOverviewTutorialKakaoExport)
+                    .focusShape(FocusShape.ROUNDED_RECTANGLE)
+                    .titleStyle(R.style.Widget_Mongle_ShowcaseTextView, Gravity.CENTER)
+                    .title("카톡 분석방법을 알아볼까요?")
+                    .build()
+                    .show()
             }
         }
 
@@ -53,7 +75,7 @@ class OverviewFragment : Fragment() {
                 viewModel.setSelectedDate(date)
             }
             setOnClickSelectedListener { date ->
-                openDayDetail(date)
+                openDayDetail(context, date)
             }
             setOnInitializedListener {
                 selectDate(today)
@@ -64,12 +86,12 @@ class OverviewFragment : Fragment() {
         }
 
         binding.btnOverviewTutorialKakaoExport.setOnClickListener {
-            context?.let { it1 -> TutorialActivity.startKakaoTutorial(it1) }
+            TutorialActivity.startKakaoTutorial(context)
         }
 
         binding.layoutOverviewSummaryCard.setOnClickListener {
             binding.calendarOverview.selectedDate?.let {
-                openDayDetail(it)
+                openDayDetail(context, it)
             }
         }
 
@@ -83,7 +105,7 @@ class OverviewFragment : Fragment() {
         return binding.root
     }
 
-    private fun openDayDetail(date: LocalDate) {
+    private fun openDayDetail(context: Context, date: LocalDate) {
         Intent(context, DayDetailActivity::class.java).apply {
             putExtra(DayDetailActivity.EXTRA_DATE, date)
             dayDetailResult.launch(this)

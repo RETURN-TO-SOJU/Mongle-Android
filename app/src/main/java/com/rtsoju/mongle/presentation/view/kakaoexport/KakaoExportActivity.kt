@@ -10,7 +10,7 @@ import com.rtsoju.mongle.presentation.util.attachCompatVectorAnim
 import com.rtsoju.mongle.presentation.util.getParcelableExtraCompat
 import com.rtsoju.mongle.presentation.util.toastLong
 import com.rtsoju.mongle.presentation.view.dialog.InputRoomNameDialog
-import com.rtsoju.mongle.presentation.view.login.LoginActivity
+import com.rtsoju.mongle.presentation.view.login.LoginFlow
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,6 +36,20 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
             toastLong(it)
             finish()
         }
+    }
+
+    private fun checkLogin() {
+        LoginFlow(this) {
+            when (it) {
+                LoginFlow.LoginResult.REGISTER, LoginFlow.LoginResult.LOGIN -> {
+                    sendKakaoMessagesData()
+                }
+                LoginFlow.LoginResult.CANCELLED -> {
+                    toastLong(R.string.error_need_login_to_analyze)
+                    finish()
+                }
+            }
+        }.launch()
     }
 
     private fun parseRoomName(subject: String): String {
@@ -73,20 +87,6 @@ class KakaoExportActivity : BaseDataActivity<ActivityKakaotalkExportBinding>() {
         } else {
             onCantFindFile()
         }
-    }
-
-    private fun checkLogin() {
-        registerForActivityResult(LoginActivity.LoginResultContract()) {
-            when (it) {
-                LoginActivity.LoginResult.REGISTER, LoginActivity.LoginResult.LOGIN -> {
-                    sendKakaoMessagesData()
-                }
-                LoginActivity.LoginResult.CANCELLED, null -> {
-                    toastLong(R.string.error_need_login_to_analyze)
-                    finish()
-                }
-            }
-        }.launch(null)
     }
 
     private fun onCantFindFile() {
