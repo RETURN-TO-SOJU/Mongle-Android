@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.rtsoju.mongle.R
@@ -68,10 +69,15 @@ class SettingFragment : Fragment() {
         }
 
         binding.layoutSettingQanda.setOnClickListener {
-            val url = resources.getString(R.string.setting_qanda_url)
-            Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
-                startActivity(this)
-            }
+            goToURL(R.string.setting_url_qanda)
+        }
+
+        binding.layoutSettingPrivacyPolicy.setOnClickListener {
+            goToURL(R.string.setting_url_privacy_policy)
+        }
+
+        binding.layoutSettingTermsOfService.setOnClickListener {
+            goToURL(R.string.terms_of_service_url)
         }
 
         // TODO (LATER) 우선은 비밀번호 변경 api가 만들어지면 추가하도록 하자
@@ -92,6 +98,13 @@ class SettingFragment : Fragment() {
 
         updateUsernameTitle()
         return binding.root
+    }
+
+    private fun goToURL(@StringRes strRes: Int) {
+        val url = resources.getString(strRes)
+        Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+            startActivity(this)
+        }
     }
 
     private fun updateUsernameTitle() {

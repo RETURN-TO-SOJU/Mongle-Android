@@ -2,6 +2,7 @@ package com.rtsoju.mongle.presentation.view.setting
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.rtsoju.mongle.BuildConfig
 import com.rtsoju.mongle.R
 import com.rtsoju.mongle.data.source.local.config.ConfigKey
 import com.rtsoju.mongle.domain.usecase.config.EditConfigUseCase
@@ -34,11 +35,15 @@ class SettingViewModel @Inject constructor(
     private val _eventLeaveAccount = SingleLiveEvent<Unit>()
     val eventLeaveAccount = _eventLeaveAccount.asLiveData()
 
+    private val _version = MutableLiveData("불러오는 중..")
+    val version = _version.asLiveData()
+
     init {
         isAlertEnabled.value = getConfig(ConfigKey.USE_ALERT)
         isAlertEnabled.observeForever {
             editConfig().set(ConfigKey.USE_ALERT, it).apply()
         }
+        _version.value = "v${BuildConfig.VERSION_NAME}"
     }
 
     fun setPasswordTo(password: String) {

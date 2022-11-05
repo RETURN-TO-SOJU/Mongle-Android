@@ -13,6 +13,7 @@
     <string name="write_complete">작성완료</string>
     <string name="empty"><font color="#B2B7BD">비어있음</font></string>
     <string name="default_notification_channel_id">mongle_firebase_messaging</string>
+    <string name="check_update">업데이트 확인 중…</string>
 
     <string name="wip_title">공사중인 기능이에요</string>
     <string name="wip_subtitle">통계 기능은 아직 개발중이에요…\n다음 버전에 봐요!</string>
@@ -148,11 +149,17 @@
     <string name="setting_title_2">오늘 기분은 어때요?</string>
     <string name="setting_change_username">이름 변경</string>
     <string name="setting_screen_password">화면보호 비밀번호 설정</string>
-    <string name="setting_qanda">Q&amp;A</string>
-    <string name="setting_qanda_url">https://mongle-bucket-test.s3.ap-northeast-2.amazonaws.com/Q%26A.html</string>
+    <string name="setting_qanda">자주 묻는 Q&amp;A</string>
     <string name="setting_encrypt_password">개인 데이터 암호 설정</string>
     <string name="setting_alert">앱 알림</string>
     <string name="setting_leave">몽글몽글 서비스 탈퇴</string>
+    <string name="setting_terms_of_service">이용약관</string>
+    <string name="setting_privacy_policy">개인정보 처리방침</string>
+    <string name="setting_version">앱 버전</string>
+
+    <!-- Setting URLs -->
+    <string name="setting_url_qanda">https://mongle-bucket-test.s3.ap-northeast-2.amazonaws.com/Q%26A.html</string>
+    <string name="setting_url_privacy_policy">https://mongle-bucket-test.s3.ap-northeast-2.amazonaws.com/%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EB%B0%A9%EC%B9%A8.html</string>
 
     <!-- Leaving -->
     <string name="leaving_title">너무 아쉽네요 😭\n정말 몽글몽글 탈퇴하실껀가요?</string>
@@ -186,5 +193,4 @@
     <string name="statistics_overview_1">다소 우울했었어요.. 😥</string>
     <string name="statistics_overview_2">무난했어요 🙂</string>
     <string name="statistics_overview_3">꽤나 행복했었어요! 😀</string>
-    <string name="check_update">업데이트 확인 중...</string>
 </resources>
