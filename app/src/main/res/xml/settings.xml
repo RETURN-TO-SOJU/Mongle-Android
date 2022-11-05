@@ -3,4 +3,7 @@
     <item
         app:name="useAlert"
         app:defaultValue="true" />
+    <item
+        app:name="watchedDetailShowcase"
+        app:defaultValue="false" />
 </settings>

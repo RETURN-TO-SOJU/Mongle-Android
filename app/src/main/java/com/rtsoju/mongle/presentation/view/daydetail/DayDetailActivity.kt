@@ -1,6 +1,9 @@
 package com.rtsoju.mongle.presentation.view.daydetail
 
 import android.content.Intent
+import android.view.Gravity
+import android.view.View
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.rtsoju.mongle.R
@@ -22,6 +25,8 @@ import com.rtsoju.mongle.presentation.view.newfavorite.NewFavoriteFragment
 import com.rtsoju.mongle.presentation.view.setemotion.SetEmotionFragment
 import com.rtsoju.mongle.util.DatetimeFormats
 import dagger.hilt.android.AndroidEntryPoint
+import me.toptas.fancyshowcase.FancyShowCaseView
+import me.toptas.fancyshowcase.FocusShape
 import java.time.LocalDate
 import java.util.*
 
@@ -58,6 +63,10 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
             GiftArrivedDialog(this, it.format(DatetimeFormats.DATE_DOT)).open()
         }
 
+        viewModel.eventShowcase.observe(this) {
+            showcaseOnListLoaded(it)
+        }
+
         viewModel.attachDefaultHandlers(this)
         viewModel.initializeByIntent(intent)
         saveResult(viewModel.date, null)
@@ -65,6 +74,37 @@ class DayDetailActivity : BaseDataActivity<ActivityDayDetailBinding>(),
         initializeUI()
         imageStore = LocalDateImageStore(this)
         loadLocalImages(viewModel.date)
+    }
+
+    private fun showcaseOnListLoaded(position: Int) {
+        val recyclerView = binding.listDayDetailAnalyzedEmotion
+        val emotionView = recyclerView.findViewHolderForAdapterPosition(position)?.itemView
+        if (emotionView != null) {
+            showcase(emotionView)
+        } else {
+            recyclerView.viewTreeObserver.addOnGlobalLayoutListener(
+                object : OnGlobalLayoutListener {
+                    override fun onGlobalLayout() {
+                        val childAt =
+                            recyclerView.findViewHolderForAdapterPosition(position)?.itemView
+                        if (childAt != null) {
+                            showcase(childAt)
+                            recyclerView.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                        }
+                    }
+                }
+            )
+        }
+    }
+
+    private fun showcase(emotionView: View) {
+        FancyShowCaseView.Builder(this@DayDetailActivity)
+            .focusOn(emotionView)
+            .focusShape(FocusShape.ROUNDED_RECTANGLE)
+            .titleStyle(R.style.Widget_Mongle_ShowcaseTextView, Gravity.CENTER)
+            .title("클릭하면 카톡 대화들을 볼 수 있어요!")
+            .build()
+            .show()
     }
 
     private fun loadLocalImages(date: LocalDate) {

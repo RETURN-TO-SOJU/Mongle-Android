@@ -1,15 +1,13 @@
 package com.rtsoju.mongle.domain.usecase.user
 
-import com.rtsoju.mongle.domain.repository.AuthRepository
-import com.rtsoju.mongle.domain.repository.FavoriteRepository
-import com.rtsoju.mongle.domain.repository.PasswordRepository
-import com.rtsoju.mongle.domain.repository.UserRepository
+import com.rtsoju.mongle.domain.repository.*
 import javax.inject.Inject
 
 /** 탈퇴하기 */
 class LeaveAccountUseCase @Inject constructor(
     private val userRepository: UserRepository,
     private val authRepository: AuthRepository,
+    private val configRepository: ConfigRepository,
     private val passwordRepository: PasswordRepository,
     private val favoriteRepository: FavoriteRepository,
 ) {
@@ -19,6 +17,7 @@ class LeaveAccountUseCase @Inject constructor(
         passwordRepository.setScreenPassword(null)
         favoriteRepository.clear()
         authRepository.clear()
+        configRepository.editor().clear().apply()
         return result
     }
 }

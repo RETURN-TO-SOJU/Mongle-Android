@@ -5,9 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.rtsoju.mongle.R
+import com.rtsoju.mongle.data.source.local.config.ConfigKey.Companion.WATCHED_DETAIL_SHOWCASE
 import com.rtsoju.mongle.domain.model.CachePolicy
+import com.rtsoju.mongle.domain.model.CalendarDayDetail
 import com.rtsoju.mongle.domain.model.Emotion
 import com.rtsoju.mongle.domain.model.Favorite
+import com.rtsoju.mongle.domain.repository.ConfigRepository
 import com.rtsoju.mongle.domain.repository.FavoriteRepository
 import com.rtsoju.mongle.domain.usecase.calendar.GetCalendarDayDetailUseCase
 import com.rtsoju.mongle.presentation.base.BaseViewModel
@@ -27,7 +30,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DayDetailViewModel @Inject constructor(
     private val favoriteRepository: FavoriteRepository,
-    private val getCalendarDayDetail: GetCalendarDayDetailUseCase
+    private val getCalendarDayDetail: GetCalendarDayDetailUseCase,
+    private val configRepository: ConfigRepository
 ) : BaseViewModel() {
 
     lateinit var date: LocalDate
@@ -35,6 +39,11 @@ class DayDetailViewModel @Inject constructor(
 
     var emotion: Emotion? = null
         private set
+
+    private var useShowcase = false
+
+    private val _eventShowcase = SingleLiveEvent<Int>()
+    val eventShowcase = _eventShowcase.asLiveData()
 
     private val _eventOpenGiftDialog = SingleLiveEvent<LocalDate>()
     val eventOpenGiftDialog = _eventOpenGiftDialog.asLiveData()
@@ -88,6 +97,10 @@ class DayDetailViewModel @Inject constructor(
         )
         setDate(date)
 
+        if (!configRepository.get(WATCHED_DETAIL_SHOWCASE)) {
+            useShowcase = true
+        }
+
         val giftDate =
             intent.getBooleanExtra(DayDetailActivity.EXTRA_SHOW_ARRIVED_GIFT_DIALOG, false)
         if (giftDate) {
@@ -113,27 +126,51 @@ class DayDetailViewModel @Inject constructor(
         _localPhotos.postValue(photos)
     }
 
+    private fun postShowcase(data: CalendarDayDetail) {
+        var max = 0
+        var highestIndex = -1
+
+        data.emotionList.forEachIndexed { index, ent ->
+            if (max < ent.percent) {
+                max = ent.percent
+                highestIndex = index
+            }
+        }
+
+        if (highestIndex > 0) {
+            _eventShowcase.postValue(highestIndex)
+            configRepository.editor().set(WATCHED_DETAIL_SHOWCASE, true).apply()
+        }
+    }
+
+    private fun postDetailData(data: CalendarDayDetail) {
+        _diary.postValue(data.diary)
+        data.emotion?.let {
+            setEmotion(it)
+        }
+        _diaryFeedback.postValue(data.diaryFeedback)
+        _schedules.postValue(data.scheduleList.map {
+            SchedulePresentationModel.fromDomainModel(
+                it
+            )
+        })
+        _photos.postValue(data.imageList.map { PhotoPresentationModel.fromDomainModel(it) })
+        _analyzedEmotions.postValue(data.emotionList.map {
+            AnalyzedEmotionPresentationModel.fromDomainModel(
+                it
+            )
+        })
+    }
+
     fun refresh(cachePolicy: CachePolicy = CachePolicy.DEFAULT) =
         viewModelScope.launch(Dispatchers.IO) {
             val detail = startProgressTask { getCalendarDayDetail(date, cachePolicy) }
             if (detail != null) {
                 emotion = detail.emotion
-                _diary.postValue(detail.diary)
-                detail.emotion?.let {
-                    setEmotion(it)
+                postDetailData(detail)
+                if (useShowcase) {
+                    postShowcase(detail)
                 }
-                _diaryFeedback.postValue(detail.diaryFeedback)
-                _schedules.postValue(detail.scheduleList.map {
-                    SchedulePresentationModel.fromDomainModel(
-                        it
-                    )
-                })
-                _photos.postValue(detail.imageList.map { PhotoPresentationModel.fromDomainModel(it) })
-                _analyzedEmotions.postValue(detail.emotionList.map {
-                    AnalyzedEmotionPresentationModel.fromDomainModel(
-                        it
-                    )
-                })
             }
         }
 }
