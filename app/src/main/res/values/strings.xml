@@ -90,7 +90,7 @@
     <string name="tab_settings_title">MY</string>
 
     <!-- Kakaotalk analyze tutorial -->
-    <string name="kakao_tutorial_title_1">분석하고 싶은 톡방 입장 후,\n우측 상단 <font color="#EB6E6D">메뉴(3개의 줄) 아이콘</font> 클릭</string>
+    <string name="kakao_tutorial_title_1"><font color="#EB6E6D">카카오톡</font>에서 분석하고 싶은 톡방 입장 후,\n우측 상단 <font color="#EB6E6D">메뉴(3개의 줄) 아이콘</font> 클릭</string>
     <string name="kakao_tutorial_title_2">우측 사이드바가 나타나며,\n하단 <font color="#EB6E6D">설정(톱니바퀴) 아이콘</font> 클릭</string>
     <string name="kakao_tutorial_title_3">아래쪽 <font color="#EB6E6D">"대화내용 내보내기"</font> 클릭</string>
     <string name="kakao_tutorial_title_4"><font color="#EB6E6D">"텍스트만 보내기"</font> 클릭</string>
