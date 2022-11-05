@@ -32,6 +32,7 @@
             android:id="@+id/text_listitem_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:textColor="@color/disabled"
             android:textSize="11sp"
             tools:text="홍길동과의 대화. 오후 10:30" />
