@@ -35,7 +35,7 @@ fun CalendarDayPreviewResponse.toDomainModel(): CalendarDayPreview {
 }
 
 fun EmotionalSentenceResponse.toDomainModel(): EmotionalSentence {
-    return EmotionalSentence(sentence, emotion)
+    return EmotionalSentence(sentence, emotion, roomName)
 }
 
 fun LoginResponse.toDomainModel(): LoginResult {

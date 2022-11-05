@@ -23,7 +23,7 @@ fun Map<String, Int>.toDomainModel(): List<EmotionProportion> {
 }
 
 fun EmotionalSentenceEntity.toDomainModel(): EmotionalSentence {
-    return EmotionalSentence(sentence, emotion)
+    return EmotionalSentence(sentence, emotion, roomName)
 }
 
 fun Favorite.toEntity(): FavoriteEntity {
@@ -39,7 +39,7 @@ fun Schedule.toEntity(date: LocalDate): ScheduleEntity {
 }
 
 fun EmotionalSentence.toEntity(date: LocalDate): EmotionalSentenceEntity {
-    return EmotionalSentenceEntity(0, date, sentence, emotion)
+    return EmotionalSentenceEntity(0, date, sentence, emotion, roomName)
 }
 
 fun List<EmotionProportion>.toEntity(): Map<String, Int> {
