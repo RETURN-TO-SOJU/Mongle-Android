@@ -2,7 +2,6 @@ package com.rtsoju.mongle.presentation.view.starting
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -59,7 +58,21 @@ class StartingActivity : BaseActivity() {
                     this,
                     REQUEST_APP_UPDATE
                 )
+            } else {
+                launchLoginScreen()
             }
+        }
+    }
+
+    private fun launchLoginScreen() {
+        if (viewModel.needsPasswordAuth()) {
+            makePasswordScreenLauncher().launch(
+                Intent(applicationContext, PasswordActivity::class.java).apply {
+                    putExtra(PasswordActivity.EXTRA_MODE, PasswordActivity.Mode.AUTH)
+                }
+            )
+        } else {
+            loginFlow.launch()
         }
     }
 
@@ -78,16 +91,6 @@ class StartingActivity : BaseActivity() {
         appUpdateManager = AppUpdateManagerFactory.create(this)
         checkUpdate()
         makeLoginFlow()
-
-        if (viewModel.needsPasswordAuth()) {
-            makePasswordScreenLauncher().launch(
-                Intent(applicationContext, PasswordActivity::class.java).apply {
-                    putExtra(PasswordActivity.EXTRA_MODE, PasswordActivity.Mode.AUTH)
-                }
-            )
-        } else {
-            loginFlow.launch()
-        }
     }
 
     override fun onResume() {
@@ -109,7 +112,7 @@ class StartingActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_APP_UPDATE) {
             if (resultCode != RESULT_OK) {
-                Log.e("StartingActivity", "Update flow failed! Result code: $resultCode")
+                finish()
             }
         }
     }

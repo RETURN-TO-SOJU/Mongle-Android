@@ -186,4 +186,5 @@
     <string name="statistics_overview_1">다소 우울했었어요.. 😥</string>
     <string name="statistics_overview_2">무난했어요 🙂</string>
     <string name="statistics_overview_3">꽤나 행복했었어요! 😀</string>
+    <string name="check_update">업데이트 확인 중...</string>
 </resources>
