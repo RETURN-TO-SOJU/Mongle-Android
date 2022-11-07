@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class StartingActivity : BaseActivity() {
     private val viewModel by viewModels<StartingViewModel>()
     private lateinit var loginFlow: LoginFlow
-    private lateinit var appUpdateManager: AppUpdateManager
+    private var appUpdateManager: AppUpdateManager? = null
 
     private fun makePasswordScreenLauncher(): ActivityResultLauncher<Intent> {
         return registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -48,11 +48,11 @@ class StartingActivity : BaseActivity() {
     }
 
     private fun checkUpdate() {
-        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
+        appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo ->
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                 && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
             ) {
-                appUpdateManager.startUpdateFlowForResult(
+                appUpdateManager?.startUpdateFlowForResult(
                     appUpdateInfo,
                     AppUpdateType.IMMEDIATE,
                     this,
@@ -95,9 +95,9 @@ class StartingActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
+        appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo ->
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                appUpdateManager.startUpdateFlowForResult(
+                appUpdateManager?.startUpdateFlowForResult(
                     appUpdateInfo,
                     AppUpdateType.IMMEDIATE,
                     this,

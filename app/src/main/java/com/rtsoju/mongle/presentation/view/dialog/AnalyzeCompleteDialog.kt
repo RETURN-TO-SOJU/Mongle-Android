@@ -9,7 +9,6 @@ import com.rtsoju.mongle.presentation.util.attachCompatVectorAnim
 
 class AnalyzeCompleteDialog(
     context: Context,
-    private val name: String,
     private val dateRange: String
 ) : MongleDialog(context) {
 
@@ -21,8 +20,7 @@ class AnalyzeCompleteDialog(
         val dialog = openDialog(layout.root, true)
         layout.imageAnalyzeCompleteFlag.attachCompatVectorAnim(R.drawable.avd_flag_cross)
         layout.imageAnalyzeCompleteChecking.attachCompatVectorAnim(R.drawable.avd_complete)
-        layout.textAnalyzeCompleteTitle.text =
-            context.resources.getString(R.string.dialog_analyze_complete, name)
+        layout.textAnalyzeCompleteTitle.setText(R.string.dialog_analyze_complete)
         layout.textAnalyzeCompleteDateRange.text = dateRange
         layout.btnAnalyzeCompleteGoResult.setOnClickListener {
             dialog.dismiss()

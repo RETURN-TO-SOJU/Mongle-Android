@@ -19,7 +19,7 @@ android {
         targetSdk 33
 
         // 버전업 -> 아래 2개 수정
-        versionCode 19
+        versionCode 20
         versionName "1.1.0"
 
         manifestPlaceholders = [KAKAO_NATIVE_APP_KEY: properties["KAKAO_NATIVE_APP_KEY"]]

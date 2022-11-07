@@ -35,7 +35,6 @@ class MainActivity : BaseDataActivity<ActivityMainBinding>() {
         if (dateText != null) {
             AnalyzeCompleteDialog(
                 this,
-                "",
                 dateText
             ).open()
         }
