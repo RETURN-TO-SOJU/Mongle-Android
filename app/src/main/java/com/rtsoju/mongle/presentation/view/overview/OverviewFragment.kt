@@ -67,6 +67,7 @@ class OverviewFragment : Fragment() {
                     .title("카톡 분석방법을 알아볼까요?")
                     .build()
                     .show()
+                mainViewModel.setShowShowcase(false)
             }
         }
 
