@@ -9,5 +9,7 @@ data class EmotionalSentenceResponse(
     @SerializedName("sentence")
     val sentence: String,
     @SerializedName("emotion")
-    val emotion: Emotion
+    val emotion: Emotion,
+    @SerializedName("roomName")
+    val roomName: String
 )

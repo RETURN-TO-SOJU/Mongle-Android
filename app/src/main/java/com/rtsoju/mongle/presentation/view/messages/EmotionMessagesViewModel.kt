@@ -85,7 +85,7 @@ class EmotionMessagesViewModel @Inject constructor(
             Log.d("EmotionMessagesViewModel", messages?.joinToString() ?: "null")
             if (messages != null) {
                 val mappedMessages = messages.map {
-                    EmotionMessage(it.emotion, it.sentence)
+                    EmotionMessage(it.emotion, it.sentence, it.roomName)
                 }
                 _messages.postValue(mappedMessages)
 
@@ -123,7 +123,7 @@ class EmotionMessagesViewModel @Inject constructor(
             isUnlocked = true
             val decryptedMessages = try {
                 messages.map {
-                    EmotionMessage(it.emotion, decryptByKeyPassword(it.message))
+                    EmotionMessage(it.emotion, decryptByKeyPassword(it.message), it.roomName)
                 }
             } catch (e: CannotDecryptException) {
                 if (e.message != null) {

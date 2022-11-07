@@ -1,6 +1,5 @@
 package com.rtsoju.mongle.presentation.view.password
 
-import android.content.Intent
 import android.widget.RadioButton
 import androidx.activity.addCallback
 import androidx.activity.viewModels
@@ -10,7 +9,6 @@ import com.rtsoju.mongle.databinding.ActivityPasswordBinding
 import com.rtsoju.mongle.presentation.base.BaseDataActivity
 import com.rtsoju.mongle.presentation.util.toastShort
 import com.rtsoju.mongle.presentation.view.password.PasswordActivity.Companion.EXTRA_MODE
-import com.rtsoju.mongle.presentation.view.password.PasswordActivity.Companion.EXTRA_REDIRECT_INTENT
 import com.rtsoju.mongle.presentation.view.password.PasswordActivity.Mode
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,9 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
  * ## Extras
  * * **(선택)** [EXTRA_MODE]: [Mode] -
  * 패스워드 설정/입력 모드. 기본값은 [AUTH][Mode.AUTH]
- * * **(선택)** [EXTRA_REDIRECT_INTENT]: [Intent] -
- * 패스워드 인증 성공시 리다이렉션할 intent.
- * [EXTRA_MODE]가 [AUTH][Mode.AUTH]인 경우에만 사용할 수 있다.
  */
 @AndroidEntryPoint
 class PasswordActivity : BaseDataActivity<ActivityPasswordBinding>() {
@@ -48,9 +43,6 @@ class PasswordActivity : BaseDataActivity<ActivityPasswordBinding>() {
 
     private fun registerViewModelEvents() {
         viewModel.eventAuthFinish.observe(this) {
-            it?.let {
-                startActivity(it)
-            }
             setResult(RESULT_OK)
             finish()
         }
@@ -75,6 +67,5 @@ class PasswordActivity : BaseDataActivity<ActivityPasswordBinding>() {
 
     companion object {
         const val EXTRA_MODE = "mode"
-        const val EXTRA_REDIRECT_INTENT = "redirect"
     }
 }

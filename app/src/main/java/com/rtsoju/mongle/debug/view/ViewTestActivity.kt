@@ -37,14 +37,21 @@ class ViewTestActivity : BaseTestActivity() {
         ManualInfo("분석 완료 다이얼로그") {
             AnalyzeCompleteDialog(
                 this,
-                "소마",
                 "2022.08.01 ~ 2022.09.11"
             ).open()
         },
         ManualInfo("선물 도착 다이얼로그") { GiftArrivedDialog(this, "2022.08.01").open() },
         ManualInfo("로딩 다이얼로그") { LoadingDialog(this).open() },
-        ManualInfo("비밀번호 입력 다이얼로그") { InputPasswordDialog(this) { toastShort(it) }.open() },
-        ManualInfo("잠금 해제 다이얼로그") { UnlockByPasswordDialog(this) { toastShort("Let's us unlock!") }.open() },
+        ManualInfo("비밀번호 입력 다이얼로그") {
+            InputPasswordDialog(this)
+                .setOnSubmitPassword { toastShort(it) }
+                .open()
+        },
+        ManualInfo("잠금 해제 다이얼로그") {
+            UnlockByPasswordDialog(this)
+                .setOnClickOkListener { toastShort("Let's us unlock!") }
+                .open()
+        },
         FragmentInfo("감정 설정", this::setEmotionFragmentFactory),
     )
 

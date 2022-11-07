@@ -12,5 +12,6 @@ class EmotionMessageListAdapter :
     override fun bind(binding: ListitemMessageBinding, item: EmotionMessage) {
         binding.imageListitemMessageEmotion.setImageResource(item.emotion.iconRes)
         binding.textListitemMessage.text = item.message
+        binding.textListitemAuthor.text = item.roomName
     }
 }

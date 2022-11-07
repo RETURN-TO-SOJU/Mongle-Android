@@ -9,6 +9,7 @@ sealed class ConfigKey<T>(val name: String) {
 
     companion object {
         val USE_ALERT = BooleanConfigKey("useAlert")
+        val WATCHED_DETAIL_SHOWCASE = BooleanConfigKey("watchedDetailShowcase")
     }
 }
 

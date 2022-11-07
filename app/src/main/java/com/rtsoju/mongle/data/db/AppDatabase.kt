@@ -17,7 +17,7 @@ import com.rtsoju.mongle.data.db.entity.*
         ScheduleEntity::class,
         PhotoEntity::class
     ],
-    version = 3
+    version = 4
 )
 @TypeConverters(
     LocalDateTimeConverter::class,

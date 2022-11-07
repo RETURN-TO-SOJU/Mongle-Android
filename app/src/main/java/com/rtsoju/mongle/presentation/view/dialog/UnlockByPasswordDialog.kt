@@ -9,10 +9,16 @@ import com.rtsoju.mongle.databinding.DialogUnlockByPasswordBinding
 import com.rtsoju.mongle.presentation.util.attachCompatVectorAnim
 
 class UnlockByPasswordDialog(
-    context: Context,
-    private val onClickOK: View.OnClickListener? = null
+    context: Context
 ) : MongleDialog(context) {
+
+    private var onClickOK: View.OnClickListener? = null
     private var isUnlocking = false
+
+    fun setOnClickOkListener(listener: View.OnClickListener): UnlockByPasswordDialog {
+        onClickOK = listener
+        return this
+    }
 
     override fun open(): AlertDialog {
         val layout = DialogUnlockByPasswordBinding.inflate(

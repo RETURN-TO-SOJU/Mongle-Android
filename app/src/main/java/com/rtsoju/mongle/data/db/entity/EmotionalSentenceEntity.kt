@@ -11,5 +11,6 @@ data class EmotionalSentenceEntity(
     val id: Long,
     val date: LocalDate,
     val sentence: String,
-    val emotion: Emotion
+    val emotion: Emotion,
+    val roomName: String
 )

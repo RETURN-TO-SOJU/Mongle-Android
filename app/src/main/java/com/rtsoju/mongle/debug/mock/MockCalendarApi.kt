@@ -188,42 +188,48 @@ class MockCalendarApi(
                     EmotionalSentenceResponse(
                         it.toLong(),
                         "행복${it}",
-                        Emotion.HAPPY
+                        Emotion.HAPPY,
+                        "Hello Room"
                     )
                 }
                 Emotion.ANXIOUS.name -> (0..4).map {
                     EmotionalSentenceResponse(
                         it.toLong(),
                         "불안${it}",
-                        Emotion.ANXIOUS
+                        Emotion.ANXIOUS,
+                        "Hello Room"
                     )
                 }
                 Emotion.ANGRY.name -> (0..4).map {
                     EmotionalSentenceResponse(
                         it.toLong(),
                         "화난다${it}",
-                        Emotion.ANGRY
+                        Emotion.ANGRY,
+                        "Hello Room"
                     )
                 }
                 Emotion.SAD.name -> (0..4).map {
                     EmotionalSentenceResponse(
                         it.toLong(),
                         "슬프다${it}",
-                        Emotion.SAD
+                        Emotion.SAD,
+                        "Hello Room"
                     )
                 }
                 Emotion.NEUTRAL.name -> (0..4).map {
                     EmotionalSentenceResponse(
                         it.toLong(),
                         "평범하다${it}",
-                        Emotion.NEUTRAL
+                        Emotion.NEUTRAL,
+                        "Hello Room"
                     )
                 }
                 Emotion.TIRED.name -> (0..4).map {
                     EmotionalSentenceResponse(
                         it.toLong(),
                         "힘들다${it}",
-                        Emotion.TIRED
+                        Emotion.TIRED,
+                        "Hello Room"
                     )
                 }
                 else -> listOf()
