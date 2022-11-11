@@ -1,6 +1,7 @@
 package com.rtsoju.mongle.presentation.view.starting
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -8,12 +9,12 @@ import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.rtsoju.mongle.R
 import com.rtsoju.mongle.USE_TEST_ACTIVITY
 import com.rtsoju.mongle.debug.view.MainTestActivity
 import com.rtsoju.mongle.presentation.base.BaseActivity
+import com.rtsoju.mongle.presentation.view.dialog.AlertMessageDialog
 import com.rtsoju.mongle.presentation.view.login.LoginFlow
 import com.rtsoju.mongle.presentation.view.main.MainActivity
 import com.rtsoju.mongle.presentation.view.password.PasswordActivity
@@ -48,17 +49,34 @@ class StartingActivity : BaseActivity() {
         }
     }
 
+    private fun showUpdateDialog() {
+        AlertMessageDialog(
+            this,
+            R.string.dialog_need_update_title,
+            R.string.dialog_need_update_description
+        )
+            .setOnDialogResultListener {
+                when (it) {
+                    AlertMessageDialog.Result.OK -> {
+                        Intent(Intent.ACTION_VIEW).apply {
+                            addCategory(Intent.CATEGORY_DEFAULT)
+                            setData(Uri.parse("market://details?id=${packageName}"))
+                            startActivity(this)
+                        }
+                        finish()
+                    }
+                    else -> {
+                        finish()
+                    }
+                }
+            }
+            .open()
+    }
+
     private fun checkUpdate() {
         appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
-            ) {
-                appUpdateManager.startUpdateFlowForResult(
-                    appUpdateInfo,
-                    AppUpdateType.IMMEDIATE,
-                    this,
-                    REQUEST_APP_UPDATE
-                )
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
+                showUpdateDialog()
             } else {
                 launchLoginScreen()
             }
@@ -93,21 +111,6 @@ class StartingActivity : BaseActivity() {
         appUpdateManager = AppUpdateManagerFactory.create(this)
         checkUpdate()
         makeLoginFlow()
-    }
-
-    // TODO Update 방식 변경
-    override fun onResume() {
-        super.onResume()
-        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                appUpdateManager.startUpdateFlowForResult(
-                    appUpdateInfo,
-                    AppUpdateType.IMMEDIATE,
-                    this,
-                    REQUEST_APP_UPDATE
-                )
-            }
-        }
     }
 
     @Deprecated("Deprecated in Java")
