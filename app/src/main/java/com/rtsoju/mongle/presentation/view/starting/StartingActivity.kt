@@ -95,6 +95,7 @@ class StartingActivity : BaseActivity() {
         makeLoginFlow()
     }
 
+    // TODO Update 방식 변경
     override fun onResume() {
         super.onResume()
         appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->

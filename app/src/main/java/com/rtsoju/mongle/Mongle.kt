@@ -52,7 +52,11 @@ class Mongle : Application(), LifecycleEventObserver {
     }
 
     private fun logFCMToken() = CoroutineScope(Dispatchers.IO).launch {
-        val token = FirebaseMessaging.getInstance().token.await()
-        Log.d("FCM Token", token)
+        try {
+            val token = FirebaseMessaging.getInstance().token.await()
+            Log.d("FCM", token)
+        } catch (e: java.lang.Exception) {
+            Log.e("FCM", e.toString())
+        }
     }
 }
