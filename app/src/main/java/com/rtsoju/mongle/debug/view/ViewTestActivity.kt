@@ -37,7 +37,6 @@ class ViewTestActivity : BaseTestActivity() {
         ManualInfo("분석 완료 다이얼로그") {
             AnalyzeCompleteDialog(
                 this,
-                "소마",
                 "2022.08.01 ~ 2022.09.11"
             ).open()
         },
