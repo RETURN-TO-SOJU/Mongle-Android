@@ -34,6 +34,7 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
+        Log.d(TAG, "NEW FCM: $token")
         CoroutineScope(Dispatchers.IO).launch {
             setFCMToken(token)
         }

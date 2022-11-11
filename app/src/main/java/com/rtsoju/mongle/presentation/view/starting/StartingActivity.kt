@@ -24,6 +24,7 @@ class StartingActivity : BaseActivity() {
     private val viewModel by viewModels<StartingViewModel>()
     private lateinit var loginFlow: LoginFlow
     private lateinit var appUpdateManager: AppUpdateManager
+    private lateinit var launcherPwdScreen: ActivityResultLauncher<Intent>
 
     private fun makePasswordScreenLauncher(): ActivityResultLauncher<Intent> {
         return registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -66,7 +67,7 @@ class StartingActivity : BaseActivity() {
 
     private fun launchLoginScreen() {
         if (viewModel.needsPasswordAuth()) {
-            makePasswordScreenLauncher().launch(
+            launcherPwdScreen.launch(
                 Intent(applicationContext, PasswordActivity::class.java).apply {
                     putExtra(PasswordActivity.EXTRA_MODE, PasswordActivity.Mode.AUTH)
                 }
@@ -88,6 +89,7 @@ class StartingActivity : BaseActivity() {
             return
         }
 
+        launcherPwdScreen = makePasswordScreenLauncher()
         appUpdateManager = AppUpdateManagerFactory.create(this)
         checkUpdate()
         makeLoginFlow()
