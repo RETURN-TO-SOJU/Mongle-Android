@@ -127,6 +127,7 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
                 NotificationCompat.BigTextStyle()
                     .bigText(body)
             )
+            .setVibrate(longArrayOf(2000L))
             .setSound(soundUri)
 
         if (resultIntent != null) {
@@ -147,8 +148,9 @@ class MongleFirebaseMessagingService : FirebaseMessagingService() {
             val channel = NotificationChannel(
                 CHANNEL_ID,
                 "Notice",
-                NotificationManager.IMPORTANCE_DEFAULT
+                NotificationManager.IMPORTANCE_HIGH
             )
+            channel.enableVibration(true)
             notificationManager.createNotificationChannel(channel)
         }
 
