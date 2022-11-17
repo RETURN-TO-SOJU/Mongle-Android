@@ -9,7 +9,7 @@ import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
 import com.kizitonwose.calendarview.utils.yearMonth
 import com.rtsoju.mongle.R
-import com.rtsoju.mongle.databinding.CalendarMongleBinding
+import com.rtsoju.mongle.databinding.ControlCalendarMongleBinding
 import com.rtsoju.mongle.domain.model.Emotion
 import com.rtsoju.mongle.presentation.base.event.OnSelectedListener
 import com.rtsoju.mongle.presentation.util.dpToPxInt
@@ -26,7 +26,7 @@ class MongleCalendar @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val binding = CalendarMongleBinding.inflate(LayoutInflater.from(context))
+    private val binding = ControlCalendarMongleBinding.inflate(LayoutInflater.from(context))
 
     var selectedDate: LocalDate? = null
         private set

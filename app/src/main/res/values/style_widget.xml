@@ -25,6 +25,21 @@
         <item name="android:paddingBottom">18dp</item>
     </style>
 
+    <style name="Widget.Mongle.Button.KakaoButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/btn_kakao</item>
+        <item name="android:fontFamily">@font/app_medium</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textColor">@color/kakao_text</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingTop">14sp</item>
+        <item name="android:paddingBottom">14sp</item>
+        <item name="android:theme">@style/Theme.MaterialComponents.Light.Bridge</item>
+        <item name="backgroundTint">@null</item>
+        <item name="icon">@drawable/ic_kakaotalk</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconTint">@color/kakao_text</item>
+    </style>
+
 
     <!-- Progressbar -->
     <style name="Widget.Mongle.ProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
