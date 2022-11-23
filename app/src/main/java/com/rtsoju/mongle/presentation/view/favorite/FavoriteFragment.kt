@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.rtsoju.mongle.databinding.FragmentFavoriteBinding
+import com.rtsoju.mongle.presentation.util.dpToPxInt
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.abs
 
 @AndroidEntryPoint
 class FavoriteFragment : Fragment() {
@@ -27,7 +29,30 @@ class FavoriteFragment : Fragment() {
             viewModel.deleteFavorite(it)
         }
 
-        binding.listFavorite.adapter = favoriteListAdapter
+        binding.listFavorite.apply {
+            adapter = favoriteListAdapter
+            offscreenPageLimit = 3
+
+            setPageTransformer { page, position ->
+                val pageWidth: Int = measuredWidth - paddingLeft - paddingRight
+                val transformPos = (page.left - (scrollX + paddingLeft)).toFloat() / pageWidth
+                val normalizedPosition = abs(abs(transformPos) - 1)
+                page.alpha = normalizedPosition + 0.3f
+
+                val max = -height / 20
+                val padding = width - dpToPxInt(context, 250)
+
+                page.translationX = -padding * 0.8f * position
+                if (transformPos < -1) {
+                    page.translationY = 0f
+                } else if (transformPos <= 1) {
+                    page.translationY = max * (1 - abs(transformPos))
+                } else {
+                    page.translationY = 0f
+                }
+            }
+        }
+
         binding.indicatorFavoritePagerPage.attachTo(binding.listFavorite)
 
         viewModel.favorites.observe(viewLifecycleOwner) {

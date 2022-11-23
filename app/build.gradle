@@ -19,8 +19,8 @@ android {
         targetSdk 33
 
         // 버전업 -> 아래 2개 수정
-        versionCode 21
-        versionName "1.1.1"
+        versionCode 22
+        versionName "1.2.0"
 
         manifestPlaceholders = [KAKAO_NATIVE_APP_KEY: properties["KAKAO_NATIVE_APP_KEY"]]
         buildConfigField "String", 'KAKAO_NATIVE_APP_KEY', "\"${properties["KAKAO_NATIVE_APP_KEY"]}\""

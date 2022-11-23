@@ -46,22 +46,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_tutorial" />
 
-
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_tutorial_go_kakao"
+        style="@style/Widget.Mongle.Button.KakaoButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/btn_kakao"
-        android:drawablePadding="8dp"
-        android:fontFamily="@font/app_medium"
-        android:gravity="center"
-        android:paddingHorizontal="120dp"
-        android:paddingVertical="18dp"
         android:text="@string/tutorial_go_kakao"
-        android:textColor="@color/kakao_text"
-        android:textSize="14sp"
-        app:drawableStartCompat="@drawable/ic_kakaotalk"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

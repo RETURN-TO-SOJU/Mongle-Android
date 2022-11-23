@@ -1,4 +1,4 @@
-package com.rtsoju.mongle.presentation.common.emotionselector
+package com.rtsoju.mongle.presentation.common
 
 import android.content.Context
 import android.util.AttributeSet
@@ -9,7 +9,7 @@ import android.widget.FrameLayout
 import android.widget.GridLayout
 import android.widget.ImageButton
 import android.widget.ImageView
-import com.rtsoju.mongle.databinding.EmotionSelectorBinding
+import com.rtsoju.mongle.databinding.ControlEmotionSelectorBinding
 import com.rtsoju.mongle.domain.model.Emotion
 import com.rtsoju.mongle.presentation.base.event.OnSelectedListener
 import com.rtsoju.mongle.presentation.util.dpToPxInt
@@ -21,7 +21,8 @@ class EmotionSelector @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val binding = EmotionSelectorBinding.inflate(LayoutInflater.from(context), this, false)
+    private val binding =
+        ControlEmotionSelectorBinding.inflate(LayoutInflater.from(context), this, false)
 
     private var onSelectedListener: OnSelectedListener<Emotion>? = null
 

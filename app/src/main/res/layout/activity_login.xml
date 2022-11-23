@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -37,21 +36,14 @@
             android:layout_marginBottom="24dp"
             android:src="@drawable/emotion_happy_big" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
+            style="@style/Widget.Mongle.Button.KakaoButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_kakao"
-            android:drawablePadding="8dp"
+            android:layout_marginHorizontal="32dp"
             android:enabled="@{viewModel.loginEnabled}"
-            android:fontFamily="@font/app_medium"
-            android:gravity="center"
-            android:paddingHorizontal="100dp"
-            android:paddingVertical="18dp"
-            android:text="@string/login_kakao"
-            android:textColor="@color/kakao_text"
-            android:textSize="14sp"
-            app:drawableStartCompat="@drawable/ic_kakaotalk" />
+            android:text="@string/login_kakao" />
 
     </LinearLayout>
 </layout>
