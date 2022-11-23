@@ -63,11 +63,11 @@ class LocalDateImageStore(private val activity: ComponentActivity) {
         val epochMilli = instant.toEpochMilli()
         val projection = arrayOf(
             MediaStore.Images.Media._ID,
-            MediaStore.Images.Media.DATE_ADDED,
+            MediaStore.Images.Media.DATE_MODIFIED,
             MediaStore.Images.Media.DATE_TAKEN
         )
-        val selection = "(${MediaStore.Images.Media.DATE_ADDED} >= ? and " +
-                "${MediaStore.Images.Media.DATE_ADDED} <= ?) or (" +
+        val selection = "(${MediaStore.Images.Media.DATE_MODIFIED} >= ? and " +
+                "${MediaStore.Images.Media.DATE_MODIFIED} <= ?) or (" +
                 "${MediaStore.Images.Media.DATE_TAKEN} >= ? and " +
                 "${MediaStore.Images.Media.DATE_TAKEN} <= ?)"
         val selectionArgs = arrayOf(
@@ -96,14 +96,14 @@ class LocalDateImageStore(private val activity: ComponentActivity) {
         val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
         val takenColumn =
             cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_TAKEN)
-        val addedColumn =
-            cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED)
+        val modifiedColumn =
+            cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED)
         val photoList = mutableListOf<PhotoPresentationModel>()
 
         while (cursor.moveToNext()) {
             val id = cursor.getLong(idColumn)
             val taken = cursor.getLong(takenColumn)
-            val added = cursor.getLong(addedColumn)
+            val added = cursor.getLong(modifiedColumn)
             val contentUri: Uri = ContentUris.withAppendedId(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id
             )
@@ -112,8 +112,15 @@ class LocalDateImageStore(private val activity: ComponentActivity) {
                 continue
             }
 
-            val addedText = LocalDateTime.ofEpochSecond(added, 0, ZoneOffset.UTC)
+            val targetEpoch = if (taken != 0L) {
+                taken / 1000L
+            } else {
+                added
+            }
+
+            val addedText = LocalDateTime.ofEpochSecond(targetEpoch, 0, ZoneOffset.UTC)
                 .format(DatetimeFormats.TIME_12)
+
             photoList.add(PhotoPresentationModel(contentUri.toString(), addedText))
         }
 
