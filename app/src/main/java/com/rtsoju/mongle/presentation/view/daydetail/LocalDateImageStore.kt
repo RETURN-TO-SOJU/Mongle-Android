@@ -59,16 +59,22 @@ class LocalDateImageStore(private val activity: ComponentActivity) {
 
     private fun readPermissionGrantedImages(date: LocalDate): List<PhotoPresentationModel>? {
         val instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant()
-        val epoch = instant.epochSecond
+        val epochSeconds = instant.epochSecond
+        val epochMilli = instant.toEpochMilli()
         val projection = arrayOf(
             MediaStore.Images.Media._ID,
-            MediaStore.Images.Media.DATE_ADDED
+            MediaStore.Images.Media.DATE_ADDED,
+            MediaStore.Images.Media.DATE_TAKEN
         )
-        val selection = "${MediaStore.Images.Media.DATE_ADDED} >= ? and " +
-                "${MediaStore.Images.Media.DATE_ADDED} <= ?"
+        val selection = "(${MediaStore.Images.Media.DATE_ADDED} >= ? and " +
+                "${MediaStore.Images.Media.DATE_ADDED} <= ?) or (" +
+                "${MediaStore.Images.Media.DATE_TAKEN} >= ? and " +
+                "${MediaStore.Images.Media.DATE_TAKEN} <= ?)"
         val selectionArgs = arrayOf(
-            epoch.toString(),
-            (epoch + 86400).toString()
+            epochSeconds.toString(),
+            (epochSeconds + 86400).toString(),
+            epochMilli.toString(),
+            (epochMilli + 86400000).toString()
         )
         val query = activity.contentResolver.query(
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
@@ -78,23 +84,34 @@ class LocalDateImageStore(private val activity: ComponentActivity) {
             null
         )
         query?.use { cursor ->
-            return readPhotosFromCursor(cursor)
+            return readPhotosFromCursor(cursor, epochMilli)
         }
         return null
     }
 
-    private fun readPhotosFromCursor(cursor: Cursor): List<PhotoPresentationModel> {
+    private fun readPhotosFromCursor(
+        cursor: Cursor,
+        epochMilli: Long
+    ): List<PhotoPresentationModel> {
         val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
+        val takenColumn =
+            cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_TAKEN)
         val addedColumn =
             cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED)
         val photoList = mutableListOf<PhotoPresentationModel>()
 
         while (cursor.moveToNext()) {
             val id = cursor.getLong(idColumn)
+            val taken = cursor.getLong(takenColumn)
             val added = cursor.getLong(addedColumn)
             val contentUri: Uri = ContentUris.withAppendedId(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id
             )
+
+            if (taken != 0L && (taken < epochMilli || taken > epochMilli + 86400000)) {
+                continue
+            }
+
             val addedText = LocalDateTime.ofEpochSecond(added, 0, ZoneOffset.UTC)
                 .format(DatetimeFormats.TIME_12)
             photoList.add(PhotoPresentationModel(contentUri.toString(), addedText))
