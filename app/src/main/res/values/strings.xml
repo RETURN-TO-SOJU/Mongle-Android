@@ -123,7 +123,7 @@
     <string name="sending_title" tools:ignore="TypographyEllipsis,TypographyFractions">데이터 전송 중... (1/2)</string>
     <string name="analyzing_title" tools:ignore="TypographyEllipsis">분석 중... (2/2)</string>
     <string name="analyzing_subtitle1">편하게 다른 일 보고오세요! 😁</string>
-    <string name="analyzing_subtitle2">분석이 끝나면 알림으로 알려드릴게요!\n분석 작업은 1시간이상 걸릴 수 있습니다.</string>
+    <string name="analyzing_subtitle2">분석이 끝나면 알림으로 알려드릴게요!\n분석 작업은 30분이상 걸릴 수 있습니다.</string>
     <string name="error_cant_find_shared_file">공유된 카카오톡 텍스트파일을 불러올 수 없습니다.</string>
     <string name="error_need_login_to_analyze">로그인해야 대화내용 분석을 요청할 수 있습니다.</string>
     <string name="error_cancelled_analyze">취소했습니다.</string>
@@ -191,7 +191,7 @@
     <string name="statistics_monthly_happy_score">이번달은 얼마나 행복했을까?</string>
     <string name="statistics_monthly_emotions">이번달은 어떤 감정들이 있었을까?</string>
     <string name="statistics_empty_data_title">데이터가 없네요..</string>
-    <string name="statistics_empty_data_subtitle">이 기간동안 분석된 감정이 아얘 없어요.</string>
+    <string name="statistics_empty_data_subtitle">이 기간동안 분석된 감정이 아예 없어요.</string>
     <string name="statistics_overview_1">다소 우울했었어요.. 😥</string>
     <string name="statistics_overview_2">무난했어요 🙂</string>
     <string name="statistics_overview_3">꽤나 행복했었어요! 😀</string>
